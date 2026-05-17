@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<!-- pruebas pagina de desarrollo web 2 -->
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELLIER | Catálogo Personalizado</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        
+        .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card.hidden { display: none; opacity: 0; transform: scale(0.9); }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #2563eb, #9333ea);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #cart-sidebar {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #cart-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .custom-input {
+            transition: all 0.2s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .custom-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden">
+
+    <!-- Navegación -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0">
+                    <span class="text-3xl font-800 tracking-tighter gradient-text cursor-pointer" onclick="window.scrollTo(0,0)">ELLIER</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#inicio" class="text-gray-600 hover:text-blue-600 font-medium">Inicio</a>
+                        <a href="#catalogo" class="text-gray-600 hover:text-blue-600 font-medium">Catálogo</a>
+                        <a href="#redes" class="text-gray-600 hover:text-blue-600 font-medium">Redes</a>
+                    </div>
+                    <button onclick="toggleCart()" class="relative p-2 text-gray-700 hover:text-blue-600 transition">
+                        <i class="fas fa-shopping-bag text-2xl"></i>
+                        <span id="cart-count" class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar del Carrito -->
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/50 z-[60] hidden backdrop-blur-sm"></div>
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] shadow-2xl flex flex-col">
+        <div class="p-6 border-b flex justify-between items-center">
+            <h2 class="text-2xl font-bold">Tu Pedido</h2>
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-black"><i class="fas fa-times text-xl"></i></button>
+        </div>
+        
+        <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-6">
+            <!-- Items con campos de texto -->
+        </div>
+
+        <div class="p-6 border-t bg-gray-50 space-y-4">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 font-medium">Total:</span>
+                <span id="cart-total" class="text-2xl font-800 text-gray-900">$0.00</span>
+            </div>
+            <button onclick="sendOrder()" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition flex items-center justify-center gap-2">
+                <i class="fab fa-whatsapp text-xl"></i> Enviar Pedido Personalizado
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <header id="inicio" class="py-12 md:py-20 text-center px-4">
+        <h1 class="text-5xl md:text-7xl font-800 mb-4 tracking-tight">Diseños que <span class="gradient-text">Inspiran</span></h1>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">Personaliza tus productos favoritos con el sello de calidad de ELLIER. Añade notas especiales a cada artículo de tu carrito.</p>
+    </header>
+
+    <!-- Catálogo -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 pb-24">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <!-- Producto 1 -->
+            <div class="product-card bg-white rounded-3xl p-5 shadow-sm border border-gray-100 hover:shadow-xl transition-all">
+                <div class="rounded-2xl overflow-hidden h-72 bg-gray-100 mb-5 relative group">
+                    <img src="https://cdnx.jumpseller.com/t23-cl/image/41427304/resize/1200/1200?1698330812" class="w-full h-full object-cover" alt="Taza Blanca">
+                    <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-xl font-bold text-gray-900">Taza Cerámica Premium</h3>
+                    <span class="text-lg font-800 text-blue-600">$200.00</span>
+                </div>
+                <button onclick="addToCart(1, 'Taza Cerámica Premium', 200.00, 'https://cdnx.jumpseller.com/t23-cl/image/41427304/resize/1200/1200?1698330812')" 
+                        class="w-full bg-gray-900 text-white py-3.5 rounded-xl font-semibold hover:bg-blue-600 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-plus-circle"></i> Agregar para Personalizar
+                </button>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-card bg-white rounded-3xl p-5 shadow-sm border border-gray-100 hover:shadow-xl transition-all">
+                <div class="rounded-2xl overflow-hidden h-72 bg-gray-100 mb-5 relative group">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600" class="w-full h-full object-cover" alt="Gorra">
+                </div>
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-xl font-bold text-gray-900">Gorra Trucker Estilo</h3>
+                    <span class="text-lg font-800 text-blue-600">$350.00</span>
+                </div>
+                <button onclick="addToCart(2, 'Gorra Trucker Estilo', 350.00, 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600')" 
+                        class="w-full bg-gray-900 text-white py-3.5 rounded-xl font-semibold hover:bg-blue-600 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-plus-circle"></i> Agregar para Personalizar
+                </button>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card bg-white rounded-3xl p-5 shadow-sm border border-gray-100 hover:shadow-xl transition-all">
+                <div class="rounded-2xl overflow-hidden h-72 bg-gray-100 mb-5 relative group">
+                    <img src="https://img.elo7.com.br/product/zoom/4DEEDAC/kit-20-camisetas-personalizadas-com-sua-cores-e-arte-dryfit-camiseta-sublimacao.jpg" class="w-full h-full object-cover" alt="Camiseta">
+                </div>
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-xl font-bold text-gray-900">Camiseta Poliester</h3>
+                    <span class="text-lg font-800 text-blue-600">$500.00</span>
+                </div>
+                <button onclick="addToCart(3, 'Camiseta Poliester', 500.00, 'https://img.elo7.com.br/product/zoom/4DEEDAC/kit-20-camisetas-personalizadas-com-sua-cores-e-arte-dryfit-camiseta-sublimacao.jpg')" 
+                        class="w-full bg-gray-900 text-white py-3.5 rounded-xl font-semibold hover:bg-blue-600 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-plus-circle"></i> Agregar para Personalizar
+                </button>
+            </div>
+
+             <!-- Producto 4 -->
+            <div class="product-card bg-white rounded-3xl p-5 shadow-sm border border-gray-100 hover:shadow-xl transition-all">
+                <div class="rounded-2xl overflow-hidden h-72 bg-gray-100 mb-5 relative group">
+                    <img src="https://cdn.awsli.com.br/2500x2500/459/459548/produto/305026799/camisa-9odnv8zs45.jpeg" alt="Camiseta">
+                </div>
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-xl font-bold text-gray-900">Camiseta Algodón</h3>
+                    <span class="text-lg font-800 text-blue-600">$600.00</span>
+                </div>
+                <button onclick="addToCart(4, 'Camiseta Algodón', 600.00, 'https://cdn.awsli.com.br/2500x2500/459/459548/produto/305026799/camisa-9odnv8zs45.jpeg')" 
+                        class="w-full bg-gray-900 text-white py-3.5 rounded-xl font-semibold hover:bg-blue-600 transition flex items-center justify-center gap-2">
+                    <i class="fas fa-plus-circle"></i> Agregar para Personalizar
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Sección de Redes Sociales -->
+    <footer id="redes" class="bg-white border-t border-gray-100 py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h4 class="text-2xl font-800 mb-2">Conecta con <span class="gradient-text">ELLIER</span></h4>
+            <p class="text-gray-400 mb-10">Síguenos en nuestras redes para ver nuevos diseños y promociones.</p>
+            
+            <div class="flex justify-center space-x-8">
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/tavo.parra.597479?locale=es_LA" target="_blank" class="group flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-2xl group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-blue-200">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <span class="text-xs mt-3 font-bold text-gray-400 group-hover:text-blue-600 uppercase tracking-widest">Facebook</span>
+                </a>
+                
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/7octavio_parra/" target="_blank" class="group flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-pink-50 text-pink-600 flex items-center justify-center text-2xl group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:to-purple-600 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-pink-200">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <span class="text-xs mt-3 font-bold text-gray-400 group-hover:text-pink-600 uppercase tracking-widest">Instagram</span>
+                </a>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/523317610280" target="_blank" class="group flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-green-50 text-green-600 flex items-center justify-center text-2xl group-hover:bg-green-500 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-green-200">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <span class="text-xs mt-3 font-bold text-gray-400 group-hover:text-green-600 uppercase tracking-widest">WhatsApp</span>
+                </a>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-gray-50">
+                <p class="text-gray-300 text-sm">© 2026 ELLIER Branding & Co. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notificación Toast -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] transform translate-y-20 opacity-0 transition-all duration-300">
+        <div class="bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-gray-700">
+            <i class="fas fa-shopping-cart text-blue-400"></i>
+            <span id="toast-msg" class="font-medium text-sm">Producto añadido</span>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('ellier_custom_cart')) || [];
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('hidden');
+            if(sidebar.classList.contains('open')) renderCart();
+        }
+
+        function addToCart(id, name, price, img) {
+            const entryId = Date.now(); 
+            cart.push({ entryId, id, name, price, img, quantity: 1, note: "" });
+            
+            saveCart();
+            showToast(`"${name}" agregado al carrito`);
+            updateCartCount();
+        }
+
+        function updateNote(entryId, noteValue) {
+            const item = cart.find(i => i.entryId === entryId);
+            if (item) {
+                item.note = noteValue;
+                saveCart();
+            }
+        }
+
+        function removeFromCart(entryId) {
+            cart = cart.filter(item => item.entryId !== entryId);
+            saveCart();
+            renderCart();
+            updateCartCount();
+        }
+
+        function updateQuantity(entryId, change) {
+            const item = cart.find(i => i.entryId === entryId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) return removeFromCart(entryId);
+                saveCart();
+                renderCart();
+                updateCartCount();
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('ellier_custom_cart', JSON.stringify(cart));
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+            document.getElementById('cart-count').innerText = count;
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-20">
+                        <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shopping-bag text-3xl text-gray-200"></i>
+                        </div>
+                        <p class="text-gray-400 font-medium">No hay productos seleccionados</p>
+                    </div>`;
+                totalEl.innerText = "$0.00";
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                return `
+                <div class="bg-gray-50/50 p-4 rounded-3xl border border-gray-100 space-y-4">
+                    <div class="flex items-center gap-4">
+                        <img src="${item.img}" class="w-20 h-20 rounded-2xl object-cover shadow-sm">
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-bold text-gray-900 leading-tight">${item.name}</h4>
+                                <button onclick="removeFromCart(${item.entryId})" class="text-gray-300 hover:text-red-500 transition ml-2">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </div>
+                            <p class="text-blue-600 font-bold text-sm mt-1">$${item.price.toFixed(2)} c/u</p>
+                            <div class="flex items-center gap-3 mt-2">
+                                <button onclick="updateQuantity(${item.entryId}, -1)" class="w-7 h-7 bg-white border border-gray-200 rounded-full flex items-center justify-center text-xs hover:bg-gray-50 transition shadow-sm">-</button>
+                                <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.entryId}, 1)" class="w-7 h-7 bg-white border border-gray-200 rounded-full flex items-center justify-center text-xs hover:bg-gray-50 transition shadow-sm">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1">
+                            <i class="fas fa-pen text-[8px]"></i> Detalles de personalización
+                        </label>
+                        <textarea 
+                            oninput="updateNote(${item.entryId}, this.value)"
+                            placeholder="Ej: Nombre 'Santi' en azul, logo centrado..." 
+                            class="custom-input w-full px-4 py-3 rounded-xl text-xs bg-white resize-none focus:outline-none h-16"
+                        >${item.note}</textarea>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            totalEl.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function sendOrder() {
+            if (cart.length === 0) return;
+
+            const phone = "523317610280"; 
+            let message = "🎨 *PEDIDO PERSONALIZADO - ELLIER*\n\n";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const sub = item.price * item.quantity;
+                total += sub;
+                message += `*${index + 1}. ${item.name}* (x${item.quantity})\n`;
+                message += `   _Nota:_ ${item.note || "Sin indicaciones adicionales"}\n`;
+                message += `   _Subtotal:_ $${sub.toFixed(2)}\n\n`;
+            });
+
+            message += `━━━━━━━━━━━━━━\n`;
+            message += `💰 *TOTAL FINAL: $${total.toFixed(2)}*`;
+
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('opacity-0', 'translate-y-20');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-20');
+            }, 3000);
+        }
+
+        updateCartCount();
+    </script>
+</body>
+</html>
