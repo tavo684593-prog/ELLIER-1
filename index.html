@@ -1,686 +1,614 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ELLIÉR</title>
-
-  <!-- GOOGLE FONTS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <!-- ICONOS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      scroll-behavior:smooth;
-    }
-
-    body{
-      background:#050505;
-      color:white;
-      font-family:'Montserrat', sans-serif;
-      overflow-x:hidden;
-    }
-
-    a{
-      text-decoration:none;
-      color:white;
-    }
-
-    img{
-      width:100%;
-      display:block;
-    }
-
-    /* NAVBAR */
-
-    header{
-      width:100%;
-      position:fixed;
-      top:0;
-      left:0;
-      z-index:1000;
-      background:rgba(0,0,0,0.88);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,0.05);
-    }
-
-    .nav{
-      width:90%;
-      margin:auto;
-      height:90px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-
-    .logo{
-      font-family:'Cormorant Garamond', serif;
-      font-size:2rem;
-      letter-spacing:6px;
-      font-weight:500;
-    }
-
-    .menu{
-      display:flex;
-      gap:40px;
-    }
-
-    .menu a{
-      font-size:0.85rem;
-      letter-spacing:2px;
-      transition:0.3s;
-    }
-
-    .menu a:hover{
-      opacity:0.6;
-    }
-
-    .icons{
-      display:flex;
-      gap:20px;
-      font-size:1rem;
-    }
-
-    /* HERO */
-
-    .hero{
-      width:100%;
-      min-height:100vh;
-      background:
-      linear-gradient(rgba(0,0,0,.70), rgba(0,0,0,.85)),
-      url('1000181232.png');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      align-items:center;
-      padding:120px 8%;
-    }
-
-    .hero-content{
-      max-width:600px;
-    }
-
-    .subtitle{
-      letter-spacing:4px;
-      font-size:0.8rem;
-      margin-bottom:20px;
-      color:#c4c4c4;
-    }
-
-    h1{
-      font-family:'Cormorant Garamond', serif;
-      font-size:5rem;
-      font-weight:400;
-      line-height:1.1;
-      margin-bottom:30px;
-    }
-
-    .hero p{
-      color:#d1d1d1;
-      line-height:1.8;
-      margin-bottom:35px;
-      max-width:500px;
-    }
-
-    .btn{
-      display:inline-block;
-      padding:16px 40px;
-      border:1px solid white;
-      letter-spacing:2px;
-      font-size:0.8rem;
-      transition:0.3s;
-    }
-
-    .btn:hover{
-      background:white;
-      color:black;
-    }
-
-    /* COLLECTION */
-
-    .collection{
-      padding:120px 8%;
-      background:#060606;
-    }
-
-    .section-title{
-      font-family:'Cormorant Garamond', serif;
-      font-size:4rem;
-      margin-bottom:60px;
-      text-align:center;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:30px;
-    }
-
-    .card{
-      background:#0d0d0d;
-      border:1px solid rgba(255,255,255,0.06);
-      overflow:hidden;
-      transition:0.4s;
-    }
-
-    .card:hover{
-      transform:translateY(-10px);
-    }
-
-    .card-content{
-      padding:25px;
-    }
-
-    .card h3{
-      font-family:'Cormorant Garamond', serif;
-      font-size:1.8rem;
-      margin-bottom:10px;
-      font-weight:400;
-    }
-
-    .card p{
-      color:#9e9e9e;
-      font-size:0.9rem;
-      margin-bottom:15px;
-    }
-
-    .price{
-      color:white;
-      letter-spacing:2px;
-      font-size:0.8rem;
-    }
-
-    /* PERSONALIZADOS */
-
-    .custom{
-      background:#f5ecec;
-      color:#111;
-      padding:120px 8%;
-    }
-
-    .custom-container{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:60px;
-      align-items:center;
-    }
-
-    .custom h2{
-      font-family:'Cormorant Garamond', serif;
-      font-size:4rem;
-      line-height:1;
-      margin-bottom:30px;
-    }
-
-    .custom p{
-      color:#555;
-      line-height:1.8;
-      margin-bottom:30px;
-    }
-
-    .custom-btn{
-      background:#d79ca9;
-      color:white;
-      padding:15px 35px;
-      display:inline-block;
-      letter-spacing:2px;
-      transition:0.3s;
-    }
-
-    .custom-btn:hover{
-      background:#111;
-    }
-
-    /* ABOUT */
-
-    .about{
-      padding:120px 8%;
-      background:#050505;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:60px;
-      align-items:center;
-    }
-
-    .about img{
-      border-radius:10px;
-    }
-
-    .about-text h2{
-      font-family:'Cormorant Garamond', serif;
-      font-size:4rem;
-      margin-bottom:30px;
-      line-height:1.1;
-    }
-
-    .about-text p{
-      color:#bdbdbd;
-      line-height:1.9;
-      margin-bottom:20px;
-    }
-
-    /* REVIEWS */
-
-    .reviews{
-      padding:120px 8%;
-      background:#090909;
-    }
-
-    .review-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-      gap:30px;
-    }
-
-    .review{
-      border:1px solid rgba(255,255,255,0.08);
-      padding:30px;
-      background:#111;
-    }
-
-    .stars{
-      color:#f2d39f;
-      margin-bottom:20px;
-    }
-
-    .review p{
-      color:#d0d0d0;
-      line-height:1.7;
-      margin-bottom:20px;
-    }
-
-    .review span{
-      font-size:0.8rem;
-      color:#8d8d8d;
-    }
-
-    /* FOOTER */
-
-    footer{
-      background:#030303;
-      padding:80px 8% 40px;
-      border-top:1px solid rgba(255,255,255,0.06);
-    }
-
-    .footer-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:50px;
-      margin-bottom:50px;
-    }
-
-    footer h3{
-      font-family:'Cormorant Garamond', serif;
-      font-size:2rem;
-      margin-bottom:20px;
-      font-weight:400;
-    }
-
-    footer p,
-    footer a{
-      color:#9e9e9e;
-      line-height:2;
-      font-size:0.9rem;
-    }
-
-    .socials{
-      display:flex;
-      gap:18px;
-      margin-top:20px;
-    }
-
-    .socials a{
-      width:45px;
-      height:45px;
-      border:1px solid rgba(255,255,255,0.1);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:50%;
-      transition:0.3s;
-      font-size:1rem;
-    }
-
-    .socials a:hover{
-      background:white;
-      color:black;
-    }
-
-    .copyright{
-      text-align:center;
-      color:#777;
-      font-size:0.8rem;
-      padding-top:30px;
-      border-top:1px solid rgba(255,255,255,0.05);
-    }
-
-    /* RESPONSIVE */
-
-    @media(max-width:900px){
-
-      .menu{
-        display:none;
-      }
-
-      h1{
-        font-size:3rem;
-      }
-
-      .custom-container,
-      .about{
-        grid-template-columns:1fr;
-      }
-
-      .section-title{
-        font-size:3rem;
-      }
-
-      .custom h2,
-      .about-text h2{
-        font-size:3rem;
-      }
-
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELLIÈR - Colección Exclusiva</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Garamond', 'Georgia', serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+
+        /* HEADER */
+        .header {
+            background-color: #000000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .header-top-bar {
+            text-align: center;
+            background-color: #1a1a1a;
+            padding: 8px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .cart-count {
+            font-size: 12px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .hero-left {
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .collection-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .divider {
+            width: 40px;
+            height: 2px;
+            background-color: #666;
+            margin-bottom: 30px;
+        }
+
+        .hero-description {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #cccccc;
+            margin-bottom: 40px;
+            max-width: 350px;
+        }
+
+        .cta-button {
+            background-color: transparent;
+            border: 1px solid #666;
+            color: #ffffff;
+            padding: 12px 30px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: fit-content;
+        }
+
+        .cta-button:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .hero-right {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        /* BENEFITS SECTION */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background-color: #0a0a0a;
+            padding: 60px 40px;
+            border-top: 1px solid #333;
+        }
+
+        .benefit-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .benefit-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+
+        .benefit-title {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .benefit-description {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* PERSONALIZADOS SECTION */
+        .personalizados {
+            background: linear-gradient(135deg, #f5e6e8 0%, #ede4e8 100%);
+            padding: 100px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .personalizados-left {
+            color: #1a1a1a;
+        }
+
+        .personalizados-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #b8909a;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .personalizados-title {
+            font-size: 48px;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .personalizados-description {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .personalizados-button {
+            background-color: #c08a9a;
+            border: none;
+            color: #ffffff;
+            padding: 12px 30px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .personalizados-button:hover {
+            background-color: #a87080;
+        }
+
+        .personalizados-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            background-color: #f5e6e8;
+            padding: 80px 60px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .category-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .category-name {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .category-description {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* QUOTE SECTION */
+        .quote-section {
+            background-color: #f5e6e8;
+            padding: 60px;
+            text-align: center;
+            color: #1a1a1a;
+            border-top: 1px solid #e0d0d5;
+        }
+
+        .quote-main {
+            font-size: 24px;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .quote-sub {
+            font-size: 12px;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        .quote-author {
+            font-size: 11px;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #000000;
+            padding: 60px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-section h3 {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ffffff;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            color: #999;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #ffffff;
+        }
+
+        .newsletter {
+            margin-top: 20px;
+        }
+
+        .newsletter input {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            color: #ffffff;
+            padding: 10px 0;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter input::placeholder {
+            color: #666;
+        }
+
+        .newsletter button {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .footer-bottom {
+            grid-column: 1 / -1;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                gap: 20px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .personalizados {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-title,
+            .personalizados-title {
+                font-size: 36px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- HEADER -->
-
-  <header>
-
-    <div class="nav">
-
-      <div class="logo">
-        ELLIÉR
-      </div>
-
-      <div class="menu">
-        <a href="#">INICIO</a>
-        <a href="#">COLECCIÓN</a>
-        <a href="#">PERSONALIZADOS</a>
-        <a href="#">SOBRE ELLIÉR</a>
-        <a href="#">CONTACTO</a>
-      </div>
-
-      <div class="icons">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <i class="fa-regular fa-user"></i>
-        <i class="fa-solid fa-bag-shopping"></i>
-      </div>
-
+    <!-- HEADER TOP BAR -->
+    <div class="header-top-bar">
+        ENVÍO GRATIS EN COMPRAS +2999 MXN
     </div>
 
-  </header>
-
-  <!-- HERO -->
-
-  <section class="hero">
-
-    <div class="hero-content">
-
-      <div class="subtitle">
-        COLECCIÓN ELLIÉR
-      </div>
-
-      <h1>
-        NO ES LO QUE VISTES,<br>
-        SI NO LO QUE REPRESENTAS.
-      </h1>
-
-      <p>
-        Cada pieza es un reflejo de lo que has vivido,
-        lo que superaste y lo que decides ser.
-      </p>
-
-      <a href="#" class="btn">
-        VER COLECCIÓN
-      </a>
-
-    </div>
-
-  </section>
-
-  <!-- COLLECTION -->
-
-  <section class="collection">
-
-    <h2 class="section-title">
-      Colección ELLIÉR
-    </h2>
-
-    <div class="grid">
-
-      <div class="card">
-        <img src="1000181242.png">
-        <div class="card-content">
-          <h3>Jogger ELLIÉR</h3>
-          <p>Minimalismo premium.</p>
-          <div class="price">$799 MXN</div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">ELLIÈR</div>
+        <nav>
+            <a href="#inicio">INICIO</a>
+            <a href="#coleccion">COLECCIÓN</a>
+            <a href="#personalizados">PERSONALIZADOS</a>
+            <a href="#sobre">SOBRE ELLIÈR</a>
+            <a href="#contacto">CONTACTO</a>
+        </nav>
+        <div class="header-icons">
+            <button class="icon-btn">🔍</button>
+            <button class="icon-btn">👤</button>
+            <button class="icon-btn">🛒 <span class="cart-count">0</span></button>
         </div>
-      </div>
+    </header>
 
-      <div class="card">
-        <img src="1000181248.png">
-        <div class="card-content">
-          <h3>Sudadera ELLIÉR</h3>
-          <p>Diseño con propósito.</p>
-          <div class="price">$699 MXN</div>
+    <!-- HERO SECTION -->
+    <section class="hero" id="coleccion">
+        <div class="hero-left">
+            <div class="collection-label">COLECCIÓN ELLIÈR</div>
+            <h1 class="hero-title">NO ES LO QUE VISTES, SI NO LO QUE REPRESENTAS.</h1>
+            <div class="divider"></div>
+            <p class="hero-description">Cada pieza es un reflejo de lo que has vivido, lo que superaste y lo que decides ser.</p>
+            <button class="cta-button">VER COLECCIÓN →</button>
         </div>
-      </div>
-
-      <div class="card">
-        <img src="1000181249.png">
-        <div class="card-content">
-          <h3>Termo Signature</h3>
-          <p>Hecho para acompañarte.</p>
-          <div class="price">$899 MXN</div>
+        <div class="hero-right">
+            <img src="https://via.placeholder.com/500x600/1a1a1a/1a1a1a?text=ELLIÈR+HERO" alt="Hero Image" class="hero-image">
         </div>
-      </div>
+    </section>
 
-    </div>
-
-  </section>
-
-  <!-- PERSONALIZADOS -->
-
-  <section class="custom">
-
-    <div class="custom-container">
-
-      <div>
-
-        <h2>
-          TU HISTORIA.<br>
-          TU ESTILO.<br>
-          TUYO.
-        </h2>
-
-        <p>
-          Personaliza lo que te acompaña cada día.
-          Nombres, frases, colores y detalles únicos.
-        </p>
-
-        <a href="#" class="custom-btn">
-          CREA EL TUYO
-        </a>
-
-      </div>
-
-      <div>
-        <img src="1000181241.png">
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ABOUT -->
-
-  <section class="about">
-
-    <div>
-      <img src="1000181251.png">
-    </div>
-
-    <div class="about-text">
-
-      <h2>
-        Sobre ELLIÉR
-      </h2>
-
-      <p>
-        ELLIÉR nació de todas esas veces que nos callamos,
-        que nos adaptamos y dejamos de elegirnos.
-      </p>
-
-      <p>
-        Creamos piezas que no solo se ven bien,
-        sino que te recuerdan quién eres.
-      </p>
-
-      <a href="#" class="btn">
-        CONOCER MÁS
-      </a>
-
-    </div>
-
-  </section>
-
-  <!-- REVIEWS -->
-
-  <section class="reviews">
-
-    <h2 class="section-title">
-      Historias Reales
-    </h2>
-
-    <div class="review-grid">
-
-      <div class="review">
-
-        <div class="stars">
-          ★★★★★
+    <!-- BENEFITS SECTION -->
+    <section class="benefits">
+        <div class="benefit-item">
+            <div class="benefit-icon">🚚</div>
+            <div class="benefit-title">ENVÍO GRATIS</div>
+            <div class="benefit-description">En compras +2999 MXN</div>
         </div>
-
-        <p>
-          “La calidad es increíble,
-          el diseño se siente elegante y único.”
-        </p>
-
-        <span>
-          — Valeria M.
-        </span>
-
-      </div>
-
-      <div class="review">
-
-        <div class="stars">
-          ★★★★★
+        <div class="benefit-item">
+            <div class="benefit-icon">✓</div>
+            <div class="benefit-title">PAGOS SEGUROS</div>
+            <div class="benefit-description">100% protegidos</div>
         </div>
-
-        <p>
-          “No parece una marca improvisada.
-          Todo se siente premium.”
-        </p>
-
-        <span>
-          — Diego T.
-        </span>
-
-      </div>
-
-      <div class="review">
-
-        <div class="stars">
-          ★★★★★
+        <div class="benefit-item">
+            <div class="benefit-icon">📦</div>
+            <div class="benefit-title">HECHO PARA DURAR</div>
+            <div class="benefit-description">Calidad premium</div>
         </div>
-
-        <p>
-          “Mi termo favorito.
-          El empaque y los detalles están hermosos.”
-        </p>
-
-        <span>
-          — Sofía A.
-        </span>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <div class="footer-grid">
-
-      <div>
-
-        <h3>ELLIÉR</h3>
-
-        <p>
-          No es lo que vistes,<br>
-          si no lo que representas.
-        </p>
-
-        <div class="socials">
-
-          <a href="#">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-
-          <a href="#">
-            <i class="fa-brands fa-whatsapp"></i>
-          </a>
-
-          <a href="#">
-            <i class="fa-brands fa-facebook-f"></i>
-          </a>
-
+        <div class="benefit-item">
+            <div class="benefit-icon">❤️</div>
+            <div class="benefit-title">ATENCIÓN PERSONAL</div>
+            <div class="benefit-description">Estamos para ti</div>
         </div>
+    </section>
 
-      </div>
+    <!-- PERSONALIZADOS SECTION -->
+    <section class="personalizados" id="personalizados">
+        <div class="personalizados-left">
+            <div class="personalizados-label">PERSONALIZADOS</div>
+            <h2 class="personalizados-title">TU HISTORIA.<br>TU ESTILO.<br>TUYO.</h2>
+            <p class="personalizados-description">Personaliza lo que te acompaña cada día. Nombres, frases, colores. Detalles que te representan.</p>
+            <button class="personalizados-button">CREA EL TUYO →</button>
+        </div>
+        <div class="personalizados-right">
+            <img src="https://via.placeholder.com/400x500/f5e6e8/f5e6e8?text=Productos+Personalizados" alt="Personalizados" class="product-image">
+        </div>
+    </section>
 
-      <div>
+    <!-- CATEGORIES SECTION -->
+    <section class="categories">
+        <h2 style="font-size: 32px; margin-bottom: 10px;">DISEÑOS QUE HABLAN POR TI. RECUERDOS QUE TE ACOMPASAN.</h2>
+        <div class="categories-grid">
+            <div class="category-item">
+                <div class="category-icon">🥤</div>
+                <div class="category-name">TERMOS</div>
+                <div class="category-description">Personalizados</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">👕</div>
+                <div class="category-name">ROPA</div>
+                <div class="category-description">Con tu estilo</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">☕</div>
+                <div class="category-name">TAZAS</div>
+                <div class="category-description">Para cada momento</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">👜</div>
+                <div class="category-name">ACCESORIOS</div>
+                <div class="category-description">Únicos como tú</div>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">🎁</div>
+                <div class="category-name">REGALOS</div>
+                <div class="category-description">Que conectan</div>
+            </div>
+        </div>
+    </section>
 
-        <h3>Navegación</h3>
+    <!-- QUOTE SECTION -->
+    <section class="quote-section">
+        <p class="quote-main">Hecho para ti, pensado para durar.</p>
+        <p class="quote-sub">DISEÑOS QUE HABLAN POR TI. RECUERDOS QUE TE ACOMPASAN.</p>
+        <p class="quote-author">DANIEL, ME ESTÁS MATANDO</p>
+    </section>
 
-        <p><a href="#">Inicio</a></p>
-        <p><a href="#">Colección</a></p>
-        <p><a href="#">Personalizados</a></p>
-        <p><a href="#">Sobre ELLIÉR</a></p>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-section">
+            <div class="footer-logo">ELLIÈR</div>
+        </div>
+        <div class="footer-section">
+            <h3>NAVEGACIÓN</h3>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#coleccion">Colección</a></li>
+                <li><a href="#personalizados">Personalizados</a></li>
+                <li><a href="#sobre">Sobre ELLIÈR</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>AYUDA</h3>
+            <ul>
+                <li><a href="#">Preguntas frecuentes</a></li>
+                <li><a href="#">Envíos y entregas</a></li>
+                <li><a href="#">Cambios y devoluciones</a></li>
+                <li><a href="#">Términos y condiciones</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>SÍGUENOS</h3>
+            <div class="footer-social">
+                <a href="#" class="social-icon">📷</a>
+                <a href="#" class="social-icon">🎵</a>
+                <a href="#" class="social-icon">📌</a>
+                <a href="#" class="social-icon">✉️</a>
+            </div>
+            <h3 style="margin-top: 30px;">ÚNETE A ELLIÈR</h3>
+            <div class="newsletter">
+                <input type="email" placeholder="Tu correo">
+                <p style="font-size: 12px; color: #666; margin-top: 10px;">Sé parte de nuestra comunidad y recibe novedades y promociones exclusivas.</p>
+            </div>
+        </div>
+    </footer>
 
-      </div>
-
-      <div>
-
-        <h3>Ayuda</h3>
-
-        <p>Preguntas frecuentes</p>
-        <p>Envíos y entregas</p>
-        <p>Cambios y devoluciones</p>
-
-      </div>
-
+    <div class="footer-bottom">
+        © 2024 ELLIÈR. Todos los derechos reservados.
     </div>
-
-    <div class="copyright">
-      © 2026 ELLIÉR. Todos los derechos reservados.
-    </div>
-
-  </footer>
-
 </body>
 </html>
