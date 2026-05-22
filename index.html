@@ -1,615 +1,1346 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELLIÈR - Colección Exclusiva</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELLIÉR | Minimal Luxury Essentials</title>
+    <meta
+      name="description"
+      content="E-commerce premium minimalista para ELLIÉR: ropa, termos, regalos y accesorios con estética unisex de lujo."
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      :root {
+        --porcelain: #f7f7f4;
+        --pearl: #ededeb;
+        --silver: #cfcfca;
+        --graphite: #2e2e2d;
+        --charcoal: #161616;
+        --muted: rgba(22, 22, 22, 0.62);
+        --line: rgba(22, 22, 22, 0.1);
+        --shadow: 0 30px 90px rgba(22, 22, 22, 0.12);
+        --glass: 0 20px 60px rgba(22, 22, 22, 0.08);
+        --sans: Inter, "Helvetica Neue", Arial, sans-serif;
+        --serif: Didot, "Bodoni 72", Georgia, serif;
+        --script: "Segoe Script", "Bradley Hand", cursive;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--porcelain);
+        color: var(--charcoal);
+        font-family: var(--sans);
+      }
+
+      .page {
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.9), transparent 34rem),
+          linear-gradient(180deg, #fbfbf9 0%, #f2f2ef 48%, #fbfbf9 100%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      ::selection {
+        background: var(--charcoal);
+        color: var(--porcelain);
+      }
+
+      .cursor-glow {
+        position: fixed;
+        z-index: 80;
+        width: 220px;
+        height: 220px;
+        pointer-events: none;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.42);
+        filter: blur(44px);
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+
+      .top {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 50;
+      }
+
+      .announcement {
+        border-bottom: 1px solid rgba(22, 22, 22, 0.05);
+        background: rgba(207, 207, 202, 0.56);
+        padding: 8px 16px;
+        text-align: center;
+        font-size: 0.64rem;
+        font-weight: 600;
+        letter-spacing: 0.34em;
+        color: rgba(22, 22, 22, 0.7);
+      }
+
+      .navbar {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        transition: background 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+      }
+
+      .navbar.scrolled {
+        border-color: var(--line);
+        background: rgba(247, 247, 244, 0.82);
+        box-shadow: var(--glass);
+        backdrop-filter: blur(24px);
+      }
+
+      .nav-inner {
+        max-width: 1280px;
+        height: 132px;
+        margin: 0 auto;
+        padding: 0 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .navbar .logo {
+        min-width: 190px;
+        flex-direction: column;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.62);
+        box-shadow: var(--glass);
+      }
+
+      .logo svg {
+        width: 24px;
+        height: 24px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .logo-word {
+        font-family: var(--serif);
+        font-size: 1.22rem;
+        letter-spacing: 0.22em;
+      }
+
+      .navbar .logo-mark {
+        width: 54px;
+        height: 54px;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        opacity: 0.62;
+      }
+
+      .navbar .logo-mark svg {
+        width: 48px;
+        height: 48px;
+      }
+
+      .navbar .logo-word {
+        font-size: 2.18rem;
+        line-height: 1;
+        letter-spacing: 0.28em;
+      }
+
+      .navbar .logo::after {
+        content: "";
+        width: 96px;
+        height: 16px;
+        background:
+          linear-gradient(var(--charcoal), var(--charcoal)) left 50% / 38px 1px no-repeat,
+          linear-gradient(var(--charcoal), var(--charcoal)) right 50% / 38px 1px no-repeat,
+          radial-gradient(circle, var(--charcoal) 0 2px, transparent 2.5px) center / 16px 16px no-repeat;
+        opacity: 0.62;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 38px;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        color: rgba(22, 22, 22, 0.68);
+      }
+
+      .nav-links a {
+        position: relative;
+        padding: 14px 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 8px;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.35s ease;
+      }
+
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .nav-icons {
+        display: flex;
+        gap: 8px;
+      }
+
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.34);
+        color: rgba(22, 22, 22, 0.76);
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .icon-btn:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.45;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .hero {
+        position: relative;
+        min-height: auto;
+        padding: 172px 0 0;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .ambient {
+        position: absolute;
+        inset: -18%;
+        background: linear-gradient(115deg, #f7f7f4, #deded9, #fff, #cfcfca);
+        background-size: 300% 300%;
+        filter: blur(80px);
+        opacity: 0.74;
+        animation: gradientMove 18s linear infinite;
+      }
+
+      .hero-grid {
+        position: relative;
+        z-index: 1;
+        max-width: none;
+        width: 100%;
+        margin: 0;
+        display: block;
+      }
+
+      .hero-text {
+        position: absolute;
+        z-index: 6;
+        left: max(74px, calc((100vw - 1280px) / 2 + 28px));
+        top: 27%;
+        width: min(430px, 42vw);
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .hero-text .eyebrow {
+        color: rgba(255, 255, 255, 0.68);
+      }
+
+      .hero-text .luxe-button {
+        border-color: rgba(255, 255, 255, 0.72);
+        background: rgba(255, 255, 255, 0.02);
+        color: #fff;
+        backdrop-filter: blur(8px);
+      }
+
+      .hero-text .luxe-button:hover {
+        background: rgba(255, 255, 255, 0.16);
+        box-shadow: 0 20px 44px rgba(0, 0, 0, 0.2);
+      }
+
+      .eyebrow {
+        margin: 0 0 26px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.45em;
+        color: rgba(22, 22, 22, 0.52);
+      }
+
+      h1 {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: clamp(2.78rem, 4.55vw, 4.3rem);
+        line-height: 1.14;
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 360px;
+        margin: 28px 0 0;
+        font-size: 1.06rem;
+        line-height: 1.72;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .hero-rule {
+        width: 58px;
+        height: 1px;
+        margin: 28px 0;
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      .luxe-button {
+        position: relative;
+        min-height: 52px;
+        margin-top: 38px;
+        padding: 0 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(22, 22, 22, 0.14);
+        border-radius: 999px;
+        background: var(--charcoal);
+        color: var(--porcelain);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+      }
+
+      .luxe-button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+        transform: translateX(-120%);
+        transition: transform 0.7s ease;
+      }
+
+      .luxe-button:hover {
+        transform: translateY(-2px);
+        background: var(--graphite);
+        box-shadow: 0 24px 55px rgba(22, 22, 22, 0.18);
+      }
+
+      .luxe-button:hover::before {
+        transform: translateX(120%);
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 676px;
+        overflow: hidden;
+        border: 0;
+        border-radius: 0;
+        background:
+          radial-gradient(circle at 42% 18%, rgba(230, 230, 226, 0.18), transparent 18rem),
+          linear-gradient(90deg, rgba(38, 38, 37, 0.82), rgba(55, 55, 53, 0.7) 38%, rgba(22, 22, 22, 0.93)),
+          linear-gradient(180deg, #777, #232323);
+        box-shadow: none;
+      }
+
+      .rainy-window,
+      .photo-depth,
+      .particles {
+        position: absolute;
+        inset: 0;
+      }
+
+      .rainy-window {
+        opacity: 0.7;
+        background-image:
+          linear-gradient(110deg, rgba(255, 255, 255, 0.12), transparent 45%, rgba(22, 22, 22, 0.24)),
+          repeating-linear-gradient(90deg, transparent 0 32px, rgba(255, 255, 255, 0.38) 33px, transparent 34px),
+          repeating-linear-gradient(174deg, transparent 0 38px, rgba(22, 22, 22, 0.06) 39px, transparent 42px);
+      }
+
+      .photo-depth {
+        background:
+          radial-gradient(circle at 65% 18%, rgba(255, 255, 255, 0.82), transparent 32%),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(22, 22, 22, 0.13));
+      }
+
+      .hoodie {
+        position: absolute;
+        left: 49%;
+        top: 2%;
+        width: 295px;
+        height: 470px;
+        margin-left: -148px;
+        border-radius: 42% 42% 30% 30%;
+        background: linear-gradient(135deg, var(--graphite), var(--charcoal));
+        box-shadow: 0 34px 80px rgba(22, 22, 22, 0.28);
+        animation: floatA 8s ease-in-out infinite;
+      }
+
+      .hoodie::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 40px;
+        width: 96px;
+        height: 80px;
+        transform: translateX(-50%);
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(#d4d4d2, #595959);
+        opacity: 0.5;
+        filter: blur(1px);
+      }
+
+      .hoodie::after {
+        content: "ELLIÉR";
+        position: absolute;
+        left: 50%;
+        top: 228px;
+        transform: translateX(-50%);
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        letter-spacing: 0.28em;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .sleeve {
+        position: absolute;
+        top: 132px;
+        width: 86px;
+        height: 288px;
+        border-radius: 999px;
+        background: linear-gradient(var(--graphite), var(--charcoal));
+      }
+
+      .sleeve.left {
+        left: -48px;
+        transform: rotate(12deg);
+      }
+
+      .sleeve.right {
+        right: -48px;
+        transform: rotate(-12deg);
+      }
+
+      .pocket {
+        position: absolute;
+        left: 28px;
+        right: 28px;
+        bottom: 56px;
+        height: 96px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .tumbler {
+        position: absolute;
+        left: 45%;
+        bottom: 38px;
+        width: 104px;
+        height: 250px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 36px;
+        background: linear-gradient(90deg, #cfcfca, #fff 48%, #8f8f8b);
+        box-shadow: var(--shadow);
+        animation: floatB 7s ease-in-out infinite;
+      }
+
+      .tumbler::after {
+        content: "E";
+        position: absolute;
+        left: 50%;
+        bottom: 34px;
+        transform: translateX(-50%);
+        font-family: var(--serif);
+        font-size: 0.95rem;
+        letter-spacing: 0.28em;
+        color: rgba(22, 22, 22, 0.65);
+      }
+
+      .folded {
+        position: absolute;
+        right: 12%;
+        bottom: 60px;
+        width: 278px;
+        height: 104px;
+        border-radius: 1rem;
+        background: linear-gradient(135deg, #f2f2ef, #cfcfca);
+        box-shadow: var(--shadow);
+        animation: drift 9s ease-in-out infinite;
+      }
+
+      .folded::before,
+      .folded::after {
+        content: "";
+        position: absolute;
+        left: 28px;
+        right: 28px;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(22, 22, 22, 0.13);
+      }
+
+      .folded::before {
+        top: 28px;
+      }
+
+      .folded::after {
+        top: 48px;
+        left: 44px;
+        right: 44px;
+      }
+
+      .gift {
+        position: absolute;
+        right: 34%;
+        top: auto;
+        bottom: 58px;
+        width: 92px;
+        height: 124px;
+        padding: 13px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 0.35rem;
+        background: rgba(22, 22, 22, 0.42);
+        box-shadow: var(--glass);
+        backdrop-filter: blur(18px);
+        animation: floatC 6.5s ease-in-out infinite;
+      }
+
+      .gift::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(22, 22, 22, 0.08);
+        background: linear-gradient(135deg, #fff, var(--silver));
+      }
+
+      .quote {
+        position: absolute;
+        right: max(68px, calc((100vw - 1280px) / 2 + 28px));
+        top: 47%;
+        max-width: 210px;
+        transform: translateY(-50%);
+        text-align: right;
+      }
+
+      .quote p {
+        margin: 0;
+        font-family: var(--script);
+        font-size: clamp(1.48rem, 2.2vw, 2rem);
+        line-height: 1.04;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .quote span {
+        display: block;
+        margin-top: 20px;
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.34em;
+        color: rgba(255, 255, 255, 0.66);
+      }
+
+      .polaroid {
+        position: absolute;
+        left: 25%;
+        bottom: 42px;
+        width: 190px;
+        height: 156px;
+        padding: 12px 12px 34px;
+        background: rgba(242, 242, 238, 0.92);
+        transform: rotate(-8deg);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+      }
+
+      .polaroid::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(circle at 50% 40%, rgba(15, 15, 15, 0.8) 0 18px, transparent 19px),
+          linear-gradient(180deg, #777, #1f1f1f);
+      }
+
+      .polaroid::after {
+        content: "lo que fuimos, me enseñó\A lo que nunca volveré a permitir.";
+        white-space: pre;
+        position: absolute;
+        left: 24px;
+        right: 18px;
+        bottom: 8px;
+        font-family: var(--script);
+        font-size: 0.78rem;
+        line-height: 1.1;
+        color: rgba(22, 22, 22, 0.76);
+      }
+
+      .particles::before,
+      .particles::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.56;
+        background-image:
+          radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 1px, transparent 1.5px),
+          radial-gradient(circle, rgba(46, 46, 45, 0.28) 0 1px, transparent 1.5px);
+        background-size: 112px 130px, 150px 170px;
+        background-position: 18px 20px, 70px 86px;
+        animation: particles 12s ease-in-out infinite alternate;
+      }
+
+      .particles::after {
+        opacity: 0.35;
+        filter: blur(1px);
+        transform: scale(1.2);
+        animation-duration: 18s;
+      }
+
+      .features {
+        border-block: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.42);
+        backdrop-filter: blur(18px);
+      }
+
+      .features-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 28px 28px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 14px 0;
+        color: rgba(22, 22, 22, 0.7);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+      }
+
+      .feature span {
+        display: block;
+      }
+
+      .feature small {
+        display: block;
+        margin-top: 6px;
+        font-family: var(--serif);
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0;
+        color: rgba(22, 22, 22, 0.62);
+      }
+
+      .section {
+        padding: 70px 28px;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      h2 {
+        margin: 0;
+        text-align: center;
+        font-family: var(--serif);
+        font-size: clamp(1.28rem, 1.9vw, 1.8rem);
+        font-weight: 400;
+        letter-spacing: 0.42em;
+      }
+
+      .categories {
+        margin-top: 42px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+      }
+
+      .card {
+        position: relative;
+        min-height: 354px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        border-radius: 1rem;
+        background: linear-gradient(#fff, var(--pearl));
+        box-shadow: var(--glass);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.9), transparent 35%);
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow);
+      }
+
+      .card-inner {
+        position: relative;
+        height: 100%;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .card:hover .product {
+        transform: scale(1.055);
+      }
+
+      .product {
+        position: relative;
+        width: 180px;
+        height: 240px;
+        margin: auto;
+        transition: transform 0.7s ease;
+      }
+
+      .label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.34em;
+        color: rgba(22, 22, 22, 0.7);
+      }
+
+      .card-subtitle {
+        margin: 10px 0 0;
+        font-family: var(--serif);
+        font-size: 0.92rem;
+        color: rgba(22, 22, 22, 0.7);
+        text-align: center;
+      }
+
+      .center {
+        margin-top: 56px;
+        text-align: center;
+      }
+
+      .philosophy {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .philosophy::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, #f8f8f5, #e3e3df, #fff, #d7d7d3);
+        background-size: 300% 300%;
+        animation: gradientMove 16s linear infinite;
+      }
+
+      .philosophy .container {
+        position: relative;
+        max-width: 980px;
+        text-align: center;
+      }
+
+      .philosophy h2 {
+        font-size: clamp(1rem, 1.5vw, 1.3rem);
+        line-height: 1.45;
+        letter-spacing: 0.42em;
+      }
+
+      .hand {
+        margin: 16px 0 0;
+        font-family: var(--script);
+        font-size: clamp(2.3rem, 5vw, 3.4rem);
+        color: rgba(22, 22, 22, 0.6);
+      }
+
+      footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: var(--charcoal);
+        color: var(--porcelain);
+        padding: 36px 28px 28px;
+      }
+
+      .footer-grid {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+
+      footer .logo-mark {
+        border-color: rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        font-size: 0.68rem;
+        letter-spacing: 0.25em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .footer-side {
+        display: grid;
+        gap: 20px;
+        justify-items: end;
+      }
+
+      .socials {
+        display: flex;
+        gap: 10px;
+      }
+
+      .newsletter {
+        width: min(100%, 360px);
+        display: flex;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 4px;
+      }
+
+      .newsletter input {
+        min-width: 0;
+        flex: 1;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: #fff;
+        padding: 0 16px;
+      }
+
+      .newsletter input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .newsletter button {
+        border: 0;
+        border-radius: 999px;
+        background: #fff;
+        color: var(--charcoal);
+        padding: 10px 18px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .copyright {
+        max-width: 1280px;
+        margin: 48px auto 0;
+        text-align: center;
+        font-size: 0.65rem;
+        letter-spacing: 0.24em;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(34px);
+        transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .product.tumbler::before {
+        content: "";
+        position: absolute;
+        left: 48px;
+        top: 18px;
+        width: 84px;
+        height: 210px;
+        border-radius: 34px 34px 26px 26px;
+        border: 1px solid rgba(22, 22, 22, 0.08);
+        background: linear-gradient(90deg, #b8b8b4, #fff 45%, #8c8c88);
+        box-shadow: 0 28px 52px rgba(22, 22, 22, 0.18);
+      }
+
+      .product.hoodie::before {
+        content: "ELLIÉR";
+        position: absolute;
+        left: 18px;
+        top: 38px;
+        width: 144px;
+        height: 190px;
+        display: grid;
+        place-items: center;
+        border-radius: 60px 60px 34px 34px;
+        background: linear-gradient(145deg, var(--graphite), #111);
+        box-shadow: 0 30px 60px rgba(22, 22, 22, 0.2);
+        color: rgba(255, 255, 255, 0.76);
+        font-family: var(--serif);
+        font-size: 0.9rem;
+        letter-spacing: 0.22em;
+      }
+
+      .product.mug::before {
+        content: "";
+        position: absolute;
+        left: 38px;
+        top: 82px;
+        width: 104px;
+        height: 130px;
+        border-radius: 0 0 38px 38px;
+        border: 1px solid rgba(22, 22, 22, 0.08);
+        background: linear-gradient(115deg, #fff, #d7d7d3);
+        box-shadow: 0 28px 55px rgba(22, 22, 22, 0.13);
+      }
+
+      .product.mug::after {
+        content: "";
+        position: absolute;
+        left: 132px;
+        top: 104px;
+        width: 42px;
+        height: 72px;
+        border: 12px solid #d1d1cd;
+        border-left: 0;
+        border-radius: 0 40px 40px 0;
+      }
+
+      .product.accessory::before {
+        content: "";
+        position: absolute;
+        left: 44px;
+        top: 76px;
+        width: 92px;
+        height: 132px;
+        border-radius: 36px;
+        background: linear-gradient(145deg, #fdfdfb, #bcbcb8);
+        box-shadow: 0 24px 54px rgba(22, 22, 22, 0.14);
+        transform: rotate(-12deg);
+      }
+
+      .product.accessory::after {
+        content: "";
+        position: absolute;
+        left: 55px;
+        top: 54px;
+        width: 70px;
+        height: 70px;
+        border: 1px solid rgba(22, 22, 22, 0.18);
+        border-radius: 999px;
+      }
+
+      .product.gift::before {
+        content: "";
+        position: absolute;
+        left: 30px;
+        top: 94px;
+        width: 120px;
+        height: 126px;
+        border-radius: 18px;
+        background: linear-gradient(145deg, #fff, var(--silver));
+        box-shadow: 0 28px 55px rgba(22, 22, 22, 0.14);
+      }
+
+      .product.gift::after {
+        content: "";
+        position: absolute;
+        left: 22px;
+        top: 72px;
+        width: 136px;
+        height: 34px;
+        border-radius: 14px;
+        background: linear-gradient(145deg, #fefefd, #c6c6c2);
+      }
+
+      @keyframes gradientMove {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      @keyframes floatA {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-1deg);
+        }
+        50% {
+          transform: translateY(-16px) rotate(1deg);
+        }
+      }
+
+      @keyframes floatB {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(13px);
+        }
+      }
+
+      @keyframes floatC {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(10px);
+        }
+      }
+
+      @keyframes particles {
+        from {
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          transform: translate3d(-18px, 22px, 0);
+        }
+      }
+
+      @media (max-width: 1050px) {
+        .nav-links {
+          display: none;
         }
 
-        body {
-            font-family: 'Garamond', 'Georgia', serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
+        .footer-grid {
+          grid-template-columns: 1fr;
         }
 
-        /* HEADER */
-        .header {
-            background-color: #000000;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
+        .hero-text {
+          left: 28px;
+          width: min(430px, 56vw);
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 300;
-            letter-spacing: 2px;
+        .hero-visual {
+          min-height: 560px;
         }
 
-        .header-top-bar {
-            
-            text-align: center;
-            background-color: #1a1a1a;
-            padding: 8px;
-            font-size: 12px;
-            letter-spacing: 1px;
+        .categories {
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        nav {
-            display: flex;
-            gap: 40px;
-            flex: 1;
-            justify-content: center;
+        .footer-side {
+          justify-items: start;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .hero {
+          padding-inline: 18px;
         }
 
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: opacity 0.3s;
+        .nav-inner {
+          padding-inline: 18px;
         }
 
-        nav a:hover {
-            opacity: 0.7;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 25px;
-            align-items: center;
+        .logo-word {
+          font-size: 1rem;
         }
 
         .icon-btn {
-            background: none;
-            border: none;
-            color: #ffffff;
-            cursor: pointer;
-            font-size: 18px;
+          width: 36px;
+          height: 36px;
         }
 
-        .cart-count {
-            font-size: 12px;
+        .hero-visual {
+          min-height: 520px;
         }
 
-        /* HERO SECTION */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 600px;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            position: relative;
+        .hero-text {
+          top: 16%;
+          left: 18px;
+          right: 18px;
+          width: auto;
         }
 
-        .hero-left {
-            padding: 80px 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .hoodie {
+          left: 52%;
+          top: 24%;
+          transform: scale(0.72);
         }
 
-        .collection-label {
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: #999;
-            text-transform: uppercase;
-            margin-bottom: 30px;
+        .tumbler,
+        .polaroid,
+        .gift {
+          transform: scale(0.78);
         }
 
-        .hero-title {
-            font-size: 48px;
-            line-height: 1.4;
-            margin-bottom: 40px;
-            font-weight: 300;
-            letter-spacing: 1px;
+        .folded {
+          right: 2%;
+          transform: scale(0.78);
         }
 
-        .divider {
-            width: 40px;
-            height: 2px;
-            background-color: #666;
-            margin-bottom: 30px;
+        .quote {
+          right: 18px;
+          top: 66%;
+          max-width: 220px;
         }
 
-        .hero-description {
-            font-size: 14px;
-            line-height: 1.8;
-            color: #cccccc;
-            margin-bottom: 40px;
-            max-width: 350px;
-        }
-
-        .cta-button {
-            background-color: transparent;
-            border: 1px solid #666;
-            color: #ffffff;
-            padding: 12px 30px;
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: fit-content;
-        }
-
-        .cta-button:hover {
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        .hero-right {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-        }
-
-        /* BENEFITS SECTION */
-        .benefits {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            background-color: #0a0a0a;
-            padding: 60px 40px;
-            border-top: 1px solid #333;
-        }
-
-        .benefit-item {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .benefit-icon {
-            font-size: 32px;
-            margin-bottom: 20px;
-            opacity: 0.7;
-        }
-
-        .benefit-title {
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .benefit-description {
-            font-size: 12px;
-            color: #999;
-        }
-
-        /* PERSONALIZADOS SECTION */
-        .personalizados {
-            background: linear-gradient(135deg, #f5e6e8 0%, #ede4e8 100%);
-            padding: 100px 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .personalizados-left {
-            color: #1a1a1a;
-        }
-
-        .personalizados-label {
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: #b8909a;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
-
-        .personalizados-title {
-            font-size: 48px;
-            line-height: 1.4;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        .personalizados-description {
-            font-size: 14px;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 40px;
-        }
-
-        .personalizados-button {
-            background-color: #c08a9a;
-            border: none;
-            color: #ffffff;
-            padding: 12px 30px;
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .personalizados-button:hover {
-            background-color: #a87080;
-        }
-
-        .personalizados-right {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .product-image {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* CATEGORIES */
+        .features-inner,
         .categories {
-            background-color: #f5e6e8;
-            padding: 80px 60px;
-            text-align: center;
-            color: #1a1a1a;
+          grid-template-columns: 1fr;
         }
 
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 40px;
-            margin-top: 60px;
+        .feature {
+          justify-content: flex-start;
         }
 
-        .category-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .category-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .category-name {
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .category-description {
-            font-size: 12px;
-            color: #666;
-            margin-top: 10px;
-        }
-
-        /* QUOTE SECTION */
-        .quote-section {
-            background-color: #f5e6e8;
-            padding: 60px;
-            text-align: center;
-            color: #1a1a1a;
-            border-top: 1px solid #e0d0d5;
-        }
-
-        .quote-main {
-            font-size: 24px;
-            font-style: italic;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .quote-sub {
-            font-size: 12px;
-            color: #666;
-            letter-spacing: 1px;
-        }
-
-        .quote-author {
-            font-size: 11px;
-            color: #999;
-            margin-top: 20px;
-        }
-
-        /* FOOTER */
-        .footer {
-            background-color: #000000;
-            padding: 60px 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 40px;
-            border-top: 1px solid #333;
-        }
-
-        .footer-section h3 {
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            color: #ffffff;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section li {
-            margin-bottom: 15px;
-        }
-
-        .footer-section a {
-            color: #999;
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: #ffffff;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-icon {
-            color: #999;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-
-        .social-icon:hover {
-            color: #ffffff;
+        .luxe-button {
+          width: 100%;
         }
 
         .newsletter {
-            margin-top: 20px;
+          width: 100%;
         }
-
-        .newsletter input {
-            width: 100%;
-            background-color: transparent;
-            border: none;
-            border-bottom: 1px solid #333;
-            color: #ffffff;
-            padding: 10px 0;
-            font-size: 13px;
-            margin-bottom: 10px;
-        }
-
-        .newsletter input::placeholder {
-            color: #666;
-        }
-
-        .newsletter button {
-            background: none;
-            border: none;
-            color: #999;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .footer-bottom {
-            grid-column: 1 / -1;
-            border-top: 1px solid #333;
-            padding-top: 30px;
-            text-align: center;
-            color: #666;
-            font-size: 12px;
-        }
-
-        .footer-logo {
-            font-size: 20px;
-            margin-bottom: 40px;
-            color: #ffffff;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            nav {
-                gap: 20px;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-            }
-
-            .benefits {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .personalizados {
-                grid-template-columns: 1fr;
-            }
-
-            .categories-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .footer {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .hero-title,
-            .personalizados-title {
-                font-size: 36px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-    <!-- HEADER TOP BAR -->
-    <div class="header-top-bar">
-        ENVÍO GRATIS EN COMPRAS +2999 MXN
-    </div>
+  </head>
+  <body>
+    <div class="page">
+    <div class="cursor-glow" aria-hidden="true"></div>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="logo">ELLIÈR</div>
-        <nav>
-            <a href="#inicio">INICIO</a>
+    <header class="top">
+      <div class="announcement">ENVÍO GRATIS EN COMPRAS + $999 MXN</div>
+      <nav class="navbar" aria-label="Navegación principal">
+        <div class="nav-inner">
+          <a class="logo" href="#" aria-label="ELLIÉR inicio">
+            <span class="logo-mark">
+              <svg viewBox="0 0 40 40" aria-hidden="true">
+                <path d="M10 25c8-1 15-7 16-15 5 6 5 15-1 19-5 4-12 1-15-4Z"></path>
+                <path d="M26 10c4 0 6 2 7 6-3-2-6-2-9-1"></path>
+                <path d="M14 25c5 3 12 3 17-3"></path>
+              </svg>
+            </span>
+            <span class="logo-word">ELLIÉR</span>
+          </a>
+
+          <div class="nav-links">
+            <a href="#">INICIO</a>
             <a href="#coleccion">COLECCIÓN</a>
             <a href="#personalizados">PERSONALIZADOS</a>
-            <a href="#sobre">SOBRE ELLIÈR</a>
+            <a href="#sobre">SOBRE ELLIÉR</a>
             <a href="#contacto">CONTACTO</a>
-        </nav>
-        <div class="header-icons">
-            <button class="icon-btn">🔍</button>
-            <button class="icon-btn">👤</button>
-            <button class="icon-btn">🛒 <span class="cart-count">0</span></button>
+          </div>
+
+          <div class="nav-icons">
+            <a class="icon-btn" href="#" aria-label="Buscar">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+            </a>
+            <a class="icon-btn" href="#" aria-label="Cuenta">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a class="icon-btn" href="#" aria-label="Carrito">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M6 8h12l-1 13H7L6 8Z"></path><path d="M9 8a3 3 0 0 1 6 0"></path></svg>
+            </a>
+          </div>
         </div>
+      </nav>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="coleccion">
-        <div class="hero-left">
-            <div class="collection-label">COLECCIÓN ELLIÈR</div>
-            <h1 class="hero-title">NO ES LO QUE VISTES, SI NO LO QUE REPRESENTAS.</h1>
-            <div class="divider"></div>
-            <p class="hero-description">Cada pieza es un reflejo de lo que has vivido, lo que superaste y lo que decides ser.</p>
-            <button class="cta-button">VER COLECCIÓN →</button>
-        </div>
-        <div class="hero-right">
-            <img src="https://via.placeholder.com/500x600/1a1a1a/1a1a1a?text=ELLIÈR+HERO" alt="Hero Image" class="hero-image">
-        </div>
-    </section>
+    <main>
+      <section class="hero">
+        <div class="ambient" aria-hidden="true"></div>
+        <div class="hero-grid">
+          <div class="hero-text reveal visible">
+            <p class="eyebrow">COLECCIÓN ELLIÉR</p>
+            <h1>NO ES LO QUE VISTES,<br />SINO LO QUE REPRESENTAS.</h1>
+            <div class="hero-rule"></div>
+            <p class="hero-copy">Cada pieza es un reflejo de lo que has vivido, lo que superaste y lo que decides ser.</p>
+            <a class="luxe-button" href="#coleccion">VER COLECCIÓN <span aria-hidden="true">-&gt;</span></a>
+          </div>
 
-    <!-- BENEFITS SECTION -->
-    <section class="benefits">
-        <div class="benefit-item">
-            <div class="benefit-icon">🚚</div>
-            <div class="benefit-title">ENVÍO GRATIS</div>
-            <div class="benefit-description">En compras +2999 MXN</div>
+          <div class="hero-visual reveal visible">
+            <div class="rainy-window" aria-hidden="true"></div>
+            <div class="photo-depth" aria-hidden="true"></div>
+            <div class="hoodie" aria-hidden="true">
+              <span class="sleeve left"></span>
+              <span class="sleeve right"></span>
+              <span class="pocket"></span>
+            </div>
+            <div class="tumbler" aria-hidden="true"></div>
+            <div class="polaroid" aria-hidden="true"></div>
+            <div class="folded" aria-hidden="true"></div>
+            <div class="gift" aria-hidden="true"></div>
+            <div class="quote">
+              <p>You said forever,<br />now I drive alone past your street.</p>
+              <span>GLIMPSE OF US - JOJI</span>
+            </div>
+            <div class="particles" aria-hidden="true"></div>
+          </div>
         </div>
-        <div class="benefit-item">
-            <div class="benefit-icon">✓</div>
-            <div class="benefit-title">PAGOS SEGUROS</div>
-            <div class="benefit-description">100% protegidos</div>
-        </div>
-        <div class="benefit-item">
-            <div class="benefit-icon">📦</div>
-            <div class="benefit-title">HECHO PARA DURAR</div>
-            <div class="benefit-description">Calidad premium</div>
-        </div>
-        <div class="benefit-item">
-            <div class="benefit-icon">❤️</div>
-            <div class="benefit-title">ATENCIÓN PERSONAL</div>
-            <div class="benefit-description">Estamos para ti</div>
-        </div>
-    </section>
+      </section>
 
-    <!-- PERSONALIZADOS SECTION -->
-    <section class="personalizados" id="personalizados">
-        <div class="personalizados-left">
-            <div class="personalizados-label">PERSONALIZADOS</div>
-            <h2 class="personalizados-title">TU HISTORIA.<br>TU ESTILO.<br>TUYO.</h2>
-            <p class="personalizados-description">Personaliza lo que te acompaña cada día. Nombres, frases, colores. Detalles que te representan.</p>
-            <button class="personalizados-button">CREA EL TUYO →</button>
+      <section class="features reveal">
+        <div class="features-inner">
+          <div class="feature"><svg class="icon" viewBox="0 0 24 24"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5Z"></path><path d="m3.5 8.5 8.5 5 8.5-5"></path></svg><span>ENVÍO GRATIS<small>En compras + $999 MXN</small></span></div>
+          <div class="feature"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"></rect><path d="M7 8V6a5 5 0 0 1 10 0v2"></path></svg><span>PAGOS SEGUROS<small>100% protegidos</small></span></div>
+          <div class="feature"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2l2.7 6.6L22 9l-5.6 4.6L18 21l-6-4-6 4 1.6-7.4L2 9l7.3-.4L12 2Z"></path></svg><span>HECHO PARA DURAR<small>Calidad premium</small></span></div>
+          <div class="feature"><svg class="icon" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"></path><path d="M4 9h16"></path></svg><span>ATENCIÓN PERSONAL<small>Estamos para ti</small></span></div>
         </div>
-        <div class="personalizados-right">
-            <img src="https://via.placeholder.com/400x500/f5e6e8/f5e6e8?text=Productos+Personalizados" alt="Personalizados" class="product-image">
-        </div>
-    </section>
+      </section>
 
-    <!-- CATEGORIES SECTION -->
-    <section class="categories">
-        <h2 style="font-size: 32px; margin-bottom: 10px;">DISEÑOS QUE HABLAN POR TI. RECUERDOS QUE TE ACOMPASAN.</h2>
-        <div class="categories-grid">
-            <div class="category-item">
-                <div class="category-icon">🥤</div>
-                <div class="category-name">TERMOS</div>
-                <div class="category-description">Personalizados</div>
-            </div>
-            <div class="category-item">
-                <div class="category-icon">👕</div>
-                <div class="category-name">ROPA</div>
-                <div class="category-description">Con tu estilo</div>
-            </div>
-            <div class="category-item">
-                <div class="category-icon">☕</div>
-                <div class="category-name">TAZAS</div>
-                <div class="category-description">Para cada momento</div>
-            </div>
-            <div class="category-item">
-                <div class="category-icon">👜</div>
-                <div class="category-name">ACCESORIOS</div>
-                <div class="category-description">Únicos como tú</div>
-            </div>
-            <div class="category-item">
-                <div class="category-icon">🎁</div>
-                <div class="category-name">REGALOS</div>
-                <div class="category-description">Que conectan</div>
-            </div>
+      <section id="coleccion" class="section">
+        <div class="container reveal">
+          <h2>ELLIÉR PARA CADA MOMENTO</h2>
+          <div class="categories">
+            <a class="card" href="#"><div class="card-inner"><div class="product tumbler"></div><span class="label">TERMOS</span><p class="card-subtitle">Personalizados</p></div></a>
+            <a class="card" href="#"><div class="card-inner"><div class="product hoodie"></div><span class="label">ROPA</span><p class="card-subtitle">Cómoda y atemporal</p></div></a>
+            <a class="card" href="#"><div class="card-inner"><div class="product mug"></div><span class="label">TAZAS</span><p class="card-subtitle">Para cada historia</p></div></a>
+            <a class="card" href="#"><div class="card-inner"><div class="product accessory"></div><span class="label">ACCESORIOS</span><p class="card-subtitle">Detalles que suman</p></div></a>
+            <a class="card" href="#"><div class="card-inner"><div class="product gift"></div><span class="label">REGALOS</span><p class="card-subtitle">Que conectan</p></div></a>
+          </div>
+          <div class="center">
+            <a class="luxe-button" href="#">VER COLECCIÓN COMPLETA <span aria-hidden="true">-&gt;</span></a>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- QUOTE SECTION -->
-    <section class="quote-section">
-        <p class="quote-main">Hecho para ti, pensado para durar.</p>
-        <p class="quote-sub">DISEÑOS QUE HABLAN POR TI. RECUERDOS QUE TE ACOMPASAN.</p>
-        <p class="quote-author">DANIEL, ME ESTÁS MATANDO</p>
-    </section>
+      <section id="sobre" class="section philosophy">
+        <div class="container reveal">
+          <h2>DISEÑOS QUE HABLAN POR TI.<br />RECUERDOS QUE TE ACOMPAÑAN.</h2>
+          <p class="hand">Hecho para ti, pensado para durar.</p>
+        </div>
+      </section>
+    </main>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-section">
-            <div class="footer-logo">ELLIÈR</div>
+    <footer id="contacto">
+      <div class="footer-grid">
+        <a class="logo" href="#" aria-label="ELLIÉR inicio">
+          <span class="logo-mark">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M10 25c8-1 15-7 16-15 5 6 5 15-1 19-5 4-12 1-15-4Z"></path>
+              <path d="M26 10c4 0 6 2 7 6-3-2-6-2-9-1"></path>
+              <path d="M14 25c5 3 12 3 17-3"></path>
+            </svg>
+          </span>
+          <span class="logo-word">ELLIÉR</span>
+        </a>
+
+        <div class="footer-links">
+          <a href="#">INICIO</a>
+          <a href="#coleccion">COLECCIÓN</a>
+          <a href="#personalizados">PERSONALIZADOS</a>
+          <a href="#sobre">SOBRE ELLIÉR</a>
+          <a href="#contacto">CONTACTO</a>
         </div>
-        <div class="footer-section">
-            <h3>NAVEGACIÓN</h3>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#coleccion">Colección</a></li>
-                <li><a href="#personalizados">Personalizados</a></li>
-                <li><a href="#sobre">Sobre ELLIÈR</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
+
+        <div class="footer-side">
+          <div class="socials">
+            <a class="icon-btn" href="#" aria-label="Instagram">IG</a>
+            <a class="icon-btn" href="#" aria-label="TikTok">TT</a>
+            <a class="icon-btn" href="#" aria-label="Pinterest">PI</a>
+            <a class="icon-btn" href="#" aria-label="Spotify">SP</a>
+          </div>
+          <form class="newsletter">
+            <input type="email" placeholder="Tu correo electrónico" aria-label="Tu correo electrónico" />
+            <button type="submit">Unirme</button>
+          </form>
         </div>
-        <div class="footer-section">
-            <h3>AYUDA</h3>
-            <ul>
-                <li><a href="#">Preguntas frecuentes</a></li>
-                <li><a href="#">Envíos y entregas</a></li>
-                <li><a href="#">Cambios y devoluciones</a></li>
-                <li><a href="#">Términos y condiciones</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>SÍGUENOS</h3>
-            <div class="footer-social">
-                <a href="#" class="social-icon">📷</a>
-                <a href="#" class="social-icon">🎵</a>
-                <a href="#" class="social-icon">📌</a>
-                <a href="#" class="social-icon">✉️</a>
-            </div>
-            <h3 style="margin-top: 30px;">ÚNETE A ELLIÈR</h3>
-            <div class="newsletter">
-                <input type="email" placeholder="Tu correo">
-                <p style="font-size: 12px; color: #666; margin-top: 10px;">Sé parte de nuestra comunidad y recibe novedades y promociones exclusivas.</p>
-            </div>
-        </div>
+      </div>
+      <p class="copyright">© 2026 ELLIÉR. Todos los derechos reservados.</p>
     </footer>
 
-    <div class="footer-bottom">
-        © 2024 ELLIÈR. Todos los derechos reservados.
+    <script>
+      const navbar = document.querySelector(".navbar");
+      const glow = document.querySelector(".cursor-glow");
+      const reveals = document.querySelectorAll(".reveal");
+
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 18);
+      });
+
+      window.addEventListener("pointermove", (event) => {
+        glow.style.left = `${event.clientX}px`;
+        glow.style.top = `${event.clientY}px`;
+        glow.style.opacity = "1";
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.16 }
+      );
+
+      reveals.forEach((item) => observer.observe(item));
+    </script>
     </div>
-</body>
+  </body>
 </html>
