@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l \"/mnt/c/Users/alanz/ELLIER-1/index.html\" 2>/dev/null || grep -c \"\" \"c:/Users/alanz/ELLIER-1/index.html\" 2>/dev/null)",
+      "Read(//mnt/c/Users/alanz/ELLIER-1/**)"
+    ]
+  }
+}
