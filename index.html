@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>ELLIÉR — Diseña tu estilo</title>
+<meta name="description" content="ELLIÉR — Streetwear y termos personalizados premium. Colección 2025. Envío a todo México."/>
+<meta name="theme-color" content="#0a0a0a"/>
+<meta property="og:title" content="ELLIÉR — Diseña tu estilo"/>
+<meta property="og:description" content="Streetwear y termos personalizados premium. Piezas únicas hechas para quienes definen su propio estilo."/>
+<meta property="og:type" content="website"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -433,6 +438,32 @@ body.cm2 #cg{display:block}
 /* ── PERSONALIZA OVERLAY ─────────────────── */
 #pzov{position:fixed;inset:0;z-index:150;background:#0a0a0a;overflow-y:auto;transform:translateY(100%);transition:transform .5s var(--ea)}
 #pzov.o{transform:none}
+/* EVENTOS OVERLAY */
+#evov{position:fixed;inset:0;z-index:150;background:var(--bg);overflow-y:auto;transform:translateY(100%);transition:transform .5s var(--ea)}
+#evov.o{transform:none}
+.evh{padding:22px 46px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bo);position:sticky;top:0;background:var(--bg);z-index:5}
+.evh h2{font-size:11px;letter-spacing:.26em;text-transform:uppercase}
+.evnav{display:flex;gap:0;border-bottom:1px solid var(--bo);padding:0 46px;overflow-x:auto;position:sticky;top:61px;background:var(--bg);z-index:4}
+.evna{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:13px 20px;cursor:pointer;color:var(--su);border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;flex-shrink:0;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none}
+.evna.a{color:var(--text);border-color:var(--text)}.evna:hover:not(.a){color:var(--text)}
+.evsec{scroll-margin-top:102px}
+.evgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.ev-hero{background:linear-gradient(135deg,#0a0a0a 0%,#1c1a17 100%);padding:42px 46px 36px;color:#fff}
+.ev-hero .ey{color:rgba(255,255,255,.32)}
+.ev-hero h3{font-size:clamp(22px,3.5vw,38px);font-weight:500;letter-spacing:-.02em;margin:8px 0 11px}
+.ev-hero p{font-size:13px;color:rgba(255,255,255,.44);max-width:500px;line-height:1.75}
+.evc{background:#fff;border:1px solid var(--bo);border-radius:10px;overflow:hidden;transition:transform .32s var(--ea),box-shadow .32s var(--ea)}
+.evc:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.09)}
+.evci{padding:36px 26px;display:flex;align-items:center;justify-content:center;min-height:120px}
+.evcb{padding:18px 20px 20px}
+.evccat{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--su);margin-bottom:5px}
+.evcn{font-size:15px;font-weight:500;margin-bottom:8px}
+.evcdesc{font-size:12px;color:var(--mu);line-height:1.65;margin-bottom:14px}
+.evcft{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.evcpri{font-size:14px;font-weight:500}
+.evcmin{font-size:10px;color:var(--su);margin-top:3px}
+.evwa{display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:9px 15px;border-radius:var(--r);font-size:9px;letter-spacing:.14em;text-transform:uppercase;transition:background .2s;border:none;cursor:pointer;flex-shrink:0}
+.evwa:hover{background:#1ebe5d}
 .pzovh{padding:26px 46px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0a0a0a;z-index:5}
 .pzovh h2{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#fff}
 /* ── SHOWCASE CAROUSEL ───────────────────── */
@@ -462,16 +493,25 @@ body.cm2 #cg{display:block}
 @media(max-width:768px){.sw-hd{padding:0 18px}.sw-track{padding:4px 18px 24px}.pq-wrap{padding:0 18px}.pzovh{padding:14px 20px}}
 @media(max-width:480px){.pq-g{grid-template-columns:1fr}}
 
-/* ── MÁS PRODUCTOS ─────────────────────────── */
-#masproductos{padding:88px 0;background:var(--bg);border-top:1px solid var(--bo)}
-.mp-wrap{max-width:1380px;margin:0 auto;padding:0 46px}
-.mp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:17px}
-.mp-slot{position:relative}
-.mp-edit-btn{position:absolute;top:9px;left:9px;z-index:10;width:26px;height:26px;border-radius:50%;background:#1d6aff;display:none;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;transition:background .2s;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-.mp-edit-btn:hover{background:#0f55dd}
-body.ceo-edit .mp-edit-btn{display:flex}
-.mp-add-slot{border:1.5px dashed var(--bo);border-radius:8px;min-height:260px;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s;display:none;flex-direction:column;gap:10px;color:var(--mu);font-size:10px;letter-spacing:.13em;text-transform:uppercase}
-body.ceo-edit .mp-add-slot{display:flex}
+/* ── EVENTOS & MÁS BANNER ───────────────────── */
+#evmas{position:relative;height:500px;overflow:hidden;display:flex;align-items:flex-end;background:#111}
+.evmas-slides{position:absolute;inset:0;z-index:0}
+.evmas-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}
+.evmas-slide.a{opacity:1}
+.evmas-slide.s1{background:linear-gradient(135deg,#1a1a2e 0%,#0f3460 100%)}
+.evmas-slide.s2{background:linear-gradient(135deg,#2d1b00 0%,#6b4400 100%)}
+.evmas-slide.s3{background:linear-gradient(135deg,#0d0d0d 0%,#2d2d2d 100%)}
+.evmas-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.78) 0%,rgba(0,0,0,.3) 55%,transparent 100%);z-index:1}
+.evmas-ctn{position:relative;z-index:2;padding:0 46px 52px;display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:600px}
+.evmas-ctn .ey{color:rgba(255,255,255,.38)}.evmas-ctn .st{color:#fff}.evmas-ctn .sb2{color:rgba(255,255,255,.48);max-width:440px}
+.evmas-btn{display:inline-flex;align-items:center;gap:8px;background:#000;color:#fff;padding:12px 24px;border-radius:var(--r);font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(255,255,255,.15);transition:background .2s,transform .18s}
+.evmas-btn:hover{background:#1a1a1a;transform:translateY(-1px)}
+.evmas-dots{position:absolute;bottom:24px;right:46px;z-index:2;display:flex;gap:7px;align-items:center}
+.evmas-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:background .25s,transform .25s;border:none;padding:0}
+.evmas-dot.a{background:#fff;transform:scale(1.25)}
+/* Showcase — CEO edición destacados */
+#sw-ceo-btn{display:none}
+body.ceo-edit #sw-ceo-btn{display:flex}
 .mp-add-slot:hover{border-color:var(--text);background:rgba(0,0,0,.018);color:var(--text)}
 @media(max-width:768px){.mp-wrap{padding:0 18px}}
 
@@ -551,6 +591,36 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 .cof-lbl{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
 .cof-inp{border:1px solid var(--bo);padding:9px 12px;border-radius:var(--r);font-size:13px;font-family:var(--fn);outline:none;transition:border-color .2s;width:100%}
 .cof-inp:focus{border-color:var(--text)}
+/* ── DESCUENTOS ─────────────────────────────────────────────────────────── */
+.pp-orig,.tcp-orig{text-decoration:line-through;color:var(--mu);font-size:11px;margin-right:3px}
+.pp-disc,.tcp-disc{color:#c0392b;font-weight:600}
+.disc-badge{display:inline-block;background:#c0392b;color:#fff;font-size:8px;letter-spacing:.09em;padding:2px 6px;border-radius:8px;vertical-align:middle;margin-left:4px;font-family:var(--fn)}
+.cof-disc-sep{margin:14px 0;border-top:1px solid var(--bo);padding-top:14px}
+.cof-disc-h{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:10px}
+.cof-math{font-size:10px;color:var(--mu);margin-top:4px;min-height:16px}
+/* ── CEO IMAGE EDIT OVERLAYS ─────────────────────────────────────────────── */
+.ceo-img-ctrl{position:absolute;top:10px;right:10px;z-index:30;display:flex;gap:4px;opacity:0;transition:opacity .18s;pointer-events:none}
+.ceo-img-ctrl.bot{top:auto;bottom:18px}
+body.ceo-edit [data-ceo-img]{cursor:default}
+body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
+.ceo-img-cb{background:rgba(10,10,10,.82);color:#fff;border:none;border-radius:5px;padding:6px 10px;font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;font-family:var(--fn);cursor:pointer;display:flex;align-items:center;gap:5px;transition:background .15s;backdrop-filter:blur(6px);white-space:nowrap}
+.ceo-img-cb:hover{background:rgba(10,10,10,.97)}
+.ceo-img-cb.rm{background:rgba(192,57,43,.82)}
+.ceo-img-cb.rm:hover{background:#c0392b}
+.ceo-img-cb svg{flex-shrink:0}
+/* ── IMAGEN PRODUCTO (edit modal) ────────────────────────────────────────── */
+.pim-area{border:1.5px dashed var(--bo);border-radius:var(--r);padding:14px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.pim-area:hover{border-color:var(--text);background:rgba(0,0,0,.02)}
+.pim-prev{width:100%;max-height:110px;object-fit:contain;border-radius:6px;margin-top:9px;display:none}
+.pim-clear{display:none;margin-top:5px;font-size:10px;color:#c0392b;background:none;border:none;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;font-family:var(--fn)}
+/* LOGO IMAGE */
+#logo-img{height:90px;width:auto;object-fit:contain}
+/* PERFORMANCE & ACCESSIBILITY */
+#t3d{will-change:transform}
+.pc:hover,.tcard:hover{will-change:transform}
+:focus-visible{outline:2px solid rgba(10,10,10,.7);outline-offset:3px;border-radius:var(--r)}
+#hero :focus-visible,#tsc :focus-visible,.evmas-section :focus-visible{outline-color:rgba(255,255,255,.7)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}html{scroll-behavior:auto}.at{animation:none}.hrb{animation:none}.evmas-slide{transition:none}}
 </style>
 </head>
 <body>
@@ -559,7 +629,7 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 
 <!-- LOADER -->
 <div id="ld">
-  <div id="ldl"><svg width="26" height="26" viewBox="0 0 256 256" fill="rgba(255,255,255,.88)"><path d="M4.688 136C68.373 136 120 187.627 120 251.312c0 1.571-.033 3.133-.095 4.688H0V136.096A34.8 34.8 0 0 1 4.688 136zm246.624 0c1.571 0 3.133.034 4.688.096V256H136.095A121.18 121.18 0 0 1 136 251.312C136 187.627 187.627 136 251.312 136zM119.905 0C119.967 1.555 120 3.117 120 4.688 120 68.373 68.373 120 4.687 120A121.2 121.2 0 0 1 0 119.905V0h119.905zM256 119.905A121.2 121.2 0 0 1 251.312 120C187.627 120 136 68.373 136 4.687c0-1.57.033-3.132.095-4.687H256v119.905z"/></svg></div>
+  <div id="ldl"><img src="data:image/png;base64,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" alt="ELLIER" style="width:290px;height:auto"/></div>
   <div id="ldn">ELLIÉR</div>
   <div id="ldb"><div id="ldf"></div></div>
 </div>
@@ -576,33 +646,34 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 <!-- NAVBAR -->
 <nav id="nv" class="d">
   <div style="display:flex;align-items:center;gap:11px">
-    <button id="catbtn" onclick="toggleCatMenu()" title="Catálogos"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button>
-    <a href="#" onclick="closeCl();smoothTo('#hero');return false" style="display:flex;align-items:center;gap:9px">
-      <svg class="nli" viewBox="0 0 256 256"><path d="M4.688 136C68.373 136 120 187.627 120 251.312c0 1.571-.033 3.133-.095 4.688H0V136.096A34.8 34.8 0 0 1 4.688 136zm246.624 0c1.571 0 3.133.034 4.688.096V256H136.095A121.18 121.18 0 0 1 136 251.312C136 187.627 187.627 136 251.312 136zM119.905 0C119.967 1.555 120 3.117 120 4.688 120 68.373 68.373 120 4.687 120A121.2 121.2 0 0 1 0 119.905V0h119.905zM256 119.905A121.2 121.2 0 0 1 251.312 120C187.627 120 136 68.373 136 4.687c0-1.57.033-3.132.095-4.687H256v119.905z"/></svg>
-      <span class="nlt">ELLIÉR</span>
+    <button id="catbtn" onclick="toggleCatMenu()" title="Catálogos" aria-label="Catálogos"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button>
+    <a href="#" id="logo-link" data-ceo-img="logo" onclick="closeCl();smoothTo('#hero');return false" style="display:flex;align-items:center;gap:9px;position:relative">
+      <img id="logo-img" alt="ELLIER" style="height:80px;width:auto;object-fit:contain"/>
+      <svg class="nli" id="logo-svg" viewBox="0 0 256 256" style="display:none"><path d="M4.688 136C68.373 136 120 187.627 120 251.312c0 1.571-.033 3.133-.095 4.688H0V136.096A34.8 34.8 0 0 1 4.688 136zm246.624 0c1.571 0 3.133.034 4.688.096V256H136.095A121.18 121.18 0 0 1 136 251.312C136 187.627 187.627 136 251.312 136zM119.905 0C119.967 1.555 120 3.117 120 4.688 120 68.373 68.373 120 4.687 120A121.2 121.2 0 0 1 0 119.905V0h119.905zM256 119.905A121.2 121.2 0 0 1 251.312 120C187.627 120 136 68.373 136 4.687c0-1.57.033-3.132.095-4.687H256v119.905z"/></svg>
+      <span class="nlt" id="logo-txt" style="display:none">ELLIÉR</span>
+      <img id="ceo-logo-img" style="height:80px;width:auto;object-fit:contain;display:none" alt="Logo"/>
     </a>
     <button id="adminbtn" onclick="openCEO()"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Administración</button>
   </div>
   <div class="nls">
     <a class="nl" href="#" onclick="closeCl();smoothTo('#hero');return false">Inicio</a>
     <a class="nl" href="#" onclick="openCl();return false">Colección</a>
-    <a class="nl" href="#masproductos">Más productos</a>
-    <a class="nl" href="#" onclick="openPZ();return false">Personalizados</a>
+    <a class="nl" href="#" onclick="openEv();return false">Eventos</a>
     <a class="nl" href="#nosotros">Nosotros</a>
     <a class="nl" href="#footer">Contacto</a>
   </div>
   <div class="na">
-    <button class="ni" onclick="openSrch()" title="Buscar"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
-    <button class="ni" id="curtgl" onclick="toggleCursor()" title="Cambiar cursor"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M5 3l14 9-7 1-4 7z"/></svg></button>
-    <button class="ni" id="whbtn" onclick="openWish()" title="Favoritos"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nba" id="whc" style="display:none">0</span></button>
-    <button class="ni" id="authbtn" onclick="openAuth()"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
-    <button class="ni" id="crtb" onclick="openCart()"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="nba" id="crtc">0</span></button>
-    <button id="hb" onclick="toggleMM()"><span></span><span></span><span></span></button>
+    <button class="ni" onclick="openSrch()" title="Buscar" aria-label="Buscar"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+    <button class="ni" id="curtgl" onclick="toggleCursor()" title="Cambiar cursor" aria-label="Cambiar cursor"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M5 3l14 9-7 1-4 7z"/></svg></button>
+    <button class="ni" id="whbtn" onclick="openWish()" title="Favoritos" aria-label="Lista de favoritos"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nba" id="whc" style="display:none">0</span></button>
+    <button class="ni" id="authbtn" onclick="openAuth()" aria-label="Iniciar sesión"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+    <button class="ni" id="crtb" onclick="openCart()" aria-label="Carrito de compras"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="nba" id="crtc">0</span></button>
+    <button id="hb" onclick="toggleMM()" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
 <!-- MOBILE MENU -->
-<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><a class="mml" href="#" onclick="toggleMM();openCl();return false">Colección</a><a class="mml" href="#masproductos" onclick="toggleMM();return false">Más productos</a><a class="mml" href="#" onclick="toggleMM();openPZ();return false">Personalizados</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a></div>
+<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><a class="mml" href="#" onclick="toggleMM();openCl();return false">Colección</a><a class="mml" href="#" onclick="toggleMM();openEv();return false">Eventos</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a></div>
 
 <!-- CATALOG DROPDOWN -->
 <div id="catdrop">
@@ -732,6 +803,19 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
       </div>
       <div class="fg"><label class="fl">Descripción / specs</label><input class="fi" id="pmd" placeholder="Acero 304 · Doble pared · ..."/></div>
       <div class="fg"><label class="fl">Tag</label><select class="fsel" id="pmt"><option value="">Sin tag</option><option value="new">Nuevo</option><option value="bs">Best seller</option></select></div>
+      <div class="pgr">
+        <div class="fg"><label class="fl">Descuento individual (%)</label><input class="fi" id="pmdsc" type="number" min="0" max="90" step="1" placeholder="0" oninput="previewProdDisc()"/></div>
+        <div class="fg"><label class="fl">Precio con descuento</label><span id="pm-disc-prev" style="display:block;font-size:13px;color:#c0392b;padding:11px 0;font-weight:600">—</span></div>
+      </div>
+      <div class="fg"><label class="fl">Imagen del producto (opcional)</label>
+        <div class="pim-area" id="pim-area" onclick="document.getElementById('pim-file').click()">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <div style="font-size:11px;color:var(--mu);margin-top:5px">Haz clic para subir imagen<br/><span style="opacity:.6">PNG · JPG · WebP · SVG</span></div>
+          <input type="file" id="pim-file" accept="image/*" style="display:none" onchange="handleProdImg(this)"/>
+          <img id="pim-prev" class="pim-prev" alt="preview"/>
+        </div>
+        <button class="pim-clear" id="pim-clear" onclick="clearProdImg()">✕ Quitar imagen</button>
+      </div>
       <div class="fg"><label class="fl">Colores (click para agregar)</label>
         <div class="clrpkr" id="clrpkr">
           <div class="cpki" style="background:#1a1a1a" onclick="toggleClr(this,'#1a1a1a')" title="Negro"></div>
@@ -755,6 +839,26 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 </div>
 
 <!-- PERSONALIZA PAGE -->
+<!-- EVENTOS & PERSONALIZADOS OVERLAY -->
+<div id="evov">
+  <div class="evh">
+    <h2>Personalizados &amp; Eventos</h2>
+    <button class="xb" onclick="closeEv()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="evnav">
+    <button class="evna a" onclick="evNavTo('ev-sec-evt',this)">Eventos</button>
+    <button class="evna" onclick="evNavTo('ev-sec-ind',this)">Personalizados</button>
+  </div>
+  <div id="ev-sec-evt" class="evsec">
+    <div class="ev-hero rv"><p class="ey">XV · Bodas · Fiestas · Corporativo</p><h3>Recuerdos que duran para siempre.</h3><p>Paquetes personalizados para tu evento especial. Precios por volumen, diseño exclusivo. Cotiza directo por WhatsApp — te respondemos en menos de 24h.</p></div>
+    <div class="evgrid sg" style="padding:26px 46px 60px" id="ev-evt-grid"></div>
+  </div>
+  <div id="ev-sec-ind" class="evsec">
+    <div style="padding:42px 46px 26px"><p class="ey">Para cada persona</p><h2 class="st">Tu producto, tu diseño.</h2><p class="sb2">Elige tu producto favorito, personalízalo a tu gusto y recíbelo en casa. Precios fijos, entrega rápida.</p></div>
+    <div class="evgrid sg" style="padding:0 46px 60px" id="ev-ind-grid"></div>
+  </div>
+</div>
+
 <div id="pzov">
   <div class="pzovh">
     <div style="display:flex;align-items:center;gap:14px">
@@ -786,7 +890,7 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 
 <main>
 <!-- HERO -->
-<section id="hero"><canvas id="hcv"></canvas><div class="hrb hrb1"></div><div class="hrb hrb2"></div><div class="ho1"></div><div class="ho2"></div>
+<section id="hero" data-ceo-img="hero-bg"><canvas id="hcv"></canvas><div class="hrb hrb1"></div><div class="hrb hrb2"></div><div class="ho1"></div><div class="ho2"></div>
   <div class="hc" id="hcnt"><p class="htag" data-ceo="hero-tag" contenteditable="false">Colección 2025</p><h1 class="hh1"><span id="hl1" data-ceo="hero-h1" contenteditable="false"></span><span id="hl2" data-ceo="hero-h2" contenteditable="false"></span></h1><p class="hsub" data-ceo="hero-sub" contenteditable="false">Streetwear y personalizados premium. Piezas únicas diseñadas para quienes definen su propio estilo.</p><div class="hbt"><a href="#" class="bp" onclick="openCl();return false">Explorar colección <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="#" class="bg" onclick="openPZ();return false">Crea el tuyo</a></div></div>
   <div class="hsc"><span>Scroll</span><div class="hsl"></div></div>
 </section>
@@ -794,14 +898,36 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 <!-- FEATURES -->
 <section id="feat"><div class="fg3 sg"><div class="fi3 rv"><div class="ic"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><h4>Envío gratis</h4><p>En compras +$999 MXN</p></div></div><div class="fi3 rv"><div class="ic"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h4>Pagos seguros</h4><p>100% protegidos</p></div></div><div class="fi3 rv"><div class="ic"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><h4>Calidad premium</h4><p>Hecho para durar</p></div></div><div class="fi3 rv"><div class="ic"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><h4>Atención personal</h4><p>Respuesta en 24h</p></div></div></div></section>
 
+<!-- EVENTOS & MÁS BANNER -->
+<section id="evmas">
+  <div class="evmas-slides">
+    <div class="evmas-slide s1 a" id="evmas-s1" data-ceo-img="evmas-s1"></div>
+    <div class="evmas-slide s2" id="evmas-s2" data-ceo-img="evmas-s2"></div>
+    <div class="evmas-slide s3" id="evmas-s3" data-ceo-img="evmas-s3"></div>
+  </div>
+  <div class="evmas-ov"></div>
+  <div class="evmas-ctn">
+    <div class="rv"><p class="ey" data-ceo="evmas-ey" contenteditable="false">Descubre</p><h2 class="st" data-ceo="evmas-title" contenteditable="false">Eventos, personalizaciones,<br>hogar y más.</h2><p class="sb2" data-ceo="evmas-sub" contenteditable="false">Desde XV años hasta regalos corporativos. Todo lo que necesitas, con el sello ELLIÉR.</p></div>
+    <button class="evmas-btn rv" onclick="openEv()">Conoce más <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+  </div>
+  <div class="evmas-dots" id="evmas-dots">
+    <button class="evmas-dot a" onclick="evmasGo(0)" aria-label="Slide 1"></button>
+    <button class="evmas-dot" onclick="evmasGo(1)" aria-label="Slide 2"></button>
+    <button class="evmas-dot" onclick="evmasGo(2)" aria-label="Slide 3"></button>
+  </div>
+</section>
+
 <!-- SHOWCASE CAROUSEL -->
 <section id="showcase">
   <div class="sw-hd">
     <div class="rv"><p class="ey" data-ceo="sw-ey" contenteditable="false">Destacados</p><h2 class="st" data-ceo="sw-title" contenteditable="false">Lo mejor de ELLIÉR.</h2><p class="sb2" data-ceo="sw-sub" contenteditable="false">Una selección de nuestras piezas más icónicas.</p></div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:11px">
-      <div class="sw-nav">
-        <button class="sw-arr" onclick="swScroll(-1)" title="Anterior">&#8592;</button>
-        <button class="sw-arr" onclick="swScroll(1)" title="Siguiente">&#8594;</button>
+      <div style="display:flex;gap:9px;align-items:center">
+        <div id="sw-ceo-btn"><button class="cb3 pr" onclick="openSwFeatured()">✎ Destacados</button></div>
+        <div class="sw-nav">
+          <button class="sw-arr" onclick="swScroll(-1)" title="Anterior">&#8592;</button>
+          <button class="sw-arr" onclick="swScroll(1)" title="Siguiente">&#8594;</button>
+        </div>
       </div>
       <a href="#" onclick="openCl();return false" style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);border-bottom:1px solid var(--bo);padding-bottom:2px">Ver todo →</a>
     </div>
@@ -809,22 +935,8 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
   <div class="sw-track" id="swt"></div>
 </section>
 
-<!-- MÁS PRODUCTOS -->
-<section id="masproductos">
-  <div class="mp-wrap">
-    <div class="rv" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px">
-      <div>
-        <p class="ey" id="mp-eyebrow">Catálogo completo</p>
-        <h2 class="st" id="mp-title">Más productos.</h2>
-        <p class="sb2" id="mp-sub">Toda nuestra selección disponible para ti.</p>
-      </div>
-      <div style="display:none;gap:9px;align-items:center" id="mp-ceo-add">
-        <button class="cb3 pr" onclick="openProdEdit(null)">+ Agregar producto</button>
-      </div>
-    </div>
-    <div class="mp-grid sg" id="mpg"></div>
-  </div>
-</section>
+<!-- NOSOTROS -->
+<section id="nosotros"><div class="nsg"><div class="rvl"><p class="ey" data-ceo="ns-ey" contenteditable="false">Nuestra historia</p><h2 class="st" data-ceo="ns-title" contenteditable="false">Diseñados con propósito. Hechos con precisión.</h2><p class="sb2" data-ceo="ns-sub" contenteditable="false">ELLIÉR nació de la idea de que cada persona merece un estilo único. Combinamos streetwear contemporáneo con artículos de uso diario premium.</p><div class="nns"><div class="nn rv"><h3>200+</h3><p>Clientes</p></div><div class="nn rv"><h3>50+</h3><p>Diseños únicos</p></div><div class="nn rv"><h3>100%</h3><p>Personalizable</p></div><div class="nn rv"><h3>24h</h3><p>Respuesta</p></div></div></div><div class="rvr"><div class="nv"><div class="nb nb1" data-ceo-img="nosotros-1"><div class="nbc">Premium Quality</div></div><div class="nb nb2" data-ceo-img="nosotros-2"><div class="nbc">Made to Last</div></div></div></div></div></section>
 
 <!-- CINEMATIC TERMO -->
 <div id="tsc"><div id="tsi"><canvas id="pcv"></canvas><div class="sgl"></div>
@@ -878,7 +990,7 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 </section>
 
 <!-- PERSONALIZA CTA -->
-<section id="personaliza" style="padding:92px 0;background:#0a0a0a;color:#fff">
+<section id="personaliza" data-ceo-img="cta-bg" style="padding:92px 0;background:#0a0a0a;color:#fff;position:relative">
   <div class="ctn" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px">
     <p class="ey" style="color:rgba(255,255,255,.28)">Diseñador</p>
     <h2 class="st rv" style="color:#fff;max-width:560px">Tu diseño,<br>en tiempo real.</h2>
@@ -894,9 +1006,6 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
     </div>
   </div>
 </section>
-
-<!-- NOSOTROS -->
-<section id="nosotros"><div class="nsg"><div class="rvl"><p class="ey" data-ceo="ns-ey" contenteditable="false">Nuestra historia</p><h2 class="st" data-ceo="ns-title" contenteditable="false">Diseñados con propósito. Hechos con precisión.</h2><p class="sb2" data-ceo="ns-sub" contenteditable="false">ELLIÉR nació de la idea de que cada persona merece un estilo único. Combinamos streetwear contemporáneo con artículos de uso diario premium.</p><div class="nns"><div class="nn rv"><h3>200+</h3><p>Clientes</p></div><div class="nn rv"><h3>50+</h3><p>Diseños únicos</p></div><div class="nn rv"><h3>100%</h3><p>Personalizable</p></div><div class="nn rv"><h3>24h</h3><p>Respuesta</p></div></div></div><div class="rvr"><div class="nv"><div class="nb nb1"><div class="nbc">Premium Quality</div></div><div class="nb nb2"><div class="nbc">Made to Last</div></div></div></div></div></section>
 
 <!-- FOOTER -->
 <footer id="footer"><div class="fi4"><div class="ft3"><div class="fb3"><h3>ELLIÉR</h3><p>Termos y streetwear personalizados de calidad premium. Tu imagen, tu identidad — diseñada para durar.</p><a href="https://wa.me/" target="_blank" class="wa"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>WhatsApp</a></div><div class="fc"><h4>Tienda</h4><ul><li><a href="#" onclick="openCl();return false">Colección</a></li><li><a href="#masproductos">Más productos</a></li><li><a href="#" onclick="openCl();return false">Colección</a></li><li><a href="#">Novedades</a></li></ul></div><div class="fc"><h4>Personalización</h4><ul><li><a href="#" onclick="openPZ();return false">Diseñar ahora</a></li><li><a href="#">Cómo funciona</a></li><li><a href="#">Galería</a></li><li><a href="#">FAQ</a></li></ul></div><div class="fc"><h4>Contacto</h4><ul><li><a href="https://wa.me/" target="_blank">WhatsApp</a></li><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="mailto:ellier@correo.com">Email</a></li></ul></div></div><div class="fbot"><p class="fcp">© 2025 ELLIÉR — Todos los derechos reservados</p><div class="fsocs"><a href="#" class="fsoc"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div></div></footer>
@@ -982,6 +1091,22 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
     <button class="ctp-save" style="flex:1" onclick="applyOffer()">Mostrar banner</button>
     <button class="ctp-save" style="flex:1;background:#fff;color:var(--text);border:1px solid var(--bo)" onclick="hideOffer()">Ocultar</button>
   </div>
+  <!-- DESCUENTO GLOBAL -->
+  <div class="cof-disc-sep">
+    <div class="cof-disc-h">Descuento global en toda la página</div>
+    <div class="cof-row">
+      <label class="cof-lbl">Porcentaje de descuento (%)</label>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input class="cof-inp" id="cof-pct" type="number" min="0" max="90" step="1" placeholder="Ej: 20" style="width:86px;flex:none" oninput="previewGlobalDisc()"/>
+        <span style="font-size:12px;color:#c0392b;font-weight:600" id="cof-disc-preview"></span>
+      </div>
+      <span class="cof-math" id="cof-math-preview"></span>
+    </div>
+    <div style="display:flex;gap:7px">
+      <button class="ctp-btn pr" style="flex:1" onclick="applyGlobalDisc()">Aplicar descuento</button>
+      <button class="ctp-btn se" style="flex:1" onclick="removeGlobalDisc()">Quitar</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1028,7 +1153,7 @@ addHover(document);
 
 // WHEEL SCROLL EN PANELES — evita que Lenis intercepte eventos dentro de overlays
 (function(){
-  const scrollables=['#citems','#witems','#cl','#pzov','#ceo','#ckb','#odp','#srchres'];
+  const scrollables=['#citems','#witems','#cl','#pzov','#evov','#ceo','#ckb','#odp','#srchres'];
   scrollables.forEach(sel=>{
     const el=document.querySelector(sel);
     if(el) el.addEventListener('wheel',e=>e.stopPropagation(),{passive:false});
@@ -1079,19 +1204,42 @@ function initHero(){
   const rsz=()=>{cv.width=cv.offsetWidth;cv.height=cv.offsetHeight};
   rsz();window.addEventListener('resize',rsz,{passive:true});
   const pts=Array.from({length:38},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,r:Math.random()*1.1+.3,o:Math.random()*.18+.04}));
-  let _rafH;
-  (function draw(){
-    _rafH=requestAnimationFrame(draw);
+  let _rafH=null,_hp=false;
+  function _hDraw(){
+    if(_hp){_rafH=null;return}
+    _rafH=requestAnimationFrame(_hDraw);
     ctx.clearRect(0,0,cv.width,cv.height);
     pts.forEach((p,i)=>{
       p.x+=p.vx;p.y+=p.vy;
       if(p.x<0)p.x=cv.width;if(p.x>cv.width)p.x=0;
       if(p.y<0)p.y=cv.height;if(p.y>cv.height)p.y=0;
       ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${p.o})`;ctx.fill();
-      // draw connections only to nearby pts (skip if > 1 index away to stay O(n))
       if(i<pts.length-1){const q=pts[i+1],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);if(d<80){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(255,255,255,${.05*(1-d/80)})`;ctx.lineWidth=.4;ctx.stroke()}}
     });
-  })();
+  }
+  _hDraw();
+  new IntersectionObserver(([e])=>{_hp=!e.isIntersecting;if(!_hp&&!_rafH)_hDraw()},{threshold:0}).observe(cv);
+  document.addEventListener('visibilitychange',()=>{_hp=document.hidden;if(!_hp&&!_rafH)_hDraw()});
+}
+
+// DESCUENTO — helpers
+let _globalDisc=0;
+function _mkPriceHtml(p,cls){
+  const origNum=parseInt((p.p||'0').replace(/\D/g,''));
+  const indDisc=p.disc||0;
+  const effDisc=indDisc>0?indDisc:_globalDisc;
+  if(effDisc>0){
+    const finalNum=Math.round(origNum*(1-effDisc/100));
+    return `<span class="${cls}-orig">${p.p}</span><span class="${cls}-disc">$${finalNum}</span><span class="disc-badge">-${effDisc}%</span>`;
+  }
+  return `<span class="${cls}">${p.p}</span>`;
+}
+function _getEffectivePrice(p){
+  const origNum=parseInt((p.p||'0').replace(/\D/g,''));
+  const indDisc=p.disc||0;
+  const effDisc=indDisc>0?indDisc:_globalDisc;
+  if(effDisc>0) return `$${Math.round(origNum*(1-effDisc/100))}`;
+  return p.p;
 }
 
 // PRODUCT DATA
@@ -1120,16 +1268,23 @@ function mkTermoSVG(clr){return `<svg viewBox="0 0 100 130" xmlns="http://www.w3
 function mkTazaSVG(clr){return `<svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg"><path d="M15 20 L18 80 Q18 86 25 86 L75 86 Q82 86 82 80 L85 20 Z" fill="${clr}"/><path d="M82 35 Q95 35 95 50 Q95 65 82 65" stroke="${clr}" stroke-width="6" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="20" rx="35" ry="10" fill="${clr}" opacity=".7"/><ellipse cx="40" cy="45" rx="5" ry="14" fill="rgba(255,255,255,.06)"/></svg>`}
 
 // RENDER CARDS
+function _getProdImg(id){return(JSON.parse(localStorage.getItem('ellier_prod_images')||'{}')||{})[id]||null}
 function mkPC(p){
+  const customImg=_getProdImg(p.id);
   const c0=p.clrs[0];
-  const svg=p.svg.replace(/\{C\}/g,c0);
+  const innerContent=customImg
+    ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}"/>`
+    :p.svg.replace(/\{C\}/g,c0);
   const tagH=p.tag?`<div class="pbg2 ${p.tag}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
   const dots=p.clrs.map((c,i)=>`<div class="psw${i===0?' a':''}" style="background:${c}" onclick="chPC(this,'${p.id}','${c}')"></div>`).join('');
-  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" id="svg_${p.id}" style="padding:24px">${svg}</div>${tagH}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pcs">${dots}</div><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
+  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" id="svg_${p.id}" style="padding:24px">${innerContent}</div>${tagH}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pcs">${dots}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
 }
 function mkTC(t){
-  const svg=t.cat==='termos'?mkTermoSVG(t.clr):mkTazaSVG(t.clr);
-  return `<div class="tcard rv" data-cat="${t.cat}"><div class="tci"><div class="tcii" style="padding:22px">${svg}</div></div><div class="tcb"><div class="tct">${t.cat}</div><div class="tcn">${t.n}</div><div class="tcoz">${t.oz}</div><div class="tcd">${t.desc}</div><div class="tcft"><span class="tcp">${t.p}</span><button class="ba" onclick="Cart.add('${t.id}')">+ Carrito</button></div></div></div>`;
+  const customImg=_getProdImg(t.id);
+  const svgContent=customImg
+    ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${t.n}"/>`
+    :(t.cat==='termos'?mkTermoSVG(t.clr):mkTazaSVG(t.clr));
+  return `<div class="tcard rv" data-cat="${t.cat}"><div class="tci"><div class="tcii" style="padding:22px">${svgContent}</div></div><div class="tcb"><div class="tct">${t.cat}</div><div class="tcn">${t.n}</div><div class="tcoz">${t.oz}</div><div class="tcd">${t.desc}</div><div class="tcft">${_mkPriceHtml(t,'tcp')}<button class="ba" onclick="Cart.add('${t.id}')">+ Carrito</button></div></div></div>`;
 }
 function obsNew(g){g.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>ro.observe(el));addHover(g)}
 function renderSW(){const g=document.getElementById('swg');if(g){g.innerHTML=SW.map(mkPC).join('');obsNew(g)}}
@@ -1199,7 +1354,7 @@ const Cart={
   add(id,custom){
     const all=[...SW,...TERMOS],p=all.find(x=>x.id===id);if(!p)return;
     const ex=this.items.find(x=>x.id===id&&!x.custom);
-    if(ex&&!custom){ex.qty++}else{this.items.push({id,n:custom?'Diseño personalizado':p.n,p:custom?'$580':p.p,qty:1,cat:p.cat,clr:(p.clr||p.clrs?.[0]),custom:!!custom})}
+    if(ex&&!custom){ex.qty++}else{this.items.push({id,n:custom?'Diseño personalizado':p.n,p:custom?'$580':_getEffectivePrice(p),qty:1,cat:p.cat,clr:(p.clr||p.clrs?.[0]),custom:!!custom})}
     this.save();showToast('Agregado al carrito');updateCC();
     const cb=document.getElementById('crtb');if(cb){cb.classList.remove('ping');void cb.offsetWidth;cb.classList.add('ping')}
   },
@@ -1411,10 +1566,13 @@ function setOrdSt(id,st){
 }
 
 // PRODUCT CRUD
-let _editProdId=null,_editProdClrs=[];
+let _editProdId=null,_editProdClrs=[],_editProdImgData=null,_editProdImgCleared=false;
 function openProdEdit(id){
-  _editProdId=id;_editProdClrs=[];
+  _editProdId=id;_editProdClrs=[];_editProdImgData=null;_editProdImgCleared=false;
   const delbtn=document.getElementById('delpbtn');
+  const prevImg=document.getElementById('pim-prev');
+  const clearBtn=document.getElementById('pim-clear');
+  const imgs=JSON.parse(localStorage.getItem('ellier_prod_images')||'{}');
   if(id){
     const all=[...SW,...TERMOS];const p=all.find(x=>x.id===id);if(!p)return;
     document.getElementById('pemtit').textContent='Editar producto';
@@ -1423,14 +1581,21 @@ function openProdEdit(id){
     document.getElementById('pmp').value=p.p;
     document.getElementById('pmd').value=p.desc||p.oz||'';
     document.getElementById('pmt').value=p.tag||'';
+    document.getElementById('pmdsc').value=p.disc||0;
     _editProdClrs=p.clrs?[...p.clrs]:[p.clr||'#1a1a1a'];
     delbtn.style.display='block';
+    if(imgs[id]){_editProdImgData=imgs[id];prevImg.src=imgs[id];prevImg.style.display='block';clearBtn.style.display='block';}
+    else{prevImg.style.display='none';prevImg.src='';clearBtn.style.display='none';}
   }else{
     document.getElementById('pemtit').textContent='Agregar producto';
     ['pmn','pmd'].forEach(i=>document.getElementById(i).value='');
-    document.getElementById('pmc').value='joggers';document.getElementById('pmp').value='';document.getElementById('pmt').value='';
+    document.getElementById('pmc').value='joggers';document.getElementById('pmp').value='';
+    document.getElementById('pmt').value='';document.getElementById('pmdsc').value=0;
+    document.getElementById('pm-disc-prev').textContent='—';
+    prevImg.style.display='none';prevImg.src='';clearBtn.style.display='none';
     _editProdClrs=['#1a1a1a'];delbtn.style.display='none';
   }
+  previewProdDisc();
   document.querySelectorAll('#clrpkr .cpki').forEach(d=>{d.classList.toggle('a',_editProdClrs.includes(d.style.background||d.getAttribute('data-c')))});
   document.getElementById('pem').classList.add('o');
 }
@@ -1448,17 +1613,28 @@ function saveProd(){
   const desc=document.getElementById('pmd').value.trim();
   const tag=document.getElementById('pmt').value;
   const clrs=_editProdClrs.length?_editProdClrs:['#1a1a1a'];
+  const discPct=Math.max(0,Math.min(90,parseInt(document.getElementById('pmdsc').value)||0));
+  // persist image
+  const imgs=JSON.parse(localStorage.getItem('ellier_prod_images')||'{}');
+  const discounts=JSON.parse(localStorage.getItem('ellier_ceo_prod_discounts')||'{}');
   if(_editProdId){
     const isTermo=['termos','tazas'].includes(cat);
-    if(isTermo){const t=TERMOS.find(x=>x.id===_editProdId);if(t){t.n=n;t.cat=cat;t.p=pv;t.desc=desc;t.clr=clrs[0]}}
-    else{const s=SW.find(x=>x.id===_editProdId);if(s){s.n=n;s.cat=cat;s.p=pv;s.tag=tag;s.clrs=clrs}}
+    if(isTermo){const t=TERMOS.find(x=>x.id===_editProdId);if(t){t.n=n;t.cat=cat;t.p=pv;t.desc=desc;t.clr=clrs[0];t.disc=discPct;}}
+    else{const s=SW.find(x=>x.id===_editProdId);if(s){s.n=n;s.cat=cat;s.p=pv;s.tag=tag;s.clrs=clrs;s.disc=discPct;}}
+    discounts[_editProdId]=discPct;
+    if(_editProdImgData){imgs[_editProdId]=_editProdImgData;}
+    else if(_editProdImgCleared){delete imgs[_editProdId];}
     showToast('Producto actualizado');
   }else{
     const newId='sw'+Date.now();
-    SW.push({id:newId,n,cat,clrs,p:pv,tag,desc,svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" rx="8" fill="{C}"/><text x="50" y="58" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.3)" font-family="Helvetica">ELLIÉR</text></svg>`});
+    SW.push({id:newId,n,cat,clrs,p:pv,tag,desc,disc:discPct,svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" rx="8" fill="{C}"/><text x="50" y="58" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.3)" font-family="Helvetica">ELLIÉR</text></svg>`});
+    discounts[newId]=discPct;
+    if(_editProdImgData) imgs[newId]=_editProdImgData;
     showToast('Producto agregado');
   }
-  closeProdEdit();renderShowcase();renderColl();renderProdTable();
+  localStorage.setItem('ellier_prod_images',JSON.stringify(imgs));
+  localStorage.setItem('ellier_ceo_prod_discounts',JSON.stringify(discounts));
+  closeProdEdit();renderShowcase();renderColl();renderProdTable();renderMasProductos();
   document.getElementById('cpct').textContent=[...SW,...TERMOS].length;
 }
 function deleteProd(){
@@ -1482,7 +1658,7 @@ function openCk(){
   if(!Cart.items.length)return;
   document.getElementById('cksum').innerHTML=Cart.items.map(x=>`<div class="ckr"><span>${x.n} × ${x.qty}</span><span>${x.p}</span></div>`).join('')+`<div class="cktot"><span>Total</span><span>$${Cart.total().toLocaleString()} MXN</span></div>`;
   closeCart();document.getElementById('cko').classList.add('o');
-}
+} 
 function selPay(btn){document.querySelectorAll('.pm').forEach(b=>b.classList.remove('a'));btn.classList.add('a')}
 function doCk(){
   const inputs=document.querySelectorAll('#ckb .fi');
@@ -1520,11 +1696,16 @@ function initCinematic(){
   const rsz2=()=>{cv2.width=cv2.offsetWidth;cv2.height=cv2.offsetHeight};
   rsz2();window.addEventListener('resize',rsz2,{passive:true});
   const pts2=Array.from({length:38},()=>({x:Math.random()*cv2.width,y:Math.random()*cv2.height,vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.12,r:Math.random()*.9+.2,o:Math.random()*.1+.03}));
-  (function draw2(){
+  let _rafC=null,_cp=false;
+  function _cDraw(){
+    if(_cp){_rafC=null;return}
+    _rafC=requestAnimationFrame(_cDraw);
     ctx2.clearRect(0,0,cv2.width,cv2.height);
     pts2.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=cv2.width;if(p.x>cv2.width)p.x=0;if(p.y<0)p.y=cv2.height;if(p.y>cv2.height)p.y=0;ctx2.beginPath();ctx2.arc(p.x,p.y,p.r,0,Math.PI*2);ctx2.fillStyle=`rgba(255,255,255,${p.o})`;ctx2.fill()});
-    requestAnimationFrame(draw2);
-  })();
+  }
+  _cDraw();
+  new IntersectionObserver(([e])=>{_cp=!e.isIntersecting;if(!_cp&&!_rafC)_cDraw()},{threshold:0}).observe(cv2);
+  document.addEventListener('visibilitychange',()=>{_cp=document.hidden;if(!_cp&&!_rafC)_cDraw()});
   const t3d=document.getElementById('t3d');
   gsap.set(t3d,{scale:.72,rotateY:0});
   const stl=gsap.timeline({scrollTrigger:{trigger:'#tsc',start:'top top',end:'bottom bottom',scrub:1.4,pin:'#tsi',pinSpacing:false}});
@@ -1648,15 +1829,119 @@ function closePZ(){
   if(lenis)lenis.start();
 }
 
+// EVENTOS & PERSONALIZADOS
+const WA_NUM='523311803793';
+const EV_IND=[
+  {id:'ei1',n:'Termo Personalizado',cat:'Termos & Tazas',p:'Desde $350 MXN',desc:'Acero 304, 500ml. Tu nombre, foto o diseño. Entrega 3-5 días.',clr:'#1a1a1a',type:'termo'},
+  {id:'ei2',n:'Taza Personalizada',cat:'Termos & Tazas',p:'Desde $280 MXN',desc:'Cerámica premium 330ml. Diseño full-color. Apta microondas.',clr:'#d4c4a8',type:'taza'},
+  {id:'ei3',n:'Playera Personalizada',cat:'Streetwear',p:'Desde $420 MXN',desc:'100% algodón premium. Impresión o bordado. Tallas XS–XXL.',clr:'#c4b8a2',type:'camisa'},
+  {id:'ei4',n:'Jogger Personalizado',cat:'Streetwear',p:'Desde $580 MXN',desc:'Fleece suave. Logo o diseño bordado. Tallas XS–XXL.',clr:'#3a3730',type:'jogger'},
+  {id:'ei5',n:'Sudadera Personalizada',cat:'Streetwear',p:'Desde $680 MXN',desc:'Oversize premium. Serigrafía o bordado. Colores a elegir.',clr:'#8a9485',type:'camisa'},
+  {id:'ei6',n:'Termo XL Personalizado',cat:'Termos & Tazas',p:'Desde $480 MXN',desc:'750ml. Gran capacidad. Grabado al laser. Diseño a elección.',clr:'#3a2a1a',type:'termo'},
+];
+const EV_PKGS=[
+  {id:'ep1',cat:'XV Años',n:'Paquete Quinceañero',desc:'Termos o tazas con diseño exclusivo. Foto, nombre y fecha incluidos. El regalo perfecto para una noche especial.',p:'Desde $240 MXN/pieza',min:'Mínimo 20 piezas',clr:'#d4a8b8',icon:'🌸'},
+  {id:'ep2',cat:'Bodas',n:'Paquete Boda',desc:'Recuerdos elegantes para los invitados. Grabado con nombres de los novios, fecha y frase especial.',p:'Desde $280 MXN/pieza',min:'Mínimo 30 piezas',clr:'#e8e0d4',icon:'💍'},
+  {id:'ep3',cat:'Cumpleaños & Fiestas',n:'Paquete Fiesta',desc:'Recuerdos únicos para cualquier celebración. Diseño personalizado, colores a elección, entrega rápida.',p:'Desde $200 MXN/pieza',min:'Mínimo 15 piezas',clr:'#8a9485',icon:'🎉'},
+  {id:'ep4',cat:'Corporativo',n:'Paquete Corporativo',desc:'Merch de calidad con tu logo empresarial. Termos, tazas y ropa para equipos o regalos a clientes clave.',p:'Desde $220 MXN/pieza',min:'Mínimo 25 piezas',clr:'#2a2a2a',icon:'🏢'},
+  {id:'ep5',cat:'Bautizo & Baby Shower',n:'Paquete Baby',desc:'Recuerdos tiernos para la bienvenida al bebé. Diseño personalizado con nombre, fecha y motivo elegido.',p:'Desde $220 MXN/pieza',min:'Mínimo 20 piezas',clr:'#b8d0e8',icon:'🍼'},
+  {id:'ep6',cat:'Graduación',n:'Paquete Graduación',desc:'Recuerda ese gran logro para siempre. Nombre, año y carrera. Ideal para grupos de egresados.',p:'Desde $260 MXN/pieza',min:'Mínimo 20 piezas',clr:'#2a3a2a',icon:'🎓'},
+];
+function evWhatsApp(pkgName){
+  const msg=encodeURIComponent('Hola ELLIÉR, me interesa cotizar el '+pkgName+'. ¿Me pueden dar más información?');
+  window.open('https://wa.me/'+WA_NUM+'?text='+msg,'_blank');
+}
+function renderEv(){
+  const ig=document.getElementById('ev-ind-grid');
+  if(ig&&!ig.children.length){
+    ig.innerHTML=EV_IND.map(p=>{
+      const svg=p.type==='termo'?mkTermoSVG(p.clr):p.type==='taza'?mkTazaSVG(p.clr):`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="${p.clr}"/><path d="M35 30 Q50 38 65 30 L65 38 Q50 46 35 38 Z" fill="rgba(0,0,0,.15)"/></svg>`;
+      return `<div class="pc rv"><div class="pci"><div class="pcii" style="padding:24px">${svg}</div></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><p style="font-size:11px;color:var(--mu);line-height:1.6;margin-bottom:12px">${p.desc}</p><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="openPZ()">Diseñar →</button></div></div></div>`;
+    }).join('');
+    obsNew(ig);
+  }
+  const eg=document.getElementById('ev-evt-grid');
+  if(eg&&!eg.children.length){
+    eg.innerHTML=EV_PKGS.map(p=>`<div class="evc rv"><div class="evci" style="background:${p.clr}"><span style="font-size:56px;line-height:1">${p.icon}</span></div><div class="evcb"><div class="evccat">${p.cat}</div><div class="evcn">${p.n}</div><p class="evcdesc">${p.desc}</p><div class="evcft"><div><div class="evcpri">${p.p}</div><div class="evcmin">${p.min}</div></div><button class="evwa" onclick="evWhatsApp('${p.n}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.553 4.122 1.522 5.859L.057 23.5l5.782-1.437A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.857 0-3.6-.5-5.103-1.372L3.5 21.5l.896-3.283A9.936 9.936 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>Cotizar</button></div></div></div>`).join('');
+    obsNew(eg);
+  }
+}
+function openEv(){
+  if(lenis)lenis.stop();
+  const ov=document.getElementById('evov');
+  ov.classList.add('o');
+  document.body.style.overflow='hidden';
+  ov.scrollTop=0;
+  renderEv();
+  if(!ov._spy){ov._spy=true;ov.addEventListener('scroll',evSpy,{passive:true});}
+}
+function closeEv(){
+  document.getElementById('evov').classList.remove('o');
+  document.body.style.overflow='';
+  if(lenis)lenis.start();
+}
+function evNavTo(secId,btn){
+  document.querySelectorAll('.evna').forEach(b=>b.classList.remove('a'));
+  btn.classList.add('a');
+  document.getElementById(secId).scrollIntoView({behavior:'smooth',block:'start'});
+}
+function evSpy(){
+  const ov=document.getElementById('evov');
+  const sec=document.getElementById('ev-sec-ind');
+  if(!sec)return;
+  const btns=document.querySelectorAll('.evna');
+  if(ov.scrollTop>=(sec.offsetTop-120)){btns[0].classList.remove('a');btns[1].classList.add('a');}
+  else{btns[1].classList.remove('a');btns[0].classList.add('a');}
+}
+
 // SHOWCASE CAROUSEL
 function renderShowcase(){
-  const featured=[SW[0],SW[5],TERMOS[0],SW[1],TERMOS[2],SW[2],TERMOS[5],SW[7]];
+  const all=[...SW,...TERMOS];
+  const saved=JSON.parse(localStorage.getItem('ellier_featured')||'null');
+  const featured=saved?saved.map(id=>all.find(p=>p.id===id)).filter(Boolean):[SW[0],SW[5],TERMOS[0],SW[1],TERMOS[2],SW[2],TERMOS[5],SW[7]].filter(Boolean);
   const g=document.getElementById('swt');if(!g)return;
   g.innerHTML=featured.map(p=>SW.find(x=>x.id===p.id)?mkPC(p):mkTC(p)).join('');
   obsNew(g);
 }
 function swScroll(dir){
   const t=document.getElementById('swt');if(t)t.scrollBy({left:dir*270,behavior:'smooth'});}
+
+// EVMAS CAROUSEL
+let _emCur=0;
+function evmasGo(i){
+  const sl=document.querySelectorAll('.evmas-slide'),dt=document.querySelectorAll('.evmas-dot');
+  sl[_emCur].classList.remove('a');dt[_emCur].classList.remove('a');
+  _emCur=i;sl[_emCur].classList.add('a');dt[_emCur].classList.add('a');
+}
+setInterval(()=>{if(!document.hidden)evmasGo((_emCur+1)%document.querySelectorAll('.evmas-slide').length)},5000);
+(()=>{const el=document.getElementById('evmas');if(!el)return;let _sx=0,_sy=0;el.addEventListener('touchstart',e=>{_sx=e.touches[0].clientX;_sy=e.touches[0].clientY},{passive:true});el.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-_sx,dy=e.changedTouches[0].clientY-_sy;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>44){const n=document.querySelectorAll('.evmas-slide').length;evmasGo(dx<0?(_emCur+1)%n:(_emCur-1+n)%n)}},{passive:true})})();
+
+// SHOWCASE FEATURED PICKER (CEO)
+function openSwFeatured(){
+  const all=[...SW,...TERMOS];
+  const saved=JSON.parse(localStorage.getItem('ellier_featured')||'null');
+  const active=new Set(saved||[SW[0],SW[5],TERMOS[0],SW[1],TERMOS[2],SW[2],TERMOS[5],SW[7]].filter(Boolean).map(p=>p.id));
+  const m=document.createElement('div');
+  m.id='sw-feat-modal';
+  m.style.cssText='position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px';
+  m.innerHTML=`<div style="background:var(--bg);border:1px solid var(--bo);border-radius:12px;max-width:620px;width:100%;max-height:80vh;overflow:hidden;display:flex;flex-direction:column">
+    <div style="padding:18px 24px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500">Seleccionar Destacados</span><button onclick="document.getElementById('sw-feat-modal').remove()" style="background:none;border:none;cursor:pointer;font-size:20px;color:var(--mu);line-height:1">×</button></div>
+    <div style="overflow-y:auto;padding:18px 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px" id="sw-feat-grid">
+      ${all.map(p=>`<label style="display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid var(--bo);border-radius:7px;cursor:pointer"><input type="checkbox" data-pid="${p.id}" ${active.has(p.id)?'checked':''} style="accent-color:#000;width:13px;height:13px;flex-shrink:0"><span style="font-size:11px;line-height:1.3">${p.n}</span></label>`).join('')}
+    </div>
+    <div style="padding:14px 24px;border-top:1px solid var(--bo);display:flex;gap:8px;justify-content:flex-end">
+      <button onclick="document.getElementById('sw-feat-modal').remove()" class="bg" style="font-size:10px">Cancelar</button>
+      <button onclick="_saveSwFeatured()" class="bp" style="font-size:10px">Guardar</button>
+    </div>
+  </div>`;
+  document.body.appendChild(m);
+}
+function _saveSwFeatured(){
+  const ids=[...document.querySelectorAll('#sw-feat-grid input:checked')].map(i=>i.dataset.pid);
+  localStorage.setItem('ellier_featured',JSON.stringify(ids));
+  document.getElementById('sw-feat-modal')?.remove();
+  renderShowcase();showToast('Destacados guardados');
+}
 
 // BÚSQUEDA
 function openSrch(){
@@ -1690,6 +1975,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
     if(document.getElementById('srcho').classList.contains('o')){closeSrch();return}
     if(document.getElementById('pzov').classList.contains('o')){closePZ();return}
+    if(document.getElementById('evov').classList.contains('o')){closeEv();return}
     if(document.getElementById('catdrop').classList.contains('o')){closeCatMenu();return}
   }
 });
@@ -1749,7 +2035,9 @@ function toggleCeoEdit(){
   // mostrar botón agregar en más productos
   const addBtn=document.getElementById('mp-ceo-add');
   if(addBtn) addBtn.style.display=_ceoEditOn?'flex':'none';
-  showToast(_ceoEditOn?'Modo edición ON — haz clic en cualquier texto':'Modo edición desactivado');
+  // overlays de imágenes
+  if(_ceoEditOn)_injectImgOverlays();else _removeImgOverlays();
+  showToast(_ceoEditOn?'Modo edición ON — textos, precios e imágenes editables':'Modo edición desactivado');
 }
 
 function _saveCeoText(e){
@@ -1781,6 +2069,21 @@ function loadCeoCustomizations(){
   Object.entries(prices).forEach(([id,val])=>{
     const p=[...SW,...TERMOS].find(x=>x.id===id);if(p)p.p=val;
   });
+  // descuentos individuales guardados
+  const discounts=JSON.parse(localStorage.getItem('ellier_ceo_prod_discounts')||'{}');
+  Object.entries(discounts).forEach(([id,disc])=>{
+    const p=[...SW,...TERMOS].find(x=>x.id===id);if(p)p.disc=disc;
+  });
+  // imágenes de sección guardadas
+  const ceoImgs=JSON.parse(localStorage.getItem('ellier_ceo_imgs')||'{}');
+  Object.entries(ceoImgs).forEach(([key,b64])=>_applyCeoImg(key,b64));
+  // descuento global guardado
+  const gdisc=JSON.parse(localStorage.getItem('ellier_ceo_global_discount')||'null');
+  if(gdisc&&gdisc.on){
+    _globalDisc=gdisc.pct;
+    const inp=document.getElementById('cof-pct');
+    if(inp){inp.value=gdisc.pct;previewGlobalDisc();}
+  }
   // tema guardado
   const theme=JSON.parse(localStorage.getItem('ellier_ceo_theme')||'null');
   if(theme) Object.entries(theme).forEach(([v,c])=>document.documentElement.style.setProperty(v,c));
@@ -1988,6 +2291,184 @@ function toggleCeoTheme(){
   document.getElementById('cbb-theme').classList.toggle('on',_ceoThemeOpen);
 }
 
+// ─── CEO IMAGE EDITING ──────────────────────────────────────────────────────
+
+const _ceoImgDefs=[
+  {key:'hero-bg',    label:'Fondo Hero',       sel:'#hero',                          isBg:true, pos:'bot'},
+  {key:'evmas-s1',   label:'Banner Slide 1',   sel:'#evmas-s1',                      isBg:true, pos:'top'},
+  {key:'evmas-s2',   label:'Banner Slide 2',   sel:'#evmas-s2',                      isBg:true, pos:'top'},
+  {key:'evmas-s3',   label:'Banner Slide 3',   sel:'#evmas-s3',                      isBg:true, pos:'top'},
+  {key:'showcase-bg',label:'Fondo Destacados', sel:'#showcase',                      isBg:true, pos:'top'},
+  {key:'nosotros-1', label:'Imagen principal', sel:'[data-ceo-img="nosotros-1"]',    isBg:true, pos:'top'},
+  {key:'nosotros-2', label:'Imagen detalle',   sel:'[data-ceo-img="nosotros-2"]',    isBg:true, pos:'top'},
+  {key:'cta-bg',     label:'Fondo CTA',        sel:'#personaliza',                   isBg:true, pos:'top'},
+  {key:'logo',       label:'Logo',             sel:'#logo-link',                     isBg:false,pos:'top'},
+];
+
+let _ceoImgUploadKey=null;
+
+function _injectImgOverlays(){
+  _ceoImgDefs.forEach(def=>{
+    const el=document.querySelector(def.sel);
+    if(!el||el.querySelector('.ceo-img-ctrl'))return;
+    const pos=getComputedStyle(el).position;
+    if(pos==='static')el.style.position='relative';
+    const ctrl=document.createElement('div');
+    ctrl.className='ceo-img-ctrl'+(def.pos==='bot'?' bot':'');
+    const camSvg=`<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+    const btnUpload=document.createElement('button');
+    btnUpload.className='ceo-img-cb';
+    btnUpload.innerHTML=`${camSvg}${def.label}`;
+    btnUpload.type='button';
+    btnUpload.onclick=e=>{e.preventDefault();e.stopPropagation();_startCeoImgUpload(def.key);};
+    const btnRm=document.createElement('button');
+    btnRm.className='ceo-img-cb rm';
+    btnRm.type='button';
+    btnRm.title='Quitar imagen';
+    btnRm.textContent='✕';
+    btnRm.onclick=e=>{e.preventDefault();e.stopPropagation();_removeCeoImg(def.key);};
+    ctrl.appendChild(btnUpload);ctrl.appendChild(btnRm);
+    el.appendChild(ctrl);
+  });
+}
+
+function _removeImgOverlays(){
+  document.querySelectorAll('.ceo-img-ctrl').forEach(b=>b.remove());
+}
+
+function _startCeoImgUpload(key){
+  _ceoImgUploadKey=key;
+  let inp=document.getElementById('_ceo_img_inp');
+  if(!inp){
+    inp=document.createElement('input');inp.type='file';inp.accept='image/*';
+    inp.id='_ceo_img_inp';inp.style.display='none';
+    inp.addEventListener('change',_onCeoImgSelected);
+    document.body.appendChild(inp);
+  }
+  inp.value='';inp.click();
+}
+
+function _onCeoImgSelected(e){
+  const file=e.target.files[0];if(!file)return;
+  const key=_ceoImgUploadKey;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    const b64=ev.target.result;
+    const imgs=JSON.parse(localStorage.getItem('ellier_ceo_imgs')||'{}');
+    imgs[key]=b64;
+    localStorage.setItem('ellier_ceo_imgs',JSON.stringify(imgs));
+    _applyCeoImg(key,b64);
+    showToast('Imagen guardada');
+  };
+  reader.readAsDataURL(file);
+}
+
+function _applyCeoImg(key,b64){
+  const def=_ceoImgDefs.find(d=>d.key===key);if(!def)return;
+  const el=document.querySelector(def.sel);if(!el)return;
+  if(key==='logo'){
+    const img=document.getElementById('ceo-logo-img');
+    if(img){img.src=b64;img.style.display='block';}
+    const svg=document.getElementById('logo-svg'),txt=document.getElementById('logo-txt');
+    if(svg)svg.style.display='none';if(txt)txt.style.display='none';
+    const li=document.getElementById('logo-img');if(li)li.style.display='none';
+  }else{
+    el.style.backgroundImage=`url("${b64}")`;
+    el.style.backgroundSize='cover';
+    el.style.backgroundPosition='center';
+    el.style.backgroundRepeat='no-repeat';
+  }
+}
+
+function _removeCeoImg(key){
+  const imgs=JSON.parse(localStorage.getItem('ellier_ceo_imgs')||'{}');
+  delete imgs[key];
+  localStorage.setItem('ellier_ceo_imgs',JSON.stringify(imgs));
+  const def=_ceoImgDefs.find(d=>d.key===key);if(!def)return;
+  const el=document.querySelector(def.sel);if(!el)return;
+  if(key==='logo'){
+    const img=document.getElementById('ceo-logo-img');
+    if(img){img.src='';img.style.display='none';}
+    const svg=document.getElementById('logo-svg'),txt=document.getElementById('logo-txt');
+    if(svg)svg.style.display='';if(txt)txt.style.display='';
+    const li=document.getElementById('logo-img');if(li)li.style.display='';
+  }else{
+    el.style.backgroundImage='';
+  }
+  showToast('Imagen eliminada');
+}
+
+// ─── CEO GLOBAL DISCOUNT ────────────────────────────────────────────────────
+
+function previewGlobalDisc(){
+  const pct=parseFloat(document.getElementById('cof-pct').value)||0;
+  const prev=document.getElementById('cof-disc-preview');
+  const math=document.getElementById('cof-math-preview');
+  if(pct>0&&pct<=90){
+    prev.textContent=`${pct}% OFF`;
+    // razonamiento matemático con ejemplo de precio
+    const examples=[[520,520*(1-pct/100)],[380,380*(1-pct/100)],[320,320*(1-pct/100)]];
+    math.textContent=examples.map(([o,f])=>`$${o} → $${Math.round(f)}`).join(' · ');
+  }else{
+    prev.textContent='';math.textContent='';
+  }
+}
+
+function applyGlobalDisc(){
+  const pct=Math.max(0,Math.min(90,parseFloat(document.getElementById('cof-pct').value)||0));
+  _globalDisc=pct;
+  localStorage.setItem('ellier_ceo_global_discount',JSON.stringify({on:pct>0,pct}));
+  renderShowcase();renderMasProductos();renderColl();
+  showToast(pct>0?`Descuento global de ${pct}% aplicado — precio final = precio × ${((1-pct/100)*100).toFixed(0)}%`:'Descuento global eliminado');
+}
+
+function removeGlobalDisc(){
+  _globalDisc=0;
+  document.getElementById('cof-pct').value='';
+  document.getElementById('cof-disc-preview').textContent='';
+  document.getElementById('cof-math-preview').textContent='';
+  localStorage.setItem('ellier_ceo_global_discount',JSON.stringify({on:false,pct:0}));
+  renderShowcase();renderMasProductos();renderColl();
+  showToast('Descuento global eliminado');
+}
+
+// Descuento individual — preview en modal
+function previewProdDisc(){
+  const pct=parseInt(document.getElementById('pmdsc').value)||0;
+  const origStr=document.getElementById('pmp').value.trim();
+  const prev=document.getElementById('pm-disc-prev');
+  if(pct>0&&pct<=90&&origStr){
+    const orig=parseInt(origStr.replace(/\D/g,''));
+    if(orig>0){
+      // precio final = precio original × (1 - descuento/100)
+      const final=Math.round(orig*(1-pct/100));
+      prev.textContent=`$${final} (-${pct}%)`;
+      return;
+    }
+  }
+  prev.textContent='—';
+}
+
+// Imagen de producto — subida en modal
+function handleProdImg(input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    _editProdImgData=e.target.result;_editProdImgCleared=false;
+    const prev=document.getElementById('pim-prev');
+    prev.src=_editProdImgData;prev.style.display='block';
+    document.getElementById('pim-clear').style.display='block';
+  };
+  reader.readAsDataURL(file);
+}
+function clearProdImg(){
+  _editProdImgData=null;_editProdImgCleared=true;
+  const prev=document.getElementById('pim-prev');
+  prev.style.display='none';prev.src='';
+  document.getElementById('pim-clear').style.display='none';
+  document.getElementById('pim-file').value='';
+}
+
 // ─── CEO OFFER BANNER ───────────────────────────────────────────────────────
 
 let _cofBg='#0a0a0a';
@@ -2041,6 +2522,8 @@ function renderMasProductos(){
 // INIT
 Auth.seed();renderShowcase();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
 loadCeoCustomizations();buildThemePanel();
+// set navbar logo from loader image (avoids embedding base64 twice in HTML)
+(()=>{const li=document.querySelector('#ldl img'),ni=document.getElementById('logo-img');if(li&&ni&&!ni.src)ni.src=li.src;})();
 </script>
 </body>
 </html>
