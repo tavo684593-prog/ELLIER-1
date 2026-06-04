@@ -8,6 +8,7 @@
 <meta property="og:title" content="ELLIÉR — Diseña tu estilo"/>
 <meta property="og:description" content="Streetwear y termos personalizados premium. Piezas únicas hechas para quienes definen su propio estilo."/>
 <meta property="og:type" content="website"/>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -190,6 +191,9 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .pbg2{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:.09em;text-transform:uppercase;background:#0a0a0a;color:#fff;padding:4px 9px;border-radius:20px}
 .pbg2.nw{background:#2d4a3e}.pbg2.bs{background:#8b5e3c}
 .pw{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:var(--su);transition:color .2s;border:none}
+.btn3d{position:absolute;bottom:10px;left:10px;z-index:4;background:rgba(10,10,10,.72);backdrop-filter:blur(8px);color:#fff;border:none;border-radius:20px;padding:4px 11px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.btn3d:hover{background:#0a0a0a}.btn3d.on{background:#0a0a0a}
+.pci model-viewer{position:absolute;inset:0;width:100%;height:100%;display:none;z-index:3;--poster-color:transparent}
 .pw:hover,.pw.on{color:#c0392b}.pw.on svg{fill:currentColor}
 .pcb{padding:15px}.pcat{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--su);margin-bottom:4px}.pn{font-size:14px;font-weight:500;margin-bottom:8px}
 .pcs{display:flex;gap:5px;margin-bottom:11px}
@@ -1245,7 +1249,7 @@ function _getEffectivePrice(p){
 // PRODUCT DATA
 const SW=[
   {id:'sw1',n:'Jogger Essentials',cat:'joggers',clrs:['#1a1a1a','#3a3730','#8a8578'],p:'$520',tag:'new',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="8" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="14" rx="4" fill="rgba(0,0,0,.2)"/><line x1="50" y1="19" x2="50" y2="95" stroke="rgba(255,255,255,.08)" stroke-width="1"/><rect x="8" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/></svg>`},
-  {id:'sw2',n:'Sudadera Minimal',cat:'sudaderas',clrs:['#c4b8a2','#1a1a1a','#9a6050'],p:'$680',tag:'',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/><path d="M35 30 Q50 38 65 30 L65 38 Q50 46 35 38 Z" fill="rgba(0,0,0,.15)"/></svg>`},
+  {id:'sw2',n:'Sudadera Minimal',cat:'sudaderas',clrs:['#c4b8a2','#1a1a1a','#9a6050'],p:'$680',tag:'',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/><path d="M35 30 Q50 38 65 30 L65 38 Q50 46 35 38 Z" fill="rgba(0,0,0,.15)"/></svg>`},
   {id:'sw3',n:'Pan Cargo',cat:'pans',clrs:['#3a3730','#1a1a1a','#8a8578'],p:'$560',tag:'bs',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5 L80 5 L80 20 L85 95 L65 115 L55 70 L45 70 L35 115 L15 95 L20 20 Z" fill="{C}"/><rect x="60" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/><rect x="20" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/></svg>`},
   {id:'sw4',n:'Playera Core',cat:'playeras',clrs:['#f0ede6','#1a1a1a','#c4b8a2'],p:'$380',tag:'',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.12)"/></svg>`},
   {id:'sw5',n:'Jogger Relaxed',cat:'joggers',clrs:['#8a9485','#3a3730','#1a1a1a'],p:'$490',tag:'new',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="10" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="16" rx="5" fill="rgba(0,0,0,.18)"/><line x1="50" y1="21" x2="50" y2="95" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/><rect x="8" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/></svg>`},
@@ -1277,7 +1281,10 @@ function mkPC(p){
     :p.svg.replace(/\{C\}/g,c0);
   const tagH=p.tag?`<div class="pbg2 ${p.tag}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
   const dots=p.clrs.map((c,i)=>`<div class="psw${i===0?' a':''}" style="background:${c}" onclick="chPC(this,'${p.id}','${c}')"></div>`).join('');
-  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" id="svg_${p.id}" style="padding:24px">${innerContent}</div>${tagH}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pcs">${dots}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
+  const mv3d=p.model3d
+    ?`<model-viewer id="mv_${p.id}" src="${p.model3d}" alt="${p.n}" auto-rotate camera-controls shadow-intensity="1"></model-viewer><button class="btn3d" id="btn3d_${p.id}" onclick="toggle3D('${p.id}')">3D</button>`
+    :'';
+  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" style="padding:24px"><div id="svg_${p.id}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${innerContent}</div></div>${mv3d}${tagH}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pcs">${dots}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
 }
 function mkTC(t){
   const customImg=_getProdImg(t.id);
@@ -1294,7 +1301,17 @@ function renderColl(){const g=document.getElementById('clg');g.innerHTML=[...SW.
 function chPC(dot,id,clr){
   dot.parentElement.querySelectorAll('.psw').forEach(d=>d.classList.remove('a'));dot.classList.add('a');
   const svgEl=document.getElementById('svg_'+id),p=SW.find(x=>x.id===id);
-  if(svgEl&&p)svgEl.innerHTML=p.svg.replace(/\{C\}/g,clr);
+  if(svgEl&&p)svgEl.innerHTML=`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,clr)}</div>`;
+}
+function toggle3D(id){
+  const mv=document.getElementById('mv_'+id);
+  const pcii=mv.closest('.pci').querySelector('.pcii');
+  const btn=document.getElementById('btn3d_'+id);
+  const show=mv.style.display==='none'||!mv.style.display;
+  mv.style.display=show?'block':'none';
+  pcii.style.visibility=show?'hidden':'visible';
+  btn.classList.toggle('on',show);
+  btn.textContent=show?'2D':'3D';
 }
 
 // FILTERS
