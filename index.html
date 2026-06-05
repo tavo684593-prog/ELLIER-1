@@ -193,7 +193,7 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .pw{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:var(--su);transition:color .2s;border:none}
 .btn3d{position:absolute;bottom:10px;left:10px;z-index:4;background:rgba(10,10,10,.72);backdrop-filter:blur(8px);color:#fff;border:none;border-radius:20px;padding:4px 11px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .btn3d:hover{background:#0a0a0a}.btn3d.on{background:#0a0a0a}
-.pci model-viewer{position:absolute;inset:0;width:100%;height:100%;visibility:hidden;pointer-events:none;z-index:3;--poster-color:transparent;background:transparent}
+.pci model-viewer,.tci model-viewer{position:absolute;inset:0;width:100%;height:100%;visibility:hidden;pointer-events:none;z-index:3;--poster-color:transparent;background:transparent}
 .pw:hover,.pw.on{color:#c0392b}.pw.on svg{fill:currentColor}
 .pcb{padding:15px}.pcat{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--su);margin-bottom:4px}.pn{font-size:14px;font-weight:500;margin-bottom:8px}
 .pcs{display:flex;gap:5px;margin-bottom:11px}
@@ -475,11 +475,11 @@ body.cm2 #cg{display:block}
 .pdh-bc{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--su);display:flex;align-items:center;gap:6px}
 .pdh-bc span{color:var(--text)}
 .pd-body{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 55px)}
-.pd-media{position:sticky;top:55px;height:calc(100vh - 55px);display:flex;align-items:center;justify-content:center;padding:48px;background:#f7f6f3}
+.pd-media{position:sticky;top:55px;height:calc(100vh - 55px);display:flex;align-items:center;justify-content:center;padding:24px;background:#f7f6f3}
 body.dark .pd-media{background:#111}
-.pd-media-inner{width:100%;max-width:420px;aspect-ratio:1;position:relative}
-#pd-svg-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-#pd-mv{width:100%;height:100%;display:none;position:absolute;inset:0;--poster-color:transparent}
+.pd-media-inner{width:100%;max-width:560px;height:min(calc(100vh - 150px),560px);position:relative}
+#pd-svg-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#pd-mv{width:100%;height:100%;visibility:hidden;pointer-events:none;position:absolute;inset:0;--poster-color:transparent;background:transparent}
 #pd-3d-btn{position:absolute;bottom:12px;left:12px;background:rgba(10,10,10,.72);backdrop-filter:blur(6px);color:#fff;border:none;border-radius:20px;padding:5px 13px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s;display:none}
 #pd-3d-btn:hover,#pd-3d-btn.on{background:#0a0a0a}
 .pd-info{padding:52px 52px 80px}
@@ -513,7 +513,7 @@ body.dark .pd-media{background:#111}
 .pd-ship-txt .sh-lbl{font-size:12px;font-weight:500;margin-bottom:2px}
 .pd-ship-txt .sh-sub{font-size:11px;color:var(--su);line-height:1.55}
 .pd-desc{font-size:13px;line-height:1.85;color:var(--mu)}
-@media(max-width:768px){.pd-body{grid-template-columns:1fr}.pd-media{position:relative;top:0;height:60vw;min-height:220px;padding:22px}.pd-info{padding:26px 20px 60px}.pdh{padding:12px 18px}}
+@media(max-width:768px){.pd-body{grid-template-columns:1fr}.pd-media{position:relative;top:0;height:75vw;min-height:260px;padding:16px}.pd-media-inner{height:100%;max-width:100%}.pd-info{padding:26px 20px 60px}.pdh{padding:12px 18px}}
 .pzovh{padding:26px 46px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0a0a0a;z-index:5}
 .pzovh h2{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#fff}
 /* ── SHOWCASE CAROUSEL ───────────────────── */
@@ -1294,23 +1294,23 @@ function _getEffectivePrice(p){
 
 // PRODUCT DATA
 const SW=[
-  {id:'sw1',n:'Jogger Essentials',cat:'joggers',clrs:['#1a1a1a','#3a3730','#8a8578'],p:'$520',tag:'new',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="8" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="14" rx="4" fill="rgba(0,0,0,.2)"/><line x1="50" y1="19" x2="50" y2="95" stroke="rgba(255,255,255,.08)" stroke-width="1"/><rect x="8" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/></svg>`},
+  {id:'sw1',n:'Jogger Essentials',cat:'joggers',clrs:['#1a1a1a','#3a3730','#8a8578'],p:'$520',tag:'new',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="8" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="14" rx="4" fill="rgba(0,0,0,.2)"/><line x1="50" y1="19" x2="50" y2="95" stroke="rgba(255,255,255,.08)" stroke-width="1"/><rect x="8" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/></svg>`},
   {id:'sw2',n:'Sudadera Minimal',cat:'sudaderas',clrs:['#c4b8a2','#1a1a1a','#9a6050'],p:'$680',tag:'',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/><path d="M35 30 Q50 38 65 30 L65 38 Q50 46 35 38 Z" fill="rgba(0,0,0,.15)"/></svg>`},
-  {id:'sw3',n:'Pan Cargo',cat:'pans',clrs:['#3a3730','#1a1a1a','#8a8578'],p:'$560',tag:'bs',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5 L80 5 L80 20 L85 95 L65 115 L55 70 L45 70 L35 115 L15 95 L20 20 Z" fill="{C}"/><rect x="60" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/><rect x="20" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/></svg>`},
-  {id:'sw4',n:'Playera Core',cat:'playeras',clrs:['#f0ede6','#1a1a1a','#c4b8a2'],p:'$380',tag:'',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.12)"/></svg>`},
-  {id:'sw5',n:'Jogger Relaxed',cat:'joggers',clrs:['#8a9485','#3a3730','#1a1a1a'],p:'$490',tag:'new',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="10" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="16" rx="5" fill="rgba(0,0,0,.18)"/><line x1="50" y1="21" x2="50" y2="95" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/><rect x="8" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/></svg>`},
-  {id:'sw6',n:'Sudadera Oversize',cat:'sudaderas',clrs:['#1a1a1a','#c4b8a2','#8a8578'],p:'$720',tag:'bs',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 22 L5 48 L22 50 L22 106 L78 106 L78 50 L95 48 L85 22 L68 32 Q50 40 32 32 Z" fill="{C}"/><path d="M32 32 Q50 40 68 32 L68 40 Q50 48 32 40 Z" fill="rgba(0,0,0,.15)"/></svg>`},
-  {id:'sw7',n:'Pan Slim',cat:'pans',clrs:['#1a1a1a','#8a8578','#3a3730'],p:'$530',tag:'',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5 L78 5 L78 20 L82 98 L63 118 L53 72 L47 72 L37 118 L18 98 L22 20 Z" fill="{C}"/></svg>`},
-  {id:'sw8',n:'Playera Edición',cat:'playeras',clrs:['#9a6050','#1a1a1a','#f0ede6'],p:'$420',tag:'new',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><text x="50" y="68" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.28)" font-family="Helvetica">ELLIÉR</text></svg>`},
+  {id:'sw3',n:'Pan Cargo',cat:'pans',clrs:['#3a3730','#1a1a1a','#8a8578'],p:'$560',tag:'bs',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5 L80 5 L80 20 L85 95 L65 115 L55 70 L45 70 L35 115 L15 95 L20 20 Z" fill="{C}"/><rect x="60" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/><rect x="20" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/></svg>`},
+  {id:'sw4',n:'Playera Core',cat:'playeras',clrs:['#f0ede6','#1a1a1a','#c4b8a2'],p:'$380',tag:'',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.12)"/></svg>`},
+  {id:'sw5',n:'Jogger Relaxed',cat:'joggers',clrs:['#8a9485','#3a3730','#1a1a1a'],p:'$490',tag:'new',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="10" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="16" rx="5" fill="rgba(0,0,0,.18)"/><line x1="50" y1="21" x2="50" y2="95" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/><rect x="8" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/></svg>`},
+  {id:'sw6',n:'Sudadera Oversize',cat:'sudaderas',clrs:['#1a1a1a','#c4b8a2','#8a8578'],p:'$720',tag:'bs',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 22 L5 48 L22 50 L22 106 L78 106 L78 50 L95 48 L85 22 L68 32 Q50 40 32 32 Z" fill="{C}"/><path d="M32 32 Q50 40 68 32 L68 40 Q50 48 32 40 Z" fill="rgba(0,0,0,.15)"/></svg>`},
+  {id:'sw7',n:'Pan Slim',cat:'pans',clrs:['#1a1a1a','#8a8578','#3a3730'],p:'$530',tag:'',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5 L78 5 L78 20 L82 98 L63 118 L53 72 L47 72 L37 118 L18 98 L22 20 Z" fill="{C}"/></svg>`},
+  {id:'sw8',n:'Playera Edición',cat:'playeras',clrs:['#9a6050','#1a1a1a','#f0ede6'],p:'$420',tag:'new',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><text x="50" y="68" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.28)" font-family="Helvetica">ELLIÉR</text></svg>`},
 ];
 const TERMOS=[
-  {id:'t1',n:'Termo Negro 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Acero 304 · Doble pared · 8h caliente · 20h frío',clr:'#1a1a1a'},
-  {id:'t2',n:'Termo Arena 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Sellado al vacío · Tapa antigoteo · Premium',clr:'#c4b8a2'},
-  {id:'t3',n:'Termo Gris Titanio',cat:'termos',oz:'20oz / 600ml',p:'$380',desc:'Acabado titanio cepillado · Edición limitada',clr:'#8a8578'},
-  {id:'t4',n:'Taza Matte Negro',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Cerámica premium · Apto microondas · Matte',clr:'#2a2a2a'},
-  {id:'t5',n:'Taza Latte Beige',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Color latte minimalista · Personalizable',clr:'#d4c4a8'},
-  {id:'t6',n:'Termo Café 750ml',cat:'termos',oz:'25oz / 750ml',p:'$440',desc:'Gran capacidad · Tapa de presión · Café oscuro',clr:'#3a2a1a'},
-  {id:'t7',n:'Taza Sage Green',cat:'tazas',oz:'12oz / 350ml',p:'$240',desc:'Verde salvia · Edición especial · Cerámica',clr:'#8a9485'},
+  {id:'t1',n:'Termo Negro 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Acero 304 · Doble pared · 8h caliente · 20h frío',clr:'#1a1a1a',model3d:'teleo_camisa/scene.gltf'},
+  {id:'t2',n:'Termo Arena 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Sellado al vacío · Tapa antigoteo · Premium',clr:'#c4b8a2',model3d:'teleo_camisa/scene.gltf'},
+  {id:'t3',n:'Termo Gris Titanio',cat:'termos',oz:'20oz / 600ml',p:'$380',desc:'Acabado titanio cepillado · Edición limitada',clr:'#8a8578',model3d:'teleo_camisa/scene.gltf'},
+  {id:'t4',n:'Taza Matte Negro',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Cerámica premium · Apto microondas · Matte',clr:'#2a2a2a',model3d:'teleo_camisa/scene.gltf'},
+  {id:'t5',n:'Taza Latte Beige',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Color latte minimalista · Personalizable',clr:'#d4c4a8',model3d:'teleo_camisa/scene.gltf'},
+  {id:'t6',n:'Termo Café 750ml',cat:'termos',oz:'25oz / 750ml',p:'$440',desc:'Gran capacidad · Tapa de presión · Café oscuro',clr:'#3a2a1a',model3d:'teleo_camisa/scene.gltf'},
+  {id:'t7',n:'Taza Sage Green',cat:'tazas',oz:'12oz / 350ml',p:'$240',desc:'Verde salvia · Edición especial · Cerámica',clr:'#8a9485',model3d:'teleo_camisa/scene.gltf'},
 ];
 
 // SVG HELPERS
@@ -1337,7 +1337,10 @@ function mkTC(t){
   const svgContent=customImg
     ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${t.n}"/>`
     :(t.cat==='termos'?mkTermoSVG(t.clr):mkTazaSVG(t.clr));
-  return `<div class="tcard rv" data-cat="${t.cat}"><div class="tci"><div class="tcii" style="padding:22px;cursor:pointer" onclick="openProdDetail('${t.id}')">${svgContent}</div></div><div class="tcb"><div class="tct">${t.cat}</div><div class="tcn">${t.n}</div><div class="tcoz">${t.oz}</div><div class="tcd">${t.desc}</div><div class="tcft">${_mkPriceHtml(t,'tcp')}<button class="ba" onclick="Cart.add('${t.id}')">+ Carrito</button></div></div></div>`;
+  const mv3d=t.model3d
+    ?`<model-viewer id="mv_${t.id}" src="${t.model3d}" alt="${t.n}" auto-rotate camera-controls shadow-intensity="1"></model-viewer><button class="btn3d" id="btn3d_${t.id}" onclick="toggle3D('${t.id}')">3D</button>`
+    :'';
+  return `<div class="tcard rv" data-cat="${t.cat}"><div class="tci"><div class="tcii" style="padding:22px;cursor:pointer" onclick="openProdDetail('${t.id}')">${svgContent}</div>${mv3d}</div><div class="tcb"><div class="tct">${t.cat}</div><div class="tcn">${t.n}</div><div class="tcoz">${t.oz}</div><div class="tcd">${t.desc}</div><div class="tcft">${_mkPriceHtml(t,'tcp')}<button class="ba" onclick="Cart.add('${t.id}')">+ Carrito</button></div></div></div>`;
 }
 function obsNew(g){g.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>ro.observe(el));addHover(g)}
 function renderSW(){const g=document.getElementById('swg');if(g){g.innerHTML=SW.map(mkPC).join('');obsNew(g)}}
@@ -1351,12 +1354,13 @@ function chPC(dot,id,clr){
 }
 function toggle3D(id){
   const mv=document.getElementById('mv_'+id);
-  const pcii=mv.closest('.pci').querySelector('.pcii');
+  const container=mv.closest('.pci')||mv.closest('.tci');
+  const img=container.querySelector('.pcii')||container.querySelector('.tcii');
   const btn=document.getElementById('btn3d_'+id);
   const show=mv.style.visibility!=='visible';
   mv.style.visibility=show?'visible':'hidden';
   mv.style.pointerEvents=show?'auto':'none';
-  pcii.style.opacity=show?'0':'1';
+  img.style.opacity=show?'0':'1';
   btn.classList.toggle('on',show);
   btn.textContent=show?'2D':'3D';
 }
@@ -1381,7 +1385,8 @@ function openProdDetail(id){
   const svgWrap=document.getElementById('pd-svg-wrap');
   const pdMv=document.getElementById('pd-mv');
   const pd3dBtn=document.getElementById('pd-3d-btn');
-  pdMv.style.display='none';
+  pdMv.style.visibility='hidden';
+  pdMv.style.pointerEvents='none';
   svgWrap.style.visibility='visible';
   pd3dBtn.classList.remove('on');
   pd3dBtn.textContent='3D';
@@ -1397,7 +1402,8 @@ function openProdDetail(id){
     svgWrap.innerHTML=customImg
       ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`
       :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.cat==='termos'?mkTermoSVG(p.clr):mkTazaSVG(p.clr)}</div>`;
-    pdMv.src='';pd3dBtn.style.display='none';
+    if(p.model3d){pdMv.src=p.model3d;pd3dBtn.style.display='block';}
+    else{pdMv.src='';pd3dBtn.style.display='none';}
   }
   const priceNum=parseInt((_getEffectivePrice(p)||'0').replace(/\D/g,''))||0;
   const msi3=priceNum?Math.ceil(priceNum/3):0;
@@ -1452,8 +1458,9 @@ function pdToggle3D(){
   const mv=document.getElementById('pd-mv');
   const sw=document.getElementById('pd-svg-wrap');
   const btn=document.getElementById('pd-3d-btn');
-  const show=mv.style.display==='none';
-  mv.style.display=show?'block':'none';
+  const show=mv.style.visibility!=='visible';
+  mv.style.visibility=show?'visible':'hidden';
+  mv.style.pointerEvents=show?'auto':'none';
   sw.style.visibility=show?'hidden':'visible';
   btn.classList.toggle('on',show);
   btn.textContent=show?'2D':'3D';
@@ -2712,7 +2719,7 @@ loadCeoCustomizations();buildThemePanel();
     <div class="pd-media">
       <div class="pd-media-inner">
         <div id="pd-svg-wrap"></div>
-        <model-viewer id="pd-mv" auto-rotate camera-controls shadow-intensity="1" style="width:100%;height:100%;display:none;position:absolute;inset:0;--poster-color:transparent"></model-viewer>
+        <model-viewer id="pd-mv" auto-rotate camera-controls shadow-intensity="1" style="width:100%;height:100%;visibility:hidden;pointer-events:none;position:absolute;inset:0;--poster-color:transparent"></model-viewer>
         <button id="pd-3d-btn" onclick="pdToggle3D()">3D</button>
       </div>
     </div>
