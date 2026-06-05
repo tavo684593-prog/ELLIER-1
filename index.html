@@ -193,7 +193,7 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .pw{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:var(--su);transition:color .2s;border:none}
 .btn3d{position:absolute;bottom:10px;left:10px;z-index:4;background:rgba(10,10,10,.72);backdrop-filter:blur(8px);color:#fff;border:none;border-radius:20px;padding:4px 11px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s}
 .btn3d:hover{background:#0a0a0a}.btn3d.on{background:#0a0a0a}
-.pci model-viewer{position:absolute;inset:0;width:100%;height:100%;display:none;z-index:3;--poster-color:transparent}
+.pci model-viewer{position:absolute;inset:0;width:100%;height:100%;visibility:hidden;pointer-events:none;z-index:3;--poster-color:transparent;background:transparent}
 .pw:hover,.pw.on{color:#c0392b}.pw.on svg{fill:currentColor}
 .pcb{padding:15px}.pcat{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--su);margin-bottom:4px}.pn{font-size:14px;font-weight:500;margin-bottom:8px}
 .pcs{display:flex;gap:5px;margin-bottom:11px}
@@ -468,6 +468,52 @@ body.cm2 #cg{display:block}
 .evcmin{font-size:10px;color:var(--su);margin-top:3px}
 .evwa{display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:9px 15px;border-radius:var(--r);font-size:9px;letter-spacing:.14em;text-transform:uppercase;transition:background .2s;border:none;cursor:pointer;flex-shrink:0}
 .evwa:hover{background:#1ebe5d}
+/* ── PRODUCT DETAIL OVERLAY ──────────────── */
+#pdov{position:fixed;inset:0;z-index:155;background:var(--bg);overflow-y:auto;transform:translateY(100%);transition:transform .5s var(--ea)}
+#pdov.o{transform:none}
+.pdh{padding:16px 46px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bo);position:sticky;top:0;background:var(--bg);z-index:5;backdrop-filter:blur(12px)}
+.pdh-bc{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--su);display:flex;align-items:center;gap:6px}
+.pdh-bc span{color:var(--text)}
+.pd-body{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 55px)}
+.pd-media{position:sticky;top:55px;height:calc(100vh - 55px);display:flex;align-items:center;justify-content:center;padding:48px;background:#f7f6f3}
+body.dark .pd-media{background:#111}
+.pd-media-inner{width:100%;max-width:420px;aspect-ratio:1;position:relative}
+#pd-svg-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+#pd-mv{width:100%;height:100%;display:none;position:absolute;inset:0;--poster-color:transparent}
+#pd-3d-btn{position:absolute;bottom:12px;left:12px;background:rgba(10,10,10,.72);backdrop-filter:blur(6px);color:#fff;border:none;border-radius:20px;padding:5px 13px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s;display:none}
+#pd-3d-btn:hover,#pd-3d-btn.on{background:#0a0a0a}
+.pd-info{padding:52px 52px 80px}
+.pd-tag-row{margin-bottom:10px}
+.pd-ptag{display:inline-block;font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;background:#0a0a0a;color:#fff;padding:3px 9px;border-radius:20px}
+.pd-ptag.nw{background:#2d4a3e}.pd-ptag.bs{background:#8b5e3c}
+.pd-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--su);margin-bottom:6px}
+.pd-name{font-size:clamp(22px,2.8vw,36px);font-weight:500;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.pd-oz{font-size:12px;color:var(--su);margin-bottom:14px}
+.pd-price-row{margin-bottom:26px;font-size:20px;font-weight:500}
+.pd-p-orig{color:var(--su);text-decoration:line-through;font-size:15px;font-weight:400;margin-right:7px}
+.pd-p-disc{color:#c0392b;font-weight:600}.pd-p{font-size:20px}
+.pd-clrs-lbl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--su);margin-bottom:9px}
+.pd-clrs{display:flex;gap:9px;margin-bottom:28px}
+.pd-clr{width:22px;height:22px;border-radius:50%;cursor:pointer;transition:transform .18s,box-shadow .18s;border:2px solid transparent;flex-shrink:0}
+.pd-clr.a{transform:scale(1.2);box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--text)}
+.pd-actions{display:flex;gap:10px;margin-bottom:34px;flex-wrap:wrap}
+.pd-add{flex:1;min-width:140px;background:#0a0a0a;color:#fff;border:none;padding:13px 22px;border-radius:var(--r);font-size:10px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.pd-add:hover{background:#333}
+.pd-pz{padding:13px 18px;border:1.5px solid var(--bo);border-radius:var(--r);font-size:10px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;background:none;color:var(--text);transition:border-color .2s}
+.pd-pz:hover{border-color:var(--text)}
+.pd-sec{margin-bottom:30px}
+.pd-sec-lbl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--su);padding-bottom:10px;border-bottom:1px solid var(--bo);margin-bottom:14px}
+.pd-msi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pd-msi-card{border:1px solid var(--bo);border-radius:9px;padding:13px 10px;text-align:center}
+.pd-msi-n{font-size:18px;font-weight:500;line-height:1;margin-bottom:3px}
+.pd-msi-lbl{font-size:9px;color:var(--su);letter-spacing:.08em;text-transform:uppercase}
+.pd-msi-mo{font-size:11px;color:var(--mu);margin-top:5px;font-weight:500}
+.pd-ship-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.pd-ship-ic{width:34px;height:34px;border-radius:8px;background:var(--bo);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--text)}
+.pd-ship-txt .sh-lbl{font-size:12px;font-weight:500;margin-bottom:2px}
+.pd-ship-txt .sh-sub{font-size:11px;color:var(--su);line-height:1.55}
+.pd-desc{font-size:13px;line-height:1.85;color:var(--mu)}
+@media(max-width:768px){.pd-body{grid-template-columns:1fr}.pd-media{position:relative;top:0;height:60vw;min-height:220px;padding:22px}.pd-info{padding:26px 20px 60px}.pdh{padding:12px 18px}}
 .pzovh{padding:26px 46px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0a0a0a;z-index:5}
 .pzovh h2{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#fff}
 /* ── SHOWCASE CAROUSEL ───────────────────── */
@@ -1157,7 +1203,7 @@ addHover(document);
 
 // WHEEL SCROLL EN PANELES — evita que Lenis intercepte eventos dentro de overlays
 (function(){
-  const scrollables=['#citems','#witems','#cl','#pzov','#evov','#ceo','#ckb','#odp','#srchres'];
+  const scrollables=['#citems','#witems','#cl','#pzov','#evov','#ceo','#ckb','#odp','#srchres','#pdov'];
   scrollables.forEach(sel=>{
     const el=document.querySelector(sel);
     if(el) el.addEventListener('wheel',e=>e.stopPropagation(),{passive:false});
@@ -1284,14 +1330,14 @@ function mkPC(p){
   const mv3d=p.model3d
     ?`<model-viewer id="mv_${p.id}" src="${p.model3d}" alt="${p.n}" auto-rotate camera-controls shadow-intensity="1"></model-viewer><button class="btn3d" id="btn3d_${p.id}" onclick="toggle3D('${p.id}')">3D</button>`
     :'';
-  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" style="padding:24px"><div id="svg_${p.id}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${innerContent}</div></div>${mv3d}${tagH}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pcs">${dots}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
+  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" style="padding:24px;cursor:pointer" onclick="openProdDetail('${p.id}')"><div id="svg_${p.id}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${innerContent}</div></div>${mv3d}${tagH}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pcs">${dots}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
 }
 function mkTC(t){
   const customImg=_getProdImg(t.id);
   const svgContent=customImg
     ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${t.n}"/>`
     :(t.cat==='termos'?mkTermoSVG(t.clr):mkTazaSVG(t.clr));
-  return `<div class="tcard rv" data-cat="${t.cat}"><div class="tci"><div class="tcii" style="padding:22px">${svgContent}</div></div><div class="tcb"><div class="tct">${t.cat}</div><div class="tcn">${t.n}</div><div class="tcoz">${t.oz}</div><div class="tcd">${t.desc}</div><div class="tcft">${_mkPriceHtml(t,'tcp')}<button class="ba" onclick="Cart.add('${t.id}')">+ Carrito</button></div></div></div>`;
+  return `<div class="tcard rv" data-cat="${t.cat}"><div class="tci"><div class="tcii" style="padding:22px;cursor:pointer" onclick="openProdDetail('${t.id}')">${svgContent}</div></div><div class="tcb"><div class="tct">${t.cat}</div><div class="tcn">${t.n}</div><div class="tcoz">${t.oz}</div><div class="tcd">${t.desc}</div><div class="tcft">${_mkPriceHtml(t,'tcp')}<button class="ba" onclick="Cart.add('${t.id}')">+ Carrito</button></div></div></div>`;
 }
 function obsNew(g){g.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>ro.observe(el));addHover(g)}
 function renderSW(){const g=document.getElementById('swg');if(g){g.innerHTML=SW.map(mkPC).join('');obsNew(g)}}
@@ -1301,17 +1347,127 @@ function renderColl(){const g=document.getElementById('clg');g.innerHTML=[...SW.
 function chPC(dot,id,clr){
   dot.parentElement.querySelectorAll('.psw').forEach(d=>d.classList.remove('a'));dot.classList.add('a');
   const svgEl=document.getElementById('svg_'+id),p=SW.find(x=>x.id===id);
-  if(svgEl&&p)svgEl.innerHTML=`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,clr)}</div>`;
+  if(svgEl&&p)svgEl.innerHTML=p.svg.replace(/\{C\}/g,clr);
 }
 function toggle3D(id){
   const mv=document.getElementById('mv_'+id);
   const pcii=mv.closest('.pci').querySelector('.pcii');
   const btn=document.getElementById('btn3d_'+id);
-  const show=mv.style.display==='none'||!mv.style.display;
-  mv.style.display=show?'block':'none';
-  pcii.style.visibility=show?'hidden':'visible';
+  const show=mv.style.visibility!=='visible';
+  mv.style.visibility=show?'visible':'hidden';
+  mv.style.pointerEvents=show?'auto':'none';
+  pcii.style.opacity=show?'0':'1';
   btn.classList.toggle('on',show);
   btn.textContent=show?'2D':'3D';
+}
+
+// PRODUCT DETAIL
+let _pdId=null;
+const _pdDesc={
+  joggers:'Jogger de corte relajado confeccionado en tela de alta gramaje. Pretina elástica ajustable, bolsillos laterales funcionales y tobillo con puño. Ideal para uso diario y streetwear.',
+  sudaderas:'Sudadera de corte oversize en fleece premium 340g/m². Cuello redondo, bolsillo canguro y puños acanalados. Serigrafía interior de marca. Lavado a máquina a 30°C.',
+  pans:'Pantalón cargo de corte slim con bolsillos laterales utilitarios. Cinturilla elástica con cordón y tobillo ajustable. Tejido 98% algodón, 2% elastano.',
+  playeras:'Camiseta en jersey 100% algodón peinado 200g/m². Costuras dobles en mangas y bajo. Disponible en corte regular y oversize.',
+  termos:'Termo de acero inoxidable 304 con doble pared al vacío. Mantiene bebidas calientes 8h y frías 20h. Tapa anti-goteo y acabado mate premium. Sin BPA.',
+  tazas:'Taza de cerámica premium con acabado matte. Apta para microondas y lavavajillas. Fondo antideslizante. Cada pieza es personalizable con tu diseño o texto.'
+};
+function openProdDetail(id){
+  const all=[...SW,...TERMOS];
+  const p=all.find(x=>x.id===id);
+  if(!p)return;
+  _pdId=id;
+  const isSW=!!SW.find(x=>x.id===id);
+  document.getElementById('pd-breadcat').textContent=p.cat;
+  const svgWrap=document.getElementById('pd-svg-wrap');
+  const pdMv=document.getElementById('pd-mv');
+  const pd3dBtn=document.getElementById('pd-3d-btn');
+  pdMv.style.display='none';
+  svgWrap.style.visibility='visible';
+  pd3dBtn.classList.remove('on');
+  pd3dBtn.textContent='3D';
+  const customImg=_getProdImg(id);
+  if(isSW){
+    const c0=p.clrs[0];
+    svgWrap.innerHTML=customImg
+      ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`
+      :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,c0)}</div>`;
+    if(p.model3d){pdMv.src=p.model3d;pd3dBtn.style.display='block';}
+    else{pdMv.src='';pd3dBtn.style.display='none';}
+  } else {
+    svgWrap.innerHTML=customImg
+      ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`
+      :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.cat==='termos'?mkTermoSVG(p.clr):mkTazaSVG(p.clr)}</div>`;
+    pdMv.src='';pd3dBtn.style.display='none';
+  }
+  const priceNum=parseInt((_getEffectivePrice(p)||'0').replace(/\D/g,''))||0;
+  const msi3=priceNum?Math.ceil(priceNum/3):0;
+  const msi6=priceNum?Math.ceil(priceNum/6):0;
+  const msi12=priceNum?Math.ceil(priceNum/12):0;
+  const tagH=p.tag?`<div class="pd-tag-row"><span class="pd-ptag ${p.tag==='new'?'nw':'bs'}">${p.tag==='new'?'Nuevo':'Best Seller'}</span></div>`:'';
+  const colorsH=isSW?`<div class="pd-sec"><div class="pd-clrs-lbl">Color</div><div class="pd-clrs">${p.clrs.map((c,i)=>`<div class="pd-clr${i===0?' a':''}" style="background:${c}" onclick="pdChColor(this,'${id}','${c}')"></div>`).join('')}</div></div>`:'';
+  const ozH=p.oz?`<div class="pd-oz">${p.oz}</div>`:'';
+  const desc=p.desc||_pdDesc[p.cat]||'Pieza premium de la colección ELLIÉR.';
+  document.getElementById('pd-info').innerHTML=`
+    ${tagH}
+    <div class="pd-cat">${p.cat}</div>
+    <div class="pd-name">${p.n}</div>
+    ${ozH}
+    <div class="pd-price-row">${_mkPriceHtml(p,'pd-p')}</div>
+    ${colorsH}
+    <div class="pd-actions">
+      <button class="pd-add" onclick="Cart.add('${id}');showToast('Agregado al carrito ✓')">+ Agregar al carrito</button>
+      <button class="pd-pz" onclick="closeProdDetail();setTimeout(openPZ,60)">Personalizar</button>
+    </div>
+    <div class="pd-sec">
+      <div class="pd-sec-lbl">Meses sin intereses</div>
+      <div class="pd-msi-grid">
+        <div class="pd-msi-card"><div class="pd-msi-n">3</div><div class="pd-msi-lbl">meses</div><div class="pd-msi-mo">$${msi3}/mes</div></div>
+        <div class="pd-msi-card"><div class="pd-msi-n">6</div><div class="pd-msi-lbl">meses</div><div class="pd-msi-mo">$${msi6}/mes</div></div>
+        <div class="pd-msi-card"><div class="pd-msi-n">12</div><div class="pd-msi-lbl">meses</div><div class="pd-msi-mo">$${msi12}/mes</div></div>
+      </div>
+    </div>
+    <div class="pd-sec">
+      <div class="pd-sec-lbl">Envío</div>
+      <div class="pd-ship-row"><div class="pd-ship-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="pd-ship-txt"><div class="sh-lbl">Envío estándar</div><div class="sh-sub">3–5 días hábiles · Gratis en pedidos +$999 MXN</div></div></div>
+      <div class="pd-ship-row"><div class="pd-ship-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="pd-ship-txt"><div class="sh-lbl">Todo México</div><div class="sh-sub">Enviamos a toda la república mexicana</div></div></div>
+      <div class="pd-ship-row"><div class="pd-ship-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="pd-ship-txt"><div class="sh-lbl">Pago seguro</div><div class="sh-sub">Tarjeta, transferencia, OXXO · Datos protegidos</div></div></div>
+    </div>
+    <div class="pd-sec">
+      <div class="pd-sec-lbl">Descripción</div>
+      <div class="pd-desc">${desc}</div>
+    </div>`;
+  const wb=document.getElementById('pd-wish-btn');
+  if(wb)wb.classList.toggle('on',wish.includes(id));
+  if(lenis)lenis.stop();
+  document.getElementById('pdov').classList.add('o');
+  document.body.style.overflow='hidden';
+}
+function closeProdDetail(){
+  document.getElementById('pdov').classList.remove('o');
+  document.body.style.overflow='';
+  if(lenis)lenis.start();
+  _pdId=null;
+}
+function pdToggle3D(){
+  const mv=document.getElementById('pd-mv');
+  const sw=document.getElementById('pd-svg-wrap');
+  const btn=document.getElementById('pd-3d-btn');
+  const show=mv.style.display==='none';
+  mv.style.display=show?'block':'none';
+  sw.style.visibility=show?'hidden':'visible';
+  btn.classList.toggle('on',show);
+  btn.textContent=show?'2D':'3D';
+}
+function pdChColor(dot,id,clr){
+  dot.closest('.pd-clrs').querySelectorAll('.pd-clr').forEach(d=>d.classList.remove('a'));
+  dot.classList.add('a');
+  const p=SW.find(x=>x.id===id);
+  const sw=document.getElementById('pd-svg-wrap');
+  if(p&&sw)sw.innerHTML=`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,clr)}</div>`;
+}
+function pdToggleWish(){
+  if(!_pdId)return;
+  toggleWish(document.getElementById('pd-wish-btn'),_pdId);
 }
 
 // FILTERS
@@ -2542,5 +2698,26 @@ loadCeoCustomizations();buildThemePanel();
 // set navbar logo from loader image (avoids embedding base64 twice in HTML)
 (()=>{const li=document.querySelector('#ldl img'),ni=document.getElementById('logo-img');if(li&&ni&&!ni.src)ni.src=li.src;})();
 </script>
+
+<!-- PRODUCT DETAIL OVERLAY -->
+<div id="pdov">
+  <div class="pdh">
+    <div class="pdh-bc">ELLIÉR <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg> <span id="pd-breadcat">Producto</span></div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <button id="pd-wish-btn" class="pw" style="position:static" onclick="pdToggleWish()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+      <button class="xb" onclick="closeProdDetail()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+  <div class="pd-body">
+    <div class="pd-media">
+      <div class="pd-media-inner">
+        <div id="pd-svg-wrap"></div>
+        <model-viewer id="pd-mv" auto-rotate camera-controls shadow-intensity="1" style="width:100%;height:100%;display:none;position:absolute;inset:0;--poster-color:transparent"></model-viewer>
+        <button id="pd-3d-btn" onclick="pdToggle3D()">3D</button>
+      </div>
+    </div>
+    <div class="pd-info" id="pd-info"></div>
+  </div>
+</div>
 </body>
 </html>
