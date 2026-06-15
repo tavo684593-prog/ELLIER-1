@@ -13,6 +13,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#f5f4f0;--text:#0a0a0a;--mu:#6a6a6a;--su:#b0b0b0;--bo:#e0dedd;--dark:#0a0a0a;
@@ -837,9 +838,9 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <div class="ckh"><h3>Checkout</h3><button class="xb" onclick="document.getElementById('cko').classList.remove('o')"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
     <div class="ckbody">
       <div class="cksum" id="cksum"></div>
-      <div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Datos de envío</div><div class="ckg" style="gap:9px;margin-bottom:9px"><input class="fi" placeholder="Nombre completo"/><input class="fi" placeholder="Teléfono"/></div><input class="fi" placeholder="Dirección completa" style="width:100%;margin-bottom:9px"/><div class="ckg"><input class="fi" placeholder="Ciudad"/><input class="fi" placeholder="C.P."/></div></div>
-      <div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Método de pago</div><div class="pms"><div class="pm a" onclick="selPay(this)">💳 Tarjeta</div><div class="pm" onclick="selPay(this)">🏦 MercadoPago</div><div class="pm" onclick="selPay(this)">📦 Contraentrega</div></div><div class="ckf" contenteditable style="margin-bottom:9px">4242 4242 4242 4242</div><div class="ckg"><div class="ckf" contenteditable>12/27</div><div class="ckf" contenteditable>CVC</div></div></div>
-      <button class="fb" style="width:100%" onclick="doCk()">Confirmar pedido →</button>
+      <div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Datos de envío</div><div class="ckg" style="gap:9px;margin-bottom:9px"><input id="ck-name" class="fi" placeholder="Nombre completo"/><input id="ck-tel" class="fi" placeholder="Teléfono"/></div><input id="ck-addr" class="fi" placeholder="Dirección completa" style="width:100%;margin-bottom:9px"/><div class="ckg"><input id="ck-city" class="fi" placeholder="Ciudad"/><input id="ck-cp" class="fi" placeholder="C.P."/></div></div>
+      <div id="ck-payment-wrap" style="display:none;margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Método de pago</div><div id="stripe-payment-element"></div><div id="ck-pay-error" style="color:#e74c3c;font-size:12px;margin-top:8px;display:none"></div></div>
+      <button class="fb" style="width:100%" id="ck-btn" onclick="doCk()">Continuar al pago →</button>
     </div>
   </div>
 </div>
@@ -1609,6 +1610,8 @@ function closeCart(){document.getElementById('co').classList.remove('o');documen
 // AUTH — Supabase
 const SUPABASE_URL='https://dybckcffwdsxjjrrepin.supabase.co';
 const SUPABASE_KEY='sb_publishable_lCeQfhTlU2w23MOoV6TXfA_B5q8GTG4';
+const STRIPE_PK='pk_test_51TijL0Hn0vlLlcAg04HF8Is2ZmNPHW0y380uZuTEqsydryP64Lz2PcUTUSsKnNv7ANa9cL58ctVNjRZVSXmOWnWF00KiG5C36a';
+let _stripe=null,_stripeElements=null,_ckOrderId=null,_ckPI=null;
 const CEO_EMAIL='ellier.agency@gmail.com';              // <-- email de la cuenta CEO
 
 const _sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
@@ -1683,27 +1686,40 @@ async function doReg(e){
 }
 
 // CEO PANEL
-let mockOrders=[
-  {id:'E001',cli:'María González',tel:'55 1234 5678',prod:'Jogger Essentials',prodId:'sw1',qty:2,total:'$1,040',st:'d',clr:'#1a1a1a',addr:'Av. Insurgentes Sur 1602, CDMX, 03100',custom:'Sin personalización — talla M y L',note:'Entrega urgente'},
-  {id:'E002',cli:'Carlos Ramírez',tel:'55 8765 4321',prod:'Termo Negro 500ml',prodId:'t1',qty:1,total:'$320',st:'p',clr:'#1a1a1a',addr:'Blvd. Manuel Ávila Camacho 40, Naucalpan, 53370',custom:'Grabado láser: "CR" en tapa superior',note:''},
-  {id:'E003',cli:'Sofía Méndez',tel:'55 2233 4455',prod:'Diseño personalizado',prodId:'t1',qty:1,total:'$580',st:'r',clr:'#8a8578',addr:'Calle Montejo 120, Mérida, Yucatán, 97000',custom:'Foto de mascota en centro. Texto: "Luna 2020" en fuente script blanca, tamaño grande.',note:'Revisar foto enviada por WhatsApp'},
-  {id:'E004',cli:'Luis Paredes',tel:'55 9988 7766',prod:'Sudadera Minimal',prodId:'sw2',qty:1,total:'$680',st:'d',clr:'#c4b8a2',addr:'Privada de las Flores 8, Guadalajara, JAL, 44100',custom:'Sin personalización — talla XL',note:''},
-  {id:'E005',cli:'Ana Kovalenko',tel:'55 3344 5566',prod:'Taza Matte Negro x3',prodId:'t4',qty:3,total:'$660',st:'p',clr:'#2a2a2a',addr:'Paseo de la Reforma 90, CDMX, 06600',custom:'Iniciales "AK" en dorado, tipografía serif. Tres tazas idénticas.',note:'Pago pendiente de confirmar'},
-];
-const stLbl={p:'Pendiente',d:'Enviado',r:'En revisión'};
+let mockOrders=[];
+let _supaOrders=[];
+const stLbl={p:'Pendiente',paid:'Pagado',d:'Enviado',r:'En revisión',c:'Cancelado'};
+const _stMap={pending:'p',paid:'paid',processing:'r',shipped:'d',delivered:'d',cancelled:'c'};
+const _stToDb={p:'pending',d:'shipped',r:'processing'};
 let _ordFilter='all';
 
+function _mapOrd(o){
+  const items=o.items||[];
+  const prodName=items.length===1?items[0].n:(items.length>1?items.slice(0,2).map(x=>x.n).join(' + ')+(items.length>2?` +${items.length-2} más`:''):'Pedido');
+  const qty=items.reduce((s,x)=>s+(x.qty||1),0);
+  const st=_stMap[o.status]||'p';
+  return{id:o.id,_shortId:'#'+o.id.slice(-6).toUpperCase(),cli:o.shipping_name||'Cliente',tel:o.shipping_phone||'—',prod:prodName,prodId:items[0]?.id||'t1',qty,total:'$'+(o.total||0).toLocaleString()+' MXN',st,clr:items[0]?.clr||items[0]?.clrs?.[0]||'#1a1a1a',addr:o.shipping_address||'—',custom:items.map(x=>x.n+(x.custom?' (personalizado)':'')).join(', '),note:'',stripeId:o.stripe_payment_intent_id};
+}
 function fOrd(btn,f){
   _ordFilter=f;
   document.querySelectorAll('#ordflt .cb3').forEach(b=>b.classList.remove('a'));btn.classList.add('a');
   renderOrdTable();
 }
-function renderOrdTable(){
-  const list=_ordFilter==='all'?mockOrders:mockOrders.filter(o=>o.st===_ordFilter);
-  document.getElementById('ordb').innerHTML=list.map(o=>`<tr onclick="openOrder('${o.id}')"><td><b>${o.id}</b></td><td>${o.cli}</td><td>${o.prod}${o.qty>1?` ×${o.qty}`:''}</td><td>${o.total}</td><td><span class="tbg ${o.st}">${stLbl[o.st]}</span></td></tr>`).join('');
-  const pend=mockOrders.filter(o=>o.st==='p').length;
-  document.getElementById('ordct').textContent=mockOrders.length;
-  document.getElementById('ordss').textContent=`${pend} pendiente${pend!==1?'s':''}`;
+async function renderOrdTable(){
+  document.getElementById('ordb').innerHTML='<tr><td colspan="5" style="color:var(--mu);text-align:center;padding:18px">Cargando pedidos...</td></tr>';
+  try{
+    const{data:{session}}=await _sb.auth.getSession();
+    if(!session){document.getElementById('ordb').innerHTML='<tr><td colspan="5" style="color:var(--mu);text-align:center;padding:18px">Sesión expirada</td></tr>';return;}
+    let q=_sb.from('orders').select('*').order('created_at',{ascending:false});
+    const{data,error}=await q;
+    if(error)throw error;
+    _supaOrders=(data||[]).map(_mapOrd);
+    const list=_ordFilter==='all'?_supaOrders:_supaOrders.filter(o=>o.st===_ordFilter);
+    document.getElementById('ordb').innerHTML=list.length?list.map(o=>`<tr onclick="openOrder('${o.id}')"><td><b>${o._shortId}</b></td><td>${o.cli}</td><td>${o.prod}${o.qty>1?` ×${o.qty}`:''}</td><td>${o.total}</td><td><span class="tbg ${o.st}">${stLbl[o.st]||o.st}</span></td></tr>`).join(''):'<tr><td colspan="5" style="color:var(--mu);text-align:center;padding:18px">Sin pedidos aún</td></tr>';
+    const pend=_supaOrders.filter(o=>o.st==='p'||o.st==='paid').length;
+    document.getElementById('ordct').textContent=_supaOrders.length;
+    document.getElementById('ordss').textContent=`${pend} pendiente${pend!==1?'s':''}`;
+  }catch(e){document.getElementById('ordb').innerHTML=`<tr><td colspan="5" style="color:#e74c3c;text-align:center;padding:18px">Error: ${e.message}</td></tr>`;}
 }
 function openCEO(){
   if(!Auth.isCEO()){showToast('Solo acceso para Mia');return}
@@ -1780,7 +1796,7 @@ function _drawOrdCanvas(o){
   ctx.font=`8px ${fs}`;ctx.fillStyle='rgba(255,255,255,.1)';ctx.fillText('ELLIÉR · Vista conceptual',rx,H-14);
 }
 function openOrder(id){
-  const o=mockOrders.find(x=>x.id===id);if(!o)return;
+  const o=_supaOrders.find(x=>x.id===id);if(!o)return;
   _curOrd=o;
   document.getElementById('odtit').textContent=`Pedido ${o.id}`;
   // draw canvas (defer 1 frame so panel is visible and has dimensions)
@@ -1804,9 +1820,12 @@ function openOrder(id){
   document.getElementById('odp').classList.add('o');
 }
 function closeOrder(){document.getElementById('odp').classList.remove('o');document.getElementById('odov').classList.remove('o')}
-function setOrdSt(id,st){
-  const o=mockOrders.find(x=>x.id===id);if(!o)return;
-  o.st=st;renderOrdTable();
+async function setOrdSt(id,st){
+  const dbSt=_stToDb[st]||st;
+  const{error}=await _sb.from('orders').update({status:dbSt}).eq('id',id);
+  if(error){showToast('Error al actualizar: '+error.message);return;}
+  const o=_supaOrders.find(x=>x.id===id);if(o)o.st=st;
+  renderOrdTable();
   document.getElementById('odstbts').querySelectorAll('button').forEach((b,i)=>{
     const keys=['p','d','r'];b.classList.toggle('act',keys[i]===st);
   });
@@ -1905,36 +1924,60 @@ function expCSV(){
 function openCk(){
   if(!Cart.items.length)return;
   document.getElementById('cksum').innerHTML=Cart.items.map(x=>`<div class="ckr"><span>${x.n} × ${x.qty}</span><span>${x.p}</span></div>`).join('')+`<div class="cktot"><span>Total</span><span>$${Cart.total().toLocaleString()} MXN</span></div>`;
+  document.getElementById('ck-payment-wrap').style.display='none';
+  document.getElementById('stripe-payment-element').innerHTML='';
+  const btn=document.getElementById('ck-btn');
+  btn.textContent='Continuar al pago →';btn.disabled=false;btn.onclick=doCk;
+  _stripeElements=null;_ckOrderId=null;_ckPI=null;
   closeCart();document.getElementById('cko').classList.add('o');
-} 
-function selPay(btn){document.querySelectorAll('.pm').forEach(b=>b.classList.remove('a'));btn.classList.add('a')}
-function doCk(){
-  const inputs=document.querySelectorAll('#ckb .fi');
-  const name=(inputs[0]&&inputs[0].value.trim())||'Cliente';
-  const tel=(inputs[1]&&inputs[1].value.trim())||'—';
-  const addr=((inputs[2]&&inputs[2].value.trim())||'')+(inputs[3]&&inputs[3].value.trim()?', '+inputs[3].value.trim():'')+(inputs[4]&&inputs[4].value.trim()?' '+inputs[4].value.trim():'');
-  const pay=document.querySelector('.pm.a')?.textContent.trim()||'Tarjeta';
-  const items=[...Cart.items];
-  const prodName=items.length===1?items[0].n:(items.length>1?items.slice(0,2).map(x=>x.n).join(' + ')+(items.length>2?` +${items.length-2} más`:''):'Pedido');
-  const firstId=items[0]?.id||'sw1';
-  const num=String(mockOrders.length+1).padStart(3,'0');
-  const newOrd={
-    id:'E'+num,
-    cli:name,tel:tel,
-    prod:prodName,prodId:firstId,
-    qty:items.reduce((s,x)=>s+x.qty,0),
-    total:'$'+Cart.total().toLocaleString()+' MXN',
-    st:'p',
-    clr:items[0]?.clr||items[0]?.clrs?.[0]||'#1a1a1a',
-    addr:addr||'Dirección no proporcionada',
-    custom:items.map(x=>x.n+(x.custom?' (personalizado)':'')).join(', ')+' — '+pay,
-    note:'Pedido desde la tienda online'
-  };
-  mockOrders.unshift(newOrd);
+}
+async function doCk(){
+  const name=document.getElementById('ck-name').value.trim();
+  const tel=document.getElementById('ck-tel').value.trim();
+  const addr=document.getElementById('ck-addr').value.trim();
+  const city=document.getElementById('ck-city').value.trim();
+  const cp=document.getElementById('ck-cp').value.trim();
+  if(!name||!tel||!addr||!city||!cp){showToast('Por favor completa todos los datos de envío');return;}
+  const btn=document.getElementById('ck-btn');
+  btn.textContent='Cargando...';btn.disabled=true;
+  try{
+    if(!_stripe)_stripe=Stripe(STRIPE_PK);
+    const{data:{session}}=await _sb.auth.getSession();
+    if(!session){showToast('Inicia sesión para completar tu compra');btn.textContent='Continuar al pago →';btn.disabled=false;return;}
+    const res=await fetch(`${SUPABASE_URL}/functions/v1/create-payment-intent`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token,'apikey':SUPABASE_KEY},
+      body:JSON.stringify({items:Cart.items,total:Cart.total(),shipping:{name,phone:tel,address:addr+(city?', '+city:'')+(cp?' '+cp:'')}})
+    });
+    const data=await res.json();
+    if(data.error)throw new Error(data.error);
+    _ckOrderId=data.orderId;
+    _ckPI=data.clientSecret.split('_secret_')[0];
+    _stripeElements=_stripe.elements({clientSecret:data.clientSecret,appearance:{theme:'night',variables:{colorPrimary:'#fff',colorBackground:'#1a1a1a',colorText:'#fff',colorDanger:'#e74c3c',fontFamily:'-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif',borderRadius:'4px'}}});
+    const payEl=_stripeElements.create('payment');
+    document.getElementById('stripe-payment-element').innerHTML='';
+    payEl.mount('#stripe-payment-element');
+    document.getElementById('ck-payment-wrap').style.display='block';
+    btn.textContent=`Pagar $${Cart.total().toLocaleString()} MXN →`;
+    btn.disabled=false;btn.onclick=confirmPayment;
+  }catch(e){showToast('Error: '+e.message);btn.textContent='Continuar al pago →';btn.disabled=false;}
+}
+async function confirmPayment(){
+  const btn=document.getElementById('ck-btn');
+  btn.textContent='Procesando...';btn.disabled=true;
+  const errEl=document.getElementById('ck-pay-error');
+  errEl.style.display='none';
+  const{error}=await _stripe.confirmPayment({elements:_stripeElements,confirmParams:{return_url:window.location.href},redirect:'if_required'});
+  if(error){errEl.textContent=error.message;errEl.style.display='block';btn.textContent=`Pagar $${Cart.total().toLocaleString()} MXN →`;btn.disabled=false;return;}
+  try{
+    const{data:{session}}=await _sb.auth.getSession();
+    if(session)await fetch(`${SUPABASE_URL}/functions/v1/confirm-order`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token,'apikey':SUPABASE_KEY},body:JSON.stringify({orderId:_ckOrderId,paymentIntentId:_ckPI})});
+  }catch(e){}
   document.getElementById('cko').classList.remove('o');
   Cart.items=[];Cart.save();updateCC();
   if(document.getElementById('ceo').classList.contains('o'))renderOrdTable();
-  showToast('¡Pedido confirmado! #'+newOrd.id+' — Te contactaremos pronto.');
+  showToast('¡Pago exitoso! Tu pedido #'+(_ckOrderId?.slice(-6).toUpperCase()||'')+'  fue confirmado. Te contactamos pronto.');
+  _stripeElements=null;_ckOrderId=null;_ckPI=null;
 }
 
 // CINEMATIC SCROLL
@@ -2766,6 +2809,28 @@ function renderMasProductos(){
 // INIT
 renderShowcase();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
 loadCeoCustomizations();buildThemePanel();
+// Manejo de retorno desde redirect de Stripe (ej. OXXO)
+(async()=>{
+  const params=new URLSearchParams(window.location.search);
+  const piSecret=params.get('payment_intent_client_secret');
+  const piId=params.get('payment_intent');
+  if(!piSecret||!piId)return;
+  history.replaceState({},'',window.location.pathname);
+  if(!_stripe)_stripe=Stripe(STRIPE_PK);
+  const{paymentIntent}=await _stripe.retrievePaymentIntent(piSecret);
+  if(paymentIntent?.status==='succeeded'){
+    try{
+      const{data:{session}}=await _sb.auth.getSession();
+      if(session){
+        const r=await fetch(`${SUPABASE_URL}/functions/v1/confirm-order`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token,'apikey':SUPABASE_KEY},body:JSON.stringify({orderId:null,paymentIntentId:piId})});
+      }
+    }catch(e){}
+    showToast('¡Pago confirmado! Tu pedido fue registrado. Te contactamos pronto.');
+    Cart.items=[];Cart.save();updateCC();
+  }else if(paymentIntent?.status==='requires_action'){
+    showToast('Pago pendiente — presenta tu voucher OXXO para completar el pedido.');
+  }
+})();
 // set navbar logo from loader image (avoids embedding base64 twice in HTML)
 (()=>{const li=document.querySelector('#ldl img'),ni=document.getElementById('logo-img');if(li&&ni&&!ni.src)ni.src=li.src;})();
 </script>
