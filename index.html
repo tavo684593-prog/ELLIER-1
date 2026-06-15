@@ -12,6 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#f5f4f0;--text:#0a0a0a;--mu:#6a6a6a;--su:#b0b0b0;--bo:#e0dedd;--dark:#0a0a0a;
@@ -818,6 +819,10 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 <!-- AUTH -->
 <div id="ao" onclick="if(event.target===this)closeAuth()">
   <div id="ab">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+      <span style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:500">ELLIÉR</span>
+      <button class="xb" onclick="closeAuth()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
     <div class="ats"><div class="at2 a" onclick="swAuth('login')">Iniciar sesión</div><div class="at2" onclick="swAuth('reg')">Registrarse</div></div>
     <form class="afo" id="lf" onsubmit="doLogin(event)"><div class="fg"><label class="fl">Correo</label><input type="email" class="fi" id="le" required placeholder="tu@correo.com"/></div><div class="fg"><label class="fl">Contraseña</label><input type="password" class="fi" id="lp" required placeholder="••••••••"/></div><div class="ferr" id="lerr"></div><button type="submit" class="fb">Entrar</button></form>
     <form class="afo h" id="rf" onsubmit="doReg(event)"><div class="fg"><label class="fl">Nombre</label><input type="text" class="fi" id="rn" required placeholder="Tu nombre"/></div><div class="fg"><label class="fl">Correo</label><input type="email" class="fi" id="re" required placeholder="tu@correo.com"/></div><div class="fg"><label class="fl">Contraseña</label><input type="password" class="fi" id="rp" required minlength="6" placeholder="••••••••"/></div><div class="ferr" id="rerr"></div><button type="submit" class="fb">Crear cuenta</button></form>
@@ -1599,30 +1604,27 @@ function updateCC(){const n=Cart.items.reduce((s,x)=>s+x.qty,0);document.getElem
 function openCart(){if(lenis)lenis.stop();document.getElementById('co').classList.add('o');document.getElementById('cp').classList.add('o');Cart.render()}
 function closeCart(){document.getElementById('co').classList.remove('o');document.getElementById('cp').classList.remove('o');if(lenis)lenis.start()}
 
-// AUTH
+// AUTH — Supabase
+const SUPABASE_URL='https://dybckcffwdsxjjrrepin.supabase.co';
+const SUPABASE_KEY='sb_publishable_lCeQfhTlU2w23MOoV6TXfA_B5q8GTG4';
+const CEO_EMAIL='ellier.agency@gmail.com';              // <-- email de la cuenta CEO
+
+const _sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const Auth={
-  users:JSON.parse(localStorage.getItem('ellier_users')||'[]'),
-  cur:JSON.parse(localStorage.getItem('ellier_cur')||'null'),
-  save(){localStorage.setItem('ellier_users',JSON.stringify(this.users));localStorage.setItem('ellier_cur',JSON.stringify(this.cur))},
-  login(email,pass){const u=this.users.find(x=>x.email===email&&x.pass===pass);if(!u)return false;this.cur=u;this.save();return true},
-  register(name,email,pass){
-    if(this.users.find(x=>x.email===email))return false;
-    const u={id:Date.now(),name,email,pass,role:email==='mia@ellier.com'?'ceo':'cliente',date:new Date().toLocaleDateString('es')};
-    this.users.push(u);this.cur=u;this.save();return true;
-  },
-  logout(){this.cur=null;localStorage.removeItem('ellier_cur');updateAuthBtn()},
-  isCEO(){return this.cur&&this.cur.email==='mia@ellier.com'},
-  seed(){if(!this.users.find(x=>x.email==='mia@ellier.com')){this.users.push({id:0,name:'Mia',email:'mia@ellier.com',pass:'Ellier2025',role:'ceo',date:'01/01/2025'});localStorage.setItem('ellier_users',JSON.stringify(this.users));}},
+  cur:null,
+  isCEO(){return !!(this.cur&&this.cur.email===CEO_EMAIL)},
 };
+_sb.auth.onAuthStateChange((_ev,session)=>{Auth.cur=session?session.user:null;updateAuthBtn();});
 function updateAuthBtn(){
   const btn=document.getElementById('authbtn'),ab=document.getElementById('adminbtn');
   const ceobar=document.getElementById('ceobar');
   const mmA=document.getElementById('mm-auth-btn'),mmL=document.getElementById('mm-logout-btn');
   if(Auth.cur){
     btn.setAttribute('onclick','toggleUserDrop()');
-    btn.title=Auth.cur.name;
+    const _dn=Auth.cur.user_metadata?.name||Auth.cur.email?.split('@')[0]||'Usuario';
+    btn.title=_dn;
     const udN=document.getElementById('ud-name'),udE=document.getElementById('ud-email');
-    if(udN)udN.textContent=Auth.cur.name;
+    if(udN)udN.textContent=_dn;
     if(udE)udE.textContent=Auth.cur.email||'';
     if(ab)ab.style.display=Auth.isCEO()?'flex':'none';
     if(mmA)mmA.style.display='none';
@@ -1653,24 +1655,26 @@ function toggleUserDrop(){
   _udOpen=!_udOpen;d.classList.toggle('o',_udOpen);
   if(_udOpen){const close=e=>{if(!d.contains(e.target)&&e.target.id!=='authbtn'){_udOpen=false;d.classList.remove('o')}else{document.addEventListener('click',close,{once:true})}};document.addEventListener('click',close,{once:true});}
 }
-function doLogout(){_udOpen=false;document.getElementById('userdrop').classList.remove('o');Auth.logout();showToast('Sesión cerrada. ¡Hasta pronto!');}
+async function doLogout(){_udOpen=false;document.getElementById('userdrop').classList.remove('o');await _sb.auth.signOut();showToast('Sesión cerrada. ¡Hasta pronto!');}
 function swAuth(t){
   document.querySelectorAll('.at2').forEach(b=>b.classList.remove('a'));
   document.querySelector(`.at2[onclick*="${t}"]`).classList.add('a');
   document.getElementById('lf').classList.toggle('h',t!=='login');
   document.getElementById('rf').classList.toggle('h',t!=='reg');
 }
-function doLogin(e){
+async function doLogin(e){
   e.preventDefault();
   const email=document.getElementById('le').value,pass=document.getElementById('lp').value;
-  if(Auth.login(email,pass)){closeAuth();updateAuthBtn();showToast('Bienvenido, '+Auth.cur.name+(Auth.isCEO()?' · Usa Administración':'')+'!')}
-  else{const err=document.getElementById('lerr');err.textContent='Correo o contraseña incorrectos';err.classList.add('s')}
+  const{error}=await _sb.auth.signInWithPassword({email,password:pass});
+  if(error){const err=document.getElementById('lerr');err.textContent='Correo o contraseña incorrectos';err.classList.add('s')}
+  else{closeAuth();const dn=Auth.cur?.user_metadata?.name||Auth.cur?.email?.split('@')[0]||'';showToast('Bienvenido'+(dn?', '+dn:'')+(Auth.isCEO()?' · Usa Administración':'')+'!')}
 }
-function doReg(e){
+async function doReg(e){
   e.preventDefault();
   const n=document.getElementById('rn').value,em=document.getElementById('re').value,p=document.getElementById('rp').value;
-  if(Auth.register(n,em,p)){closeAuth();updateAuthBtn();showToast('Cuenta creada. Bienvenido, '+n+'!')}
-  else{const err=document.getElementById('rerr');err.textContent='Este correo ya está registrado';err.classList.add('s')}
+  const{error}=await _sb.auth.signUp({email:em,password:p,options:{data:{name:n}}});
+  if(error){const err=document.getElementById('rerr');err.textContent=error.message.includes('already')?'Este correo ya está registrado':error.message;err.classList.add('s')}
+  else{closeAuth();showToast('¡Cuenta creada! Revisa tu correo para confirmar.')}
 }
 
 // CEO PANEL
@@ -1719,9 +1723,9 @@ function renderProdTable(){
   document.getElementById('cpct').textContent=all.length;
 }
 function renderUsrTable(){
-  const usrs=Auth.users.length?Auth.users:[{id:1,name:'Mia',email:'mia@ellier.com',role:'ceo',date:'01/01/2025'}];
-  document.getElementById('userb').innerHTML=usrs.map(u=>`<tr><td style="color:var(--mu)">${u.id}</td><td>${u.name}</td><td>${u.email}</td><td><span class="tbg ${u.role==='ceo'?'r':'p'}">${u.role||'cliente'}</span></td><td>${u.date||'—'}</td></tr>`).join('');
-  document.getElementById('usrct').textContent=usrs.length;
+  const u=Auth.cur;
+  const row=u?`<tr><td style="color:var(--mu)">—</td><td>${u.user_metadata?.name||'—'}</td><td>${u.email}</td><td><span class="tbg ${Auth.isCEO()?'r':'p'}">${Auth.isCEO()?'ceo':'cliente'}</span></td><td>${new Date(u.created_at||Date.now()).toLocaleDateString('es')}</td></tr>`:'<tr><td colspan="5" style="color:var(--mu);text-align:center;padding:18px">Gestión completa de usuarios en el panel de Supabase</td></tr>';
+  document.getElementById('userb').innerHTML=row;
 }
 
 // ORDER DETAIL
@@ -2051,10 +2055,6 @@ dzn.addEventListener('drop',e=>{e.preventDefault();dzn.classList.remove('drag');
 let _tt;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('on'),2800)}
 
-// SECRET CEO: Ctrl+Shift+M
-document.addEventListener('keydown',e=>{
-  if(e.ctrlKey&&e.shiftKey&&e.key==='M'){Auth.cur={name:'Mia',email:'mia@ellier.com',role:'ceo'};Auth.save();updateAuthBtn();openCEO()}
-});
 
 // PERSONALIZA PAGE
 function openPZ(){
@@ -2759,7 +2759,7 @@ function renderMasProductos(){
 // ─── INIT CEO ───────────────────────────────────────────────────────────────
 
 // INIT
-Auth.seed();renderShowcase();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
+renderShowcase();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
 loadCeoCustomizations();buildThemePanel();
 // set navbar logo from loader image (avoids embedding base64 twice in HTML)
 (()=>{const li=document.querySelector('#ldl img'),ni=document.getElementById('logo-img');if(li&&ni&&!ni.src)ni.src=li.src;})();
