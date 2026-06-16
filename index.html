@@ -106,6 +106,20 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 #cko.o{opacity:1;pointer-events:all}
 #ckb{background:#fff;width:100%;max-width:520px;border-radius:12px;transform:translateY(18px);transition:transform .3s;max-height:90vh;overflow-y:auto}
 #cko.o #ckb{transform:none}
+#myorders{position:fixed;inset:0;z-index:350;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:20px}
+#myorders.o{opacity:1;pointer-events:all}
+#mob{background:#fff;width:100%;max-width:560px;border-radius:12px;transform:translateY(18px);transition:transform .3s;max-height:88vh;overflow-y:auto}
+#myorders.o #mob{transform:none}
+.mo-h{padding:20px 24px;border-bottom:1px solid var(--bo);display:flex;align-items:center;justify-content:space-between}
+.mo-row{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--bo)}
+.mo-id{font-size:11px;font-weight:600;letter-spacing:.05em;min-width:60px}
+.mo-info{flex:1;min-width:0}
+.mo-prod{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mo-date{font-size:10px;color:var(--mu);margin-top:2px}
+.mo-total{font-size:12px;font-weight:500;white-space:nowrap;margin-right:10px}
+.mo-st{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:20px;font-weight:600}
+.mo-st.pending{background:#fff3cd;color:#856404}.mo-st.paid{background:#d1e7dd;color:#0a3622}.mo-st.processing{background:#cfe2ff;color:#084298}.mo-st.shipped{background:#e2d9f3;color:#432874}.mo-st.delivered{background:#d1e7dd;color:#0a3622}.mo-st.cancelled{background:#f8d7da;color:#842029}
+.mo-empty{padding:40px 20px;text-align:center;color:var(--mu);font-size:13px}
 .ckh{padding:20px 24px;border-bottom:1px solid var(--bo);display:flex;align-items:center;justify-content:space-between}
 .ckh h3{font-size:12px;letter-spacing:.18em;text-transform:uppercase}
 .ckbody{padding:24px}
@@ -681,6 +695,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 .ud-email{font-size:10px;color:var(--mu);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
 .ud-logout{display:flex;align-items:center;gap:9px;font-size:12px;padding:10px 15px;color:#c0392b;transition:background .12s;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--fn)}
 .ud-logout:hover{background:rgba(192,57,43,.06)}
+.ud-item{display:flex;align-items:center;gap:9px;font-size:12px;padding:10px 15px;color:var(--text);transition:background .12s;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--fn);border-bottom:1px solid var(--bo)}.ud-item:hover{background:rgba(0,0,0,.03)}
 /* ── MOBILE MENU AUTH ─────────────────────────── */
 .mml-btn{background:none;border:none;font-family:var(--fn);line-height:1}
 .mml-logout{color:rgba(210,80,80,.72)!important}.mml-logout:hover{color:rgba(220,60,60,1)!important}
@@ -762,14 +777,14 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <button class="ni" id="curtgl" onclick="toggleCursor()" title="Cambiar cursor" aria-label="Cambiar cursor"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M5 3l14 9-7 1-4 7z"/></svg></button>
     <button class="ni" id="whbtn" onclick="openWish()" title="Favoritos" aria-label="Lista de favoritos"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nba" id="whc" style="display:none">0</span></button>
     <button class="ni" id="authbtn" onclick="openAuth()" aria-label="Iniciar sesión"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
-    <div id="userdrop"><div class="ud-info"><div class="ud-name" id="ud-name"></div><div class="ud-email" id="ud-email"></div></div><button class="ud-logout" onclick="doLogout()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Cerrar sesión</button></div>
+    <div id="userdrop"><div class="ud-info"><div class="ud-name" id="ud-name"></div><div class="ud-email" id="ud-email"></div></div><button class="ud-item" onclick="toggleUserDrop();openMyOrders()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Mis pedidos</button><button class="ud-logout" onclick="doLogout()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Cerrar sesión</button></div>
     <button class="ni" id="crtb" onclick="openCart()" aria-label="Carrito de compras"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="nba" id="crtc">0</span></button>
     <button id="hb" onclick="toggleMM()" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
 <!-- MOBILE MENU -->
-<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><a class="mml" href="#" onclick="toggleMM();openCl();return false">Colección</a><a class="mml" href="#" onclick="toggleMM();openEv();return false">Eventos</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a><button class="mml mml-btn" id="mm-auth-btn" onclick="toggleMM();openAuth()">Iniciar sesión</button><button class="mml mml-btn mml-logout" id="mm-logout-btn" onclick="toggleMM();doLogout()" style="display:none">Cerrar sesión</button></div>
+<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><a class="mml" href="#" onclick="toggleMM();openCl();return false">Colección</a><a class="mml" href="#" onclick="toggleMM();openEv();return false">Eventos</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a><button class="mml mml-btn" id="mm-auth-btn" onclick="toggleMM();openAuth()">Iniciar sesión</button><button class="mml mml-btn" id="mm-orders-btn" onclick="toggleMM();openMyOrders()" style="display:none">Mis pedidos</button><button class="mml mml-btn mml-logout" id="mm-logout-btn" onclick="toggleMM();doLogout()" style="display:none">Cerrar sesión</button></div>
 
 <!-- CATALOG DROPDOWN -->
 <div id="catdrop">
@@ -838,10 +853,21 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <div class="ckh"><h3>Checkout</h3><button class="xb" onclick="document.getElementById('cko').classList.remove('o')"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
     <div class="ckbody">
       <div class="cksum" id="cksum"></div>
-      <div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Datos de envío</div><div class="ckg" style="gap:9px;margin-bottom:9px"><input id="ck-name" class="fi" placeholder="Nombre completo"/><input id="ck-tel" class="fi" placeholder="Teléfono"/></div><input id="ck-addr" class="fi" placeholder="Dirección completa" style="width:100%;margin-bottom:9px"/><div class="ckg"><input id="ck-city" class="fi" placeholder="Ciudad"/><input id="ck-cp" class="fi" placeholder="C.P."/></div></div>
+      <div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Datos de envío</div><div class="ckg" style="gap:9px;margin-bottom:9px"><input id="ck-name" class="fi" placeholder="Nombre completo" required/><input id="ck-tel" class="fi" placeholder="Teléfono" required/></div><input id="ck-addr" class="fi" placeholder="Dirección completa" required style="width:100%;margin-bottom:9px"/><div class="ckg"><input id="ck-city" class="fi" placeholder="Ciudad" required/><input id="ck-cp" class="fi" placeholder="C.P." required/></div></div>
       <div id="ck-payment-wrap" style="display:none;margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Método de pago</div><div id="stripe-payment-element"></div><div id="ck-pay-error" style="color:#e74c3c;font-size:12px;margin-top:8px;display:none"></div></div>
       <button class="fb" style="width:100%" id="ck-btn" onclick="doCk()">Continuar al pago →</button>
     </div>
+  </div>
+</div>
+
+<!-- MIS PEDIDOS -->
+<div id="myorders" onclick="if(event.target===this)closeMyOrders()">
+  <div id="mob">
+    <div class="mo-h">
+      <span style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:500">Mis pedidos</span>
+      <button class="xb" onclick="closeMyOrders()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div id="mo-body"><div class="mo-empty">Cargando pedidos...</div></div>
   </div>
 </div>
 
@@ -1611,7 +1637,7 @@ function closeCart(){document.getElementById('co').classList.remove('o');documen
 const SUPABASE_URL='https://dybckcffwdsxjjrrepin.supabase.co';
 const SUPABASE_KEY='sb_publishable_lCeQfhTlU2w23MOoV6TXfA_B5q8GTG4';
 const STRIPE_PK='pk_test_51TijL0Hn0vlLlcAg04HF8Is2ZmNPHW0y380uZuTEqsydryP64Lz2PcUTUSsKnNv7ANa9cL58ctVNjRZVSXmOWnWF00KiG5C36a';
-let _stripe=null,_stripeElements=null,_ckOrderId=null,_ckPI=null;
+let _stripe=null,_stripeElements=null,_ckOrderId=null,_ckPI=null,_pendingCk=false;
 const CEO_EMAIL='ellier.agency@gmail.com';              // <-- email de la cuenta CEO
 
 const _sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
@@ -1619,7 +1645,7 @@ const Auth={
   cur:null,
   isCEO(){return !!(this.cur&&this.cur.email===CEO_EMAIL)},
 };
-_sb.auth.onAuthStateChange((_ev,session)=>{Auth.cur=session?session.user:null;updateAuthBtn();});
+_sb.auth.onAuthStateChange((_ev,session)=>{Auth.cur=session?session.user:null;updateAuthBtn();if(Auth.cur&&_pendingCk){_pendingCk=false;closeAuth();openCk();}});
 function updateAuthBtn(){
   const btn=document.getElementById('authbtn'),ab=document.getElementById('adminbtn');
   const ceobar=document.getElementById('ceobar');
@@ -1633,6 +1659,7 @@ function updateAuthBtn(){
     if(udE)udE.textContent=Auth.cur.email||'';
     if(ab)ab.style.display=Auth.isCEO()?'flex':'none';
     if(mmA)mmA.style.display='none';
+    const mmO=document.getElementById('mm-orders-btn');if(mmO)mmO.style.display='';
     if(mmL)mmL.style.display='';
     if(ceobar){
       ceobar.classList.toggle('on',Auth.isCEO());
@@ -1644,6 +1671,7 @@ function updateAuthBtn(){
     btn.setAttribute('onclick','openAuth()');btn.title='Cuenta';
     if(ab)ab.style.display='none';
     if(mmA)mmA.style.display='';
+    const mmO2=document.getElementById('mm-orders-btn');if(mmO2)mmO2.style.display='none';
     if(mmL)mmL.style.display='none';
     if(ceobar){
       ceobar.classList.remove('on');
@@ -1920,9 +1948,38 @@ function expCSV(){
   showToast('CSV exportado');
 }
 
+// MIS PEDIDOS
+const _moStLbl={pending:'Pendiente',paid:'Pagado',processing:'En proceso',shipped:'Enviado',delivered:'Entregado',cancelled:'Cancelado'};
+function closeMyOrders(){document.getElementById('myorders').classList.remove('o');}
+async function openMyOrders(){
+  if(!Auth.cur){openAuth();return;}
+  document.getElementById('myorders').classList.add('o');
+  const body=document.getElementById('mo-body');
+  body.innerHTML='<div class="mo-empty">Cargando pedidos...</div>';
+  try{
+    const{data,error}=await _sb.from('orders').select('*').order('created_at',{ascending:false});
+    if(error)throw error;
+    if(!data||!data.length){body.innerHTML='<div class="mo-empty">Aún no tienes pedidos.</div>';return;}
+    body.innerHTML=data.map(o=>{
+      const items=Array.isArray(o.items)?o.items:[];
+      const prod=items.map(i=>i.n||i.name||'Producto').join(', ')||'Pedido';
+      const fecha=o.created_at?new Date(o.created_at).toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}):'';
+      const st=o.status||'pending';
+      const total=typeof o.total==='number'?'$'+o.total.toLocaleString()+' MXN':o.total||'';
+      return `<div class="mo-row">
+        <div class="mo-id">#${(o.id||'').slice(-6).toUpperCase()}</div>
+        <div class="mo-info"><div class="mo-prod">${prod}</div><div class="mo-date">${fecha}</div></div>
+        <div class="mo-total">${total}</div>
+        <span class="mo-st ${st}">${_moStLbl[st]||st}</span>
+      </div>`;
+    }).join('');
+  }catch(e){body.innerHTML=`<div class="mo-empty">Error al cargar pedidos: ${e.message}</div>`;}
+}
+
 // CHECKOUT
 function openCk(){
   if(!Cart.items.length)return;
+  if(!Auth.cur){closeCart();_pendingCk=true;openAuth();return;}
   document.getElementById('cksum').innerHTML=Cart.items.map(x=>`<div class="ckr"><span>${x.n} × ${x.qty}</span><span>${x.p}</span></div>`).join('')+`<div class="cktot"><span>Total</span><span>$${Cart.total().toLocaleString()} MXN</span></div>`;
   document.getElementById('ck-payment-wrap').style.display='none';
   document.getElementById('stripe-payment-element').innerHTML='';
