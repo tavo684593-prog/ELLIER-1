@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -387,7 +387,7 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
   .fg3{grid-template-columns:1fr}.ceos{grid-template-columns:1fr}
   .hh1{font-size:36px}.clg{grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}}
 
-/* ── DISEÑO GENERAL ──────────────────────── */
+/* -- DISEÑO GENERAL ------------------------ */
 #nv.s{box-shadow:0 2px 32px rgba(0,0,0,.07)}
 .pc{box-shadow:0 2px 18px rgba(0,0,0,.04);transition:transform .34s var(--ea),box-shadow .34s var(--ea),border-color .28s}
 .pc:hover{border-color:rgba(0,0,0,.13)}
@@ -402,12 +402,12 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 #feat{box-shadow:0 1px 0 var(--bo)}
 .sc{transition:transform .25s,box-shadow .25s}.sc:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.07)}
 section{position:relative}
-/* ── CURSOR MODO GLOW ─────────────────────── */
+/* -- CURSOR MODO GLOW ----------------------- */
 #cg{position:fixed;top:0;left:0;width:64px;height:64px;border-radius:50%;pointer-events:none;z-index:9996;margin:-32px 0 0 -32px;background:radial-gradient(circle,rgba(255,255,255,.13) 0%,rgba(255,255,255,.04) 45%,transparent 70%);display:none;transition:width .22s,height .22s,margin .22s}
 body.cm2 #cr,body.cm2 #crf{opacity:0;transition:opacity .18s}
 body.cm2 #cg{display:block}
 #cg.h{width:90px;height:90px;margin:-45px 0 0 -45px}
-/* ── BÚSQUEDA ────────────────────────────── */
+/* -- BÚSQUEDA ------------------------------ */
 #srcho{position:fixed;inset:0;z-index:500;background:rgba(4,4,4,.92);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);opacity:0;pointer-events:none;transition:opacity .26s var(--ea);display:flex;flex-direction:column;align-items:center;padding:clamp(60px,11vh,110px) 20px 30px}
 #srcho.o{opacity:1;pointer-events:all}
 #srchw{width:100%;max-width:660px}
@@ -428,7 +428,7 @@ body.cm2 #cg{display:block}
 .srp{font-size:13px;font-weight:500;color:#fff;margin-top:5px}
 .src-add{margin-top:8px;padding:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-radius:4px;color:rgba(255,255,255,.65);font-size:9px;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;transition:all .16s;font-family:var(--fn);width:100%}
 .src-add:hover{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.2)}
-/* ── MENÚ TRES PUNTOS ────────────────────── */
+/* -- MENÚ TRES PUNTOS ---------------------- */
 #catbtn{background:none;border:1px solid transparent;cursor:pointer;padding:6px 7px;display:flex;align-items:center;justify-content:center;border-radius:7px;transition:background .2s,border-color .2s;flex-shrink:0;color:var(--mu)}
 #catbtn:hover{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.08)}
 #nv.d #catbtn{color:rgba(255,255,255,.5)}
@@ -443,19 +443,19 @@ body.cm2 #cg{display:block}
 .catd-a{display:flex;align-items:center;gap:9px;font-size:12px;padding:9px 15px;color:var(--text);transition:background .12s,padding-left .12s;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--fn)}
 .catd-a:hover{background:var(--bg);padding-left:21px}
 .catd-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
-/* ── CARRITO ANIMACIÓN ───────────────────── */
+/* -- CARRITO ANIMACIÓN --------------------- */
 #crtb.ping{animation:cping .38s cubic-bezier(.36,.07,.19,.97)}
 @keyframes cping{0%{transform:scale(1)}30%{transform:scale(1.32)}60%{transform:scale(.9)}100%{transform:scale(1)}}
-/* ── BOTÓN CURSOR TOGGLE ─────────────────── */
+/* -- BOTÓN CURSOR TOGGLE ------------------- */
 #curtgl{display:flex}
 @media(max-width:768px){#curtgl{display:none}}
-/* ── WISHLIST ────────────────────────────── */
+/* -- WISHLIST ------------------------------ */
 #wo{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.48);opacity:0;pointer-events:none;transition:opacity .3s}
 #wo.o{opacity:1;pointer-events:all}
 #wp{position:fixed;top:0;right:0;bottom:0;width:min(400px,100vw);z-index:201;background:#fff;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .44s var(--ea)}
 #wp.o{transform:none}
 #whbtn{position:relative}
-/* ── PERSONALIZA OVERLAY ─────────────────── */
+/* -- PERSONALIZA OVERLAY ------------------- */
 #pzov{position:fixed;inset:0;z-index:150;background:#0a0a0a;overflow-y:auto;transform:translateY(100%);transition:transform .5s var(--ea)}
 #pzov.o{transform:none}
 /* EVENTOS OVERLAY */
@@ -484,7 +484,7 @@ body.cm2 #cg{display:block}
 .evcmin{font-size:10px;color:var(--su);margin-top:3px}
 .evwa{display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:9px 15px;border-radius:var(--r);font-size:9px;letter-spacing:.14em;text-transform:uppercase;transition:background .2s;border:none;cursor:pointer;flex-shrink:0}
 .evwa:hover{background:#1ebe5d}
-/* ── PRODUCT DETAIL OVERLAY ──────────────── */
+/* -- PRODUCT DETAIL OVERLAY ---------------- */
 #pdov{position:fixed;inset:0;z-index:155;background:var(--bg);overflow-y:auto;transform:translateY(100%);transition:transform .5s var(--ea)}
 #pdov.o{transform:none}
 .pdh{padding:16px 46px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bo);position:sticky;top:0;background:var(--bg);z-index:5;backdrop-filter:blur(12px)}
@@ -532,7 +532,7 @@ body.dark .pd-media{background:#111}
 @media(max-width:768px){.pd-body{grid-template-columns:1fr}.pd-media{position:relative;top:0;height:75vw;min-height:260px;padding:16px}.pd-media-inner{height:100%;max-width:100%}.pd-info{padding:26px 20px 60px}.pdh{padding:12px 18px}}
 .pzovh{padding:26px 46px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0a0a0a;z-index:5}
 .pzovh h2{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#fff}
-/* ── SHOWCASE CAROUSEL ───────────────────── */
+/* -- SHOWCASE CAROUSEL --------------------- */
 #showcase{padding:88px 0;background:var(--bg);overflow:hidden}
 .sw-hd{max-width:1380px;margin:0 auto;padding:0 46px;display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px}
 .sw-nav{display:flex;gap:9px}
@@ -541,7 +541,7 @@ body.dark .pd-media{background:#111}
 .sw-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;padding:4px 46px 24px}
 .sw-track::-webkit-scrollbar{display:none}
 #swt .pc,#swt .tcard{flex:0 0 252px;width:252px;scroll-snap-align:start}
-/* ── POR QUÉ ELEGIRNOS ───────────────────── */
+/* -- POR QUÉ ELEGIRNOS --------------------- */
 #porque{padding:80px 0;background:#fff;border-top:1px solid var(--bo)}
 .pq-wrap{max-width:1380px;margin:0 auto;padding:0 46px}
 .pq-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bo);border:1px solid var(--bo);margin-top:42px;border-radius:8px;overflow:hidden}
@@ -550,7 +550,7 @@ body.dark .pd-media{background:#111}
 .pq-ic{width:38px;height:38px;border:1px solid var(--bo);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--mu);flex-shrink:0}
 .pq-h{font-size:14px;font-weight:500;letter-spacing:-.01em}
 .pq-p{font-size:12px;color:var(--mu);line-height:1.65}
-/* ── ADMIN BTN ───────────────────────────── */
+/* -- ADMIN BTN ----------------------------- */
 #adminbtn{display:none;padding:7px 13px;border:1px solid rgba(255,255,255,.18);border-radius:var(--r);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.72);background:transparent;cursor:pointer;transition:all .2s;font-family:var(--fn);align-items:center;gap:6px;white-space:nowrap}
 #adminbtn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:#fff}
 #nv.s #adminbtn{border-color:var(--bo);color:var(--mu)}
@@ -559,7 +559,7 @@ body.dark .pd-media{background:#111}
 @media(max-width:768px){.sw-hd{padding:0 18px}.sw-track{padding:4px 18px 24px}.pq-wrap{padding:0 18px}.pzovh{padding:14px 20px}}
 @media(max-width:480px){.pq-g{grid-template-columns:1fr}}
 
-/* ── EVENTOS & MÁS BANNER ───────────────────── */
+/* -- EVENTOS & MÁS BANNER --------------------- */
 #evmas{position:relative;height:640px;overflow:hidden;display:flex;align-items:flex-end;background:#111}
 .evmas-slides{position:absolute;inset:0;z-index:0}
 .evmas-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}
@@ -581,7 +581,7 @@ body.ceo-edit #sw-ceo-btn{display:flex}
 .mp-add-slot:hover{border-color:var(--text);background:rgba(0,0,0,.018);color:var(--text)}
 @media(max-width:768px){.mp-wrap{padding:0 18px}}
 
-/* ── CEO TOOLBAR ────────────────────────────── */
+/* -- CEO TOOLBAR ------------------------------ */
 #ceobar{position:fixed;bottom:18px;right:18px;z-index:8990;display:none;flex-direction:column;align-items:flex-end;gap:7px}
 #ceobar.on{display:flex}
 #ceobartg{display:flex;align-items:center;gap:8px;background:#0a0a0a;color:#fff;padding:9px 15px;border-radius:22px;border:none;font-family:var(--fn);font-size:9px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 22px rgba(0,0,0,.35);transition:background .2s}
@@ -591,14 +591,14 @@ body.ceo-edit #sw-ceo-btn{display:flex}
 .cbb:hover{box-shadow:0 4px 18px rgba(0,0,0,.16);transform:translateY(-1px)}
 .cbb.on{background:#0a0a0a;color:#fff;border-color:#0a0a0a}
 
-/* ── CEO EDIT MODE ──────────────────────────── */
+/* -- CEO EDIT MODE ---------------------------- */
 body.ceo-edit [data-ceo]{outline:1.5px dashed rgba(29,106,255,.45);outline-offset:3px;border-radius:3px;cursor:text;transition:outline-color .18s,background .18s}
 body.ceo-edit [data-ceo]:hover{outline-color:rgba(29,106,255,.85);background:rgba(29,106,255,.04)}
 body.ceo-edit [data-ceo]:focus{outline:1.5px solid rgba(29,106,255,1);background:rgba(29,106,255,.06);outline-offset:3px}
 body.ceo-edit [data-ceo-price]{outline:1.5px dashed rgba(255,140,0,.5);outline-offset:3px;border-radius:3px;cursor:text;transition:outline-color .18s}
 body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 
-/* ── CEO THEME PANEL v2 ────────────────────────── */
+/* -- CEO THEME PANEL v2 -------------------------- */
 #ceotheme{position:fixed;bottom:68px;right:18px;z-index:8980;background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:16px;padding:0;width:314px;display:none;box-shadow:0 24px 64px rgba(0,0,0,.22);max-height:86vh;overflow:hidden;flex-direction:column}
 #ceotheme.on{display:flex}
 .ctp-head{padding:14px 16px 12px;border-bottom:1px solid rgba(0,0,0,.07);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
@@ -643,13 +643,13 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 .ctp-save{width:100%;padding:10px;background:#0a0a0a;color:#fff;border:none;border-radius:var(--r);font-size:9px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:12px;font-family:var(--fn);transition:background .2s}
 .ctp-save:hover{background:#222}
 
-/* ── OFFER BANNER ───────────────────────────── */
+/* -- OFFER BANNER ----------------------------- */
 #ofertabanner{text-align:center;padding:10px 48px;font-size:11px;letter-spacing:.07em;display:none;position:relative;transition:background .3s,color .3s}
 #ofertabanner.on{display:block}
 .ob-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;opacity:.55;transition:opacity .2s}
 .ob-close:hover{opacity:1}
 
-/* ── CEO OFFER EDITOR ───────────────────────── */
+/* -- CEO OFFER EDITOR ------------------------- */
 #ceooferta{position:fixed;bottom:68px;right:18px;z-index:8980;background:#fff;border:1px solid var(--bo);border-radius:14px;padding:18px;width:290px;display:none;box-shadow:0 14px 48px rgba(0,0,0,.18)}
 #ceooferta.on{display:block}
 .cof-h{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--bo)}
@@ -657,14 +657,14 @@ body.ceo-edit [data-ceo-price]:hover{outline-color:rgba(255,140,0,.9)}
 .cof-lbl{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--mu)}
 .cof-inp{border:1px solid var(--bo);padding:9px 12px;border-radius:var(--r);font-size:13px;font-family:var(--fn);outline:none;transition:border-color .2s;width:100%}
 .cof-inp:focus{border-color:var(--text)}
-/* ── DESCUENTOS ─────────────────────────────────────────────────────────── */
+/* -- DESCUENTOS ----------------------------------------------------------- */
 .pp-orig,.tcp-orig{text-decoration:line-through;color:var(--mu);font-size:11px;margin-right:3px}
 .pp-disc,.tcp-disc{color:#c0392b;font-weight:600}
 .disc-badge{display:inline-block;background:#c0392b;color:#fff;font-size:8px;letter-spacing:.09em;padding:2px 6px;border-radius:8px;vertical-align:middle;margin-left:4px;font-family:var(--fn)}
 .cof-disc-sep{margin:14px 0;border-top:1px solid var(--bo);padding-top:14px}
 .cof-disc-h{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);margin-bottom:10px}
 .cof-math{font-size:10px;color:var(--mu);margin-top:4px;min-height:16px}
-/* ── CEO IMAGE EDIT OVERLAYS ─────────────────────────────────────────────── */
+/* -- CEO IMAGE EDIT OVERLAYS ----------------------------------------------- */
 .ceo-img-ctrl{position:absolute;top:10px;right:10px;z-index:30;display:flex;gap:4px;opacity:0;transition:opacity .18s;pointer-events:none}
 .ceo-img-ctrl.bot{top:auto;bottom:18px}
 body.ceo-edit [data-ceo-img]{cursor:default}
@@ -674,7 +674,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 .ceo-img-cb.rm{background:rgba(192,57,43,.82)}
 .ceo-img-cb.rm:hover{background:#c0392b}
 .ceo-img-cb svg{flex-shrink:0}
-/* ── IMAGEN PRODUCTO (edit modal) ────────────────────────────────────────── */
+/* -- IMAGEN PRODUCTO (edit modal) ------------------------------------------ */
 .pim-area{border:1.5px dashed var(--bo);border-radius:var(--r);padding:14px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
 .pim-area:hover{border-color:var(--text);background:rgba(0,0,0,.02)}
 .pim-prev{width:100%;max-height:110px;object-fit:contain;border-radius:6px;margin-top:9px;display:none}
@@ -687,7 +687,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 :focus-visible{outline:2px solid rgba(10,10,10,.7);outline-offset:3px;border-radius:var(--r)}
 #hero :focus-visible,#tsc :focus-visible,.evmas-section :focus-visible{outline-color:rgba(255,255,255,.7)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}html{scroll-behavior:auto}.at{animation:none}.hrb{animation:none}.evmas-slide{transition:none}}
-/* ── USER PANEL ─────────────────────────────── */
+/* -- USER PANEL ------------------------------- */
 #uo{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .3s}
 #uo.o{opacity:1;pointer-events:all}
 #up{position:fixed;top:0;right:0;bottom:0;width:min(300px,100vw);z-index:201;background:#fff;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .44s var(--ea)}
@@ -698,12 +698,12 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 .up-btn{display:flex;align-items:center;gap:11px;font-size:13px;padding:15px 24px;color:var(--text);transition:background .12s;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--fn);border-bottom:1px solid var(--bo)}
 .up-btn:hover{background:rgba(0,0,0,.03)}
 .up-btn.red{color:#c0392b}.up-btn.red:hover{background:rgba(192,57,43,.05)}
-/* ── MOBILE MENU AUTH ─────────────────────────── */
+/* -- MOBILE MENU AUTH --------------------------- */
 .mml-btn{background:none;border:none;font-family:var(--fn);line-height:1}
 .mml-logout{color:rgba(210,80,80,.72)!important}.mml-logout:hover{color:rgba(220,60,60,1)!important}
-/* ── TOUCH DEVICES — oculta cursor personalizado ── */
+/* -- TOUCH DEVICES — oculta cursor personalizado -- */
 @media(hover:none),(pointer:coarse){#cr,#crf,#cg{display:none!important}body{cursor:auto}}
-/* ── MEJORAS RESPONSIVE MOBILE ───────────────── */
+/* -- MEJORAS RESPONSIVE MOBILE ----------------- */
 @media(max-width:768px){
   #logo-img,#ceo-logo-img{height:54px!important}
 
@@ -748,8 +748,8 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 
 <!-- OFFER BANNER -->
 <div id="ofertabanner">
-  <span id="ob-text">🔥 Oferta especial — 20% OFF en toda la colección este fin de semana</span>
-  <button class="ob-close" id="ob-close-btn" onclick="document.getElementById('ofertabanner').classList.remove('on')">✕</button>
+  <span id="ob-text">?? Oferta especial — 20% OFF en toda la colección este fin de semana</span>
+  <button class="ob-close" id="ob-close-btn" onclick="document.getElementById('ofertabanner').classList.remove('on')">?</button>
 </div>
 
 <!-- ANNOUNCEMENT -->
@@ -769,7 +769,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   </div>
   <div class="nls">
     <a class="nl" href="#" onclick="closeCl();smoothTo('#hero');return false">Inicio</a>
-    <a class="nl" href="#" onclick="openCl();return false">Colección</a>
+    <a class="nl" href="colecciones.html" target="_blank" rel="noopener">Colección</a>
     <a class="nl" href="#" onclick="openEv();return false">Eventos</a>
     <a class="nl" href="#nosotros">Nosotros</a>
     <a class="nl" href="#footer">Contacto</a>
@@ -792,7 +792,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 </div>
 
 <!-- MOBILE MENU -->
-<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><a class="mml" href="#" onclick="toggleMM();openCl();return false">Colección</a><a class="mml" href="#" onclick="toggleMM();openEv();return false">Eventos</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a><button class="mml mml-btn" id="mm-auth-btn" onclick="toggleMM();openAuth()">Iniciar sesión</button><button class="mml mml-btn" id="mm-orders-btn" onclick="toggleMM();openMyOrders()" style="display:none">Mis pedidos</button><button class="mml mml-btn mml-logout" id="mm-logout-btn" onclick="toggleMM();doLogout()" style="display:none">Cerrar sesión</button></div>
+<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><a class="mml" href="colecciones.html" target="_blank" rel="noopener" onclick="toggleMM()">Colección</a><a class="mml" href="#" onclick="toggleMM();openEv();return false">Eventos</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a><button class="mml mml-btn" id="mm-auth-btn" onclick="toggleMM();openAuth()">Iniciar sesión</button><button class="mml mml-btn" id="mm-orders-btn" onclick="toggleMM();openMyOrders()" style="display:none">Mis pedidos</button><button class="mml mml-btn mml-logout" id="mm-logout-btn" onclick="toggleMM();doLogout()" style="display:none">Cerrar sesión</button></div>
 
 <!-- CATALOG DROPDOWN -->
 <div id="catdrop">
@@ -821,7 +821,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <div class="srchi">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input id="srchinp" placeholder="Buscar productos, categorías…" autocomplete="off"/>
-      <button class="srch-cls" onclick="closeSrch()">✕</button>
+      <button class="srch-cls" onclick="closeSrch()">?</button>
     </div>
     <div id="srchtag"></div>
     <div id="srchres"></div>
@@ -863,7 +863,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
       <div class="cksum" id="cksum"></div>
       <div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Datos de envío</div><div class="ckg" style="gap:9px;margin-bottom:9px"><input id="ck-name" class="fi" placeholder="Nombre completo" required/><input id="ck-tel" class="fi" placeholder="Teléfono" required/></div><input id="ck-addr" class="fi" placeholder="Dirección completa" required style="width:100%;margin-bottom:9px"/><div class="ckg"><input id="ck-city" class="fi" placeholder="Ciudad" required/><input id="ck-cp" class="fi" placeholder="C.P." required/></div></div>
       <div id="ck-payment-wrap" style="display:none;margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Método de pago</div><div id="stripe-payment-element"></div><div id="ck-pay-error" style="color:#e74c3c;font-size:12px;margin-top:8px;display:none"></div></div>
-      <button class="fb" style="width:100%" id="ck-btn" onclick="doCk()">Continuar al pago →</button>
+      <button class="fb" style="width:100%" id="ck-btn" onclick="doCk()">Continuar al pago ?</button>
     </div>
   </div>
 </div>
@@ -950,7 +950,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
           <input type="file" id="pim-file" accept="image/*" style="display:none" onchange="handleProdImg(this)"/>
           <img id="pim-prev" class="pim-prev" alt="preview"/>
         </div>
-        <button class="pim-clear" id="pim-clear" onclick="clearProdImg()">✕ Quitar imagen</button>
+        <button class="pim-clear" id="pim-clear" onclick="clearProdImg()">? Quitar imagen</button>
       </div>
       <div class="fg"><label class="fl">Colores (click para agregar)</label>
         <div class="clrpkr" id="clrpkr">
@@ -1027,7 +1027,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 <main>
 <!-- HERO -->
 <section id="hero" data-ceo-img="hero-bg"><canvas id="hcv"></canvas><div class="hrb hrb1"></div><div class="hrb hrb2"></div><div class="ho1"></div><div class="ho2"></div>
-  <div class="hc" id="hcnt"><p class="htag" data-ceo="hero-tag" contenteditable="false">Colección 2025</p><h1 class="hh1"><span id="hl1" data-ceo="hero-h1" contenteditable="false"></span><span id="hl2" data-ceo="hero-h2" contenteditable="false"></span></h1><p class="hsub" data-ceo="hero-sub" contenteditable="false">Streetwear y personalizados premium. Piezas únicas diseñadas para quienes definen su propio estilo.</p><div class="hbt"><a href="#" class="bp" onclick="openCl();return false">Explorar colección <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="#" class="bg" onclick="openPZ();return false">Crea el tuyo</a></div></div>
+  <div class="hc" id="hcnt"><p class="htag" data-ceo="hero-tag" contenteditable="false">Colección 2025</p><h1 class="hh1"><span id="hl1" data-ceo="hero-h1" contenteditable="false"></span><span id="hl2" data-ceo="hero-h2" contenteditable="false"></span></h1><p class="hsub" data-ceo="hero-sub" contenteditable="false">Streetwear y personalizados premium. Piezas únicas diseñadas para quienes definen su propio estilo.</p><div class="hbt"><a href="colecciones.html" target="_blank" rel="noopener" class="bp">Explorar colección <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="#" class="bg" onclick="openPZ();return false">Crea el tuyo</a></div></div>
   <div class="hsc"><span>Scroll</span><div class="hsl"></div></div>
 </section>
 
@@ -1059,13 +1059,13 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <div class="rv"><p class="ey" data-ceo="sw-ey" contenteditable="false">Destacados</p><h2 class="st" data-ceo="sw-title" contenteditable="false">Lo mejor de ELLIÉR.</h2><p class="sb2" data-ceo="sw-sub" contenteditable="false">Una selección de nuestras piezas más icónicas.</p></div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:11px">
       <div style="display:flex;gap:9px;align-items:center">
-        <div id="sw-ceo-btn"><button class="cb3 pr" onclick="openSwFeatured()">✎ Destacados</button></div>
+        <div id="sw-ceo-btn"><button class="cb3 pr" onclick="openSwFeatured()">? Destacados</button></div>
         <div class="sw-nav">
           <button class="sw-arr" onclick="swScroll(-1)" title="Anterior">&#8592;</button>
           <button class="sw-arr" onclick="swScroll(1)" title="Siguiente">&#8594;</button>
         </div>
       </div>
-      <a href="#" onclick="openCl();return false" style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);border-bottom:1px solid var(--bo);padding-bottom:2px">Ver todo →</a>
+      <a href="catalogo-completo.html" target="_blank" rel="noopener" style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);border-bottom:1px solid var(--bo);padding-bottom:2px">Ver todo &rarr;</a>
     </div>
   </div>
   <div class="sw-track" id="swt"></div>
@@ -1133,7 +1133,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <p class="rv" style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.75;max-width:420px">Sube imágenes, agrega texto y personaliza cualquier producto. Vista previa instantánea, pedido en minutos.</p>
     <div class="rv" style="display:flex;gap:11px;flex-wrap:wrap;justify-content:center;margin-top:8px">
       <a href="#" class="bp" onclick="openPZ();return false">Abrir diseñador <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="#" class="bg" onclick="openCl();return false">Ver catálogo</a>
+      <a href="colecciones.html" target="_blank" rel="noopener" class="bg">Ver catálogo</a>
     </div>
     <div class="rv" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden;width:100%;max-width:480px;margin-top:16px">
       <div style="background:#0a0a0a;padding:20px 16px;text-align:center"><div style="font-size:18px;font-weight:500;color:#fff">Termos</div><div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:3px;letter-spacing:.1em;text-transform:uppercase">500–750ml</div></div>
@@ -1144,7 +1144,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 </section>
 
 <!-- FOOTER -->
-<footer id="footer"><div class="fi4"><div class="ft3"><div class="fb3"><h3>ELLIÉR</h3><p>Termos y streetwear personalizados de calidad premium. Tu imagen, tu identidad — diseñada para durar.</p><a href="https://wa.me/" target="_blank" class="wa"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>WhatsApp</a></div><div class="fc"><h4>Tienda</h4><ul><li><a href="#" onclick="openCl();return false">Colección</a></li><li><a href="#masproductos">Más productos</a></li><li><a href="#" onclick="openCl();return false">Colección</a></li><li><a href="#">Novedades</a></li></ul></div><div class="fc"><h4>Personalización</h4><ul><li><a href="#" onclick="openPZ();return false">Diseñar ahora</a></li><li><a href="#">Cómo funciona</a></li><li><a href="#">Galería</a></li><li><a href="#">FAQ</a></li></ul></div><div class="fc"><h4>Contacto</h4><ul><li><a href="https://wa.me/" target="_blank">WhatsApp</a></li><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="mailto:ellier@correo.com">Email</a></li></ul></div></div><div class="fbot"><p class="fcp">© 2025 ELLIÉR — Todos los derechos reservados</p><div class="fsocs"><a href="#" class="fsoc"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div></div></footer>
+<footer id="footer"><div class="fi4"><div class="ft3"><div class="fb3"><h3>ELLIÉR</h3><p>Termos y streetwear personalizados de calidad premium. Tu imagen, tu identidad — diseñada para durar.</p><a href="https://wa.me/" target="_blank" class="wa"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>WhatsApp</a></div><div class="fc"><h4>Tienda</h4><ul><li><a href="colecciones.html" target="_blank" rel="noopener">Colección</a></li><li><a href="#masproductos">Más productos</a></li><li><a href="coleccion-up.html" target="_blank" rel="noopener">Colección UP</a></li><li><a href="colecciones.html" target="_blank" rel="noopener">Novedades</a></li></ul></div><div class="fc"><h4>Personalización</h4><ul><li><a href="#" onclick="openPZ();return false">Diseñar ahora</a></li><li><a href="#">Cómo funciona</a></li><li><a href="#">Galería</a></li><li><a href="#">FAQ</a></li></ul></div><div class="fc"><h4>Contacto</h4><ul><li><a href="https://wa.me/" target="_blank">WhatsApp</a></li><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="mailto:ellier@correo.com">Email</a></li></ul></div></div><div class="fbot"><p class="fcp">© 2025 ELLIÉR — Todos los derechos reservados</p><div class="fsocs"><a href="#" class="fsoc"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div></div></footer>
 </main>
 
 <!-- CEO FLOATING TOOLBAR -->
@@ -1177,7 +1177,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 <div id="ceotheme">
   <div class="ctp-head">
     <span class="ctp-title">Colores &amp; Tema</span>
-    <button class="ctp-x" onclick="toggleCeoTheme()">✕</button>
+    <button class="ctp-x" onclick="toggleCeoTheme()">?</button>
   </div>
   <div class="ctp-body">
     <div class="ctp-sec">Variables de color</div>
@@ -1213,7 +1213,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 <!-- CEO OFFER EDITOR -->
 <div id="ceooferta">
   <div class="cof-h">Banner de oferta</div>
-  <div class="cof-row"><label class="cof-lbl">Texto del banner</label><input class="cof-inp" id="cof-txt" placeholder="🔥 Oferta especial — texto aquí" value=""/></div>
+  <div class="cof-row"><label class="cof-lbl">Texto del banner</label><input class="cof-inp" id="cof-txt" placeholder="?? Oferta especial — texto aquí" value=""/></div>
   <div class="cof-row"><label class="cof-lbl">Color de fondo</label>
     <div style="display:flex;gap:6px;flex-wrap:wrap" id="cof-colors">
       <div class="ctp-sw" style="background:#0a0a0a" onclick="setCofBg('#0a0a0a',this)" title="Negro"></div>
@@ -1507,7 +1507,7 @@ function openProdDetail(id){
     <div class="pd-price-row">${_mkPriceHtml(p,'pd-p')}</div>
     ${colorsH}
     <div class="pd-actions">
-      <button class="pd-add" onclick="Cart.add('${id}');showToast('Agregado al carrito ✓')">+ Agregar al carrito</button>
+      <button class="pd-add" onclick="Cart.add('${id}');showToast('Agregado al carrito ?')">+ Agregar al carrito</button>
       <button class="pd-pz" onclick="closeProdDetail();setTimeout(openPZ,60)">Personalizar</button>
     </div>
     <div class="pd-sec">
@@ -1585,7 +1585,7 @@ function toggleWish(btn,id){
   const i=wish.indexOf(id);
   if(i>-1){wish.splice(i,1);btn.classList.remove('on')}else{wish.push(id);btn.classList.add('on')}
   _saveWish();
-  showToast(i>-1?'Eliminado de favoritos':'Agregado a favoritos ♥');
+  showToast(i>-1?'Eliminado de favoritos':'Agregado a favoritos ?');
 }
 function openWish(){if(lenis)lenis.stop();document.getElementById('wo').classList.add('o');document.getElementById('wp').classList.add('o');renderWish();}
 function closeWish(){document.getElementById('wo').classList.remove('o');document.getElementById('wp').classList.remove('o');if(lenis)lenis.start();}
@@ -1597,7 +1597,7 @@ function renderWish(){
     const p=all.find(x=>x.id===id);if(!p)return'';
     const svg=SW.find(x=>x.id===id)?p.svg.replace(/\{C\}/g,p.clrs[0]):p.cat==='termos'?mkTermoSVG(p.clr):mkTazaSVG(p.clr);
     const nm=p.n.replace(/'/g,'&#39;');
-    return `<div class="ci"><div class="ct2">${svg}</div><div class="cii"><h4>${p.n}</h4><p style="font-size:11px;color:var(--mu)">${p.cat}</p><div class="cq" style="margin-bottom:8px"><span class="cpri">${p.p}</span><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="removeWish('${id}')">✕</button></div><button class="ba" style="width:100%;text-align:center;position:relative" onclick="Cart.add('${id}');showToast('Agregado: ${nm}')">+ Carrito</button></div></div>`;
+    return `<div class="ci"><div class="ct2">${svg}</div><div class="cii"><h4>${p.n}</h4><p style="font-size:11px;color:var(--mu)">${p.cat}</p><div class="cq" style="margin-bottom:8px"><span class="cpri">${p.p}</span><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="removeWish('${id}')">?</button></div><button class="ba" style="width:100%;text-align:center;position:relative" onclick="Cart.add('${id}');showToast('Agregado: ${nm}')">+ Carrito</button></div></div>`;
   }).filter(Boolean).join('');
   ft.style.display='block';
 }
@@ -1632,7 +1632,7 @@ const Cart={
     if(!this.items.length){el.innerHTML='<div class="ce"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p>Tu carrito está vacío</p></div>';ft.style.display='none';return}
     el.innerHTML=this.items.map((x,i)=>{
       const svg=x.cat==='termos'?mkTermoSVG(x.clr||'#1a1a1a'):x.cat==='tazas'?mkTazaSVG(x.clr||'#2a2a2a'):`<div style="width:100%;height:100%;background:${x.clr||'#1a1a1a'};border-radius:4px"></div>`;
-      return `<div class="ci"><div class="ct2">${svg}</div><div class="cii"><h4>${x.n}</h4><p style="font-size:11px;color:var(--mu)">${x.cat}${x.custom?' · Custom':''}</p><div class="cq"><button onclick="Cart.chQty(${i},-1)">−</button><span>${x.qty}</span><button onclick="Cart.chQty(${i},1)">+</button><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="Cart.remove(${i})">✕</button></div><div class="cpri">${x.p} × ${x.qty}</div></div></div>`;
+      return `<div class="ci"><div class="ct2">${svg}</div><div class="cii"><h4>${x.n}</h4><p style="font-size:11px;color:var(--mu)">${x.cat}${x.custom?' · Custom':''}</p><div class="cq"><button onclick="Cart.chQty(${i},-1)">-</button><span>${x.qty}</span><button onclick="Cart.chQty(${i},1)">+</button><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="Cart.remove(${i})">?</button></div><div class="cpri">${x.p} × ${x.qty}</div></div></div>`;
     }).join('');
     ft.style.display='block';document.getElementById('ctotv').textContent='$'+this.total().toLocaleString()+' MXN';
   }
@@ -1846,7 +1846,7 @@ function openOrder(id){
   document.getElementById('odaddr').innerHTML=`<div class="odrow"><span>Dirección completa</span><span>${o.addr}</span></div>`;
   document.getElementById('odstbts').innerHTML=`
     <button class="${o.st==='p'?'act':''}" onclick="setOrdSt('${o.id}','p')">Pendiente</button>
-    <button class="gr${o.st==='d'?' act':''}" onclick="setOrdSt('${o.id}','d')">Enviado ✓</button>
+    <button class="gr${o.st==='d'?' act':''}" onclick="setOrdSt('${o.id}','d')">Enviado ?</button>
     <button class="${o.st==='r'?'act':''}" onclick="setOrdSt('${o.id}','r')">En revisión</button>`;
   document.getElementById('odov').classList.add('o');
   document.getElementById('odp').classList.add('o');
@@ -1988,7 +1988,7 @@ function openCk(){
   document.getElementById('ck-payment-wrap').style.display='none';
   document.getElementById('stripe-payment-element').innerHTML='';
   const btn=document.getElementById('ck-btn');
-  btn.textContent='Continuar al pago →';btn.disabled=false;btn.onclick=doCk;
+  btn.textContent='Continuar al pago ?';btn.disabled=false;btn.onclick=doCk;
   _stripeElements=null;_ckOrderId=null;_ckPI=null;
   closeCart();document.getElementById('cko').classList.add('o');
 }
@@ -2004,7 +2004,7 @@ async function doCk(){
   try{
     if(!_stripe)_stripe=Stripe(STRIPE_PK);
     const{data:{session}}=await _sb.auth.getSession();
-    if(!session){showToast('Inicia sesión para completar tu compra');btn.textContent='Continuar al pago →';btn.disabled=false;return;}
+    if(!session){showToast('Inicia sesión para completar tu compra');btn.textContent='Continuar al pago ?';btn.disabled=false;return;}
     const res=await fetch(`${SUPABASE_URL}/functions/v1/create-payment-intent`,{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token,'apikey':SUPABASE_KEY},
@@ -2019,9 +2019,9 @@ async function doCk(){
     document.getElementById('stripe-payment-element').innerHTML='';
     payEl.mount('#stripe-payment-element');
     document.getElementById('ck-payment-wrap').style.display='block';
-    btn.textContent=`Pagar $${Cart.total().toLocaleString()} MXN →`;
+    btn.textContent=`Pagar $${Cart.total().toLocaleString()} MXN ?`;
     btn.disabled=false;btn.onclick=confirmPayment;
-  }catch(e){showToast('Error: '+e.message);btn.textContent='Continuar al pago →';btn.disabled=false;}
+  }catch(e){showToast('Error: '+e.message);btn.textContent='Continuar al pago ?';btn.disabled=false;}
 }
 async function confirmPayment(){
   const btn=document.getElementById('ck-btn');
@@ -2029,7 +2029,7 @@ async function confirmPayment(){
   const errEl=document.getElementById('ck-pay-error');
   errEl.style.display='none';
   const{error}=await _stripe.confirmPayment({elements:_stripeElements,confirmParams:{return_url:window.location.href},redirect:'if_required'});
-  if(error){errEl.textContent=error.message;errEl.style.display='block';btn.textContent=`Pagar $${Cart.total().toLocaleString()} MXN →`;btn.disabled=false;return;}
+  if(error){errEl.textContent=error.message;errEl.style.display='block';btn.textContent=`Pagar $${Cart.total().toLocaleString()} MXN ?`;btn.disabled=false;return;}
   try{
     const{data:{session}}=await _sb.auth.getSession();
     if(session)await fetch(`${SUPABASE_URL}/functions/v1/confirm-order`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token,'apikey':SUPABASE_KEY},body:JSON.stringify({orderId:_ckOrderId,paymentIntentId:_ckPI})});
@@ -2188,12 +2188,12 @@ const EV_IND=[
   {id:'ei6',n:'Termo XL Personalizado',cat:'Termos & Tazas',p:'Desde $480 MXN',desc:'750ml. Gran capacidad. Grabado al laser. Diseño a elección.',clr:'#3a2a1a',type:'termo'},
 ];
 const EV_PKGS=[
-  {id:'ep1',cat:'XV Años',n:'Paquete Quinceañero',desc:'Termos o tazas con diseño exclusivo. Foto, nombre y fecha incluidos. El regalo perfecto para una noche especial.',p:'Desde $240 MXN/pieza',min:'Mínimo 20 piezas',clr:'#d4a8b8',icon:'🌸'},
-  {id:'ep2',cat:'Bodas',n:'Paquete Boda',desc:'Recuerdos elegantes para los invitados. Grabado con nombres de los novios, fecha y frase especial.',p:'Desde $280 MXN/pieza',min:'Mínimo 30 piezas',clr:'#e8e0d4',icon:'💍'},
-  {id:'ep3',cat:'Cumpleaños & Fiestas',n:'Paquete Fiesta',desc:'Recuerdos únicos para cualquier celebración. Diseño personalizado, colores a elección, entrega rápida.',p:'Desde $200 MXN/pieza',min:'Mínimo 15 piezas',clr:'#8a9485',icon:'🎉'},
-  {id:'ep4',cat:'Corporativo',n:'Paquete Corporativo',desc:'Merch de calidad con tu logo empresarial. Termos, tazas y ropa para equipos o regalos a clientes clave.',p:'Desde $220 MXN/pieza',min:'Mínimo 25 piezas',clr:'#2a2a2a',icon:'🏢'},
-  {id:'ep5',cat:'Bautizo & Baby Shower',n:'Paquete Baby',desc:'Recuerdos tiernos para la bienvenida al bebé. Diseño personalizado con nombre, fecha y motivo elegido.',p:'Desde $220 MXN/pieza',min:'Mínimo 20 piezas',clr:'#b8d0e8',icon:'🍼'},
-  {id:'ep6',cat:'Graduación',n:'Paquete Graduación',desc:'Recuerda ese gran logro para siempre. Nombre, año y carrera. Ideal para grupos de egresados.',p:'Desde $260 MXN/pieza',min:'Mínimo 20 piezas',clr:'#2a3a2a',icon:'🎓'},
+  {id:'ep1',cat:'XV Años',n:'Paquete Quinceañero',desc:'Termos o tazas con diseño exclusivo. Foto, nombre y fecha incluidos. El regalo perfecto para una noche especial.',p:'Desde $240 MXN/pieza',min:'Mínimo 20 piezas',clr:'#d4a8b8',icon:'??'},
+  {id:'ep2',cat:'Bodas',n:'Paquete Boda',desc:'Recuerdos elegantes para los invitados. Grabado con nombres de los novios, fecha y frase especial.',p:'Desde $280 MXN/pieza',min:'Mínimo 30 piezas',clr:'#e8e0d4',icon:'??'},
+  {id:'ep3',cat:'Cumpleaños & Fiestas',n:'Paquete Fiesta',desc:'Recuerdos únicos para cualquier celebración. Diseño personalizado, colores a elección, entrega rápida.',p:'Desde $200 MXN/pieza',min:'Mínimo 15 piezas',clr:'#8a9485',icon:'??'},
+  {id:'ep4',cat:'Corporativo',n:'Paquete Corporativo',desc:'Merch de calidad con tu logo empresarial. Termos, tazas y ropa para equipos o regalos a clientes clave.',p:'Desde $220 MXN/pieza',min:'Mínimo 25 piezas',clr:'#2a2a2a',icon:'??'},
+  {id:'ep5',cat:'Bautizo & Baby Shower',n:'Paquete Baby',desc:'Recuerdos tiernos para la bienvenida al bebé. Diseño personalizado con nombre, fecha y motivo elegido.',p:'Desde $220 MXN/pieza',min:'Mínimo 20 piezas',clr:'#b8d0e8',icon:'??'},
+  {id:'ep6',cat:'Graduación',n:'Paquete Graduación',desc:'Recuerda ese gran logro para siempre. Nombre, año y carrera. Ideal para grupos de egresados.',p:'Desde $260 MXN/pieza',min:'Mínimo 20 piezas',clr:'#2a3a2a',icon:'??'},
 ];
 function evWhatsApp(pkgName){
   const msg=encodeURIComponent('Hola ELLIÉR, me interesa cotizar el '+pkgName+'. ¿Me pueden dar más información?');
@@ -2204,7 +2204,7 @@ function renderEv(){
   if(ig&&!ig.children.length){
     ig.innerHTML=EV_IND.map(p=>{
       const svg=p.type==='termo'?mkTermoSVG(p.clr):p.type==='taza'?mkTazaSVG(p.clr):`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="${p.clr}"/><path d="M35 30 Q50 38 65 30 L65 38 Q50 46 35 38 Z" fill="rgba(0,0,0,.15)"/></svg>`;
-      return `<div class="pc rv"><div class="pci"><div class="pcii" style="padding:24px">${svg}</div></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><p style="font-size:11px;color:var(--mu);line-height:1.6;margin-bottom:12px">${p.desc}</p><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="openPZ()">Diseñar →</button></div></div></div>`;
+      return `<div class="pc rv"><div class="pci"><div class="pcii" style="padding:24px">${svg}</div></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><p style="font-size:11px;color:var(--mu);line-height:1.6;margin-bottom:12px">${p.desc}</p><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="openPZ()">Diseñar ?</button></div></div></div>`;
     }).join('');
     obsNew(ig);
   }
@@ -2328,7 +2328,7 @@ document.addEventListener('keydown',e=>{
   }
 });
 
-// MENÚ CATÁLOGOS (⋯)
+// MENÚ CATÁLOGOS (?)
 let _catO=false;
 function toggleCatMenu(){
   const btn=document.getElementById('catbtn'),drop=document.getElementById('catdrop');
@@ -2344,17 +2344,13 @@ function closeCatMenu(){_catO=false;document.getElementById('catdrop').classList
 function catGo(cat){
   closeCatMenu();
   if(cat==='personaliza'){closeCl();setTimeout(openPZ,60);return}
-  openCl();
-  setTimeout(()=>{
-    const b=document.querySelector(`#clf .cft2[onclick*="'${cat}'"]`);
-    if(b)b.click();
-  },140);
+  window.open('colecciones.html','_blank','noopener');
 }
 document.addEventListener('click',e=>{
   if(_catO&&!e.target.closest('#catbtn')&&!e.target.closest('#catdrop'))closeCatMenu();
 });
 
-// ─── CEO BAR & INLINE EDITOR ──────────────────────────────────────────────
+// --- CEO BAR & INLINE EDITOR ----------------------------------------------
 
 let _ceoBarOpen=false;
 function toggleCeoBar(){
@@ -2445,7 +2441,7 @@ function loadCeoCustomizations(){
   }
 }
 
-// ─── CEO THEME v2 ───────────────────────────────────────────────────────────
+// --- CEO THEME v2 -----------------------------------------------------------
 
 const _themeVarDefs=[
   {v:'--bg',   label:'Fondo principal',    sub:'Color base de toda la página'},
@@ -2474,7 +2470,7 @@ const _presets={
   dark:{  '--bg':'#121212','--dark':'#ffffff','--bo':'#2a2a2a','--mu':'#8a8a8a','--text':'#f5f5f5'},
 };
 
-// ── Color conversion helpers ─────────────────────────────────────────────────
+// -- Color conversion helpers -------------------------------------------------
 function _toHex(color){
   if(!color)return'#000000';color=color.trim();
   if(/^#[0-9a-f]{6}$/i.test(color))return color;
@@ -2504,7 +2500,7 @@ function _toPastel(hex){
   return _hslToHex(h,Math.min(s*.35+13,38),Math.max(l*.2+74,82));
 }
 
-// ── Theme panel builder ──────────────────────────────────────────────────────
+// -- Theme panel builder ------------------------------------------------------
 let _currentTheme={};
 
 function buildThemePanel(){
@@ -2541,7 +2537,7 @@ function onThemeColorInput(v,hex){
   if(prev)prev.style.background=applied;
 }
 
-// ── Pastel mode ──────────────────────────────────────────────────────────────
+// -- Pastel mode --------------------------------------------------------------
 let _pastelOn=false,_pastelOrig={};
 function togglePastelMode(){
   _pastelOn=!_pastelOn;
@@ -2558,7 +2554,7 @@ function togglePastelMode(){
       const prev=document.getElementById('cprev-'+id);const inp=document.getElementById('cinp-'+id);
       if(prev)prev.style.background=p;if(inp)inp.value=p;
     });
-    showToast('Modo pastel activado ✿');
+    showToast('Modo pastel activado ?');
   }else{
     Object.entries(_pastelOrig).forEach(([v,c])=>{
       document.documentElement.style.setProperty(v,c);
@@ -2571,7 +2567,7 @@ function togglePastelMode(){
   }
 }
 
-// ── Blur ─────────────────────────────────────────────────────────────────────
+// -- Blur ---------------------------------------------------------------------
 function setCssBlur(val){
   document.documentElement.style.setProperty('--blur',val+'px');
   const lbl=document.getElementById('ctp-blur-val');if(lbl)lbl.textContent=val+'px';
@@ -2580,7 +2576,7 @@ function setCssBlur(val){
   _currentTheme['--blur']=val+'px';
 }
 
-// ── Seasons ──────────────────────────────────────────────────────────────────
+// -- Seasons ------------------------------------------------------------------
 function applySeason(key){
   const s=_seasons[key];if(!s)return;
   document.querySelectorAll('.cs-card').forEach(el=>el.classList.remove('a'));
@@ -2595,7 +2591,7 @@ function applySeason(key){
   showToast('Temporada: '+s.label);
 }
 
-// ── Presets ──────────────────────────────────────────────────────────────────
+// -- Presets ------------------------------------------------------------------
 function applyPreset(name){
   const p=_presets[name];if(!p)return;
   Object.entries(p).forEach(([v,c])=>{
@@ -2609,13 +2605,13 @@ function applyPreset(name){
   showToast('Preset: '+name);
 }
 
-// ── Save / Reset ─────────────────────────────────────────────────────────────
+// -- Save / Reset -------------------------------------------------------------
 function setCssVar(v,val){
   document.documentElement.style.setProperty(v,val);_currentTheme[v]=val;
 }
 function saveTheme(){
   localStorage.setItem('ellier_ceo_theme',JSON.stringify(_currentTheme));
-  showToast('Tema guardado ✓');
+  showToast('Tema guardado ?');
 }
 function resetTheme(){
   _currentTheme={};localStorage.removeItem('ellier_ceo_theme');
@@ -2639,7 +2635,7 @@ function toggleCeoTheme(){
   document.getElementById('cbb-theme').classList.toggle('on',_ceoThemeOpen);
 }
 
-// ─── CEO IMAGE EDITING ──────────────────────────────────────────────────────
+// --- CEO IMAGE EDITING ------------------------------------------------------
 
 const _ceoImgDefs=[
   {key:'hero-bg',    label:'Fondo Hero',       sel:'#hero',                          isBg:true, pos:'bot'},
@@ -2673,7 +2669,7 @@ function _injectImgOverlays(){
     btnRm.className='ceo-img-cb rm';
     btnRm.type='button';
     btnRm.title='Quitar imagen';
-    btnRm.textContent='✕';
+    btnRm.textContent='?';
     btnRm.onclick=e=>{e.preventDefault();e.stopPropagation();_removeCeoImg(def.key);};
     ctrl.appendChild(btnUpload);ctrl.appendChild(btnRm);
     el.appendChild(ctrl);
@@ -2746,7 +2742,7 @@ function _removeCeoImg(key){
   showToast('Imagen eliminada');
 }
 
-// ─── CEO GLOBAL DISCOUNT ────────────────────────────────────────────────────
+// --- CEO GLOBAL DISCOUNT ----------------------------------------------------
 
 function previewGlobalDisc(){
   const pct=parseFloat(document.getElementById('cof-pct').value)||0;
@@ -2756,7 +2752,7 @@ function previewGlobalDisc(){
     prev.textContent=`${pct}% OFF`;
     // razonamiento matemático con ejemplo de precio
     const examples=[[520,520*(1-pct/100)],[380,380*(1-pct/100)],[320,320*(1-pct/100)]];
-    math.textContent=examples.map(([o,f])=>`$${o} → $${Math.round(f)}`).join(' · ');
+    math.textContent=examples.map(([o,f])=>`$${o} ? $${Math.round(f)}`).join(' · ');
   }else{
     prev.textContent='';math.textContent='';
   }
@@ -2817,7 +2813,7 @@ function clearProdImg(){
   document.getElementById('pim-file').value='';
 }
 
-// ─── CEO OFFER BANNER ───────────────────────────────────────────────────────
+// --- CEO OFFER BANNER -------------------------------------------------------
 
 let _cofBg='#0a0a0a';
 function setCofBg(clr,dot){
@@ -2853,7 +2849,7 @@ function toggleCeoOffer(){
   }
 }
 
-// ─── MÁS PRODUCTOS ──────────────────────────────────────────────────────────
+// --- MÁS PRODUCTOS ----------------------------------------------------------
 
 function renderMasProductos(){
   const g=document.getElementById('mpg');if(!g)return;
@@ -2865,7 +2861,7 @@ function renderMasProductos(){
   obsNew(g);
 }
 
-// ─── INIT CEO ───────────────────────────────────────────────────────────────
+// --- INIT CEO ---------------------------------------------------------------
 
 // INIT
 renderShowcase();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
