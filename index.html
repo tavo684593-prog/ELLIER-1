@@ -30,8 +30,11 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 /* LOADER */
 #ld{position:fixed;inset:0;z-index:9990;background:#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
 #ldl{opacity:0;transform:scale(.8)}
-#ldn{opacity:0;transform:translateY(10px);font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.42)}
-#ldb{width:70px;height:1px;background:rgba(255,255,255,.08);overflow:hidden}
+#ldn{opacity:0;transform:translateY(10px)}
+#ldn-wrap{position:relative;display:inline-block}
+.ldn-base{width:110px;height:auto;opacity:.12;filter:grayscale(1)}
+.ldn-reveal{position:absolute;top:0;left:0;width:110px;height:auto;clip-path:inset(0 100% 0 0)}
+#ldb{width:110px;height:1px;background:rgba(255,255,255,.08);overflow:hidden}
 #ldf{height:100%;background:rgba(255,255,255,.5);width:0}
 /* ANNOUNCEMENT */
 #ann{background:#0a0a0a;color:#fff;overflow:hidden;padding:10px 0;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
@@ -741,8 +744,8 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 
 <!-- LOADER -->
 <div id="ld">
-  <div id="ldl"><img src="images/Banner_EllIER-.png" alt="ELLIER" style="width:290px;height:auto"/></div>
-  <div id="ldn">ELLIÉR</div>
+  <div id="ldl"><img src="images/Cabeza_Ellier.png" alt="ELLIER" style="width:290px;height:auto"/></div>
+  <div id="ldn"><div id="ldn-wrap"><img class="ldn-base" src="images/ELLIER.png" alt="ELLIER"><img class="ldn-reveal" src="images/ELLIER.png" alt="ELLIER"></div></div>
   <div id="ldb"><div id="ldf"></div></div>
 </div>
 
@@ -1301,6 +1304,7 @@ gsap.timeline({onComplete:()=>{document.getElementById('ld').style.display='none
   .to('#ldl',{opacity:1,scale:1,duration:.7,ease:'power3.out'},.3)
   .to('#ldn',{opacity:1,y:0,duration:.5,ease:'power2.out'},.6)
   .to('#ldf',{width:'100%',duration:1.2,ease:'power2.inOut'},.8)
+  .fromTo('.ldn-reveal',{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.2,ease:'power2.inOut'},.8)
   .to('#ld',{opacity:0,duration:.5,ease:'power2.in'},2.4);
 
 // NAVBAR
