@@ -43,11 +43,15 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 @keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 /* NAVBAR */
 #nv{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;transition:padding .35s var(--ea),background .35s var(--ea)}
-#nv.s{padding:13px 48px;background:rgba(245,244,240,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bo)}
+#nv.s{padding:13px 48px;background:rgba(8,8,8,.78);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid rgba(255,255,255,.07)}
 #nv.d .nl,#nv.d .ni{color:rgba(255,255,255,.6)}
 #nv.d .nl:hover,#nv.d .ni:hover{color:#fff}
 #nv.d .nlt{color:#fff}#nv.d .nli{fill:#fff}
 #nv.d #hb span{background:#fff}#nv.d .nba{background:#fff;color:#0a0a0a}
+#nv.s .nl,#nv.s .ni{color:rgba(255,255,255,.6)}
+#nv.s .nl:hover,#nv.s .ni:hover{color:#fff}
+#nv.s .nlt{color:#fff}#nv.s .nli{fill:#fff}
+#nv.s #hb span{background:#fff}#nv.s .nba{background:#fff;color:#0a0a0a}
 .nlt{font-size:13px;letter-spacing:.36em;text-transform:uppercase;font-weight:500;color:var(--text);transition:color .3s}
 .nli{width:18px;height:18px;fill:var(--text);transition:fill .3s}
 .nls{display:flex;align-items:center;gap:32px}
@@ -391,7 +395,7 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
   .hh1{font-size:36px}.clg{grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}}
 
 /* ── DISEÑO GENERAL ──────────────────────── */
-#nv.s{box-shadow:0 2px 32px rgba(0,0,0,.07)}
+#nv.s{box-shadow:0 2px 32px rgba(0,0,0,.26)}
 .pc{box-shadow:0 2px 18px rgba(0,0,0,.04);transition:transform .34s var(--ea),box-shadow .34s var(--ea),border-color .28s}
 .pc:hover{border-color:rgba(0,0,0,.13)}
 .tcard{box-shadow:0 2px 18px rgba(0,0,0,.04);transition:transform .34s var(--ea),box-shadow .34s var(--ea),border-color .28s}
@@ -436,7 +440,7 @@ body.cm2 #cg{display:block}
 #catbtn:hover{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.08)}
 #nv.d #catbtn{color:rgba(255,255,255,.5)}
 #nv.d #catbtn:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.12)}
-#nv.s #catbtn{color:var(--mu)}
+#nv.s #catbtn{color:rgba(255,255,255,.55)}
 #catdrop{position:fixed;top:70px;left:48px;z-index:98;background:#fff;border:1px solid var(--bo);border-radius:12px;min-width:238px;box-shadow:0 18px 58px rgba(0,0,0,.14),0 4px 16px rgba(0,0,0,.06);opacity:0;pointer-events:none;transform:translateY(-10px) scale(.97);transition:opacity .22s var(--ea),transform .22s var(--ea);overflow:hidden}
 #catdrop.o{opacity:1;pointer-events:all;transform:none}
 .catd-hd{padding:12px 15px 10px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);background:#0a0a0a;display:flex;align-items:center;gap:8px}
@@ -556,8 +560,8 @@ body.dark .pd-media{background:#111}
 /* ── ADMIN BTN ───────────────────────────── */
 #adminbtn{display:none;padding:7px 13px;border:1px solid rgba(255,255,255,.18);border-radius:var(--r);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.72);background:transparent;cursor:pointer;transition:all .2s;font-family:var(--fn);align-items:center;gap:6px;white-space:nowrap}
 #adminbtn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:#fff}
-#nv.s #adminbtn{border-color:var(--bo);color:var(--mu)}
-#nv.s #adminbtn:hover{background:var(--bg);border-color:var(--text);color:var(--text)}
+#nv.s #adminbtn{border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.72)}
+#nv.s #adminbtn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);color:#fff}
 @media(max-width:1024px){#adminbtn{display:none!important}}
 @media(max-width:768px){.sw-hd{padding:0 18px}.sw-track{padding:4px 18px 24px}.pq-wrap{padding:0 18px}.pzovh{padding:14px 20px}}
 @media(max-width:480px){.pq-g{grid-template-columns:1fr}}
@@ -736,6 +740,23 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   .bp,.bg{width:100%;justify-content:center}
   .hsc{display:none}
 }
+/* TOUCH / DISPOSITIVOS TACTILES */
+@media(hover:none),(pointer:coarse){
+  #cr,#crf,#cg{display:none!important}
+  body{cursor:auto!important}
+  #curtgl{display:none!important}
+}
+/* MOBILE PANELS & SCROLL */
+@media(max-width:768px){
+  #hero{min-height:100svh}
+  .cb,#cl,#evov,#pdov,#pzov,#ceo,#mob,#ckb,#odp,#wp,#srchres{-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  .mml{min-height:44px;display:flex;align-items:center;justify-content:center}
+  .ba,.bp,.bg,.bck,.fb,.aib,.evwa,.catd-a,.ba{-webkit-tap-highlight-color:transparent}
+}
+@media(max-width:480px){
+  #pdov .pd-info{padding-bottom:80px}
+  .pzovh,.evh,.clh{padding-left:18px;padding-right:18px}
+}
 </style>
 </head>
 <body>
@@ -859,9 +880,9 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 </div>
 
 <!-- CHECKOUT -->
-<div id="cko" onclick="if(event.target===this)this.classList.remove('o')">
+<div id="cko" onclick="if(event.target===this)closeCk()">
   <div id="ckb">
-    <div class="ckh"><h3>Checkout</h3><button class="xb" onclick="document.getElementById('cko').classList.remove('o')"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="ckh"><h3>Checkout</h3><button class="xb" onclick="closeCk()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
     <div class="ckbody">
       <div class="cksum" id="cksum"></div>
       <div style="margin-bottom:16px"><div style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);margin-bottom:11px">Datos de envío</div><div class="ckg" style="gap:9px;margin-bottom:9px"><input id="ck-name" class="fi" placeholder="Nombre completo" required/><input id="ck-tel" class="fi" placeholder="Teléfono" required/></div><input id="ck-addr" class="fi" placeholder="Dirección completa" required style="width:100%;margin-bottom:9px"/><div class="ckg"><input id="ck-city" class="fi" placeholder="Ciudad" required/><input id="ck-cp" class="fi" placeholder="C.P." required/></div></div>
@@ -1251,14 +1272,17 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-// Lenis smooth scroll (con fallback si no carga el CDN)
+// Lenis smooth scroll — solo desktop (touch usa scroll nativo)
+const _isTouch='ontouchstart' in window||navigator.maxTouchPoints>0;
 let lenis=null;
-try{
-  lenis=new Lenis({lerp:.085,smoothWheel:true,touchMultiplier:2});
-  lenis.on('scroll',ScrollTrigger.update);
-  gsap.ticker.add(t=>lenis.raf(t*1000));
-  gsap.ticker.lagSmoothing(0);
-}catch(e){console.warn('Lenis no disponible, usando scroll nativo')}
+if(!_isTouch){
+  try{
+    lenis=new Lenis({lerp:.085,smoothWheel:true});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+  }catch(e){console.warn('Lenis no disponible, usando scroll nativo')}
+}
 
 // Safety: si el loader no se oculta en 5s, lo forzamos
 setTimeout(()=>{
@@ -1290,14 +1314,14 @@ function addHover(root){
 }
 addHover(document);
 
-// WHEEL SCROLL EN PANELES — evita que Lenis intercepte eventos dentro de overlays
-(function(){
+// WHEEL SCROLL EN PANELES — solo desktop con Lenis
+if(!_isTouch){(function(){
   const scrollables=['#citems','#witems','#cl','#pzov','#evov','#ceo','#ckb','#odp','#srchres','#pdov'];
   scrollables.forEach(sel=>{
     const el=document.querySelector(sel);
     if(el) el.addEventListener('wheel',e=>e.stopPropagation(),{passive:false});
   });
-})();
+})();}
 
 // LOADER
 gsap.timeline({onComplete:()=>{document.getElementById('ld').style.display='none';initHero();initCinematic();}})
@@ -1306,6 +1330,30 @@ gsap.timeline({onComplete:()=>{document.getElementById('ld').style.display='none
   .to('#ldf',{width:'100%',duration:1.2,ease:'power2.inOut'},.8)
   .fromTo('.ldn-reveal',{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:1.2,ease:'power2.inOut'},.8)
   .to('#ld',{opacity:0,duration:.5,ease:'power2.in'},2.4);
+
+// SCROLL LOCK — iOS + paneles (ref-counted)
+let _sl=0,_slTop=0;
+function lockScroll(){
+  if(!_sl++){
+    _slTop=window.scrollY||0;
+    if(lenis)lenis.stop();
+    document.body.style.overflow='hidden';
+    document.body.style.position='fixed';
+    document.body.style.top='-'+_slTop+'px';
+    document.body.style.width='100%';
+  }
+}
+function unlockScroll(){
+  if(_sl>0&&!--_sl){
+    if(lenis)lenis.start();
+    const t=_slTop;
+    document.body.style.position='';
+    document.body.style.top='';
+    document.body.style.width='';
+    document.body.style.overflow='';
+    window.scrollTo(0,t);
+  }
+}
 
 // NAVBAR
 const nv=document.getElementById('nv');
@@ -1317,8 +1365,9 @@ window.addEventListener('scroll',()=>{
 // MOBILE MENU
 function toggleMM(){
   const mm=document.getElementById('mm'),hb=document.getElementById('hb');
+  const opening=!mm.classList.contains('o');
   mm.classList.toggle('o');hb.classList.toggle('o');
-  document.body.style.overflow=mm.classList.contains('o')?'hidden':'';
+  opening?lockScroll():unlockScroll();
 }
 
 // SMOOTH SCROLL
@@ -1534,14 +1583,12 @@ function openProdDetail(id){
     </div>`;
   const wb=document.getElementById('pd-wish-btn');
   if(wb)wb.classList.toggle('on',wish.includes(id));
-  if(lenis)lenis.stop();
+  lockScroll();
   document.getElementById('pdov').classList.add('o');
-  document.body.style.overflow='hidden';
 }
 function closeProdDetail(){
   document.getElementById('pdov').classList.remove('o');
-  document.body.style.overflow='';
-  if(lenis)lenis.start();
+  unlockScroll();
   _pdId=null;
 }
 function pdToggle3D(){
@@ -1578,8 +1625,8 @@ function fltCl(btn,cat){
 }
 
 // COLLECTION
-function openCl(){if(lenis)lenis.stop();document.getElementById('cl').classList.add('o');document.body.style.overflow='hidden';renderColl()}
-function closeCl(){document.getElementById('cl').classList.remove('o');document.body.style.overflow='';if(lenis)lenis.start()}
+function openCl(){lockScroll();document.getElementById('cl').classList.add('o');renderColl()}
+function closeCl(){document.getElementById('cl').classList.remove('o');unlockScroll()}
 
 // WISHLIST
 let wish=JSON.parse(localStorage.getItem('ellier_wish')||'[]');
@@ -1591,8 +1638,8 @@ function toggleWish(btn,id){
   _saveWish();
   showToast(i>-1?'Eliminado de favoritos':'Agregado a favoritos ♥');
 }
-function openWish(){if(lenis)lenis.stop();document.getElementById('wo').classList.add('o');document.getElementById('wp').classList.add('o');renderWish();}
-function closeWish(){document.getElementById('wo').classList.remove('o');document.getElementById('wp').classList.remove('o');if(lenis)lenis.start();}
+function openWish(){lockScroll();document.getElementById('wo').classList.add('o');document.getElementById('wp').classList.add('o');renderWish();}
+function closeWish(){document.getElementById('wo').classList.remove('o');document.getElementById('wp').classList.remove('o');unlockScroll();}
 function renderWish(){
   const el=document.getElementById('witems'),ft=document.getElementById('wfoot');
   if(!wish.length){el.innerHTML='<div class="ce"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><p>Sin favoritos aún</p></div>';ft.style.display='none';return;}
@@ -1642,8 +1689,8 @@ const Cart={
   }
 };
 function updateCC(){const n=Cart.items.reduce((s,x)=>s+x.qty,0);document.getElementById('crtc').textContent=n}
-function openCart(){if(lenis)lenis.stop();document.getElementById('co').classList.add('o');document.getElementById('cp').classList.add('o');Cart.render()}
-function closeCart(){document.getElementById('co').classList.remove('o');document.getElementById('cp').classList.remove('o');if(lenis)lenis.start()}
+function openCart(){lockScroll();document.getElementById('co').classList.add('o');document.getElementById('cp').classList.add('o');Cart.render()}
+function closeCart(){document.getElementById('co').classList.remove('o');document.getElementById('cp').classList.remove('o');unlockScroll()}
 
 // AUTH — Supabase
 const SUPABASE_URL='https://dybckcffwdsxjjrrepin.supabase.co';
@@ -1692,10 +1739,10 @@ function updateAuthBtn(){
     }
   }
 }
-function openAuth(){if(lenis)lenis.stop();document.getElementById('ao').classList.add('o')}
-function closeAuth(){document.getElementById('ao').classList.remove('o');if(lenis)lenis.start()}
-function openUserPanel(){document.getElementById('uo').classList.add('o');document.getElementById('up').classList.add('o');if(lenis)lenis.stop();}
-function closeUserPanel(){document.getElementById('uo').classList.remove('o');document.getElementById('up').classList.remove('o');if(lenis)lenis.start();}
+function openAuth(){lockScroll();document.getElementById('ao').classList.add('o')}
+function closeAuth(){document.getElementById('ao').classList.remove('o');unlockScroll()}
+function openUserPanel(){lockScroll();document.getElementById('uo').classList.add('o');document.getElementById('up').classList.add('o');}
+function closeUserPanel(){document.getElementById('uo').classList.remove('o');document.getElementById('up').classList.remove('o');unlockScroll();}
 async function doLogout(){closeUserPanel();await _sb.auth.signOut();showToast('Sesión cerrada. ¡Hasta pronto!');}
 function swAuth(t){
   document.querySelectorAll('.at2').forEach(b=>b.classList.remove('a'));
@@ -1759,16 +1806,14 @@ async function renderOrdTable(){
 }
 function openCEO(){
   if(!Auth.isCEO()){showToast('Solo acceso para Mia');return}
-  if(lenis)lenis.stop();
+  lockScroll();
   document.getElementById('ceo').classList.add('o');
-  document.body.style.overflow='hidden';
   renderOrdTable();renderProdTable();renderUsrTable();
   document.getElementById('cpct').textContent=[...SW,...TERMOS].length;
 }
 function closeCEO(){
   document.getElementById('ceo').classList.remove('o');
-  document.body.style.overflow='';
-  if(lenis)lenis.start();
+  unlockScroll();
 }
 
 function renderProdTable(){
@@ -1852,10 +1897,11 @@ function openOrder(id){
     <button class="${o.st==='p'?'act':''}" onclick="setOrdSt('${o.id}','p')">Pendiente</button>
     <button class="gr${o.st==='d'?' act':''}" onclick="setOrdSt('${o.id}','d')">Enviado ✓</button>
     <button class="${o.st==='r'?'act':''}" onclick="setOrdSt('${o.id}','r')">En revisión</button>`;
+  lockScroll();
   document.getElementById('odov').classList.add('o');
   document.getElementById('odp').classList.add('o');
 }
-function closeOrder(){document.getElementById('odp').classList.remove('o');document.getElementById('odov').classList.remove('o')}
+function closeOrder(){document.getElementById('odp').classList.remove('o');document.getElementById('odov').classList.remove('o');unlockScroll()}
 async function setOrdSt(id,st){
   const dbSt=_stToDb[st]||st;
   const{error}=await _sb.from('orders').update({status:dbSt}).eq('id',id);
@@ -1958,10 +2004,10 @@ function expCSV(){
 
 // MIS PEDIDOS
 const _moStLbl={pending:'Pendiente',paid:'Pagado',processing:'En proceso',shipped:'Enviado',delivered:'Entregado',cancelled:'Cancelado'};
-function closeMyOrders(){document.getElementById('myorders').classList.remove('o');}
+function closeMyOrders(){document.getElementById('myorders').classList.remove('o');unlockScroll();}
 async function openMyOrders(){
   if(!Auth.cur){openAuth();return;}
-  document.getElementById('myorders').classList.add('o');
+  lockScroll();document.getElementById('myorders').classList.add('o');
   const body=document.getElementById('mo-body');
   body.innerHTML='<div class="mo-empty">Cargando pedidos...</div>';
   try{
@@ -1985,6 +2031,7 @@ async function openMyOrders(){
 }
 
 // CHECKOUT
+function closeCk(){document.getElementById('cko').classList.remove('o');unlockScroll();}
 function openCk(){
   if(!Cart.items.length)return;
   if(!Auth.cur){closeCart();_pendingCk=true;openAuth();return;}
@@ -1994,7 +2041,7 @@ function openCk(){
   const btn=document.getElementById('ck-btn');
   btn.textContent='Continuar al pago →';btn.disabled=false;btn.onclick=doCk;
   _stripeElements=null;_ckOrderId=null;_ckPI=null;
-  closeCart();document.getElementById('cko').classList.add('o');
+  closeCart();lockScroll();document.getElementById('cko').classList.add('o');
 }
 async function doCk(){
   const name=document.getElementById('ck-name').value.trim();
@@ -2038,7 +2085,7 @@ async function confirmPayment(){
     const{data:{session}}=await _sb.auth.getSession();
     if(session)await fetch(`${SUPABASE_URL}/functions/v1/confirm-order`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token,'apikey':SUPABASE_KEY},body:JSON.stringify({orderId:_ckOrderId,paymentIntentId:_ckPI})});
   }catch(e){}
-  document.getElementById('cko').classList.remove('o');
+  closeCk();
   Cart.items=[];Cart.save();updateCC();
   if(document.getElementById('ceo').classList.contains('o'))renderOrdTable();
   showToast('¡Pago exitoso! Tu pedido #'+(_ckOrderId?.slice(-6).toUpperCase()||'')+'  fue confirmado. Te contactamos pronto.');
@@ -2171,14 +2218,12 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 
 // PERSONALIZA PAGE
 function openPZ(){
-  if(lenis)lenis.stop();
+  lockScroll();
   document.getElementById('pzov').classList.add('o');
-  document.body.style.overflow='hidden';
 }
 function closePZ(){
   document.getElementById('pzov').classList.remove('o');
-  document.body.style.overflow='';
-  if(lenis)lenis.start();
+  unlockScroll();
 }
 
 // EVENTOS & PERSONALIZADOS
@@ -2219,18 +2264,16 @@ function renderEv(){
   }
 }
 function openEv(){
-  if(lenis)lenis.stop();
+  lockScroll();
   const ov=document.getElementById('evov');
   ov.classList.add('o');
-  document.body.style.overflow='hidden';
   ov.scrollTop=0;
   renderEv();
   if(!ov._spy){ov._spy=true;ov.addEventListener('scroll',evSpy,{passive:true});}
 }
 function closeEv(){
   document.getElementById('evov').classList.remove('o');
-  document.body.style.overflow='';
-  if(lenis)lenis.start();
+  unlockScroll();
 }
 function evNavTo(secId,btn){
   document.querySelectorAll('.evna').forEach(b=>b.classList.remove('a'));
@@ -2297,7 +2340,7 @@ function _saveSwFeatured(){
 
 // BÚSQUEDA
 function openSrch(){
-  if(lenis)lenis.stop();
+  lockScroll();
   document.getElementById('srcho').classList.add('o');
   setTimeout(()=>document.getElementById('srchinp').focus(),60);
   srchRender('');
@@ -2307,7 +2350,7 @@ function closeSrch(){
   document.getElementById('srchinp').value='';
   document.getElementById('srchres').innerHTML='';
   document.getElementById('srchtag').textContent='';
-  if(lenis)lenis.start();
+  unlockScroll();
 }
 function srchRender(q){
   q=(q||'').toLowerCase().trim();
