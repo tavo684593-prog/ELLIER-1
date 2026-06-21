@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>COLECCIONES - ELLIER</title>
+<meta name="description" content="COLECCIONES ELLIER - Coleccion UP."/>
+<meta name="theme-color" content="#0a0a0a"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f5f4f0;--text:#0a0a0a;--mu:#6a6a6a;--su:#b0b0b0;--bo:#e0dedd;--dark:#0a0a0a;--fn:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;--r:4px;--ea:cubic-bezier(.4,0,.2,1)}
+body{font-family:var(--fn);background:var(--bg);color:var(--text);overflow-x:hidden}
+a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer;border:none;background:none}
+#nv{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px 46px;background:rgba(245,244,240,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bo)}
+.brand{font-size:13px;letter-spacing:.36em;text-transform:uppercase;font-weight:500}
+.nls{display:flex;align-items:center;gap:26px}.nl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);transition:color .2s}.nl:hover{color:var(--text)}
+.cartbtn{position:relative;color:var(--text);display:flex;align-items:center}.nba{position:absolute;top:-8px;right:-9px;width:17px;height:17px;border-radius:50%;background:var(--dark);color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center}
+.hero{position:relative;height:640px;overflow:hidden;display:flex;align-items:flex-end;background:#111}
+.hero-slides{position:absolute;inset:0;z-index:0}.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}.hero-slide.a{opacity:1}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.78) 0%,rgba(0,0,0,.3) 55%,transparent 100%),radial-gradient(ellipse at center,rgba(0,0,0,0) 34%,rgba(0,0,0,.24) 68%,rgba(0,0,0,.72) 100%);z-index:1}
+.hero::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:170px;background:linear-gradient(to bottom,rgba(5,5,5,0) 0%,rgba(5,5,5,.42) 46%,#050505 100%);z-index:1;pointer-events:none}
+.hero-ctn{position:relative;z-index:2;padding:0 46px 52px;display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:640px}
+.ey{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:12px}.hero h1{font-size:clamp(42px,8vw,92px);font-weight:500;line-height:.95;letter-spacing:0;color:#fff}.hero p{font-size:13px;line-height:1.75;color:rgba(255,255,255,.58);max-width:450px;margin-top:18px}.count{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+.hero-dots{position:absolute;bottom:24px;right:46px;z-index:2;display:flex;gap:7px;align-items:center}.hero-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:background .25s,transform .25s;border:none;padding:0}.hero-dot.a{background:#fff;transform:scale(1.25)}
+.catalog{background:#050505;min-height:60vh}
+.filters{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.12);padding:0 46px;overflow-x:auto;background:#050505;position:sticky;top:57px;z-index:15}.ft{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:13px 18px;color:rgba(255,255,255,.45);border-bottom:1.5px solid transparent;white-space:nowrap}.ft.a,.ft:hover{color:#fff;border-color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;padding:28px 46px 70px;background:#050505}
+.pc{background:#fff;border-radius:8px;overflow:hidden;border:1px solid var(--bo);transition:transform .34s var(--ea),box-shadow .34s var(--ea)}.pc:hover{transform:translateY(-5px);box-shadow:0 18px 52px rgba(0,0,0,.1)}.pc.hd{display:none}
+.pci{position:relative;aspect-ratio:1;overflow:hidden;background:#f0eee9}.pcii{width:100%;height:100%;padding:18px;display:flex;align-items:center;justify-content:center;transition:transform .54s var(--ea);cursor:pointer}.pc:hover .pcii{transform:scale(1.06)}.pcii img{width:100%;height:100%;object-fit:contain;border-radius:4px}
+.pbg2{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:.09em;text-transform:uppercase;background:#0a0a0a;color:#fff;padding:4px 9px;border-radius:20px}.pbg2.nw{background:#2d4a3e}.pbg2.bs{background:#8b5e3c}
+.pw{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:var(--su);transition:color .2s}.pw:hover,.pw.on{color:#c0392b}.pw.on svg{fill:currentColor}
+.pcb{padding:15px}.pcat{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--su);margin-bottom:4px}.pn{font-size:14px;font-weight:500;margin-bottom:7px}.pdsc{font-size:11px;color:var(--mu);line-height:1.45;min-height:32px;margin-bottom:12px}.pft{display:flex;align-items:center;justify-content:space-between;gap:10px}.pp{font-size:15px;font-weight:500}.ba{font-size:9px;letter-spacing:.13em;text-transform:uppercase;background:#0a0a0a;color:#fff;padding:8px 13px;border-radius:var(--r);transition:background .2s;white-space:nowrap}.ba:hover{background:#333}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#0a0a0a;color:#fff;padding:11px 16px;border-radius:4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:80}#toast.on{opacity:1;transform:translateX(-50%)}
+#pdov,#cartov{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.56);display:none;align-items:center;justify-content:center;padding:20px}#pdov.o,#cartov.o{display:flex}
+.modal{background:#fff;width:min(900px,100%);max-height:90vh;overflow:auto;border-radius:10px}.mh{padding:18px 22px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center}.mh h2{font-size:11px;letter-spacing:.24em;text-transform:uppercase}.xb{font-size:22px;color:var(--mu)}
+.pdb{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,.9fr);gap:26px;padding:24px}.pdimg{background:#f0eee9;aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:22px}.pdimg img{width:100%;height:100%;object-fit:contain}.pdi-cat{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--su);margin-bottom:9px}.pdi-name{font-size:32px;font-weight:500;line-height:1.05;margin-bottom:12px}.pdi-desc{font-size:13px;line-height:1.75;color:var(--mu);margin:16px 0}.pdi-price{font-size:20px;font-weight:500;margin-bottom:18px}
+.cartbody{padding:18px 22px}.ci{display:flex;gap:13px;padding:14px 0;border-bottom:1px solid var(--bo)}.ct2{width:64px;height:64px;background:#f0eee9;border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden}.ct2 img{width:100%;height:100%;object-fit:contain}.cii{flex:1}.cii h4{font-size:13px;font-weight:500;margin-bottom:3px}.cii p{font-size:11px;color:var(--mu)}.cpri{font-size:13px;font-weight:500;margin-top:7px}.cartfoot{padding:16px 22px;border-top:1px solid var(--bo);display:flex;align-items:center;justify-content:space-between}.empty{padding:34px;text-align:center;color:var(--mu);font-size:13px}
+@media(max-width:760px){#nv{padding:14px 18px}.nls{gap:14px}.hero{height:420px}.hero-ctn{padding:0 20px 36px;max-width:100%}.hero h1{font-size:clamp(38px,14vw,62px)}.hero-dots{right:20px;bottom:14px}.filters{top:53px;padding:0 18px}.grid{padding:22px 18px 54px;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.pcb{padding:12px}.pft{align-items:flex-start;flex-direction:column}.ba{width:100%;text-align:center}.pdb{grid-template-columns:1fr;padding:18px}.pdi-name{font-size:27px}}
+</style>
+</head>
+<body>
+<nav id="nv">
+  <a class="brand" href="index.html">ELLIER</a>
+  <div class="nls">
+    <a class="nl" href="index.html">Inicio</a>
+    <a class="nl" href="#up">Coleccion UP</a>
+    <button class="cartbtn" onclick="openCart()" aria-label="Carrito">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="nba" id="crtc">0</span>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="up">
+  <div class="hero-slides" id="heroSlides"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-ctn">
+    <div class="ey">COLECCIONES</div>
+    <h1>Coleccion UP</h1>
+    <p>Se la Pantera que deja huella con ELLIÉR.</p>
+    <div class="count" id="pcount"></div>
+  </div>
+  <div class="hero-dots" id="heroDots"></div>
+</header>
+
+<section class="catalog">
+  <div class="filters" id="filters">
+    <button class="ft a" onclick="filterProducts(this,'all')">Todos UP</button>
+    <button class="ft" onclick="filterProducts(this,'playeras')">Playeras</button>
+    <button class="ft" onclick="filterProducts(this,'chamarras')">Chamarras</button>
+    <button class="ft" onclick="filterProducts(this,'sudaderas')">Sudaderas</button>
+    <button class="ft" onclick="filterProducts(this,'deportivo')">Deportivo</button>
+  </div>
+
+  <main class="grid" id="grid"></main>
+</section>
+
+<div id="pdov" onclick="if(event.target===this)closeDetail()">
+  <div class="modal">
+    <div class="mh"><h2>Producto UP</h2><button class="xb" onclick="closeDetail()">x</button></div>
+    <div class="pdb">
+      <div class="pdimg"><img id="pd-img" alt=""/></div>
+      <div>
+        <div class="pdi-cat" id="pd-cat"></div>
+        <div class="pdi-name" id="pd-name"></div>
+        <div class="pdi-price" id="pd-price"></div>
+        <button class="ba" id="pd-add">+ Carrito</button>
+        <div class="pdi-desc" id="pd-desc"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cartov" onclick="if(event.target===this)closeCart()">
+  <div class="modal" style="max-width:460px">
+    <div class="mh"><h2>Carrito</h2><button class="xb" onclick="closeCart()">x</button></div>
+    <div class="cartbody" id="cartitems"></div>
+    <div class="cartfoot" id="cartfoot"><strong>Total</strong><strong id="carttotal">$0 MXN</strong></div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+const CATALOG_MEDIA=[
+  {img:'images/modelos-1.png',label:'Coleccion UP',title:'Rojo que impone'},
+  {img:'images/basquet-mujer-up.png',label:'Linea deportiva',title:'Movimiento con caracter'},
+  {img:'images/sudadera-pans-deportivo-hombre-up.png',label:'Set completo',title:'Pantera en la calle'},
+];
+const PRODUCTS=[
+  {id:'up1',n:'Basquet Mujer UP',cat:'deportivo',p:'$520',img:'images/basquet-mujer-up.png',tag:'new',desc:'Conjunto deportivo de la coleccion UP para entrenamiento y uso diario.'},
+  {id:'up2',n:'Playera Deportiva Hombre Roja UP',cat:'playeras',p:'$420',img:'images/camisa-deportiva-hombre-rojo-up.png',tag:'',desc:'Playera deportiva roja de corte comodo con acabado premium.'},
+  {id:'up3',n:'Playera Deportiva Hombre Negra UP',cat:'playeras',p:'$420',img:'images/camisa-deporva-hombre-negra-up.png',tag:'bs',desc:'Playera deportiva negra para combinar con cualquier outfit activo.'},
+  {id:'up4',n:'Chamarra Garra Roja Mujer UP',cat:'chamarras',p:'$780',img:'images/chamarra-garra-roja-mujer-up.png',tag:'new',desc:'Chamarra roja para mujer con presencia fuerte y estilo deportivo.'},
+  {id:'up5',n:'Chamarra Roble Roja Mujer UP',cat:'chamarras',p:'$780',img:'images/chamarra-roble-roja-mujer-up.png',tag:'',desc:'Chamarra roble roja de la linea UP, pensada para capas ligeras.'},
+  {id:'up6',n:'Chamarra Rojo-Negro Hombre UP',cat:'chamarras',p:'$820',img:'images/chamarra-rojo-negro-hombre-up.png',tag:'bs',desc:'Chamarra para hombre con contraste rojo y negro.'},
+  {id:'up7',n:'Chaqueta Blanca Hombre UP',cat:'chamarras',p:'$790',img:'images/chaqueta-blanca-hombre-up.png',tag:'',desc:'Chaqueta blanca limpia y versatil para looks deportivos.'},
+  {id:'up8',n:'Chaqueta Rosa Roble Mujer UP',cat:'chamarras',p:'$790',img:'images/chamarra-rosa-roble-mujer-up.png',tag:'new',desc:'Chaqueta rosa roble para mujer con silueta ligera.'},
+  {id:'up9',n:'Sudadera Verde Menta Mujer UP',cat:'sudaderas',p:'$690',img:'images/sudadera-verde-menta-mujer-up.png',tag:'',desc:'Sudadera verde menta suave para un estilo relajado.'},
+  {id:'up10',n:'Sudadera y Pans Deportivo Hombre UP',cat:'sudaderas',p:'$980',img:'images/sudadera-pans-deportivo-hombre-up.png',tag:'bs',desc:'Set completo de sudadera y pans deportivo para hombre.'},
+  {id:'up11',n:'Voleibol Mujer UP',cat:'deportivo',p:'$520',img:'images/voleivol-mujer-up.png',tag:'new',desc:'Conjunto deportivo para voleibol con identidad UP.'}
+];
+let wish=JSON.parse(localStorage.getItem('ellier_wish')||'[]');
+let _heroIdx=0,_heroTimer=null;
+const Cart={
+  items:JSON.parse(localStorage.getItem('ellier_cart')||'[]'),
+  save(){localStorage.setItem('ellier_cart',JSON.stringify(this.items));updateCC()},
+  add(id){
+    const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+    const ex=this.items.find(x=>x.id===id&&!x.custom);
+    if(ex)ex.qty++;else this.items.push({id,n:p.n,p:p.p,qty:1,cat:p.cat,clr:'#0a0a0a',img:p.img});
+    this.save();showToast('Agregado al carrito');
+  },
+  remove(i){this.items.splice(i,1);this.save();renderCart()},
+  total(){return this.items.reduce((s,x)=>s+(parseInt((x.p||'0').replace(/\D/g,''))||0)*(x.qty||1),0)}
+};
+function renderHeroCarousel(){
+  const slides=document.getElementById('heroSlides'),dots=document.getElementById('heroDots');
+  slides.innerHTML=CATALOG_MEDIA.map((m,i)=>`<div class="hero-slide${i===0?' a':''}" style="background-image:url('${m.img}')" aria-label="${m.title}"></div>`).join('');
+  dots.innerHTML=CATALOG_MEDIA.map((_,i)=>`<button class="hero-dot ${i===0?'a':''}" onclick="heroGo(${i})" aria-label="Slide ${i+1}"></button>`).join('');
+}
+function heroGo(i){
+  const slides=document.querySelectorAll('.hero-slide'),dots=document.querySelectorAll('.hero-dot');
+  if(!slides.length)return;
+  slides[_heroIdx].classList.remove('a');dots[_heroIdx].classList.remove('a');
+  _heroIdx=(i+slides.length)%slides.length;
+  slides[_heroIdx].classList.add('a');dots[_heroIdx].classList.add('a');
+  clearInterval(_heroTimer);_heroTimer=setInterval(()=>heroGo(_heroIdx+1),4200);
+}
+function productCard(p){
+  const on=wish.includes(p.id)?' on':'';
+  const tag=p.tag?`<div class="pbg2 ${p.tag==='new'?'nw':'bs'}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
+  return `<article class="pc" data-cat="${p.cat}"><div class="pci"><div class="pcii" onclick="openDetail('${p.id}')"><img src="${p.img}" alt="${p.n}"/></div>${tag}<button class="pw${on}" onclick="toggleWish(this,'${p.id}')" aria-label="Favorito"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pdsc">${p.desc}</div><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></article>`;
+}
+function renderProducts(){document.getElementById('grid').innerHTML=PRODUCTS.map(productCard).join('');document.getElementById('pcount').textContent=PRODUCTS.length+' productos UP'}
+function filterProducts(btn,cat){
+  document.querySelectorAll('.ft').forEach(b=>b.classList.remove('a'));btn.classList.add('a');
+  document.querySelectorAll('.pc').forEach(c=>c.classList.toggle('hd',cat!=='all'&&c.dataset.cat!==cat));
+}
+function openDetail(id){
+  const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+  document.getElementById('pd-img').src=p.img;document.getElementById('pd-img').alt=p.n;
+  document.getElementById('pd-cat').textContent=p.cat;document.getElementById('pd-name').textContent=p.n;document.getElementById('pd-price').textContent=p.p;document.getElementById('pd-desc').textContent=p.desc;
+  document.getElementById('pd-add').onclick=()=>Cart.add(id);
+  document.getElementById('pdov').classList.add('o');
+}
+function closeDetail(){document.getElementById('pdov').classList.remove('o')}
+function toggleWish(btn,id){
+  const i=wish.indexOf(id);
+  if(i>-1){wish.splice(i,1);btn.classList.remove('on')}else{wish.push(id);btn.classList.add('on')}
+  localStorage.setItem('ellier_wish',JSON.stringify(wish));showToast(i>-1?'Eliminado de favoritos':'Agregado a favoritos');
+}
+function openCart(){renderCart();document.getElementById('cartov').classList.add('o')}
+function closeCart(){document.getElementById('cartov').classList.remove('o')}
+function renderCart(){
+  const el=document.getElementById('cartitems'),ft=document.getElementById('cartfoot');
+  if(!Cart.items.length){el.innerHTML='<div class="empty">Tu carrito esta vacio</div>';ft.style.display='none';return}
+  el.innerHTML=Cart.items.map((x,i)=>`<div class="ci"><div class="ct2">${x.img?`<img src="${x.img}" alt="${x.n}"/>`:''}</div><div class="cii"><h4>${x.n}</h4><p>${x.cat}</p><div class="cpri">${x.p} x ${x.qty}</div></div><button class="xb" onclick="Cart.remove(${i})">x</button></div>`).join('');
+  ft.style.display='flex';document.getElementById('carttotal').textContent='$'+Cart.total().toLocaleString()+' MXN';
+}
+function updateCC(){document.getElementById('crtc').textContent=Cart.items.reduce((s,x)=>s+(x.qty||1),0)}
+function showToast(txt){const t=document.getElementById('toast');t.textContent=txt;t.classList.add('on');clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.classList.remove('on'),1800)}
+renderHeroCarousel();_heroTimer=setInterval(()=>heroGo(_heroIdx+1),4200);
+renderProducts();updateCC();
+const initial=(location.hash||'').replace('#','');
+if(initial&&initial!=='up'){
+  const btn=[...document.querySelectorAll('.ft')].find(b=>b.getAttribute('onclick')?.includes(`'${initial}'`));
+  if(btn)btn.click();
+}
+</script>
+</body>
+</html>
