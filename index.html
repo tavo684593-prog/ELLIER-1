@@ -1380,23 +1380,29 @@ function _getEffectivePrice(p){
 
 // PRODUCT DATA
 const SW=[
-  {id:'sw1',n:'Jogger Essentials',cat:'joggers',clrs:['#1a1a1a','#3a3730','#8a8578'],p:'$520',tag:'new',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="8" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="14" rx="4" fill="rgba(0,0,0,.2)"/><line x1="50" y1="19" x2="50" y2="95" stroke="rgba(255,255,255,.08)" stroke-width="1"/><rect x="8" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/></svg>`},
-  {id:'sw2',n:'Sudadera Minimal',cat:'sudaderas',clrs:['#c4b8a2','#1a1a1a','#9a6050'],p:'$680',tag:'',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/><path d="M35 30 Q50 38 65 30 L65 38 Q50 46 35 38 Z" fill="rgba(0,0,0,.15)"/></svg>`},
-  {id:'sw3',n:'Pan Cargo',cat:'pans',clrs:['#3a3730','#1a1a1a','#8a8578'],p:'$560',tag:'bs',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5 L80 5 L80 20 L85 95 L65 115 L55 70 L45 70 L35 115 L15 95 L20 20 Z" fill="{C}"/><rect x="60" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/><rect x="20" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/></svg>`},
-  {id:'sw4',n:'Playera Core',cat:'playeras',clrs:['#f0ede6','#1a1a1a','#c4b8a2'],p:'$380',tag:'',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.12)"/></svg>`},
-  {id:'sw5',n:'Jogger Relaxed',cat:'joggers',clrs:['#8a9485','#3a3730','#1a1a1a'],p:'$490',tag:'new',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="10" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="16" rx="5" fill="rgba(0,0,0,.18)"/><line x1="50" y1="21" x2="50" y2="95" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/><rect x="8" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/></svg>`},
-  {id:'sw6',n:'Sudadera Oversize',cat:'sudaderas',clrs:['#1a1a1a','#c4b8a2','#8a8578'],p:'$720',tag:'bs',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 22 L5 48 L22 50 L22 106 L78 106 L78 50 L95 48 L85 22 L68 32 Q50 40 32 32 Z" fill="{C}"/><path d="M32 32 Q50 40 68 32 L68 40 Q50 48 32 40 Z" fill="rgba(0,0,0,.15)"/></svg>`},
-  {id:'sw7',n:'Pan Slim',cat:'pans',clrs:['#1a1a1a','#8a8578','#3a3730'],p:'$530',tag:'',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5 L78 5 L78 20 L82 98 L63 118 L53 72 L47 72 L37 118 L18 98 L22 20 Z" fill="{C}"/></svg>`},
-  {id:'sw8',n:'Playera Edición',cat:'playeras',clrs:['#9a6050','#1a1a1a','#f0ede6'],p:'$420',tag:'new',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><text x="50" y="68" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.28)" font-family="Helvetica">ELLIÉR</text></svg>`},
+  {id:'sw1',n:'Jogger Essentials',cat:'joggers',clrs:['#1a1a1a','#3a3730','#8a8578'],p:'$520',tag:'new',img:'images/jogger-verde.png',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="8" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="14" rx="4" fill="rgba(0,0,0,.2)"/><line x1="50" y1="19" x2="50" y2="95" stroke="rgba(255,255,255,.08)" stroke-width="1"/><rect x="8" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/></svg>`},
+  {id:'sw2',n:'Sudadera Árbol',cat:'sudaderas',clrs:['#2d5e3a','#8a8578','#c4b8a2'],p:'$680',tag:'new',img:'images/sudadera-arbol.png',desc:'Sudadera con estampado árbol, corte cómodo y tela suave.',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/><path d="M35 30 Q50 38 65 30 L65 38 Q50 46 35 38 Z" fill="rgba(0,0,0,.15)"/></svg>`},
+  {id:'sw3',n:'Pan Cargo',cat:'pans',clrs:['#3a3730','#1a1a1a','#8a8578'],p:'$560',tag:'bs',img:'images/pans-negro-ancestral.png',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5 L80 5 L80 20 L85 95 L65 115 L55 70 L45 70 L35 115 L15 95 L20 20 Z" fill="{C}"/><rect x="60" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/><rect x="20" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/></svg>`},
+  {id:'sw4',n:'Playera Core',cat:'playeras',clrs:['#f0ede6','#1a1a1a','#c4b8a2'],p:'$380',tag:'',img:'images/playera-ellier-blanca.png',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.12)"/></svg>`},
+  {id:'sw5',n:'Jogger Relaxed',cat:'joggers',clrs:['#8a9485','#3a3730','#1a1a1a'],p:'$490',tag:'new',img:'images/jogger-verde.png',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="10" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="16" rx="5" fill="rgba(0,0,0,.18)"/><line x1="50" y1="21" x2="50" y2="95" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/><rect x="8" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/></svg>`},
+  {id:'sw6',n:'Sudadera Dragón',cat:'sudaderas',clrs:['#1a1a1a','#8a142e','#8a8578'],p:'$720',tag:'bs',img:'images/sudadera-dragon.png',desc:'Sudadera con gráfico de dragón y silueta oversize.',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 22 L5 48 L22 50 L22 106 L78 106 L78 50 L95 48 L85 22 L68 32 Q50 40 32 32 Z" fill="{C}"/><path d="M32 32 Q50 40 68 32 L68 40 Q50 48 32 40 Z" fill="rgba(0,0,0,.15)"/></svg>`},
+  {id:'sw7',n:'Pan Slim',cat:'pans',clrs:['#1a1a1a','#8a8578','#3a3730'],p:'$530',tag:'',img:'images/pans-blanco-juicio.png',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5 L78 5 L78 20 L82 98 L63 118 L53 72 L47 72 L37 118 L18 98 L22 20 Z" fill="{C}"/></svg>`},
+  {id:'sw8',n:'Playera Edición',cat:'playeras',clrs:['#9a6050','#1a1a1a','#f0ede6'],p:'$420',tag:'new',img:'images/playera-azul.png',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><text x="50" y="68" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.28)" font-family="Helvetica">ELLIÉR</text></svg>`},
+  {id:'sw9',n:'Sudadera Angel',cat:'sudaderas',clrs:['#1a1a1a','#8a8578','#c4b8a2'],p:'$820',tag:'new',img:'images/sudadera-angel.png',desc:'Sudadera premium ELLIÉR con detalles bordados y actitud urbana.',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.15)"/></svg>`},
+  {id:'sw10',n:'Sudadera Ángel Blagro',cat:'sudaderas',clrs:['#1a1a1a','#8a8578','#d4c4a8'],p:'$780',tag:'',img:'images/sudadera-angel-blagro.png',desc:'Sudadera con diseño Blagro y sensación premium.',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.15)"/></svg>`},
+  {id:'sw11',n:'Sudadera Frase Espada',cat:'sudaderas',clrs:['#121212','#aa1f1f','#c4b8a2'],p:'$760',tag:'new',img:'images/sudadera-frase-espada.png',desc:'Sudadera con frase espada para un look urbano con actitud.',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.15)"/></svg>`},
+  {id:'sw12',n:'Sudadera Frase Zamu',cat:'sudaderas',clrs:['#8a9485','#1a1a1a','#d4c4a8'],p:'$760',tag:'',img:'images/sudadera-frase-zamu.png',desc:'Sudadera con diseño Zamu y estilo contemporáneo.',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.15)"/></svg>`},
+  {id:'sw13',n:'Sudadera Frase 1',cat:'sudaderas',clrs:['#1a1a1a','#3a3730','#8a8578'],p:'$740',tag:'',img:'images/sudadera-frase1.png',desc:'Sudadera con frase gráfica minimalista en frente.',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.15)"/></svg>`},
+  {id:'sw14',n:'Sudadera Frase 2',cat:'sudaderas',clrs:['#2a2a2a','#8a8578','#c4b8a2'],p:'$740',tag:'',img:'images/sudadera-frase2.png',desc:'Sudadera con diseño tipográfico y corte contemporáneo.',model3d:'teleo_camisa/scene.gltf',svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.15)"/></svg>`},
 ];
 const TERMOS=[
-  {id:'t1',n:'Termo Negro 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Acero 304 · Doble pared · 8h caliente · 20h frío',clr:'#1a1a1a',model3d:'teleo_camisa/scene.gltf'},
-  {id:'t2',n:'Termo Arena 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Sellado al vacío · Tapa antigoteo · Premium',clr:'#c4b8a2',model3d:'teleo_camisa/scene.gltf'},
-  {id:'t3',n:'Termo Gris Titanio',cat:'termos',oz:'20oz / 600ml',p:'$380',desc:'Acabado titanio cepillado · Edición limitada',clr:'#8a8578',model3d:'teleo_camisa/scene.gltf'},
-  {id:'t4',n:'Taza Matte Negro',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Cerámica premium · Apto microondas · Matte',clr:'#2a2a2a',model3d:'teleo_camisa/scene.gltf'},
-  {id:'t5',n:'Taza Latte Beige',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Color latte minimalista · Personalizable',clr:'#d4c4a8',model3d:'teleo_camisa/scene.gltf'},
-  {id:'t6',n:'Termo Café 750ml',cat:'termos',oz:'25oz / 750ml',p:'$440',desc:'Gran capacidad · Tapa de presión · Café oscuro',clr:'#3a2a1a',model3d:'teleo_camisa/scene.gltf'},
-  {id:'t7',n:'Taza Sage Green',cat:'tazas',oz:'12oz / 350ml',p:'$240',desc:'Verde salvia · Edición especial · Cerámica',clr:'#8a9485',model3d:'teleo_camisa/scene.gltf'},
+  {id:'t1',n:'Termo Negro 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Acero 304 · Doble pared · 8h caliente · 20h frío',clr:'#1a1a1a',model3d:'teleo_camisa/scene.gltf',img:'images/termo-negro-30-oz.png'},
+  {id:'t2',n:'Termo Arena 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Sellado al vacío · Tapa antigoteo · Premium',clr:'#c4b8a2',model3d:'teleo_camisa/scene.gltf',img:'images/termo-del-chisme.png'},
+  {id:'t3',n:'Termo Gris Titanio',cat:'termos',oz:'20oz / 600ml',p:'$380',desc:'Acabado titanio cepillado · Edición limitada',clr:'#8a8578',model3d:'teleo_camisa/scene.gltf',img:'images/termos-oz.png'},
+  {id:'t4',n:'Taza Matte Negro',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Cerámica premium · Apto microondas · Matte',clr:'#2a2a2a',model3d:'teleo_camisa/scene.gltf',img:'images/tazas.png'},
+  {id:'t5',n:'Taza Latte Beige',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Color latte minimalista · Personalizable',clr:'#d4c4a8',model3d:'teleo_camisa/scene.gltf',img:'images/taza-termo.png'},
+  {id:'t6',n:'Termo Café 750ml',cat:'termos',oz:'25oz / 750ml',p:'$440',desc:'Gran capacidad · Tapa de presión · Café oscuro',clr:'#3a2a1a',model3d:'teleo_camisa/scene.gltf',img:'images/termos-oz.png'},
+  {id:'t7',n:'Taza Sage Green',cat:'tazas',oz:'12oz / 350ml',p:'$240',desc:'Verde salvia · Edición especial · Cerámica',clr:'#8a9485',model3d:'teleo_camisa/scene.gltf',img:'images/tazas.png'},
 ];
 
 // SVG HELPERS
@@ -1406,10 +1412,10 @@ function mkTazaSVG(clr){return `<svg viewBox="0 0 100 90" xmlns="http://www.w3.o
 // RENDER CARDS
 function _getProdImg(id){return(JSON.parse(localStorage.getItem('ellier_prod_images')||'{}')||{})[id]||null}
 function mkPC(p){
-  const customImg=_getProdImg(p.id);
+  const productImg=_getProdImg(p.id)||p.img;
   const c0=p.clrs[0];
-  const innerContent=customImg
-    ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}"/>`
+  const innerContent=productImg
+    ?`<img src="${productImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}"/>`
     :p.svg.replace(/\{C\}/g,c0);
   const tagH=p.tag?`<div class="pbg2 ${p.tag}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
   const dots=p.clrs.map((c,i)=>`<div class="psw${i===0?' a':''}" style="background:${c}" onclick="chPC(this,'${p.id}','${c}')"></div>`).join('');
@@ -1419,9 +1425,9 @@ function mkPC(p){
   return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" style="padding:24px;cursor:pointer" onclick="openProdDetail('${p.id}')"><div id="svg_${p.id}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${innerContent}</div></div>${mv3d}${tagH}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pcs">${dots}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
 }
 function mkTC(t){
-  const customImg=_getProdImg(t.id);
-  const svgContent=customImg
-    ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${t.n}"/>`
+  const productImg=_getProdImg(t.id)||t.img;
+  const svgContent=productImg
+    ?`<img src="${productImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${t.n}"/>`
     :(t.cat==='termos'?mkTermoSVG(t.clr):mkTazaSVG(t.clr));
   const mv3d=t.model3d
     ?`<model-viewer id="mv_${t.id}" src="${t.model3d}" alt="${t.n}" auto-rotate camera-controls shadow-intensity="1"></model-viewer><button class="btn3d" id="btn3d_${t.id}" onclick="toggle3D('${t.id}')">3D</button>`
@@ -1476,7 +1482,7 @@ function openProdDetail(id){
   svgWrap.style.visibility='visible';
   pd3dBtn.classList.remove('on');
   pd3dBtn.textContent='3D';
-  const customImg=_getProdImg(id);
+  const customImg=_getProdImg(id) || p.img;
   if(isSW){
     const c0=p.clrs[0];
     svgWrap.innerHTML=customImg
@@ -2246,7 +2252,7 @@ function evSpy(){
 function renderShowcase(){
   const all=[...SW,...TERMOS];
   const saved=JSON.parse(localStorage.getItem('ellier_featured')||'null');
-  const featured=saved?saved.map(id=>all.find(p=>p.id===id)).filter(Boolean):[SW[0],SW[5],TERMOS[0],SW[1],TERMOS[2],SW[2],TERMOS[5],SW[7]].filter(Boolean);
+  const featured=saved?saved.map(id=>all.find(p=>p.id===id)).filter(Boolean):[SW[0],SW[5],TERMOS[0],SW[1],TERMOS[4],SW[2],TERMOS[5],SW[8]].filter(Boolean);
   const g=document.getElementById('swt');if(!g)return;
   g.innerHTML=featured.map(p=>SW.find(x=>x.id===p.id)?mkPC(p):mkTC(p)).join('');
   obsNew(g);

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Catalogo Completo - ELLIER</title>
-<meta name="description" content="Catalogo completo ELLIER con streetwear, termos y tazas."/>
+<title>Catalogo Completo - ELLIÉR</title>
+<meta name="description" content="Catalogo completo ELLIÉR con streetwear, termos y tazas."/>
 <meta name="theme-color" content="#0a0a0a"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -25,7 +25,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 </head>
 <body>
 <nav id="nv">
-  <a class="brand" href="index.html">ELLIER</a>
+  <a class="brand" href="index.html">ELLIÉR</a>
   <div class="nls">
     <a class="nl" href="index.html">Inicio</a>
     <a class="nl" href="coleccion-up.html" target="_blank" rel="noopener">Coleccion UP</a>
@@ -34,7 +34,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 </nav>
 <header class="hero">
   <div>
-    <div class="ey">ELLIER</div>
+    <div class="ey">ELLIÉR</div>
     <h1>Catalogo Completo</h1>
     <p>Todas las piezas disponibles en un solo lugar: streetwear, termos, tazas y productos deportivos.</p>
   </div>
@@ -46,6 +46,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
   <button class="ft" onclick="filterProducts(this,'sudaderas')">Sudaderas</button>
   <button class="ft" onclick="filterProducts(this,'pans')">Pans</button>
   <button class="ft" onclick="filterProducts(this,'playeras')">Playeras</button>
+  <button class="ft" onclick="filterProducts(this,'chamarras')">Chamarras</button>
   <button class="ft" onclick="filterProducts(this,'termos')">Termos</button>
   <button class="ft" onclick="filterProducts(this,'tazas')">Tazas</button>
 </div>
@@ -55,21 +56,33 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 <div id="toast"></div>
 <script>
 const PRODUCTS=[
-  {id:'sw1',n:'Jogger Essentials',cat:'joggers',p:'$520',tag:'new',clr:'#1a1a1a',desc:'Jogger de corte relajado confeccionado en tela de alto gramaje.'},
-  {id:'sw2',n:'Sudadera Minimal',cat:'sudaderas',p:'$680',clr:'#c4b8a2',desc:'Sudadera de corte oversize en fleece premium.'},
-  {id:'sw3',n:'Pan Cargo',cat:'pans',p:'$560',tag:'bs',clr:'#3a3730',desc:'Pantalon cargo de corte slim con bolsillos laterales.'},
-  {id:'sw4',n:'Playera Core',cat:'playeras',p:'$380',clr:'#f0ede6',desc:'Camiseta en jersey de algodon peinado.'},
-  {id:'sw5',n:'Jogger Relaxed',cat:'joggers',p:'$490',tag:'new',clr:'#8a9485',desc:'Jogger relajado para uso diario y streetwear.'},
-  {id:'sw6',n:'Sudadera Oversize',cat:'sudaderas',p:'$720',tag:'bs',clr:'#1a1a1a',desc:'Sudadera oversize con presencia urbana.'},
-  {id:'sw7',n:'Pan Slim',cat:'pans',p:'$530',clr:'#1a1a1a',desc:'Pantalon slim de silueta limpia.'},
-  {id:'sw8',n:'Playera Edicion',cat:'playeras',p:'$420',tag:'new',clr:'#9a6050',desc:'Playera de edicion con identidad ELLIER.'},
-  {id:'t1',n:'Termo Negro 500ml',cat:'termos',p:'$320',clr:'#1a1a1a',desc:'Acero 304, doble pared, 8h caliente y 20h frio.'},
-  {id:'t2',n:'Termo Arena 500ml',cat:'termos',p:'$320',clr:'#c4b8a2',desc:'Sellado al vacio con tapa antigoteo.'},
-  {id:'t3',n:'Termo Gris Titanio',cat:'termos',p:'$380',clr:'#8a8578',desc:'Acabado titanio cepillado de edicion limitada.'},
-  {id:'t4',n:'Taza Matte Negro',cat:'tazas',p:'$220',clr:'#2a2a2a',desc:'Ceramica premium con acabado matte.'},
-  {id:'t5',n:'Taza Latte Beige',cat:'tazas',p:'$220',clr:'#d4c4a8',desc:'Color latte minimalista y personalizable.'},
-  {id:'t6',n:'Termo Cafe 750ml',cat:'termos',p:'$440',clr:'#3a2a1a',desc:'Gran capacidad con tapa de presion.'},
-  {id:'t7',n:'Taza Sage Green',cat:'tazas',p:'$240',clr:'#8a9485',desc:'Verde salvia de edicion especial.'}
+  {id:'sw3',n:'Pan Cargo',cat:'pans',p:'$560',tag:'bs',clr:'#3a3730',img:'images/pans-negro-ancestral.png',desc:'Pantalon cargo de corte slim con bolsillos laterales.'},
+  {id:'sw4',n:'Playera Core',cat:'playeras',p:'$380',clr:'#f0ede6',img:'images/playera-ellier-blanca.png',desc:'Camiseta en jersey de algodon peinado.'},
+  {id:'sw8',n:'Playera Edicion',cat:'playeras',p:'$420',tag:'new',clr:'#9a6050',img:'images/playera-azul.png',desc:'Playera de edicion con identidad ELLIÉR.'},
+  {id:'sw5',n:'Jogger Relaxed',cat:'joggers',p:'$490',tag:'new',clr:'#8a9485',img:'images/jogger-verde.png',desc:'Jogger relajado para uso diario y streetwear.'},
+  {id:'sw21',n:'Jogger Negro',cat:'joggers',p:'$490',tag:'new',clr:'#1a1a1a',img:'images/jogger-negro.png',desc:'Jogger negro con corte relajado y estilo urbano.'},
+  {id:'sw7',n:'Pan Slim',cat:'pans',p:'$530',clr:'#1a1a1a',img:'images/pans-blanco-juicio.png',desc:'Pantalon slim de silueta limpia.'},
+  {id:'sw18',n:'Playera Corazón',cat:'playeras',p:'$420',clr:'#f0c0d0',img:'images/playera-corazon.png',desc:'Playera con estampado de corazón para un look casual y romántico.'},
+  {id:'sw19',n:'Playera Los Ángeles',cat:'playeras',p:'$420',clr:'#1a1a1a',img:'images/playera-los-angeles.png',desc:'Playera negra con texto Los Ángeles, estilo urbano y fresco.'},
+  {id:'sw20',n:'Playera Rosa',cat:'playeras',p:'$420',clr:'#f0a8dd',img:'images/playera-rosa.png',desc:'Playera rosa con corte cómodo y actitud vibrante.'},
+  {id:'sw15',n:'Pan Espada',cat:'pans',p:'$560',clr:'#f4f1ec',img:'images/pans-blanco-espada.png',desc:'Pantalón blanco con gráfico espada y corte moderno.'},
+  {id:'sw16',n:'Pan Fénix',cat:'pans',p:'$560',clr:'#1a1a1a',img:'images/pans-negro-fenix.png',desc:'Pantalón negro con diseño Fénix y estilo urbano.'},
+  {id:'sw17',n:'Pan Sangre',cat:'pans',p:'$560',clr:'#1a1a1a',img:'images/pans-negro-sangre.png',desc:'Pantalón negro con detalle rojo y actitud arriesgada.'},
+  {id:'sw2',n:'Sudadera Árbol',cat:'sudaderas',p:'$680',clr:'#2d5e3a',img:'images/sudadera-arbol.png',desc:'Sudadera con estampado árbol, corte cómodo y tela suave.'},
+  {id:'sw6',n:'Sudadera Dragón',cat:'sudaderas',p:'$720',tag:'bs',clr:'#1a1a1a',img:'images/sudadera-dragon.png',desc:'Sudadera con gráfico de dragón y silueta oversize.'},
+  {id:'sw9',n:'Sudadera Angel',cat:'sudaderas',p:'$820',clr:'#1a1a1a',img:'images/sudadera-angel.png',desc:'Sudadera premium con detalles bordados y actitud urbana.'},
+  {id:'sw10',n:'Sudadera Ángel Blagro',cat:'sudaderas',p:'$780',clr:'#1a1a1a',img:'images/sudadera-angel-blagro.png',desc:'Sudadera con diseño Blagro y sensación premium.'},
+  {id:'sw11',n:'Sudadera Frase Espada',cat:'sudaderas',p:'$760',clr:'#121212',img:'images/sudadera-frase-espada.png',desc:'Sudadera con frase espada para un look urbano con actitud.'},
+  {id:'sw12',n:'Sudadera Frase Zamu',cat:'sudaderas',p:'$760',clr:'#8a9485',img:'images/sudadera-frase-zamu.png',desc:'Sudadera con diseño Zamu y estilo contemporáneo.'},
+  {id:'sw13',n:'Sudadera Frase 1',cat:'sudaderas',p:'$740',clr:'#1a1a1a',img:'images/sudadera-frase1.png',desc:'Sudadera con frase gráfica minimalista en frente.'},
+  {id:'sw14',n:'Sudadera Frase 2',cat:'sudaderas',p:'$740',clr:'#2a2a2a',img:'images/sudadera-frase2.png',desc:'Sudadera con diseño tipográfico y corte contemporáneo.'},
+  {id:'sw22',n:'Chamarra ELLIÉR',cat:'chamarras',p:'$980',tag:'new',clr:'#1a1a1a',img:'images/chamarra-ellier.png',desc:'Chamarra ELLIÉR con diseño exclusivo y acabado premium.'},
+  {id:'t1',n:'Termo Negro 500ml',cat:'termos',p:'$320',clr:'#1a1a1a',desc:'Acero 304, doble pared, 8h caliente y 20h frio.',img:'images/termo-negro-30-oz.png'},
+  {id:'t2',n:'Termo Arena 500ml',cat:'termos',p:'$320',clr:'#c4b8a2',desc:'Sellado al vacio con tapa antigoteo.',img:'images/termo-del-chisme.png'},
+  {id:'t3',n:'Termo Gris Titanio',cat:'termos',p:'$380',clr:'#8a8578',desc:'Acabado titanio cepillado de edicion limitada.',img:'images/termos-oz.png'},
+  {id:'t4',n:'Taza Matte Negro',cat:'tazas',p:'$220',clr:'#2a2a2a',desc:'Ceramica premium con acabado matte.',img:'images/tazas.png'},
+  {id:'t5',n:'Taza Latte Beige',cat:'tazas',p:'$220',clr:'#d4c4a8',desc:'Color latte minimalista y personalizable.',img:'images/taza-termo.png'},
+  {id:'t6',n:'Termo Cafe 750ml',cat:'termos',p:'$440',clr:'#3a2a1a',desc:'Gran capacidad con tapa de presion.',img:'images/termos-oz.png'}
 ];
 let wish=JSON.parse(localStorage.getItem('ellier_wish')||'[]');
 const Cart={items:JSON.parse(localStorage.getItem('ellier_cart')||'[]'),save(){localStorage.setItem('ellier_cart',JSON.stringify(this.items));updateCC()},add(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;const ex=this.items.find(x=>x.id===id&&!x.custom);if(ex)ex.qty++;else this.items.push({id,n:p.n,p:p.p,qty:1,cat:p.cat,clr:p.clr||'#0a0a0a',img:p.img});this.save();showToast('Agregado al carrito')},remove(i){this.items.splice(i,1);this.save();renderCart()},total(){return this.items.reduce((s,x)=>s+(parseInt((x.p||'0').replace(/\D/g,''))||0)*(x.qty||1),0)}};
