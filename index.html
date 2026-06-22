@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -793,7 +793,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   </div>
   <div class="nls">
     <a class="nl" href="#" onclick="closeCl();smoothTo('#hero');return false">Inicio</a>
-    <a class="nl" href="#" onclick="openCl();return false">Colección</a>
+    <a class="nl" href="colecciones.html" target="_blank" rel="noopener">Colección</a>
     <a class="nl" href="#" onclick="openEv();return false">Eventos</a>
     <a class="nl" href="#nosotros">Nosotros</a>
     <a class="nl" href="#footer">Contacto</a>
@@ -816,7 +816,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 </div>
 
 <!-- MOBILE MENU -->
-<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><a class="mml" href="#" onclick="toggleMM();openCl();return false">Colección</a><a class="mml" href="#" onclick="toggleMM();openEv();return false">Eventos</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a><button class="mml mml-btn" id="mm-auth-btn" onclick="toggleMM();openAuth()">Iniciar sesión</button><button class="mml mml-btn" id="mm-orders-btn" onclick="toggleMM();openMyOrders()" style="display:none">Mis pedidos</button><button class="mml mml-btn mml-logout" id="mm-logout-btn" onclick="toggleMM();doLogout()" style="display:none">Cerrar sesión</button></div>
+<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><a class="mml" href="colecciones.html" target="_blank" rel="noopener" onclick="toggleMM()">Colección</a><a class="mml" href="#" onclick="toggleMM();openEv();return false">Eventos</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a><button class="mml mml-btn" id="mm-auth-btn" onclick="toggleMM();openAuth()">Iniciar sesión</button><button class="mml mml-btn" id="mm-orders-btn" onclick="toggleMM();openMyOrders()" style="display:none">Mis pedidos</button><button class="mml mml-btn mml-logout" id="mm-logout-btn" onclick="toggleMM();doLogout()" style="display:none">Cerrar sesión</button></div>
 
 <!-- CATALOG DROPDOWN -->
 <div id="catdrop">
@@ -1051,7 +1051,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 <main>
 <!-- HERO -->
 <section id="hero" data-ceo-img="hero-bg"><canvas id="hcv"></canvas><div class="hrb hrb1"></div><div class="hrb hrb2"></div><div class="ho1"></div><div class="ho2"></div>
-  <div class="hc" id="hcnt"><p class="htag" data-ceo="hero-tag" contenteditable="false">Colección 2025</p><h1 class="hh1"><span id="hl1" data-ceo="hero-h1" contenteditable="false"></span><span id="hl2" data-ceo="hero-h2" contenteditable="false"></span></h1><p class="hsub" data-ceo="hero-sub" contenteditable="false">Streetwear y personalizados premium. Piezas únicas diseñadas para quienes definen su propio estilo.</p><div class="hbt"><a href="#" class="bp" onclick="openCl();return false">Explorar colección <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="#" class="bg" onclick="openPZ();return false">Crea el tuyo</a></div></div>
+  <div class="hc" id="hcnt"><p class="htag" data-ceo="hero-tag" contenteditable="false">Colección 2025</p><h1 class="hh1"><span id="hl1" data-ceo="hero-h1" contenteditable="false"></span><span id="hl2" data-ceo="hero-h2" contenteditable="false"></span></h1><p class="hsub" data-ceo="hero-sub" contenteditable="false">Streetwear y personalizados premium. Piezas únicas diseñadas para quienes definen su propio estilo.</p><div class="hbt"><a href="colecciones.html" target="_blank" rel="noopener" class="bp">Explorar colección <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="#" class="bg" onclick="openPZ();return false">Crea el tuyo</a></div></div>
   <div class="hsc"><span>Scroll</span><div class="hsl"></div></div>
 </section>
 
@@ -1089,7 +1089,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
           <button class="sw-arr" onclick="swScroll(1)" title="Siguiente">&#8594;</button>
         </div>
       </div>
-      <a href="#" onclick="openCl();return false" style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);border-bottom:1px solid var(--bo);padding-bottom:2px">Ver todo →</a>
+      <a href="catalogo-completo.html" target="_blank" rel="noopener" style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);border-bottom:1px solid var(--bo);padding-bottom:2px">Ver todo &rarr;</a>
     </div>
   </div>
   <div class="sw-track" id="swt"></div>
@@ -1157,7 +1157,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <p class="rv" style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.75;max-width:420px">Sube imágenes, agrega texto y personaliza cualquier producto. Vista previa instantánea, pedido en minutos.</p>
     <div class="rv" style="display:flex;gap:11px;flex-wrap:wrap;justify-content:center;margin-top:8px">
       <a href="#" class="bp" onclick="openPZ();return false">Abrir diseñador <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="#" class="bg" onclick="openCl();return false">Ver catálogo</a>
+      <a href="colecciones.html" target="_blank" rel="noopener" class="bg">Ver catálogo</a>
     </div>
     <div class="rv" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden;width:100%;max-width:480px;margin-top:16px">
       <div style="background:#0a0a0a;padding:20px 16px;text-align:center"><div style="font-size:18px;font-weight:500;color:#fff">Termos</div><div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:3px;letter-spacing:.1em;text-transform:uppercase">500–750ml</div></div>
@@ -1168,7 +1168,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 </section>
 
 <!-- FOOTER -->
-<footer id="footer"><div class="fi4"><div class="ft3"><div class="fb3"><h3>ELLIÉR</h3><p>Termos y streetwear personalizados de calidad premium. Tu imagen, tu identidad — diseñada para durar.</p><a href="https://wa.me/" target="_blank" class="wa"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>WhatsApp</a></div><div class="fc"><h4>Tienda</h4><ul><li><a href="#" onclick="openCl();return false">Colección</a></li><li><a href="#masproductos">Más productos</a></li><li><a href="#" onclick="openCl();return false">Colección</a></li><li><a href="#">Novedades</a></li></ul></div><div class="fc"><h4>Personalización</h4><ul><li><a href="#" onclick="openPZ();return false">Diseñar ahora</a></li><li><a href="#">Cómo funciona</a></li><li><a href="#">Galería</a></li><li><a href="#">FAQ</a></li></ul></div><div class="fc"><h4>Contacto</h4><ul><li><a href="https://wa.me/" target="_blank">WhatsApp</a></li><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="mailto:ellier@correo.com">Email</a></li></ul></div></div><div class="fbot"><p class="fcp">© 2025 ELLIÉR — Todos los derechos reservados</p><div class="fsocs"><a href="#" class="fsoc"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div></div></footer>
+<footer id="footer"><div class="fi4"><div class="ft3"><div class="fb3"><h3>ELLIÉR</h3><p>Termos y streetwear personalizados de calidad premium. Tu imagen, tu identidad — diseñada para durar.</p><a href="https://wa.me/" target="_blank" class="wa"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>WhatsApp</a></div><div class="fc"><h4>Tienda</h4><ul><li><a href="colecciones.html" target="_blank" rel="noopener">Colección</a></li><li><a href="#masproductos">Más productos</a></li><li><a href="coleccion-up.html" target="_blank" rel="noopener">Colección UP</a></li><li><a href="colecciones.html" target="_blank" rel="noopener">Novedades</a></li></ul></div><div class="fc"><h4>Personalización</h4><ul><li><a href="#" onclick="openPZ();return false">Diseñar ahora</a></li><li><a href="#">Cómo funciona</a></li><li><a href="#">Galería</a></li><li><a href="#">FAQ</a></li></ul></div><div class="fc"><h4>Contacto</h4><ul><li><a href="https://wa.me/" target="_blank">WhatsApp</a></li><li><a href="#">Instagram</a></li><li><a href="#">TikTok</a></li><li><a href="mailto:ellier@correo.com">Email</a></li></ul></div></div><div class="fbot"><p class="fcp">© 2025 ELLIÉR — Todos los derechos reservados</p><div class="fsocs"><a href="#" class="fsoc"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a><a href="#" class="fsoc"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div></div></footer>
 </main>
 
 <!-- CEO FLOATING TOOLBAR -->
@@ -2401,11 +2401,7 @@ function closeCatMenu(){_catO=false;document.getElementById('catdrop').classList
 function catGo(cat){
   closeCatMenu();
   if(cat==='personaliza'){closeCl();setTimeout(openPZ,60);return}
-  openCl();
-  setTimeout(()=>{
-    const b=document.querySelector(`#clf .cft2[onclick*="'${cat}'"]`);
-    if(b)b.click();
-  },140);
+  window.open('colecciones.html','_blank','noopener');
 }
 document.addEventListener('click',e=>{
   if(_catO&&!e.target.closest('#catbtn')&&!e.target.closest('#catdrop'))closeCatMenu();
