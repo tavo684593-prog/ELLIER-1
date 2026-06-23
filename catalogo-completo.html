@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Catalogo Completo - ELLIER</title>
-<meta name="description" content="Catalogo completo ELLIER con streetwear, termos y tazas."/>
+<title>Catalogo Completo - ELLIÉR</title>
+<meta name="description" content="Catalogo completo ELLIÉR con streetwear, termos y tazas."/>
 <meta name="theme-color" content="#0a0a0a"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -25,7 +25,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 </head>
 <body>
 <nav id="nv">
-  <a class="brand" href="index.html">ELLIER</a>
+  <a class="brand" href="index.html">ELLIÉR</a>
   <div class="nls">
     <a class="nl" href="index.html">Inicio</a>
     <a class="nl" href="coleccion-up.html" target="_blank" rel="noopener">Coleccion UP</a>
@@ -34,7 +34,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 </nav>
 <header class="hero">
   <div>
-    <div class="ey">ELLIER</div>
+    <div class="ey">ELLIÉR</div>
     <h1>Catalogo Completo</h1>
     <p>Todas las piezas disponibles en un solo lugar: streetwear, termos, tazas y productos deportivos.</p>
   </div>
@@ -46,6 +46,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
   <button class="ft" onclick="filterProducts(this,'sudaderas')">Sudaderas</button>
   <button class="ft" onclick="filterProducts(this,'pans')">Pans</button>
   <button class="ft" onclick="filterProducts(this,'playeras')">Playeras</button>
+  <button class="ft" onclick="filterProducts(this,'chamarras')">Chamarras</button>
   <button class="ft" onclick="filterProducts(this,'termos')">Termos</button>
   <button class="ft" onclick="filterProducts(this,'tazas')">Tazas</button>
 </div>
@@ -55,7 +56,6 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 <div id="toast"></div>
 <script src="products.js"></script>
 <script>
-// Derivar PRODUCTS desde el catálogo compartido
 const PRODUCTS=CATALOG.map(p=>({
   id:p.id, n:p.n, cat:p.cat, p:p.p, tag:p.tag||'',
   clr:p.clr||(p.clrs&&p.clrs[0])||'#1a1a1a',
