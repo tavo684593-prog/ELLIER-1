@@ -26,6 +26,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 .filters{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.12);padding:0 46px;overflow-x:auto;background:#050505;position:sticky;top:57px;z-index:15}.ft{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:13px 18px;color:rgba(255,255,255,.45);border-bottom:1.5px solid transparent;white-space:nowrap}.ft.a,.ft:hover{color:#fff;border-color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;padding:28px 46px 70px;background:#050505}
 .pc{background:#fff;border-radius:8px;overflow:hidden;border:1px solid var(--bo);transition:transform .34s var(--ea),box-shadow .34s var(--ea)}.pc:hover{transform:translateY(-5px);box-shadow:0 18px 52px rgba(0,0,0,.1)}.pc.hd{display:none}
+.empty-filter{display:none;grid-column:1/-1;min-height:220px;border:1px solid rgba(255,255,255,.12);border-radius:8px;align-items:center;justify-content:center;text-align:center;color:rgba(255,255,255,.52);font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.03)}.empty-filter.o{display:flex}
 .pci{position:relative;aspect-ratio:1;overflow:hidden;background:#f0eee9}.pcii{width:100%;height:100%;padding:18px;display:flex;align-items:center;justify-content:center;transition:transform .54s var(--ea);cursor:pointer}.pc:hover .pcii{transform:scale(1.06)}.pcii img{width:100%;height:100%;object-fit:contain;border-radius:4px}
 .pbg2{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:.09em;text-transform:uppercase;background:#0a0a0a;color:#fff;padding:4px 9px;border-radius:20px}.pbg2.nw{background:#2d4a3e}.pbg2.bs{background:#8b5e3c}
 .pw{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:var(--su);transition:color .2s}.pw:hover,.pw.on{color:#c0392b}.pw.on svg{fill:currentColor}
@@ -70,6 +71,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
     <button class="ft" onclick="filterProducts(this,'chamarras')">Chamarras</button>
     <button class="ft" onclick="filterProducts(this,'sudaderas')">Sudaderas</button>
     <button class="ft" onclick="filterProducts(this,'deportivo')">Deportivo</button>
+    <button class="ft" onclick="filterProducts(this,'termos,tazas')">Termos y Tazas</button>
   </div>
 
   <main class="grid" id="grid"></main>
@@ -115,9 +117,21 @@ const PRODUCTS=[
   {id:'up6',n:'Chamarra Rojo-Negro Hombre UP',cat:'chamarras',p:'$820',img:'images/chamarra-rojo-negro-hombre-up.png',tag:'bs',desc:'Chamarra para hombre con contraste rojo y negro.'},
   {id:'up7',n:'Chaqueta Blanca Hombre UP',cat:'chamarras',p:'$790',img:'images/chaqueta-blanca-hombre-up.png',tag:'',desc:'Chaqueta blanca limpia y versatil para looks deportivos.'},
   {id:'up8',n:'Chaqueta Rosa Roble Mujer UP',cat:'chamarras',p:'$790',img:'images/chaqueta-rosa-roble-mujer-up.png',tag:'new',desc:'Chaqueta rosa roble para mujer con silueta ligera.'},
-  {id:'up9',n:'Sudadera Verde Menta Mujer UP',cat:'sudaderas',p:'$690',img:'images/sudadera-verde-menta-mujer-up.png',tag:'',desc:'Sudadera verde menta suave para un estilo relajado.'},
+  {id:'up9',n:'Chamarra Verde Menta Mujer UP',cat:'chamarras',p:'$690',img:'images/chamarra-verde-menta-mujer-up.png',tag:'',desc:'Chamarra verde menta ligera para un estilo deportivo y relajado.'},
   {id:'up10',n:'Sudadera y Pans Deportivo Hombre UP',cat:'sudaderas',p:'$980',img:'images/sudadera-y-pans-deportivo-hombre-up.png',tag:'bs',desc:'Set completo de sudadera y pans deportivo para hombre.'},
-  {id:'up11',n:'Voleibol Mujer UP',cat:'deportivo',p:'$520',img:'images/voleibol-mujer-up.png',tag:'new',desc:'Conjunto deportivo para voleibol con identidad UP.'}
+  {id:'up11',n:'Voleibol Mujer UP',cat:'deportivo',p:'$520',img:'images/voleibol-mujer-up.png',tag:'new',desc:'Conjunto deportivo para voleibol con identidad UP.'},
+  {id:'up12',n:'Taza Escudo UP',cat:'tazas',p:'$220',img:'images/taza-escudo-up.png',tag:'new',desc:'Taza con escudo UP para llevar la identidad de la colaboracion a cada momento.'},
+  {id:'up13',n:'Taza Pantera UP',cat:'tazas',p:'$220',img:'images/taza-pantera1.png',tag:'new',desc:'Taza de la colaboracion UP con diseño de pantera.'},
+  {id:'up14',n:'Taza Rasguño 1 UP',cat:'tazas',p:'$220',img:'images/taza-rasguño1.png',tag:'new',desc:'Taza UP con grafico de rasguño y acabado distintivo.'},
+  {id:'up15',n:'Taza Rasguño 2 UP',cat:'tazas',p:'$220',img:'images/taza-rasguño2.png',tag:'new',desc:'Taza UP con una segunda variante del diseño rasguño.'},
+  {id:'up16',n:'Taza Rasguño 3 UP',cat:'tazas',p:'$220',img:'images/taza-rasguño3.png',tag:'new',desc:'Taza UP con diseño rasguño en su tercera variante.'},
+  {id:'up17',n:'Termo Panamericana 20 oz UP',cat:'termos',p:'$380',img:'images/termo-panamericana20oz.png',tag:'new',desc:'Termo Panamericana UP de 20 oz para bebidas frias o calientes.'},
+  {id:'up18',n:'Termo Rasguño 20 oz UP',cat:'termos',p:'$380',img:'images/termo-rasguño20oz.png',tag:'new',desc:'Termo UP de 20 oz con diseño rasguño.'},
+  {id:'up19',n:'Termo Rasguño 2 de 20 oz UP',cat:'termos',p:'$380',img:'images/termo-rasguño2-20oz.png',tag:'new',desc:'Termo UP de 20 oz con la segunda variante del diseño rasguño.'},
+  {id:'up20',n:'Termo Panamericana Blanco 25 oz UP',cat:'termos',p:'$420',img:'images/termo-panamericana-blanco25oz.png',tag:'new',desc:'Termo blanco Panamericana UP de 25 oz con gran capacidad.'},
+  {id:'up21',n:'Termo Pantera 30 oz UP',cat:'termos',p:'$440',img:'images/termo-pantera-30oz.png',tag:'new',desc:'Termo UP de 30 oz con diseño de pantera.'},
+  {id:'up22',n:'Termo Panamericana Blanco 40 oz UP',cat:'termos',p:'$480',img:'images/termo-panamericana-boanco40oz.png',tag:'new',desc:'Termo blanco Panamericana UP de 40 oz para acompañarte todo el dia.'},
+  {id:'up23',n:'Termo Pantera 40 oz UP',cat:'termos',p:'$480',img:'images/termo-pantera1-40oz.png',tag:'new',desc:'Termo UP de 40 oz con diseño de pantera y capacidad amplia.'},
 ];
 let wish=JSON.parse(localStorage.getItem('ellier_wish')||'[]');
 let _heroIdx=0,_heroTimer=null;
@@ -149,12 +163,20 @@ function heroGo(i){
 function productCard(p){
   const on=wish.includes(p.id)?' on':'';
   const tag=p.tag?`<div class="pbg2 ${p.tag==='new'?'nw':'bs'}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
-  return `<article class="pc" data-cat="${p.cat}"><div class="pci"><div class="pcii" onclick="openDetail('${p.id}')"><img src="${p.img}" alt="${p.n}"/></div>${tag}<button class="pw${on}" onclick="toggleWish(this,'${p.id}')" aria-label="Favorito"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pdsc">${p.desc}</div><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></article>`;
+  return `<article class="pc" data-cat="${p.cat}"><div class="pci"><div class="pcii" onclick="openDetail('${p.id}')"><img src="${p.img}" alt="${p.n}" loading="lazy" decoding="async"/></div>${tag}<button class="pw${on}" onclick="toggleWish(this,'${p.id}')" aria-label="Favorito"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pdsc">${p.desc}</div><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></article>`;
 }
-function renderProducts(){document.getElementById('grid').innerHTML=PRODUCTS.map(productCard).join('');document.getElementById('pcount').textContent=PRODUCTS.length+' productos UP'}
+function renderProducts(){document.getElementById('grid').innerHTML=PRODUCTS.map(productCard).join('')+'<div class="empty-filter" id="emptyFilter">Productos UP proximamente</div>';document.getElementById('pcount').textContent=PRODUCTS.length+' productos UP'}
 function filterProducts(btn,cat){
   document.querySelectorAll('.ft').forEach(b=>b.classList.remove('a'));btn.classList.add('a');
-  document.querySelectorAll('.pc').forEach(c=>c.classList.toggle('hd',cat!=='all'&&c.dataset.cat!==cat));
+  const cats=cat==='all'?[]:cat.split(',');
+  let visible=0;
+  document.querySelectorAll('.pc').forEach(c=>{
+    const show=cat==='all'||cats.includes(c.dataset.cat);
+    c.classList.toggle('hd',!show);
+    if(show)visible++;
+  });
+  const empty=document.getElementById('emptyFilter');
+  if(empty)empty.classList.toggle('o',visible===0);
 }
 function openDetail(id){
   const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
@@ -183,7 +205,8 @@ renderHeroCarousel();_heroTimer=setInterval(()=>heroGo(_heroIdx+1),4200);
 renderProducts();updateCC();
 const initial=(location.hash||'').replace('#','');
 if(initial&&initial!=='up'){
-  const btn=[...document.querySelectorAll('.ft')].find(b=>b.getAttribute('onclick')?.includes(`'${initial}'`));
+  const target=(initial==='termos'||initial==='tazas')?'termos,tazas':initial;
+  const btn=[...document.querySelectorAll('.ft')].find(b=>b.getAttribute('onclick')?.includes(`'${target}'`));
   if(btn)btn.click();
 }
 </script>

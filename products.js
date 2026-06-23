@@ -76,6 +76,36 @@ const CATALOG = [
    img:'images/sudadera-frase2.png',
    svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/></svg>`},
 
+  {id:'sw23', n:'Sudadera Essential', cat:'sudaderas', p:'$740', tag:'new',
+   clrs:['#1a1a1a'],
+   desc:'Sudadera essential con silueta limpia y estilo urbano.',
+   img:'images/sudadera.png',
+   svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/></svg>`},
+
+  {id:'sw24', n:'Sudadera Beige', cat:'sudaderas', p:'$740', tag:'new',
+   clrs:['#d6c8ad'],
+   desc:'Sudadera beige de acabado suave para un look relajado y premium.',
+   img:'images/sudadera-beige.png',
+   svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/></svg>`},
+
+  {id:'sw25', n:'Sudadera Cuadro', cat:'sudaderas', p:'$760', tag:'new',
+   clrs:['#3a3730'],
+   desc:'Sudadera con diseño de cuadro y presencia contemporánea.',
+   img:'images/sudadera-cuadro.png',
+   svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/></svg>`},
+
+  {id:'sw26', n:'Sudadera Gris', cat:'sudaderas', p:'$740', tag:'new',
+   clrs:['#8a8578'],
+   desc:'Sudadera gris versátil con corte cómodo para uso diario.',
+   img:'images/sudadera-gris.png',
+   svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/></svg>`},
+
+  {id:'sw39', n:'Sudadera Gato', cat:'sudaderas', p:'$760', tag:'new',
+   clrs:['#1a1a1a'],
+   desc:'Sudadera con diseño gato, corte cómodo y estilo urbano.',
+   img:'images/sudadera-gato.png',
+   svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/></svg>`},
+
   // ── PANS ─────────────────────────────────────────────────────
 
   {id:'sw3', n:'Pan Cargo', cat:'pans', p:'$560', tag:'bs',
@@ -143,6 +173,78 @@ const CATALOG = [
    desc:'Playera rosa con corte cómodo y actitud vibrante.',
    img:'images/playera-rosa.png',
    svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw27', n:'Playera Café', cat:'playeras', p:'$420', tag:'new',
+   clrs:['#7b5542'],
+   desc:'Playera café con corte cómodo y estilo sobrio.',
+   img:'images/playera-cafe.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw28', n:'Playera Cuadro', cat:'playeras', p:'$420', tag:'new',
+   clrs:['#f0ede6'],
+   desc:'Playera con diseño de cuadro para un look fresco y urbano.',
+   img:'images/playera-cuadro.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw29', n:'Playera Etiqueta Blanca', cat:'playeras', p:'$420', tag:'new',
+   clrs:['#f4f1ec'],
+   desc:'Playera blanca con etiqueta ELLIÉR y acabado limpio.',
+   img:'images/playera-etiqueta-blanca.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw30', n:'Playera Etiqueta Café', cat:'playeras', p:'$420', tag:'new',
+   clrs:['#8b6b55'],
+   desc:'Playera café con etiqueta ELLIÉR y presencia casual.',
+   img:'images/playera-etiqueta-cafe.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw31', n:'Crop Oversize Blanca', cat:'playeras', p:'$440', tag:'new',
+   clrs:['#f4f1ec'],
+   desc:'Crop oversize blanca con corte amplio y acabado fresco.',
+   img:'images/crop-oversize-blanca.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 82 L80 82 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw32', n:'Crop Oversize Negra', cat:'playeras', p:'$440', tag:'new',
+   clrs:['#1a1a1a'],
+   desc:'Crop oversize negra de silueta relajada y actitud urbana.',
+   img:'images/crop-oversize-negra.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 82 L80 82 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw33', n:'Crop Oversize Frase 1', cat:'playeras', p:'$460', tag:'new',
+   clrs:['#f4f1ec'],
+   desc:'Crop oversize con frase gráfica y corte contemporáneo.',
+   img:'images/crop.oversize-frase1.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 82 L80 82 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw34', n:'Crop Oversize Frase 2', cat:'playeras', p:'$460', tag:'new',
+   clrs:['#1a1a1a'],
+   desc:'Crop oversize con diseño tipográfico para un look fuerte.',
+   img:'images/crop-oversize-frase2.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 82 L80 82 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw35', n:'Crop Oversize Los Ángeles', cat:'playeras', p:'$460', tag:'new',
+   clrs:['#f4f1ec'],
+   desc:'Crop oversize Los Ángeles con estilo urbano y corte cómodo.',
+   img:'images/crop-oversize-losangeles.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 82 L80 82 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw36', n:'Oversize Cara', cat:'playeras', p:'$460', tag:'new',
+   clrs:['#f4f1ec'],
+   desc:'Playera oversize con gráfico de cara y presencia artística.',
+   img:'images/oversize-cara.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 18 L3 40 L20 47 L20 96 L80 96 L80 47 L97 40 L82 18 L65 28 Q50 36 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw37', n:'Oversize Frase 1', cat:'playeras', p:'$460', tag:'new',
+   clrs:['#1a1a1a'],
+   desc:'Playera oversize con frase gráfica y caída amplia.',
+   img:'images/oversize-frase1.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 18 L3 40 L20 47 L20 96 L80 96 L80 47 L97 40 L82 18 L65 28 Q50 36 35 28 Z" fill="{C}"/></svg>`},
+
+  {id:'sw38', n:'Oversize Hombre', cat:'playeras', p:'$460', tag:'new',
+   clrs:['#f4f1ec'],
+   desc:'Playera oversize para hombre con corte amplio y diseño premium.',
+   img:'images/oversize-hombre.png',
+   svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 18 L3 40 L20 47 L20 96 L80 96 L80 47 L97 40 L82 18 L65 28 Q50 36 35 28 Z" fill="{C}"/></svg>`},
 
   // ── CHAMARRAS ────────────────────────────────────────────────
 

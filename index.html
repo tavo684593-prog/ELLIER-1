@@ -2320,8 +2320,8 @@ function mkShowcaseCard(p){
   const c0=isSW?(p.clrs&&p.clrs[0]||'#1a1a1a'):p.clr||'#1a1a1a';
   const customImg=_getProdImg(p.id);
   let vis;
-  if(customImg)vis=`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}"/>`;
-  else if(p.img)vis=`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}"/>`;
+  if(customImg)vis=`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}" loading="lazy" decoding="async"/>`;
+  else if(p.img)vis=`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}" loading="lazy" decoding="async"/>`;
   else if(isSW&&p.svg)vis=p.svg.replace(/\{C\}/g,c0);
   else if(p.cat==='termos')vis=mkTermoSVG(c0);
   else vis=mkTazaSVG(c0);
