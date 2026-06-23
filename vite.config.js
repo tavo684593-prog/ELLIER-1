@@ -1,4 +1,5 @@
 import { resolve } from 'node:path'
+import { copyFileSync } from 'node:fs'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -12,4 +13,13 @@ export default defineConfig({
       },
     },
   },
+  plugins: [{
+    name: 'copy-products-js',
+    closeBundle() {
+      copyFileSync(
+        resolve(__dirname, 'products.js'),
+        resolve(__dirname, 'dist/products.js')
+      )
+    }
+  }],
 })
