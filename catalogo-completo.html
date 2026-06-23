@@ -53,31 +53,22 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 <div id="pdov" onclick="if(event.target===this)closeDetail()"><div class="modal"><div class="mh"><h2>Producto</h2><button class="xb" onclick="closeDetail()">x</button></div><div class="pdb"><div class="pdimg" id="pd-img"></div><div><div class="pdi-cat" id="pd-cat"></div><div class="pdi-name" id="pd-name"></div><div class="pdi-price" id="pd-price"></div><button class="ba" id="pd-add">+ Carrito</button><div class="pdi-desc" id="pd-desc"></div></div></div></div></div>
 <div id="cartov" onclick="if(event.target===this)closeCart()"><div class="modal" style="max-width:460px"><div class="mh"><h2>Carrito</h2><button class="xb" onclick="closeCart()">x</button></div><div class="cartbody" id="cartitems"></div><div class="cartfoot" id="cartfoot"><strong>Total</strong><strong id="carttotal">$0 MXN</strong></div></div></div>
 <div id="toast"></div>
+<script src="products.js"></script>
 <script>
-const PRODUCTS=[
-  {id:'sw1',n:'Jogger Essentials',cat:'joggers',p:'$520',tag:'new',clr:'#1a1a1a',desc:'Jogger de corte relajado confeccionado en tela de alto gramaje.'},
-  {id:'sw2',n:'Sudadera Minimal',cat:'sudaderas',p:'$680',clr:'#c4b8a2',desc:'Sudadera de corte oversize en fleece premium.'},
-  {id:'sw3',n:'Pan Cargo',cat:'pans',p:'$560',tag:'bs',clr:'#3a3730',desc:'Pantalon cargo de corte slim con bolsillos laterales.'},
-  {id:'sw4',n:'Playera Core',cat:'playeras',p:'$380',clr:'#f0ede6',desc:'Camiseta en jersey de algodon peinado.'},
-  {id:'sw5',n:'Jogger Relaxed',cat:'joggers',p:'$490',tag:'new',clr:'#8a9485',desc:'Jogger relajado para uso diario y streetwear.'},
-  {id:'sw6',n:'Sudadera Oversize',cat:'sudaderas',p:'$720',tag:'bs',clr:'#1a1a1a',desc:'Sudadera oversize con presencia urbana.'},
-  {id:'sw7',n:'Pan Slim',cat:'pans',p:'$530',clr:'#1a1a1a',desc:'Pantalon slim de silueta limpia.'},
-  {id:'sw8',n:'Playera Edicion',cat:'playeras',p:'$420',tag:'new',clr:'#9a6050',desc:'Playera de edicion con identidad ELLIER.'},
-  {id:'t1',n:'Termo Negro 500ml',cat:'termos',p:'$320',clr:'#1a1a1a',desc:'Acero 304, doble pared, 8h caliente y 20h frio.'},
-  {id:'t2',n:'Termo Arena 500ml',cat:'termos',p:'$320',clr:'#c4b8a2',desc:'Sellado al vacio con tapa antigoteo.'},
-  {id:'t3',n:'Termo Gris Titanio',cat:'termos',p:'$380',clr:'#8a8578',desc:'Acabado titanio cepillado de edicion limitada.'},
-  {id:'t4',n:'Taza Matte Negro',cat:'tazas',p:'$220',clr:'#2a2a2a',desc:'Ceramica premium con acabado matte.'},
-  {id:'t5',n:'Taza Latte Beige',cat:'tazas',p:'$220',clr:'#d4c4a8',desc:'Color latte minimalista y personalizable.'},
-  {id:'t6',n:'Termo Cafe 750ml',cat:'termos',p:'$440',clr:'#3a2a1a',desc:'Gran capacidad con tapa de presion.'},
-  {id:'t7',n:'Taza Sage Green',cat:'tazas',p:'$240',clr:'#8a9485',desc:'Verde salvia de edicion especial.'}
-];
+// Derivar PRODUCTS desde el catálogo compartido
+const PRODUCTS=CATALOG.map(p=>({
+  id:p.id, n:p.n, cat:p.cat, p:p.p, tag:p.tag||'',
+  clr:p.clr||(p.clrs&&p.clrs[0])||'#1a1a1a',
+  img:p.img||null,
+  desc:p.desc||''
+}));
 let wish=JSON.parse(localStorage.getItem('ellier_wish')||'[]');
 const Cart={items:JSON.parse(localStorage.getItem('ellier_cart')||'[]'),save(){localStorage.setItem('ellier_cart',JSON.stringify(this.items));updateCC()},add(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;const ex=this.items.find(x=>x.id===id&&!x.custom);if(ex)ex.qty++;else this.items.push({id,n:p.n,p:p.p,qty:1,cat:p.cat,clr:p.clr||'#0a0a0a',img:p.img});this.save();showToast('Agregado al carrito')},remove(i){this.items.splice(i,1);this.save();renderCart()},total(){return this.items.reduce((s,x)=>s+(parseInt((x.p||'0').replace(/\D/g,''))||0)*(x.qty||1),0)}};
 function mkWear(c){return `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="${c}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.12)"/></svg>`}
 function mkPants(c){return `<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5 L78 5 L78 20 L82 98 L63 118 L53 72 L47 72 L37 118 L18 98 L22 20 Z" fill="${c}"/></svg>`}
 function mkTermo(c){return `<svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="18" rx="26" ry="9" fill="${c}" opacity=".7"/><rect x="24" y="9" width="52" height="100" rx="8" fill="${c}"/><rect x="32" y="4" width="36" height="9" rx="4" fill="${c}" opacity=".85"/><ellipse cx="50" cy="109" rx="26" ry="9" fill="${c}" opacity=".6"/></svg>`}
 function mkTaza(c){return `<svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg"><path d="M15 20 L18 80 Q18 86 25 86 L75 86 Q82 86 82 80 L85 20 Z" fill="${c}"/><path d="M82 35 Q95 35 95 50 Q95 65 82 65" stroke="${c}" stroke-width="6" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="20" rx="35" ry="10" fill="${c}" opacity=".7"/></svg>`}
-function visual(p){if(p.img)return `<img src="${p.img}" alt="${p.n}"/>`;if(p.cat==='termos')return mkTermo(p.clr);if(p.cat==='tazas')return mkTaza(p.clr);if(p.cat==='pans'||p.cat==='joggers')return mkPants(p.clr);return mkWear(p.clr)}
+function visual(p){const c=p.clr||'#1a1a1a';if(p.img)return `<img src="${p.img}" alt="${p.n}"/>`;if(p.cat==='termos')return mkTermo(c);if(p.cat==='tazas')return mkTaza(c);if(p.cat==='pans'||p.cat==='joggers')return mkPants(c);return mkWear(c)}
 function productCard(p){const on=wish.includes(p.id)?' on':'';const tag=p.tag?`<div class="pbg2 ${p.tag==='new'?'nw':'bs'}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';return `<article class="pc" data-cat="${p.cat}"><div class="pci"><div class="pcii" onclick="openDetail('${p.id}')">${visual(p)}</div>${tag}<button class="pw${on}" onclick="toggleWish(this,'${p.id}')" aria-label="Favorito"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pdsc">${p.desc}</div><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></article>`}
 function renderProducts(){document.getElementById('grid').innerHTML=PRODUCTS.map(productCard).join('');document.getElementById('pcount').textContent=PRODUCTS.length+' productos'}
 function filterProducts(btn,cat){document.querySelectorAll('.ft').forEach(b=>b.classList.remove('a'));btn.classList.add('a');document.querySelectorAll('.pc').forEach(c=>c.classList.toggle('hd',cat!=='all'&&c.dataset.cat!==cat))}

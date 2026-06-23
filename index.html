@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
@@ -549,7 +549,8 @@ body.dark .pd-media{background:#111}
 .sw-arr:hover{border-color:var(--text);color:var(--text)}
 .sw-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;padding:4px 46px 24px}
 .sw-track::-webkit-scrollbar{display:none}
-#swt .pc,#swt .tcard{flex:0 0 252px;width:252px;scroll-snap-align:start}
+#swt .pc{flex:0 0 252px;width:252px;scroll-snap-align:start}
+#swt .pdsc{font-size:11px;color:var(--mu);line-height:1.45;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:32px}
 /* -- POR QUÉ ELEGIRNOS --------------------- */
 #porque{padding:80px 0;background:#fff;border-top:1px solid var(--bo)}
 .pq-wrap{max-width:1380px;margin:0 auto;padding:0 46px}
@@ -1097,7 +1098,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
       <a href="catalogo-completo.html" target="_blank" rel="noopener" style="font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mu);border-bottom:1px solid var(--bo);padding-bottom:2px">Ver todo &rarr;</a>
     </div>
   </div>
-  <div class="sw-track" id="swt"></div>
+  <div class="sw-track" id="swt" onmouseenter="swStopAuto()" onmouseleave="swStartAuto()"></div>
 </section>
 
 <!-- NOSOTROS -->
@@ -1274,6 +1275,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   </div>
 </div>
 
+<script src="products.js"></script>
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
@@ -1436,26 +1438,9 @@ function _getEffectivePrice(p){
   return p.p;
 }
 
-// PRODUCT DATA
-const SW=[
-  {id:'sw1',n:'Jogger Essentials',cat:'joggers',clrs:['#1a1a1a','#3a3730','#8a8578'],p:'$520',tag:'new',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="8" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="14" rx="4" fill="rgba(0,0,0,.2)"/><line x1="50" y1="19" x2="50" y2="95" stroke="rgba(255,255,255,.08)" stroke-width="1"/><rect x="8" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="4" fill="{C}" opacity=".85"/></svg>`},
-  {id:'sw2',n:'Sudadera Minimal',cat:'sudaderas',clrs:['#c4b8a2','#1a1a1a','#9a6050'],p:'$680',tag:'',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L10 45 L25 47 L25 105 L75 105 L75 47 L90 45 L80 20 L65 30 Q50 38 35 30 Z" fill="{C}"/><path d="M35 30 Q50 38 65 30 L65 38 Q50 46 35 38 Z" fill="rgba(0,0,0,.15)"/></svg>`},
-  {id:'sw3',n:'Pan Cargo',cat:'pans',clrs:['#3a3730','#1a1a1a','#8a8578'],p:'$560',tag:'bs',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5 L80 5 L80 20 L85 95 L65 115 L55 70 L45 70 L35 115 L15 95 L20 20 Z" fill="{C}"/><rect x="60" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/><rect x="20" y="40" width="18" height="24" rx="3" fill="rgba(0,0,0,.2)"/></svg>`},
-  {id:'sw4',n:'Playera Core',cat:'playeras',clrs:['#f0ede6','#1a1a1a','#c4b8a2'],p:'$380',tag:'',model3d:'render3d/playeras/blanco/blanco.gltf',models3d:{'#f0ede6':'render3d/playeras/blanco/blanco.gltf','#1a1a1a':'render3d/playeras/negro/negro.gltf','#c4b8a2':'render3d/playeras/gris/gris.gltf'},svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><path d="M35 28 Q50 35 65 28 L65 35 Q50 42 35 35 Z" fill="rgba(0,0,0,.12)"/></svg>`},
-  {id:'sw5',n:'Jogger Relaxed',cat:'joggers',clrs:['#8a9485','#3a3730','#1a1a1a'],p:'$490',tag:'new',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="5" width="80" height="90" rx="10" fill="{C}" opacity=".9"/><rect x="10" y="5" width="80" height="16" rx="5" fill="rgba(0,0,0,.18)"/><line x1="50" y1="21" x2="50" y2="95" stroke="rgba(255,255,255,.07)" stroke-width="1.5"/><rect x="8" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/><rect x="56" y="95" width="36" height="20" rx="5" fill="{C}" opacity=".85"/></svg>`},
-  {id:'sw6',n:'Sudadera Oversize',cat:'sudaderas',clrs:['#1a1a1a','#c4b8a2','#8a8578'],p:'$720',tag:'bs',svg:`<svg viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 22 L5 48 L22 50 L22 106 L78 106 L78 50 L95 48 L85 22 L68 32 Q50 40 32 32 Z" fill="{C}"/><path d="M32 32 Q50 40 68 32 L68 40 Q50 48 32 40 Z" fill="rgba(0,0,0,.15)"/></svg>`},
-  {id:'sw7',n:'Pan Slim',cat:'pans',clrs:['#1a1a1a','#8a8578','#3a3730'],p:'$530',tag:'',svg:`<svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5 L78 5 L78 20 L82 98 L63 118 L53 72 L47 72 L37 118 L18 98 L22 20 Z" fill="{C}"/></svg>`},
-  {id:'sw8',n:'Playera Edición',cat:'playeras',clrs:['#9a6050','#1a1a1a','#f0ede6'],p:'$420',tag:'new',model3d:'render3d/playeras/rojo/rojo.gltf',models3d:{'#9a6050':'render3d/playeras/rojo/rojo.gltf','#1a1a1a':'render3d/playeras/negro/negro.gltf','#f0ede6':'render3d/playeras/blanco/blanco.gltf'},svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20 L5 40 L20 45 L20 95 L80 95 L80 45 L95 40 L80 20 L65 28 Q50 35 35 28 Z" fill="{C}"/><text x="50" y="68" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.28)" font-family="Helvetica">ELLIÉR</text></svg>`},
-];
-const TERMOS=[
-  {id:'t1',n:'Termo Negro 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Acero 304 · Doble pared · 8h caliente · 20h frío',clr:'#1a1a1a'},
-  {id:'t2',n:'Termo Arena 500ml',cat:'termos',oz:'17oz / 500ml',p:'$320',desc:'Sellado al vacío · Tapa antigoteo · Premium',clr:'#c4b8a2'},
-  {id:'t3',n:'Termo Gris Titanio',cat:'termos',oz:'20oz / 600ml',p:'$380',desc:'Acabado titanio cepillado · Edición limitada',clr:'#8a8578'},
-  {id:'t4',n:'Taza Matte Negro',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Cerámica premium · Apto microondas · Matte',clr:'#2a2a2a'},
-  {id:'t5',n:'Taza Latte Beige',cat:'tazas',oz:'11oz / 330ml',p:'$220',desc:'Color latte minimalista · Personalizable',clr:'#d4c4a8'},
-  {id:'t6',n:'Termo Café 750ml',cat:'termos',oz:'25oz / 750ml',p:'$440',desc:'Gran capacidad · Tapa de presión · Café oscuro',clr:'#3a2a1a'},
-  {id:'t7',n:'Taza Sage Green',cat:'tazas',oz:'12oz / 350ml',p:'$240',desc:'Verde salvia · Edición especial · Cerámica',clr:'#8a9485'},
-];
+// PRODUCT DATA — loaded from products.js (shared catalog)
+const SW=CATALOG.filter(p=>CATALOG_SW_CATS.has(p.cat));
+const TERMOS=CATALOG.filter(p=>!CATALOG_SW_CATS.has(p.cat));
 
 // SVG HELPERS
 function mkTermoSVG(clr){return `<svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="18" rx="26" ry="9" fill="${clr}" opacity=".7"/><rect x="24" y="9" width="52" height="100" rx="8" fill="${clr}"/><rect x="32" y="4" width="36" height="9" rx="4" fill="${clr}" opacity=".85"/><ellipse cx="50" cy="109" rx="26" ry="9" fill="${clr}" opacity=".6"/><ellipse cx="36" cy="50" rx="4" ry="22" fill="rgba(255,255,255,.07)"/></svg>`}
@@ -2330,16 +2315,41 @@ function evSpy(){
 }
 
 // SHOWCASE CAROUSEL
+function mkShowcaseCard(p){
+  const isSW=CATALOG_SW_CATS.has(p.cat);
+  const c0=isSW?(p.clrs&&p.clrs[0]||'#1a1a1a'):p.clr||'#1a1a1a';
+  const customImg=_getProdImg(p.id);
+  let vis;
+  if(customImg)vis=`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}"/>`;
+  else if(p.img)vis=`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}"/>`;
+  else if(isSW&&p.svg)vis=p.svg.replace(/\{C\}/g,c0);
+  else if(p.cat==='termos')vis=mkTermoSVG(c0);
+  else vis=mkTazaSVG(c0);
+  const tag=p.tag?`<div class="pbg2 ${p.tag}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
+  const sub=p.desc||p.oz||'';
+  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" style="padding:24px;cursor:pointer" onclick="openProdDetail('${p.id}')"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${vis}</div></div>${tag}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pdsc">${sub}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
+}
 function renderShowcase(){
-  const all=[...SW,...TERMOS];
+  const all=CATALOG;
   const saved=JSON.parse(localStorage.getItem('ellier_featured')||'null');
-  const featured=saved?saved.map(id=>all.find(p=>p.id===id)).filter(Boolean):[SW[0],SW[5],TERMOS[0],SW[1],TERMOS[2],SW[2],TERMOS[5],SW[7]].filter(Boolean);
+  const featured=saved?saved.map(id=>all.find(p=>p.id===id)).filter(Boolean):all;
   const g=document.getElementById('swt');if(!g)return;
-  g.innerHTML=featured.map(p=>SW.find(x=>x.id===p.id)?mkPC(p):mkTC(p)).join('');
+  g.innerHTML=featured.map(mkShowcaseCard).join('');
   obsNew(g);
 }
 function swScroll(dir){
   const t=document.getElementById('swt');if(t)t.scrollBy({left:dir*270,behavior:'smooth'});}
+let _swAutoT;
+function swStartAuto(){
+  clearInterval(_swAutoT);
+  _swAutoT=setInterval(()=>{
+    if(document.hidden)return;
+    const t=document.getElementById('swt');if(!t)return;
+    if(t.scrollLeft+t.clientWidth>=t.scrollWidth-10){t.scrollTo({left:0,behavior:'smooth'});}
+    else{t.scrollBy({left:270,behavior:'smooth'});}
+  },3500);
+}
+function swStopAuto(){clearInterval(_swAutoT);}
 
 // EVMAS CAROUSEL
 let _emCur=0;
@@ -2353,9 +2363,9 @@ setInterval(()=>{if(!document.hidden)evmasGo((_emCur+1)%document.querySelectorAl
 
 // SHOWCASE FEATURED PICKER (CEO)
 function openSwFeatured(){
-  const all=[...SW,...TERMOS];
+  const all=CATALOG;
   const saved=JSON.parse(localStorage.getItem('ellier_featured')||'null');
-  const active=new Set(saved||[SW[0],SW[5],TERMOS[0],SW[1],TERMOS[2],SW[2],TERMOS[5],SW[7]].filter(Boolean).map(p=>p.id));
+  const active=new Set(saved?saved:all.map(p=>p.id));
   const m=document.createElement('div');
   m.id='sw-feat-modal';
   m.style.cssText='position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px';
@@ -2951,7 +2961,7 @@ function renderMasProductos(){
 // --- INIT CEO ---------------------------------------------------------------
 
 // INIT
-renderShowcase();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
+renderShowcase();swStartAuto();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
 loadCeoCustomizations();buildThemePanel();
 // Manejo de retorno desde redirect de Stripe (ej. OXXO)
 (async()=>{
