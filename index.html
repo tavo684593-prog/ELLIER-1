@@ -1040,7 +1040,8 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
         <div class="pzs"><div class="pzl">Color del producto</div><div class="pzco" id="pzco"><div class="pzc a" style="background:#1a1a1a" onclick="setClr('#1a1a1a',this)"></div><div class="pzc" style="background:#fff;border:2px solid rgba(255,255,255,.18)" onclick="setClr('#ffffff',this)"></div><div class="pzc" style="background:#c4b8a2" onclick="setClr('#c4b8a2',this)"></div><div class="pzc" style="background:#8a8578" onclick="setClr('#8a8578',this)"></div><div class="pzc" style="background:#3a3730" onclick="setClr('#3a3730',this)"></div><div class="pzc" style="background:#8a9485" onclick="setClr('#8a9485',this)"></div><div class="pzc" style="background:#9a6050" onclick="setClr('#9a6050',this)"></div></div></div>
         <div class="pzs"><div class="pzl">Texto personalizado</div><input class="pzin" id="ctxt" type="text" placeholder="Tu nombre, frase o iniciales…" oninput="upPv()"/><div class="pzrw" style="margin-top:9px"><select class="pzin pzse" id="tfnt" onchange="upPv()"><option value="sans-serif">Helvetica</option><option value="Georgia,serif">Georgia</option><option value="Courier New,monospace">Courier</option><option value="Impact,sans-serif">Impact</option></select><input class="pzin" id="tclr" type="color" value="#ffffff" oninput="upPv()" style="padding:5px;height:42px;cursor:pointer"/></div><div style="margin-top:9px"><div class="pzl">Tamaño</div><input class="pzrn" type="range" id="tsz" min="10" max="72" value="30" oninput="upPv()"/></div></div>
         <div class="pzs"><div class="pzl">Importar imagen (PNG · JPG · SVG)</div><div class="dzn" id="dzn" onclick="document.getElementById('fimg').click()"><div class="dzni"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="dznt">Arrastra aquí o haz clic<br/><span style="opacity:.5">Se adapta automáticamente al producto</span></div></div><input type="file" id="fimg" accept="image/*" style="display:none" onchange="handleImg(this)"/><div id="imgctrl" style="display:none;margin-top:9px"><div class="pzl">Escala</div><input class="pzrn" type="range" id="iscl" min="0.05" max="1.5" step="0.05" value="0.45" oninput="upPv()"/></div></div>
-        <div style="display:flex;flex-direction:column;gap:11px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.06)"><button class="aib" id="aibtn" onclick="runAI()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Optimizar con IA</button><div class="aipg" id="aipg"><div class="aipgf"></div></div></div>
+        <div style="display:flex;flex-direction:column;gap:11px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.06)"><div class="pzl">Quitar fondo de imagen importada</div><button class="aib" id="aibtn" onclick="runAI()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Quitar fondo con IA</button><div class="aipg" id="aipg"><div class="aipgf"></div></div></div>
+        <div class="pzs" style="padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.06)"><div class="pzl">Generar diseño con IA</div><textarea class="pzin" id="aiprompt" placeholder="Ej: dragón japonés tinta negra, minimalista…" style="min-height:70px;resize:vertical;line-height:1.6;font-size:12px;padding:10px;margin-top:4px"></textarea><button class="aib" id="aigenbt" onclick="genAI()" style="margin-top:8px"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Generar imagen</button><div class="aipg" id="aigenpg"><div class="aipgf"></div></div></div>
       </div>
       <div class="pvp"><canvas id="prevc" width="440" height="540"></canvas><div class="pvas"><button class="pvb" onclick="dlDesign()">Descargar</button><button class="pvb ct" onclick="addCustom()">Agregar al carrito</button></div><p class="pvh">Arrastra la imagen para posicionarla · Haz clic para reposicionar</p></div>
     </div>
@@ -2219,15 +2220,42 @@ function handleImg(inp){
   const reader=new FileReader();reader.onload=e=>{const img=new Image();img.onload=()=>{PV.img=img;document.getElementById('imgctrl').style.display='block';PV.draw()};img.src=e.target.result};
   reader.readAsDataURL(file);
 }
-function runAI(){
+const _AI_STAR='<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+async function runAI(){
+  if(!PV.img){showToast('Primero importa una imagen para quitar el fondo');return;}
   const btn=document.getElementById('aibtn'),pg=document.getElementById('aipg');
-  btn.disabled=true;btn.innerHTML='<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Optimizando…';
-  pg.style.display='block';
-  setTimeout(()=>{
-    PV.imgX=PV.cv.width/2;PV.imgY=PV.cv.height*.34;PV.imgScale=.48;PV.draw();
-    btn.disabled=false;btn.innerHTML='<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Optimizar con IA';
-    pg.style.display='none';showToast('Diseño optimizado automáticamente');
-  },1800);
+  btn.disabled=true;btn.innerHTML=_AI_STAR+'Procesando… (primera vez descarga modelo)';pg.style.display='block';
+  try{
+    const{removeBackground}=await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/index.browser.mjs');
+    const cvt=document.createElement('canvas');
+    cvt.width=PV.img.naturalWidth||PV.img.width||512;
+    cvt.height=PV.img.naturalHeight||PV.img.height||512;
+    cvt.getContext('2d').drawImage(PV.img,0,0);
+    const blob=await new Promise(r=>cvt.toBlob(r,'image/png'));
+    const result=await removeBackground(blob);
+    const url=URL.createObjectURL(result);
+    await new Promise((res,rej)=>{const im=new Image();im.onload=()=>{PV.img=im;PV.draw();URL.revokeObjectURL(url);res()};im.onerror=rej;im.src=url});
+    showToast('¡Fondo eliminado con IA!');
+  }catch(e){console.error(e);showToast('Error al procesar. Intenta con otra imagen.');}
+  finally{btn.disabled=false;btn.innerHTML=_AI_STAR+'Quitar fondo con IA';pg.style.display='none';}
+}
+async function genAI(){
+  const prompt=document.getElementById('aiprompt').value.trim();
+  if(!prompt){showToast('Escribe una descripción del diseño');return;}
+  const btn=document.getElementById('aigenbt'),pg=document.getElementById('aigenpg');
+  btn.disabled=true;btn.innerHTML=_AI_STAR+'Generando…';pg.style.display='block';
+  try{
+    const seed=Math.floor(Math.random()*99999);
+    const base='flat vector print design, transparent background, product graphic, t-shirt design, '+prompt;
+    const url='https://image.pollinations.ai/prompt/'+encodeURIComponent(base)+'?width=512&height=512&nologo=true&seed='+seed;
+    await new Promise((res,rej)=>{
+      const im=new Image();im.crossOrigin='anonymous';
+      im.onload=()=>{PV.img=im;document.getElementById('imgctrl').style.display='block';PV.imgScale=0.48;PV.imgX=PV.cv.width/2;PV.imgY=PV.cv.height*.34;PV.draw();res()};
+      im.onerror=rej;im.src=url;
+    });
+    showToast('¡Diseño generado!');
+  }catch(e){console.error(e);showToast('No se pudo generar. Intenta de nuevo.');}
+  finally{btn.disabled=false;btn.innerHTML=_AI_STAR+'Generar imagen';pg.style.display='none';}
 }
 function dlDesign(){const a=document.createElement('a');a.href=PV.cv.toDataURL('image/png');a.download='ellier-diseno.png';a.click();showToast('Diseño descargado')}
 const _pzInfo={termo:{n:'Termo Personalizado',p:350,cat:'termos'},taza:{n:'Taza Personalizada',p:280,cat:'tazas'},playera:{n:'Playera Personalizada',p:420,cat:'playeras'},sudadera:{n:'Sudadera Personalizada',p:580,cat:'sudaderas'}};
