@@ -1036,7 +1036,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   <div class="pzw" style="padding-top:44px;padding-bottom:60px">
     <div class="pzg">
       <div class="pzp">
-        <div class="pzs"><div class="pzl">Producto</div><div class="pzbt" id="pzpb"><button class="pzb a" onclick="setProd('termo',this)">Termo</button><button class="pzb" onclick="setProd('taza',this)">Taza</button><button class="pzb" onclick="setProd('camisa',this)">Camisa</button><button class="pzb" onclick="setProd('jogger',this)">Jogger</button></div></div>
+        <div class="pzs"><div class="pzl">Producto</div><div class="pzbt" id="pzpb"><button class="pzb a" onclick="setProd('termo',this)">Termo</button><button class="pzb" onclick="setProd('taza',this)">Taza</button><button class="pzb" onclick="setProd('playera',this)">Playera</button><button class="pzb" onclick="setProd('sudadera',this)">Sudadera</button></div></div>
         <div class="pzs"><div class="pzl">Color del producto</div><div class="pzco" id="pzco"><div class="pzc a" style="background:#1a1a1a" onclick="setClr('#1a1a1a',this)"></div><div class="pzc" style="background:#fff;border:2px solid rgba(255,255,255,.18)" onclick="setClr('#ffffff',this)"></div><div class="pzc" style="background:#c4b8a2" onclick="setClr('#c4b8a2',this)"></div><div class="pzc" style="background:#8a8578" onclick="setClr('#8a8578',this)"></div><div class="pzc" style="background:#3a3730" onclick="setClr('#3a3730',this)"></div><div class="pzc" style="background:#8a9485" onclick="setClr('#8a9485',this)"></div><div class="pzc" style="background:#9a6050" onclick="setClr('#9a6050',this)"></div></div></div>
         <div class="pzs"><div class="pzl">Texto personalizado</div><input class="pzin" id="ctxt" type="text" placeholder="Tu nombre, frase o iniciales…" oninput="upPv()"/><div class="pzrw" style="margin-top:9px"><select class="pzin pzse" id="tfnt" onchange="upPv()"><option value="sans-serif">Helvetica</option><option value="Georgia,serif">Georgia</option><option value="Courier New,monospace">Courier</option><option value="Impact,sans-serif">Impact</option></select><input class="pzin" id="tclr" type="color" value="#ffffff" oninput="upPv()" style="padding:5px;height:42px;cursor:pointer"/></div><div style="margin-top:9px"><div class="pzl">Tamaño</div><input class="pzrn" type="range" id="tsz" min="10" max="72" value="30" oninput="upPv()"/></div></div>
         <div class="pzs"><div class="pzl">Importar imagen (PNG · JPG · SVG)</div><div class="dzn" id="dzn" onclick="document.getElementById('fimg').click()"><div class="dzni"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="dznt">Arrastra aquí o haz clic<br/><span style="opacity:.5">Se adapta automáticamente al producto</span></div></div><input type="file" id="fimg" accept="image/*" style="display:none" onchange="handleImg(this)"/><div id="imgctrl" style="display:none;margin-top:9px"><div class="pzl">Escala</div><input class="pzrn" type="range" id="iscl" min="0.05" max="1.5" step="0.05" value="0.45" oninput="upPv()"/></div></div>
@@ -2124,8 +2124,11 @@ const PV={
   txt:'',font:'sans-serif',tclr:'#ffffff',tsz:30,
   img:null,imgScale:.45,imgX:0,imgY:0,
   _drag:false,_dragOX:0,_dragOY:0,
+  _prodImgMap:{termo:'images/tiempo_real/termo1.png',taza:'images/tiempo_real/taza.png',playera:'images/tiempo_real/playera.png',sudadera:'images/tiempo_real/sudadera.png'},
+  _imgCache:{},
   init(){
     this.cv=document.getElementById('prevc');this.ctx=this.cv.getContext('2d');
+    Object.values(this._prodImgMap).forEach(src=>{const im=new Image();im.onload=()=>{if(this._prodImgMap[this.prod]===src)this.draw()};im.src=src;this._imgCache[src]=im});
     this.cv.addEventListener('pointerdown',e=>{
       const r=this.cv.getBoundingClientRect(),sx=this.cv.width/r.width,sy=this.cv.height/r.height;
       const px=(e.clientX-r.left)*sx,py=(e.clientY-r.top)*sy;
@@ -2151,13 +2154,8 @@ const PV={
   draw(){
     const cv=this.cv,ctx=this.ctx,w=cv.width,h=cv.height;
     ctx.clearRect(0,0,w,h);ctx.fillStyle='#181818';ctx.fillRect(0,0,w,h);
-    ctx.save();
-    const mn=this.prod;
-    if(mn==='termo')this._dT(ctx,w,h);
-    else if(mn==='taza')this._dZ(ctx,w,h);
-    else if(mn==='camisa')this._dC(ctx,w,h);
-    else this._dJ(ctx,w,h);
-    ctx.restore();
+    const src=this._prodImgMap[this.prod];
+    if(src){const pi=this._imgCache[src];if(pi&&pi.complete&&pi.naturalWidth){const ir=pi.naturalWidth/pi.naturalHeight,cr=w/h;let dw,dh,dx,dy;if(ir>cr){dw=w;dh=w/ir;}else{dh=h;dw=h*ir;}dx=(w-dw)/2;dy=(h-dh)/2;ctx.drawImage(pi,dx,dy,dw,dh);}}
     if(this.img){const iw=this.img.width*this.imgScale*(w/440),ih=this.img.height*this.imgScale*(h/540),ix=this.imgX||w/2,iy=this.imgY||h*.38;ctx.save();ctx.globalAlpha=.88;ctx.drawImage(this.img,ix-iw/2,iy-ih/2,iw,ih);ctx.restore()}
     if(this.txt){ctx.save();ctx.font=`${this.tsz}px ${this.font}`;ctx.fillStyle=this.tclr;ctx.textAlign='center';ctx.globalAlpha=.9;ctx.fillText(this.txt,w/2,this.imgY?this.imgY+60:h*.62);ctx.restore()}
     ctx.save();ctx.font='9px Helvetica';ctx.fillStyle='rgba(255,255,255,.12)';ctx.textAlign='center';ctx.fillText('ELLIÉR Preview',w/2,h-10);ctx.restore();
