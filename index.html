@@ -1527,13 +1527,17 @@ function openProdDetail(id){
     _pdActiveClr=c0;
     svgWrap.innerHTML=customImg
       ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`
-      :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,c0)}</div>`;
+      :p.img
+        ?`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`
+        :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,c0)}</div>`;
     if(p.model3d){pdMv.src=(p.models3d&&p.models3d[c0])||p.model3d;pd3dBtn.style.display='block';}
     else{pdMv.src='';pd3dBtn.style.display='none';}
   } else {
     svgWrap.innerHTML=customImg
       ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`
-      :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.cat==='termos'?mkTermoSVG(p.clr):mkTazaSVG(p.clr)}</div>`;
+      :p.img
+        ?`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`
+        :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.cat==='termos'?mkTermoSVG(p.clr):mkTazaSVG(p.clr)}</div>`;
     if(p.model3d){pdMv.src=p.model3d;pd3dBtn.style.display='block';}
     else{pdMv.src='';pd3dBtn.style.display='none';}
   }
@@ -1605,7 +1609,7 @@ function pdChColor(dot,id,clr){
   _pdActiveClr=clr;
   const p=SW.find(x=>x.id===id);
   const sw=document.getElementById('pd-svg-wrap');
-  if(p&&sw)sw.innerHTML=`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,clr)}</div>`;
+  if(p&&sw){const ci=_getProdImg(id);sw.innerHTML=ci?`<img src="${ci}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`:p.img?`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`:(`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,clr)}</div>`);}
   const pdMv=document.getElementById('pd-mv');
   if(pdMv&&p&&p.models3d&&p.models3d[clr]){pdMv.src=p.models3d[clr];}
 }
