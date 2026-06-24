@@ -1686,7 +1686,7 @@ const Cart={
     const el=document.getElementById('citems'),ft=document.getElementById('cfoot');
     if(!this.items.length){el.innerHTML='<div class="ce"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p>Tu carrito está vacío</p></div>';ft.style.display='none';return}
     el.innerHTML=this.items.map((x,i)=>{
-      const svg=x.cat==='termos'?mkTermoSVG(x.clr||'#1a1a1a'):x.cat==='tazas'?mkTazaSVG(x.clr||'#2a2a2a'):`<div style="width:100%;height:100%;background:${x.clr||'#1a1a1a'};border-radius:4px"></div>`;
+      const svg=x.designImg?`<img src="${x.designImg}" style="width:100%;height:100%;object-fit:cover;border-radius:4px" alt="diseño"/>`:x.cat==='termos'?mkTermoSVG(x.clr||'#1a1a1a'):x.cat==='tazas'?mkTazaSVG(x.clr||'#2a2a2a'):`<div style="width:100%;height:100%;background:${x.clr||'#1a1a1a'};border-radius:4px"></div>`;
       return `<div class="ci"><div class="ct2">${svg}</div><div class="cii"><h4>${x.n}</h4><p style="font-size:11px;color:var(--mu)">${x.cat}${x.custom?' · Custom':''}</p><div class="cq"><button onclick="Cart.chQty(${i},-1)">-</button><span>${x.qty}</span><button onclick="Cart.chQty(${i},1)">+</button><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="Cart.remove(${i})">?</button></div><div class="cpri">${x.p} × ${x.qty}</div></div></div>`;
     }).join('');
     ft.style.display='block';document.getElementById('ctotv').textContent='$'+this.total().toLocaleString()+' MXN';
@@ -2092,8 +2092,14 @@ async function confirmPayment(){
   closeCk();
   Cart.items=[];Cart.save();updateCC();
   if(document.getElementById('ceo').classList.contains('o'))renderOrdTable();
-  showToast('¡Pago exitoso! Tu pedido #'+(_ckOrderId?.slice(-6).toUpperCase()||'')+'  fue confirmado. Te contactamos pronto.');
+  showPaySuccess(_ckOrderId);
   _stripeElements=null;_ckOrderId=null;_ckPI=null;
+}
+
+function showPaySuccess(orderId){
+  const msg=encodeURIComponent('Hola ELLIÉR, acabo de realizar un pedido y quisiera dar seguimiento'+(orderId?'. Mi pedido: #'+orderId.slice(-6).toUpperCase():'')+'.');
+  document.getElementById('pay-ok-wa').href='https://wa.me/'+WA_NUM+'?text='+msg;
+  document.getElementById('pay-ok-ov').style.display='flex';
 }
 
 // CINEMATIC SCROLL
@@ -2222,10 +2228,12 @@ function runAI(){
   },1800);
 }
 function dlDesign(){const a=document.createElement('a');a.href=PV.cv.toDataURL('image/png');a.download='ellier-diseno.png';a.click();showToast('Diseño descargado')}
-const _pzInfo={termo:{n:'Termo Personalizado',p:350,cat:'termos'},taza:{n:'Taza Personalizada',p:280,cat:'tazas'},camisa:{n:'Playera Personalizada',p:420,cat:'playeras'},jogger:{n:'Jogger Personalizado',p:580,cat:'joggers'}};
+const _pzInfo={termo:{n:'Termo Personalizado',p:350,cat:'termos'},taza:{n:'Taza Personalizada',p:280,cat:'tazas'},playera:{n:'Playera Personalizada',p:420,cat:'playeras'},sudadera:{n:'Sudadera Personalizada',p:580,cat:'sudaderas'}};
 function addCustom(){
   const inf=_pzInfo[PV.prod]||_pzInfo.termo;
-  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true});
+  let designImg=null;
+  try{const th=document.createElement('canvas');th.width=80;th.height=100;th.getContext('2d').drawImage(PV.cv,0,0,80,100);designImg=th.toDataURL('image/jpeg',.75);}catch(e){}
+  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true,designImg});
   Cart.save();updateCC();
   showToast('Diseño agregado al carrito ✓');
   const cb=document.getElementById('crtb');if(cb){cb.classList.remove('ping');void cb.offsetWidth;cb.classList.add('ping')}
@@ -2981,8 +2989,8 @@ loadCeoCustomizations();buildThemePanel();
         const r=await fetch(`${SUPABASE_URL}/functions/v1/confirm-order`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token,'apikey':SUPABASE_KEY},body:JSON.stringify({orderId:null,paymentIntentId:piId})});
       }
     }catch(e){}
-    showToast('¡Pago confirmado! Tu pedido fue registrado. Te contactamos pronto.');
     Cart.items=[];Cart.save();updateCC();
+    showPaySuccess(null);
   }else if(paymentIntent?.status==='requires_action'){
     showToast('Pago pendiente — presenta tu voucher OXXO para completar el pedido.');
   }
@@ -2990,6 +2998,17 @@ loadCeoCustomizations();buildThemePanel();
 // set navbar logo from loader image (avoids embedding base64 twice in HTML)
 (()=>{const li=document.querySelector('#ldl img'),ni=document.getElementById('logo-img');if(li&&ni&&!ni.src)ni.src=li.src;})();
 </script>
+
+<!-- PAYMENT SUCCESS -->
+<div id="pay-ok-ov" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.78);backdrop-filter:blur(10px);align-items:center;justify-content:center">
+  <div style="background:#0f0f0f;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:44px 32px 36px;max-width:370px;width:90%;text-align:center">
+    <div style="width:52px;height:52px;border-radius:50%;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 20px"><svg width="24" height="24" fill="none" stroke="#25d366" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <h3 style="font-size:20px;font-weight:500;letter-spacing:-.01em;margin-bottom:10px">¡Gracias por su preferencia!</h3>
+    <p style="font-size:13px;line-height:1.75;color:rgba(255,255,255,.55);margin-bottom:28px">Para continuar con el seguimiento de su pedido, por favor contáctenos por WhatsApp y con gusto lo atenderemos.</p>
+    <a id="pay-ok-wa" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;padding:14px 26px;border-radius:8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-weight:600;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Contactar por WhatsApp</a>
+    <button onclick="document.getElementById('pay-ok-ov').style.display='none'" style="display:block;margin:18px auto 0;background:none;border:none;color:rgba(255,255,255,.35);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer">Cerrar</button>
+  </div>
+</div>
 
 <!-- PRODUCT DETAIL OVERLAY -->
 <div id="pdov">
