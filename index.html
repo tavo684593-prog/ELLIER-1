@@ -2092,10 +2092,13 @@ async function confirmPayment(){
     const{data:{session}}=await _sb.auth.getSession();
     if(session)await fetch(`${SUPABASE_URL}/functions/v1/confirm-order`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token,'apikey':SUPABASE_KEY},body:JSON.stringify({orderId:_ckOrderId,paymentIntentId:_ckPI})});
   }catch(e){}
+  const _savedItems=[...Cart.items];
+  const _savedOrderId=_ckOrderId;
   closeCk();
   Cart.items=[];Cart.save();updateCC();
   if(document.getElementById('ceo').classList.contains('o'))renderOrdTable();
-  showPaySuccess(_ckOrderId);
+  showPaySuccess(_savedOrderId);
+  if(_savedOrderId)saveDesigns(_savedOrderId,_savedItems).catch(console.error);
   _stripeElements=null;_ckOrderId=null;_ckPI=null;
 }
 
@@ -2103,6 +2106,27 @@ function showPaySuccess(orderId){
   const msg=encodeURIComponent('Hola ELLIÉR, acabo de realizar un pedido y quisiera dar seguimiento'+(orderId?'. Mi pedido: #'+orderId.slice(-6).toUpperCase():'')+'.');
   document.getElementById('pay-ok-wa').href='https://wa.me/'+WA_NUM+'?text='+msg;
   document.getElementById('pay-ok-ov').style.display='flex';
+}
+
+async function saveDesigns(orderId,items){
+  try{
+    const{data:{session}}=await _sb.auth.getSession();
+    if(!session)return;
+    const designItems=items.filter(x=>x.designImgFull||x.designImg);
+    if(!designItems.length)return;
+    for(const item of designItems){
+      try{
+        const imgData=item.designImgFull||item.designImg;
+        const res=await fetch(imgData);
+        const blob=await res.blob();
+        const filename=`${orderId}/${item.id}_${Date.now()}.png`;
+        const{error:upErr}=await _sb.storage.from('designs').upload(filename,blob,{contentType:'image/png',upsert:true});
+        if(upErr)throw upErr;
+        const{data:{publicUrl}}=_sb.storage.from('designs').getPublicUrl(filename);
+        await _sb.from('design_uploads').insert({order_id:orderId,item_id:item.id,item_name:item.n,design_url:publicUrl,user_id:session.user.id});
+      }catch(e){console.error('saveDesigns item',item.id,e);}
+    }
+  }catch(e){console.error('saveDesigns',e);}
 }
 
 // CINEMATIC SCROLL
@@ -2261,9 +2285,14 @@ function dlDesign(){const a=document.createElement('a');a.href=PV.cv.toDataURL('
 const _pzInfo={termo:{n:'Termo Personalizado',p:350,cat:'termos'},taza:{n:'Taza Personalizada',p:280,cat:'tazas'},playera:{n:'Playera Personalizada',p:420,cat:'playeras'},sudadera:{n:'Sudadera Personalizada',p:580,cat:'sudaderas'}};
 function addCustom(){
   const inf=_pzInfo[PV.prod]||_pzInfo.termo;
-  let designImg=null;
-  try{const th=document.createElement('canvas');th.width=80;th.height=100;th.getContext('2d').drawImage(PV.cv,0,0,80,100);designImg=th.toDataURL('image/jpeg',.75);}catch(e){}
-  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true,designImg});
+  let designImg=null,designImgFull=null;
+  try{
+    const th=document.createElement('canvas');th.width=80;th.height=100;
+    th.getContext('2d').drawImage(PV.cv,0,0,80,100);
+    designImg=th.toDataURL('image/jpeg',.75);
+    designImgFull=PV.cv.toDataURL('image/png');
+  }catch(e){}
+  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true,designImg,designImgFull});
   Cart.save();updateCC();
   showToast('Diseño agregado al carrito ✓');
   const cb=document.getElementById('crtb');if(cb){cb.classList.remove('ping');void cb.offsetWidth;cb.classList.add('ping')}
