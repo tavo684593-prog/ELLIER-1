@@ -1557,7 +1557,7 @@ function openProdDetail(id){
     <div class="pd-price-row">${_mkPriceHtml(p,'pd-p')}</div>
     ${colorsH}
     <div class="pd-actions">
-      <button class="pd-add" onclick="Cart.add('${id}');showToast('Agregado al carrito ?')">+ Agregar al carrito</button>
+      <button class="pd-add" onclick="Cart.add('${id}',false,_pdActiveClr);showToast('Agregado al carrito')">+ Agregar al carrito</button>
       <button class="pd-pz" onclick="closeProdDetail();setTimeout(openPZ,60)">Personalizar</button>
     </div>
     <div class="pd-sec">
@@ -1672,10 +1672,11 @@ function wishAllCart(){
 const Cart={
   items:JSON.parse(localStorage.getItem('ellier_cart')||'[]'),
   save(){localStorage.setItem('ellier_cart',JSON.stringify(this.items));this.render()},
-  add(id,custom){
+  add(id,custom,clrOverride){
     const all=[...SW,...TERMOS],p=all.find(x=>x.id===id);if(!p)return;
-    const ex=this.items.find(x=>x.id===id&&!x.custom);
-    if(ex&&!custom){ex.qty++}else{this.items.push({id,n:custom?'Diseño personalizado':p.n,p:custom?'$580':_getEffectivePrice(p),qty:1,cat:p.cat,clr:(p.clr||p.clrs?.[0]),custom:!!custom})}
+    const clr=clrOverride||(p.clr||p.clrs?.[0])||'#1a1a1a';
+    const ex=this.items.find(x=>x.id===id&&!x.custom&&x.clr===clr);
+    if(ex&&!custom){ex.qty++}else{this.items.push({id,n:p.n,p:_getEffectivePrice(p)||p.p,qty:1,cat:p.cat,clr,custom:false})}
     this.save();showToast('Agregado al carrito');updateCC();
     const cb=document.getElementById('crtb');if(cb){cb.classList.remove('ping');void cb.offsetWidth;cb.classList.add('ping')}
   },
