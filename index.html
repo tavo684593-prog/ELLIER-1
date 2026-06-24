@@ -1687,7 +1687,8 @@ const Cart={
     const el=document.getElementById('citems'),ft=document.getElementById('cfoot');
     if(!this.items.length){el.innerHTML='<div class="ce"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p>Tu carrito está vacío</p></div>';ft.style.display='none';return}
     el.innerHTML=this.items.map((x,i)=>{
-      const svg=x.designImg?`<img src="${x.designImg}" style="width:100%;height:100%;object-fit:cover;border-radius:4px" alt="diseño"/>`:x.cat==='termos'?mkTermoSVG(x.clr||'#1a1a1a'):x.cat==='tazas'?mkTazaSVG(x.clr||'#2a2a2a'):`<div style="width:100%;height:100%;background:${x.clr||'#1a1a1a'};border-radius:4px"></div>`;
+      const _cp=[...SW,...TERMOS].find(p=>p.id===x.id);
+      const svg=x.designImg?`<img src="${x.designImg}" style="width:100%;height:100%;object-fit:cover;border-radius:4px" alt="diseño"/>`:x.cat==='termos'?mkTermoSVG(x.clr||'#1a1a1a'):x.cat==='tazas'?mkTazaSVG(x.clr||'#2a2a2a'):_cp?.img?`<img src="${_cp.img}" style="width:100%;height:100%;object-fit:cover;border-radius:4px" alt="${x.n}"/>`:`<div style="width:100%;height:100%;background:${x.clr||'#1a1a1a'};border-radius:4px"></div>`;
       return `<div class="ci"><div class="ct2">${svg}</div><div class="cii"><h4>${x.n}</h4><p style="font-size:11px;color:var(--mu)">${x.cat}${x.custom?' · Custom':''}</p><div class="cq"><button onclick="Cart.chQty(${i},-1)">-</button><span>${x.qty}</span><button onclick="Cart.chQty(${i},1)">+</button><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="Cart.remove(${i})">?</button></div><div class="cpri">${x.p} × ${x.qty}</div></div></div>`;
     }).join('');
     ft.style.display='block';document.getElementById('ctotv').textContent='$'+this.total().toLocaleString()+' MXN';
