@@ -297,7 +297,7 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .dzn:hover,.dzn.drag{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.024)}
 .dzni{color:rgba(255,255,255,.2);margin-bottom:9px}.dznt{font-size:12px;color:rgba(255,255,255,.36);line-height:1.6}
 .pvp{position:sticky;top:88px}
-#prevc{width:100%;border-radius:8px;box-shadow:0 26px 68px rgba(0,0,0,.52);cursor:crosshair}
+#prevc{width:100%;border-radius:8px;box-shadow:0 26px 68px rgba(0,0,0,.52);cursor:crosshair;touch-action:none;-webkit-user-select:none;user-select:none}
 .pvas{display:flex;gap:8px;margin-top:13px}
 .pvb{flex:1;padding:11px;border:1px solid rgba(255,255,255,.13);border-radius:var(--r);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.62);cursor:pointer;transition:all .2s;background:transparent}
 .pvb:hover{background:rgba(255,255,255,.07);color:#fff}
@@ -1036,7 +1036,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
         <div class="pzs"><div class="pzl">Texto personalizado</div><input class="pzin" id="ctxt" type="text" placeholder="Tu nombre, frase o iniciales…" oninput="upPv()"/><div class="pzrw" style="margin-top:9px"><select class="pzin pzse" id="tfnt" onchange="upPv()"><option value="sans-serif">Helvetica</option><option value="Georgia,serif">Georgia</option><option value="Courier New,monospace">Courier</option><option value="Impact,sans-serif">Impact</option></select><input class="pzin" id="tclr" type="color" value="#ffffff" oninput="upPv()" style="padding:5px;height:42px;cursor:pointer"/></div><div style="margin-top:9px"><div class="pzl">Tamaño</div><input class="pzrn" type="range" id="tsz" min="10" max="72" value="30" oninput="upPv()"/></div></div>
         <div class="pzs"><div class="pzl">Importar imagen (PNG · JPG · SVG)</div><div class="dzn" id="dzn" onclick="document.getElementById('fimg').click()"><div class="dzni"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="dznt">Arrastra aquí o haz clic<br/><span style="opacity:.5">Se adapta automáticamente al producto</span></div></div><input type="file" id="fimg" accept="image/*" style="display:none" onchange="handleImg(this)"/><div id="imgctrl" style="display:none;margin-top:9px"><div class="pzl">Escala</div><input class="pzrn" type="range" id="iscl" min="0.05" max="1.5" step="0.05" value="0.45" oninput="upPv()"/></div></div>
       </div>
-      <div class="pvp"><canvas id="prevc" width="440" height="540"></canvas><div class="pvas"><button class="pvb" onclick="dlDesign()">Descargar</button><button class="pvb ct" onclick="addCustom()">Agregar al carrito</button></div><p class="pvh">Arrastra la imagen para posicionarla · Haz clic para reposicionar</p></div>
+      <div class="pvp"><canvas id="prevc" width="440" height="540"></canvas><div class="pvas"><button class="pvb" onclick="dlDesign()">Descargar</button><button class="pvb ct" onclick="addCustom()">Agregar al carrito</button></div><p class="pvh">Arrastra la imagen o el texto para posicionarlos libremente</p></div>
     </div>
   </div>
 </div>
@@ -2149,19 +2149,20 @@ const PV={
   _drag:null,_dragOX:0,_dragOY:0,
   _prodImgMap:{termo:'images/tiempo_real/termo1.png',taza:'images/tiempo_real/taza.png',playera:'images/tiempo_real/playera.png',sudadera:'images/tiempo_real/sudadera.png'},
   _imgCache:{},
+  _pad(){return('ontouchstart' in window)?44:22;},
   _hitImg(px,py){
     if(!this.img)return false;
-    const w=this.cv.width,h=this.cv.height;
+    const w=this.cv.width,h=this.cv.height,p=this._pad();
     const iw=this.img.width*this.imgScale*(w/440),ih=this.img.height*this.imgScale*(h/540);
     const ix=this.imgX||w/2,iy=this.imgY||h*.38;
-    return Math.abs(px-ix)<=iw/2+22&&Math.abs(py-iy)<=ih/2+22;
+    return Math.abs(px-ix)<=iw/2+p&&Math.abs(py-iy)<=ih/2+p;
   },
   _hitTxt(px,py){
     if(!this.txt)return false;
-    const w=this.cv.width,h=this.cv.height;
+    const w=this.cv.width,h=this.cv.height,p=this._pad();
     this.ctx.font=`${this.tsz}px ${this.font}`;
-    const tw=this.ctx.measureText(this.txt).width/2+14;
-    const th=this.tsz/2+14;
+    const tw=this.ctx.measureText(this.txt).width/2+p;
+    const th=this.tsz/2+p;
     const tx=this.txtX||w/2,ty=this.txtY||h*.62;
     return Math.abs(px-tx)<=tw&&Math.abs(py-ty)<=th;
   },
