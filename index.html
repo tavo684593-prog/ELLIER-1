@@ -2119,23 +2119,26 @@ async function _dlAdminImg(url,name){
 async function saveDesigns(orderId,items){
   try{
     const designItems=items.filter(x=>x.designImgFull||x.designImg);
-    if(!designItems.length)return;
+    if(!designItems.length){console.warn('saveDesigns: no items with design');return;}
     const{data:{session}}=await _sb.auth.getSession();
     for(const item of designItems){
       try{
         const imgData=item.designImgFull||item.designImg;
+        if(!imgData){console.warn('saveDesigns: item has no imgData',item.id);continue;}
         const res=await fetch(imgData);
         const blob=await res.blob();
         const filename=`${orderId}/${item.id}_${Date.now()}.png`;
         const{error:upErr}=await _sb.storage.from('designs').upload(filename,blob,{contentType:'image/png',upsert:true});
-        if(upErr)throw upErr;
+        if(upErr){console.error('saveDesigns upload error:',upErr);showToast('Error al guardar diseño: '+upErr.message);continue;}
         const{data:{publicUrl}}=_sb.storage.from('designs').getPublicUrl(filename);
         const row={order_id:orderId,item_id:item.id,item_name:item.n,design_url:publicUrl};
-        if(session)row.user_id=session.user.id;
-        await _sb.from('design_uploads').insert(row);
-      }catch(e){console.error('saveDesigns item',item.id,e);}
+        if(session?.user?.id)row.user_id=session.user.id;
+        const{error:insErr}=await _sb.from('design_uploads').insert(row);
+        if(insErr){console.error('saveDesigns insert error:',insErr);showToast('Error al registrar diseño: '+insErr.message);}
+        else console.log('saveDesigns OK:',publicUrl);
+      }catch(e){console.error('saveDesigns item',item.id,e);showToast('Error inesperado al guardar diseño');}
     }
-  }catch(e){console.error('saveDesigns',e);}
+  }catch(e){console.error('saveDesigns outer',e);showToast('Error al guardar diseños: '+e.message);}
 }
 
 // CINEMATIC SCROLL
