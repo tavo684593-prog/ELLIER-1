@@ -146,14 +146,21 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 /* CEO PANEL */
 #ceo{position:fixed;inset:0;z-index:400;background:var(--bg);overflow-y:auto;transform:translateY(-100%);transition:transform .5s var(--ea)}
 #ceo.o{transform:none}
-.ceoh{background:#0a0a0a;color:#fff;padding:16px 34px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5}
+.ceo-hdr{position:sticky;top:0;z-index:5;background:#0a0a0a}
+.ceoh{background:#0a0a0a;color:#fff;padding:16px 34px;display:flex;align-items:center;justify-content:space-between}
 .ceoh h1{font-size:11px;letter-spacing:.28em;text-transform:uppercase}
-.ceoi{max-width:1360px;margin:0 auto;padding:32px}
-.ceos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.ceo-tabs{display:flex;gap:0;background:#111;border-bottom:1px solid rgba(255,255,255,.09);padding:0 34px;overflow-x:auto}
+.ceo-tabs::-webkit-scrollbar{display:none}
+.ceo-tab{font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:13px 20px;cursor:pointer;color:rgba(255,255,255,.35);border-bottom:2px solid transparent;transition:color .2s,border-color .2s;flex-shrink:0;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--fn)}
+.ceo-tab.a{color:#fff;border-bottom-color:rgba(255,255,255,.55)}
+.ceo-tab:hover:not(.a){color:rgba(255,255,255,.65)}
+.ceo-sec{display:none}.ceo-sec.a{display:block}
+.ceoi{max-width:1360px;margin:0 auto;padding:28px 32px}
+.ceos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
 .sc{background:#fff;border:1px solid var(--bo);border-radius:8px;padding:20px}
 .sc .sl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:5px}
 .sc .sv{font-size:26px;font-weight:500}.sc .ss{font-size:11px;color:var(--mu);margin-top:3px}
-.cs{margin-bottom:32px}
+.cs{margin-bottom:28px}
 .cs h2{font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--bo)}
 .dt{width:100%;border-collapse:collapse;font-size:12px}
 .dt th{text-align:left;padding:9px 13px;background:var(--bg);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);border-bottom:1px solid var(--bo)}
@@ -161,6 +168,19 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .dt tr:hover td{background:rgba(0,0,0,.018)}.dt tbody tr{cursor:pointer;transition:background .15s}
 .tbg{display:inline-block;padding:3px 8px;border-radius:20px;font-size:10px;text-transform:uppercase}
 .tbg.p{background:#fff3cd;color:#856404}.tbg.d{background:#d1e7dd;color:#0f5132}.tbg.r{background:#cfe2ff;color:#084298}
+/* --- DISEÑOS GALLERY ---------------------- */
+.dsgn-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--bo);flex-wrap:wrap;gap:10px}
+.dsgn-hdr h2{font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0}
+.dsgn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.dsgn-card{background:#fff;border:1px solid var(--bo);border-radius:9px;overflow:hidden;transition:transform .22s,box-shadow .22s}
+.dsgn-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.1)}
+.dsgn-thumb{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#111}
+.dsgn-cb{padding:12px 14px 14px}
+.dsgn-tag{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--su);margin-bottom:3px}
+.dsgn-name{font-size:12px;color:var(--text);font-weight:500;margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dsgn-dl{width:100%;padding:8px 0;background:var(--dark);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--fn);transition:background .18s}
+.dsgn-dl:hover{background:#333}
+.dsgn-empty{text-align:center;padding:52px 0;color:var(--mu);font-size:13px}
 .cea{display:flex;gap:9px;margin-bottom:18px}
 .cb3{padding:8px 16px;border:1px solid var(--bo);border-radius:var(--r);font-size:10px;letter-spacing:.11em;text-transform:uppercase;transition:all .2s}
 .cb3:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
@@ -351,8 +371,9 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .odh{padding:20px 24px;border-bottom:1px solid var(--bo);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2}
 .odh h3{font-size:11px;letter-spacing:.22em;text-transform:uppercase}.odh small{font-size:10px;color:var(--mu)}
 .odb{padding:24px}
-.odpv{background:#111;border-radius:10px;height:270px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;overflow:hidden}
-.odpv canvas{width:100%;height:100%}
+.odpv{background:#111;border-radius:10px;min-height:200px;margin-bottom:22px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.odpv canvas{width:100%;height:auto;display:block}
+.odpv img{width:100%;height:auto;display:block;object-fit:contain}
 .odsec{margin-bottom:20px}
 .odsec h4{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--bo)}
 .odrow{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;padding:7px 0;gap:12px}
@@ -389,7 +410,7 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
   .hc{padding:0 20px 86px}.fg3{grid-template-columns:1fr 1fr;padding:18px}
   .fi3{padding:0 12px}.ctn,.pzw,.nsg,.fi4{padding:0 18px}
   .clh,.clf,.clg{padding-left:18px;padding-right:18px}
-  .ceoi{padding:18px}.ceos{grid-template-columns:repeat(2,1fr)}
+  .ceoi{padding:18px}.ceos{grid-template-columns:repeat(2,1fr)}.ceo-tabs{padding:0 18px}
   .ft3{grid-template-columns:1fr;gap:26px}.pzg{gap:26px}.nns{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){
   .fg3{grid-template-columns:1fr}.ceos{grid-template-columns:1fr}
@@ -910,35 +931,66 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 
 <!-- CEO PANEL -->
 <div id="ceo">
-  <div class="ceoh"><h1>Panel CEO — ELLIÉR</h1><div style="display:flex;gap:10px;align-items:center"><span id="ceotab" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45)">Pedidos · Productos · Usuarios</span><button class="xb xbd" onclick="closeCEO()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div></div>
+  <div class="ceo-hdr">
+    <div class="ceoh"><h1>Panel CEO — ELLIÉR</h1><button class="xb xbd" onclick="closeCEO()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <div class="ceo-tabs">
+      <button class="ceo-tab a" data-sec="dash" onclick="ceoTab('dash',this)">Dashboard</button>
+      <button class="ceo-tab" data-sec="orders" onclick="ceoTab('orders',this)">Pedidos</button>
+      <button class="ceo-tab" data-sec="designs" onclick="ceoTab('designs',this)">Diseños</button>
+      <button class="ceo-tab" data-sec="products" onclick="ceoTab('products',this)">Productos</button>
+      <button class="ceo-tab" data-sec="users" onclick="ceoTab('users',this)">Usuarios</button>
+    </div>
+  </div>
   <div class="ceoi">
-    <div class="ceos">
-      <div class="sc"><div class="sl">Ventas del mes</div><div class="sv">$48,320</div><div class="ss">+12% vs mes anterior</div></div>
-      <div class="sc"><div class="sl">Pedidos</div><div class="sv" id="ordct">5</div><div class="ss" id="ordss">3 pendientes</div></div>
-      <div class="sc"><div class="sl">Usuarios</div><div class="sv" id="usrct">342</div><div class="ss">+28 esta semana</div></div>
-      <div class="sc"><div class="sl">Productos</div><div class="sv" id="cpct">23</div><div class="ss">En catálogo activo</div></div>
+    <!-- DASHBOARD -->
+    <div id="ceo-dash" class="ceo-sec a">
+      <div class="ceos">
+        <div class="sc"><div class="sl">Ventas del mes</div><div class="sv">$48,320</div><div class="ss">+12% vs mes anterior</div></div>
+        <div class="sc"><div class="sl">Pedidos</div><div class="sv" id="ordct">—</div><div class="ss" id="ordss">Cargando...</div></div>
+        <div class="sc"><div class="sl">Usuarios</div><div class="sv" id="usrct">—</div><div class="ss">Sesión activa</div></div>
+        <div class="sc"><div class="sl">Productos</div><div class="sv" id="cpct">—</div><div class="ss">En catálogo activo</div></div>
+      </div>
+      <div class="cs">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--bo)"><h2 style="margin:0">Últimos pedidos</h2><button class="cb3" onclick="ceoTab('orders',document.querySelector('[data-sec=orders]'))">Ver todos →</button></div>
+        <table class="dt"><thead><tr><th>#Pedido</th><th>Cliente</th><th>Producto</th><th>Total</th><th>Estado</th></tr></thead><tbody id="ordb-dash"></tbody></table>
+      </div>
+      <div class="cea" style="flex-wrap:wrap;margin-top:8px">
+        <button class="cb3 pr" onclick="ceoTab('orders',document.querySelector('[data-sec=orders]'))">→ Gestionar pedidos</button>
+        <button class="cb3 pr" onclick="ceoTab('designs',document.querySelector('[data-sec=designs]'))">→ Ver diseños guardados</button>
+        <button class="cb3 pr" onclick="ceoTab('products',document.querySelector('[data-sec=products]'))">→ Catálogo de productos</button>
+      </div>
     </div>
     <!-- PEDIDOS -->
-    <div class="cs">
-      <h2>Pedidos — haz clic para ver detalle</h2>
-      <div class="cea" id="ordflt" style="margin-bottom:14px">
-        <button class="cb3 a" onclick="fOrd(this,'all')">Todos</button>
-        <button class="cb3" onclick="fOrd(this,'p')">Pendientes</button>
-        <button class="cb3" onclick="fOrd(this,'d')">Enviados</button>
-        <button class="cb3" onclick="fOrd(this,'r')">En revisión</button>
+    <div id="ceo-orders" class="ceo-sec">
+      <div class="cs">
+        <h2>Pedidos — haz clic para ver detalle</h2>
+        <div class="cea" id="ordflt" style="margin-bottom:14px">
+          <button class="cb3 a" onclick="fOrd(this,'all')">Todos</button>
+          <button class="cb3" onclick="fOrd(this,'p')">Pendientes</button>
+          <button class="cb3" onclick="fOrd(this,'d')">Enviados</button>
+          <button class="cb3" onclick="fOrd(this,'r')">En revisión</button>
+        </div>
+        <table class="dt"><thead><tr><th>#Pedido</th><th>Cliente</th><th>Producto</th><th>Total</th><th>Estado</th></tr></thead><tbody id="ordb"></tbody></table>
       </div>
-      <table class="dt"><thead><tr><th>#Pedido</th><th>Cliente</th><th>Producto</th><th>Total</th><th>Estado</th></tr></thead><tbody id="ordb"></tbody></table>
+    </div>
+    <!-- DISEÑOS -->
+    <div id="ceo-designs" class="ceo-sec">
+      <p class="dsgn-empty">Cargando diseños...</p>
     </div>
     <!-- PRODUCTOS -->
-    <div class="cs">
-      <h2>Gestión de productos</h2>
-      <div class="cea"><button class="cb3 pr" onclick="openProdEdit(null)">+ Agregar producto</button><button class="cb3" onclick="expCSV()">Exportar CSV</button></div>
-      <table class="dt"><thead><tr><th>#</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Colores</th><th>Acciones</th></tr></thead><tbody id="prodb"></tbody></table>
+    <div id="ceo-products" class="ceo-sec">
+      <div class="cs">
+        <h2>Gestión de productos</h2>
+        <div class="cea"><button class="cb3 pr" onclick="openProdEdit(null)">+ Agregar producto</button><button class="cb3" onclick="expCSV()">Exportar CSV</button></div>
+        <table class="dt" style="margin-top:14px"><thead><tr><th>#</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Colores</th><th>Acciones</th></tr></thead><tbody id="prodb"></tbody></table>
+      </div>
     </div>
     <!-- USUARIOS -->
-    <div class="cs">
-      <h2>Usuarios registrados</h2>
-      <table class="dt"><thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Rol</th><th>Registro</th></tr></thead><tbody id="userb"></tbody></table>
+    <div id="ceo-users" class="ceo-sec">
+      <div class="cs">
+        <h2>Usuarios registrados</h2>
+        <table class="dt" style="margin-top:14px"><thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Rol</th><th>Registro</th></tr></thead><tbody id="userb"></tbody></table>
+      </div>
     </div>
   </div>
 </div>
@@ -948,7 +1000,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 <div id="odp">
   <div class="odh"><h3 id="odtit">Pedido</h3><button class="xb" onclick="closeOrder()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
   <div class="odb">
-    <div class="odpv"><canvas id="odcv" width="520" height="270"></canvas></div>
+    <div class="odpv"><canvas id="odcv" width="520" height="270"></canvas><img id="odcv-img" alt="Diseño del cliente" style="display:none"/></div>
     <div class="odsec"><h4>Información del pedido</h4><div id="odinf"></div></div>
     <div class="odsec"><h4>Personalización</h4><div id="odcust"></div></div>
     <div class="odsec" id="odsecdsgn" style="display:none"><h4>Diseño del cliente</h4><div id="oddsgn"></div></div>
@@ -1794,7 +1846,10 @@ async function renderOrdTable(){
     if(error)throw error;
     _supaOrders=(data||[]).map(_mapOrd);
     const list=_ordFilter==='all'?_supaOrders:_supaOrders.filter(o=>o.st===_ordFilter);
-    document.getElementById('ordb').innerHTML=list.length?list.map(o=>`<tr onclick="openOrder('${o.id}')"><td><b>${o._shortId}</b></td><td>${o.cli}</td><td>${o.prod}${o.qty>1?` ×${o.qty}`:''}</td><td>${o.total}</td><td><span class="tbg ${o.st}">${stLbl[o.st]||o.st}</span></td></tr>`).join(''):'<tr><td colspan="5" style="color:var(--mu);text-align:center;padding:18px">Sin pedidos aún</td></tr>';
+    const rowFn=o=>`<tr onclick="openOrder('${o.id}')"><td><b>${o._shortId}</b></td><td>${o.cli}</td><td>${o.prod}${o.qty>1?` ×${o.qty}`:''}</td><td>${o.total}</td><td><span class="tbg ${o.st}">${stLbl[o.st]||o.st}</span></td></tr>`;
+    document.getElementById('ordb').innerHTML=list.length?list.map(rowFn).join(''):'<tr><td colspan="5" style="color:var(--mu);text-align:center;padding:18px">Sin pedidos aún</td></tr>';
+    const dashEl=document.getElementById('ordb-dash');
+    if(dashEl)dashEl.innerHTML=_supaOrders.slice(0,5).map(rowFn).join('')||'<tr><td colspan="5" style="color:var(--mu);text-align:center;padding:18px">Sin pedidos</td></tr>';
     const pend=_supaOrders.filter(o=>o.st==='p'||o.st==='paid').length;
     document.getElementById('ordct').textContent=_supaOrders.length;
     document.getElementById('ordss').textContent=`${pend} pendiente${pend!==1?'s':''}`;
@@ -1803,13 +1858,64 @@ async function renderOrdTable(){
 function openCEO(){
   if(!Auth.isCEO()){showToast('Solo acceso para Mia');return}
   lockScroll();
+  // Reset to dashboard tab
+  document.querySelectorAll('.ceo-tab').forEach(b=>b.classList.remove('a'));
+  document.querySelectorAll('.ceo-sec').forEach(s=>s.classList.remove('a'));
+  document.querySelector('[data-sec="dash"]').classList.add('a');
+  document.getElementById('ceo-dash').classList.add('a');
   document.getElementById('ceo').classList.add('o');
-  renderOrdTable();renderProdTable();renderUsrTable();
   document.getElementById('cpct').textContent=[...SW,...TERMOS].length;
+  renderOrdTable();
 }
 function closeCEO(){
   document.getElementById('ceo').classList.remove('o');
   unlockScroll();
+}
+function ceoTab(name,btn){
+  document.querySelectorAll('.ceo-sec').forEach(s=>s.classList.remove('a'));
+  document.querySelectorAll('.ceo-tab').forEach(b=>b.classList.remove('a'));
+  document.getElementById('ceo-'+name).classList.add('a');
+  if(btn)btn.classList.add('a');
+  if(name==='orders')renderOrdTable();
+  else if(name==='designs')renderDesignsGallery();
+  else if(name==='products')renderProdTable();
+  else if(name==='users')renderUsrTable();
+}
+async function renderDesignsGallery(){
+  const box=document.getElementById('ceo-designs');
+  box.innerHTML='<p class="dsgn-empty">Cargando diseños...</p>';
+  try{
+    const{data,error}=await _sb.from('design_uploads').select('*').order('created_at',{ascending:false});
+    if(error)throw error;
+    if(!data?.length){box.innerHTML='<p class="dsgn-empty">Sin diseños guardados todavía.</p>';return;}
+    const nPrev=data.filter(d=>d.item_name?.includes('Vista')).length;
+    const nIso=data.filter(d=>d.item_name?.includes('aislado')).length;
+    const fbtns=`<div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="cb3 a" onclick="filterDsgn(this,'all')">Todos (${data.length})</button>
+      <button class="cb3" onclick="filterDsgn(this,'prev')">Vista previa (${nPrev})</button>
+      <button class="cb3" onclick="filterDsgn(this,'iso')">Diseño aislado (${nIso})</button>
+    </div>`;
+    const cards=data.map(d=>{
+      const ordRef='#'+d.order_id.slice(-6).toUpperCase();
+      const isP=!!(d.item_name?.includes('Vista'));
+      const safeName=(d.item_name||'diseno').toLowerCase().replace(/[^a-z0-9]+/g,'-');
+      const fname=safeName+'-'+d.order_id.slice(-6)+'.png';
+      return`<div class="dsgn-card" data-t="${isP?'prev':'iso'}">
+        <img class="dsgn-thumb" src="${d.design_url}" alt="" loading="lazy"/>
+        <div class="dsgn-cb">
+          <div class="dsgn-tag">${ordRef} &middot; ${isP?'Vista previa':'Diseño aislado'}</div>
+          <div class="dsgn-name" title="${d.item_name||''}">${d.item_name||'Diseño'}</div>
+          <button class="dsgn-dl" onclick="_dlAdminImg('${d.design_url}','${fname}')">↓ Descargar</button>
+        </div>
+      </div>`;
+    }).join('');
+    box.innerHTML=`<div class="dsgn-hdr"><h2>Diseños guardados</h2>${fbtns}</div><div class="dsgn-grid">${cards}</div>`;
+  }catch(e){box.innerHTML=`<p class="dsgn-empty" style="color:#c0392b">Error al cargar diseños: ${e.message}</p>`;}
+}
+function filterDsgn(btn,type){
+  document.querySelectorAll('#ceo-designs .cb3').forEach(b=>b.classList.remove('a'));
+  btn.classList.add('a');
+  document.querySelectorAll('#ceo-designs .dsgn-card').forEach(c=>{c.style.display=(type==='all'||c.dataset.t===type)?'':'none';});
 }
 
 function renderProdTable(){
@@ -1875,11 +1981,14 @@ function _drawOrdCanvas(o){
 async function openOrder(id){
   const o=_supaOrders.find(x=>x.id===id);if(!o)return;
   _curOrd=o;
-  document.getElementById('odtit').textContent=`Pedido ${o.id}`;
-  // draw canvas (defer 1 frame so panel is visible and has dimensions)
+  document.getElementById('odtit').textContent=`Pedido ${o._shortId}`;
+  // Reset canvas/img
+  const cvEl=document.getElementById('odcv');
+  const imgEl=document.getElementById('odcv-img');
+  cvEl.style.display='block';imgEl.style.display='none';imgEl.src='';
   requestAnimationFrame(()=>_drawOrdCanvas(o));
   document.getElementById('odinf').innerHTML=`
-    <div class="odrow"><span>Número de pedido</span><span>${o.id}</span></div>
+    <div class="odrow"><span>Número de pedido</span><span>${o._shortId}</span></div>
     <div class="odrow"><span>Cliente</span><span>${o.cli}</span></div>
     <div class="odrow"><span>Teléfono</span><span>${o.tel}</span></div>
     <div class="odrow"><span>Producto</span><span>${o.prod}${o.qty>1?` × ${o.qty}`:''}</span></div>
@@ -1891,26 +2000,31 @@ async function openOrder(id){
   document.getElementById('odaddr').innerHTML=`<div class="odrow"><span>Dirección completa</span><span>${o.addr}</span></div>`;
   document.getElementById('odstbts').innerHTML=`
     <button class="${o.st==='p'?'act':''}" onclick="setOrdSt('${o.id}','p')">Pendiente</button>
-    <button class="gr${o.st==='d'?' act':''}" onclick="setOrdSt('${o.id}','d')">Enviado ?</button>
+    <button class="gr${o.st==='d'?' act':''}" onclick="setOrdSt('${o.id}','d')">Enviado</button>
     <button class="${o.st==='r'?'act':''}" onclick="setOrdSt('${o.id}','r')">En revisión</button>`;
   lockScroll();
   document.getElementById('odov').classList.add('o');
   document.getElementById('odp').classList.add('o');
-  // Fetch saved design from storage
+  // Fetch saved designs from storage
   const dsec=document.getElementById('odsecdsgn');
   const dbox=document.getElementById('oddsgn');
   dsec.style.display='none';
   try{
     const{data:designs}=await _sb.from('design_uploads').select('*').eq('order_id',o.id);
     if(designs?.length){
+      // Show preview image in the top canvas area
+      const previewD=designs.find(d=>d.item_name?.includes('Vista'));
+      if(previewD){cvEl.style.display='none';imgEl.style.display='block';imgEl.src=previewD.design_url;}
+      // Show all designs with download buttons below
       dsec.style.display='';
       dbox.innerHTML=designs.map((d,i)=>{
         const label=d.item_name||('Diseño '+(i+1));
+        const isPreview=label.includes('Vista');
         const fname=label.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+o._shortId.replace('#','')+'.png';
-        return`<div style="margin-bottom:18px">
-          <div style="font-size:10px;letter-spacing:.8px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px">${label}</div>
-          <img src="${d.design_url}" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.1);display:block;background:#111" />
-          <button onclick="_dlAdminImg('${d.design_url}','${fname}')" style="margin-top:8px;width:100%;padding:10px 0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:#e8e8e8;cursor:pointer;font-size:12px;letter-spacing:.5px">↓ DESCARGAR</button>
+        return`<div style="margin-bottom:16px">
+          <div style="font-size:9px;letter-spacing:.1em;color:var(--su);text-transform:uppercase;margin-bottom:6px">${label}</div>
+          ${isPreview?'':`<img src="${d.design_url}" style="width:100%;border-radius:7px;border:1px solid var(--bo);display:block;background:#f5f4f0;margin-bottom:7px" />`}
+          <button onclick="_dlAdminImg('${d.design_url}','${fname}')" style="width:100%;padding:9px 0;background:#0a0a0a;border:none;border-radius:5px;color:#fff;cursor:pointer;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--fn)">↓ Descargar ${isPreview?'vista previa':'diseño aislado'}</button>
         </div>`;}).join('');
     }
   }catch(e){}
