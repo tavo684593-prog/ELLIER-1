@@ -171,14 +171,14 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 /* --- DISEÑOS GALLERY ---------------------- */
 .dsgn-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--bo);flex-wrap:wrap;gap:10px}
 .dsgn-hdr h2{font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin:0}
-.dsgn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
-.dsgn-card{background:#fff;border:1px solid var(--bo);border-radius:9px;overflow:hidden;transition:transform .22s,box-shadow .22s}
-.dsgn-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.1)}
-.dsgn-thumb{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#111}
-.dsgn-cb{padding:12px 14px 14px}
-.dsgn-tag{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--su);margin-bottom:3px}
-.dsgn-name{font-size:12px;color:var(--text);font-weight:500;margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dsgn-dl{width:100%;padding:8px 0;background:var(--dark);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--fn);transition:background .18s}
+.dsgn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.dsgn-card{border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--bo);transition:box-shadow .22s,transform .22s}
+.dsgn-card:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,0,0,.11)}
+.dsgn-thumb{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#eee}
+.dsgn-thumb-err{width:100%;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;background:#f0f0f0;color:var(--su);font-size:10px;letter-spacing:.1em}
+.dsgn-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px}
+.dsgn-ref{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.dsgn-dl{padding:5px 11px;background:var(--dark);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:8px;letter-spacing:.1em;text-transform:uppercase;font-family:var(--fn);white-space:nowrap;transition:background .18s}
 .dsgn-dl:hover{background:#333}
 .dsgn-empty{text-align:center;padding:52px 0;color:var(--mu);font-size:13px}
 .cea{display:flex;gap:9px;margin-bottom:18px}
@@ -1090,10 +1090,10 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
       <div class="pzp">
         <div class="pzs"><div class="pzl">Producto</div><div class="pzbt" id="pzpb"><button class="pzb a" onclick="setProd('termo',this)">Termo</button><button class="pzb" onclick="setProd('taza',this)">Taza</button><button class="pzb" onclick="setProd('playera',this)">Playera</button><button class="pzb" onclick="setProd('sudadera',this)">Sudadera</button></div></div>
         <div class="pzs"><div class="pzl">Color del producto</div><div class="pzco" id="pzco"><div class="pzc a" style="background:#1a1a1a" onclick="setClr('#1a1a1a',this)"></div><div class="pzc" style="background:#fff;border:2px solid rgba(255,255,255,.18)" onclick="setClr('#ffffff',this)"></div><div class="pzc" style="background:#c4b8a2" onclick="setClr('#c4b8a2',this)"></div><div class="pzc" style="background:#8a8578" onclick="setClr('#8a8578',this)"></div><div class="pzc" style="background:#3a3730" onclick="setClr('#3a3730',this)"></div><div class="pzc" style="background:#8a9485" onclick="setClr('#8a9485',this)"></div><div class="pzc" style="background:#9a6050" onclick="setClr('#9a6050',this)"></div></div></div>
-        <div class="pzs"><div class="pzl">Texto personalizado</div><textarea class="pzin" id="ctxt" placeholder="Tu nombre, frase o iniciales…" oninput="upPv()" rows="3" style="resize:none;line-height:1.5;font-family:inherit"></textarea><div class="pzrw" style="margin-top:9px"><select class="pzin pzse" id="tfnt" onchange="upPv()"><option value="sans-serif">Helvetica</option><option value="'Bebas Neue',sans-serif">Bebas Neue</option><option value="'Anton',sans-serif">Anton</option><option value="'Oswald',sans-serif">Oswald</option><option value="'Montserrat',sans-serif">Montserrat</option><option value="'Orbitron',sans-serif">Orbitron</option><option value="'Righteous',cursive">Righteous</option><option value="'Pacifico',cursive">Pacifico</option><option value="'Dancing Script',cursive">Dancing Script</option><option value="'Permanent Marker',cursive">Permanent Marker</option><option value="'Playfair Display',serif">Playfair Display</option><option value="Georgia,serif">Georgia</option><option value="'Courier New',monospace">Courier</option><option value="Impact,sans-serif">Impact</option></select><input class="pzin" id="tclr" type="color" value="#1a1a1a" oninput="upPv()" style="padding:5px;height:42px;cursor:pointer"/></div><div style="margin-top:9px"><div class="pzl">Tamaño</div><input class="pzrn" type="range" id="tsz" min="10" max="72" value="30" oninput="upPv()"/></div></div>
-        <div class="pzs"><div class="pzl">Importar imagen (PNG · JPG · SVG)</div><div class="dzn" id="dzn" onclick="document.getElementById('fimg').click()"><div class="dzni"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="dznt">Arrastra aquí o haz clic<br/><span style="opacity:.5">Se adapta automáticamente al producto</span></div></div><input type="file" id="fimg" accept="image/*" style="display:none" onchange="handleImg(this)"/><div id="imgctrl" style="display:none;margin-top:9px"><div class="pzl">Escala</div><input class="pzrn" type="range" id="iscl" min="0.05" max="1.5" step="0.05" value="0.45" oninput="upPv()"/></div></div>
+        <div class="pzs"><div class="pzl">Texto personalizado</div><textarea class="pzin" id="ctxt" placeholder="Tu nombre, frase o iniciales…" oninput="upPv()" rows="3" style="resize:none;line-height:1.5;font-family:inherit"></textarea><div class="pzrw" style="margin-top:9px"><select class="pzin pzse" id="tfnt" onchange="upPv()"><option value="sans-serif">Helvetica</option><option value="'Bebas Neue',sans-serif">Bebas Neue</option><option value="'Anton',sans-serif">Anton</option><option value="'Oswald',sans-serif">Oswald</option><option value="'Montserrat',sans-serif">Montserrat</option><option value="'Orbitron',sans-serif">Orbitron</option><option value="'Righteous',cursive">Righteous</option><option value="'Pacifico',cursive">Pacifico</option><option value="'Dancing Script',cursive">Dancing Script</option><option value="'Permanent Marker',cursive">Permanent Marker</option><option value="'Playfair Display',serif">Playfair Display</option><option value="Georgia,serif">Georgia</option><option value="'Courier New',monospace">Courier</option><option value="Impact,sans-serif">Impact</option></select><input class="pzin" id="tclr" type="color" value="#1a1a1a" oninput="upPv()" style="padding:5px;height:42px;cursor:pointer"/></div><div style="margin-top:9px"><div class="pzl">Tamaño</div><input class="pzrn" type="range" id="tsz" min="20" max="144" value="60" oninput="upPv()"/></div></div>
+        <div class="pzs"><div class="pzl">Importar imagen (PNG · JPG · SVG)</div><div class="dzn" id="dzn" onclick="document.getElementById('fimg').click()"><div class="dzni"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="dznt">Arrastra aquí o haz clic<br/><span style="opacity:.5">Se adapta automáticamente al producto</span></div></div><input type="file" id="fimg" accept="image/*" style="display:none" onchange="handleImg(this)"/><div id="imgctrl" style="display:none;margin-top:9px"><div class="pzl">Escala</div><input class="pzrn" type="range" id="iscl" min="0.025" max="0.75" step="0.025" value="0.225" oninput="upPv()"/></div></div>
       </div>
-      <div class="pvp"><canvas id="prevc" width="440" height="540"></canvas><div class="pvas"><button class="pvb" onclick="dlDesign()">Descargar</button><button class="pvb ct" onclick="addCustom()">Agregar al carrito</button></div><p class="pvh">Arrastra la imagen o el texto para posicionarlos libremente</p></div>
+      <div class="pvp"><canvas id="prevc" width="880" height="1080"></canvas><div class="pvas"><button class="pvb" onclick="dlDesign()">Descargar</button><button class="pvb ct" onclick="addCustom()">Agregar al carrito</button></div><p class="pvh">Arrastra la imagen o el texto para posicionarlos libremente</p></div>
     </div>
   </div>
 </div>
@@ -1898,14 +1898,16 @@ async function renderDesignsGallery(){
     const cards=data.map(d=>{
       const ordRef='#'+d.order_id.slice(-6).toUpperCase();
       const isP=!!(d.item_name?.includes('Vista'));
+      const typeLabel=isP?'Preview':'Diseño';
       const safeName=(d.item_name||'diseno').toLowerCase().replace(/[^a-z0-9]+/g,'-');
       const fname=safeName+'-'+d.order_id.slice(-6)+'.png';
-      return`<div class="dsgn-card" data-t="${isP?'prev':'iso'}">
-        <img class="dsgn-thumb" src="${d.design_url}" alt="" loading="lazy"/>
-        <div class="dsgn-cb">
-          <div class="dsgn-tag">${ordRef} &middot; ${isP?'Vista previa':'Diseño aislado'}</div>
-          <div class="dsgn-name" title="${d.item_name||''}">${d.item_name||'Diseño'}</div>
-          <button class="dsgn-dl" onclick="_dlAdminImg('${d.design_url}','${fname}')">↓ Descargar</button>
+      const urlEsc=d.design_url.replace(/'/g,'%27');
+      return`<div class="dsgn-card" data-t="${isP?'prev':'iso'}" title="${d.item_name||''}">
+        <img class="dsgn-thumb" src="${d.design_url}" alt="${typeLabel} ${ordRef}" onerror="this.style.display='none';this.nextSibling.style.display='flex'"/>
+        <div class="dsgn-thumb-err" style="display:none">Sin imagen</div>
+        <div class="dsgn-foot">
+          <span class="dsgn-ref">${ordRef} · ${typeLabel}</span>
+          <button class="dsgn-dl" onclick="_dlAdminImg('${urlEsc}','${fname}')">↓</button>
         </div>
       </div>`;
     }).join('');
@@ -2305,11 +2307,11 @@ function initCinematic(){
 // CANVAS PREVIEWER
 const PV={
   cv:null,ctx:null,prod:'termo',clr:'#1a1a1a',
-  txt:'',font:'sans-serif',tclr:'#1a1a1a',tsz:30,
+  txt:'',font:'sans-serif',tclr:'#1a1a1a',tsz:60,
   txtX:0,txtY:0,
-  img:null,imgScale:.45,imgX:0,imgY:0,
+  img:null,imgScale:.225,imgX:0,imgY:0,
   _drag:null,_dragOX:0,_dragOY:0,
-  _prodImgMap:{termo:'images/tiempo_real/termo1.png',taza:'images/tiempo_real/taza.png',playera:'images/tiempo_real/playera.png',sudadera:'images/tiempo_real/sudadera.png'},
+  _prodImgMap:{termo:'images/Productos/tiempo_real/termo1.png',taza:'images/Productos/tiempo_real/taza.png',playera:'images/Productos/tiempo_real/playera.png',sudadera:'images/Productos/tiempo_real/sudadera.png'},
   _imgCache:{},
   _pad(){return('ontouchstart' in window)?44:22;},
   _hitImg(px,py){
@@ -2367,7 +2369,7 @@ const PV={
     const src=this._prodImgMap[this.prod];
     if(src){const pi=this._imgCache[src];if(pi&&pi.complete&&pi.naturalWidth){const ir=pi.naturalWidth/pi.naturalHeight,cr=w/h;let dw,dh,dx,dy;if(ir>cr){dw=w;dh=w/ir;}else{dh=h;dw=h*ir;}dx=(w-dw)/2;dy=(h-dh)/2;ctx.drawImage(pi,dx,dy,dw,dh);}}
     if(this.img||this.txt){const off=document.createElement('canvas');off.width=w;off.height=h;const oc=off.getContext('2d');if(this.img){const iw=this.img.width*this.imgScale*(w/440),ih=this.img.height*this.imgScale*(h/540),ix=this.imgX||w/2,iy=this.imgY||h*.38;oc.save();oc.globalAlpha=.9;oc.drawImage(this.img,ix-iw/2,iy-ih/2,iw,ih);oc.restore();}if(this.txt){const tx=this.txtX||w/2,ty=this.txtY||h*.62;oc.save();oc.font=`${this.tsz}px ${this.font}`;oc.fillStyle=this.tclr;oc.textAlign='center';oc.textBaseline='middle';oc.globalAlpha=.92;const lines=this.txt.split('\n');const lh=this.tsz*1.3;const startY=ty-(lines.length-1)*lh/2;lines.forEach((l,i)=>{if(l)oc.fillText(l,tx,startY+i*lh)});oc.restore();}this._warpCyl(ctx,off,0,0,w,h);}
-    ctx.save();ctx.font='9px Helvetica';ctx.fillStyle='rgba(255,255,255,.12)';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText('ELLIÉR Preview',w/2,h-10);ctx.restore();
+    ctx.save();ctx.font='18px Helvetica';ctx.fillStyle='rgba(255,255,255,.12)';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText('ELLIÉR Preview',w/2,h-20);ctx.restore();
   },
   _warpCyl(ctx,off,dx,dy,dw,dh){
     const N=80,amp=dh*.036;
