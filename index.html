@@ -951,6 +951,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <div class="odpv"><canvas id="odcv" width="520" height="270"></canvas></div>
     <div class="odsec"><h4>Información del pedido</h4><div id="odinf"></div></div>
     <div class="odsec"><h4>Personalización</h4><div id="odcust"></div></div>
+    <div class="odsec" id="odsecdsgn" style="display:none"><h4>Diseño del cliente</h4><div id="oddsgn"></div></div>
     <div class="odsec"><h4>Dirección de envío</h4><div id="odaddr"></div></div>
     <div class="odst" id="odstbts"></div>
   </div>
@@ -1871,7 +1872,7 @@ function _drawOrdCanvas(o){
   // watermark
   ctx.font=`8px ${fs}`;ctx.fillStyle='rgba(255,255,255,.1)';ctx.fillText('ELLIÉR · Vista conceptual',rx,H-14);
 }
-function openOrder(id){
+async function openOrder(id){
   const o=_supaOrders.find(x=>x.id===id);if(!o)return;
   _curOrd=o;
   document.getElementById('odtit').textContent=`Pedido ${o.id}`;
@@ -1895,6 +1896,21 @@ function openOrder(id){
   lockScroll();
   document.getElementById('odov').classList.add('o');
   document.getElementById('odp').classList.add('o');
+  // Fetch saved design from storage
+  const dsec=document.getElementById('odsecdsgn');
+  const dbox=document.getElementById('oddsgn');
+  dsec.style.display='none';
+  try{
+    const{data:designs}=await _sb.from('design_uploads').select('*').eq('order_id',o.id);
+    if(designs?.length){
+      dsec.style.display='';
+      dbox.innerHTML=designs.map((d,i)=>`
+        <div style="margin-bottom:14px">
+          <img src="${d.design_url}" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.1);display:block" />
+          <button onclick="_dlAdminImg('${d.design_url}','diseno-${o._shortId.replace('#','')}-${i+1}.png')" style="margin-top:8px;width:100%;padding:10px 0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:#e8e8e8;cursor:pointer;font-size:12px;letter-spacing:.5px">↓ DESCARGAR DISEÑO${designs.length>1?' '+(i+1):''}</button>
+        </div>`).join('');
+    }
+  }catch(e){}
 }
 function closeOrder(){document.getElementById('odp').classList.remove('o');document.getElementById('odov').classList.remove('o');unlockScroll()}
 async function setOrdSt(id,st){
@@ -2096,6 +2112,10 @@ function showPaySuccess(orderId){
   document.getElementById('pay-ok-ov').style.display='flex';
 }
 
+async function _dlAdminImg(url,name){
+  try{const r=await fetch(url);const b=await r.blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000);}
+  catch(e){window.open(url,'_blank');}
+}
 async function saveDesigns(orderId,items){
   try{
     const designItems=items.filter(x=>x.designImgFull||x.designImg);
