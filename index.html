@@ -2208,9 +2208,17 @@ const PV={
     ctx.clearRect(0,0,w,h);ctx.fillStyle='#181818';ctx.fillRect(0,0,w,h);
     const src=this._prodImgMap[this.prod];
     if(src){const pi=this._imgCache[src];if(pi&&pi.complete&&pi.naturalWidth){const ir=pi.naturalWidth/pi.naturalHeight,cr=w/h;let dw,dh,dx,dy;if(ir>cr){dw=w;dh=w/ir;}else{dh=h;dw=h*ir;}dx=(w-dw)/2;dy=(h-dh)/2;ctx.drawImage(pi,dx,dy,dw,dh);}}
-    if(this.img){const iw=this.img.width*this.imgScale*(w/440),ih=this.img.height*this.imgScale*(h/540),ix=this.imgX||w/2,iy=this.imgY||h*.38;ctx.save();ctx.globalCompositeOperation='multiply';ctx.globalAlpha=.92;ctx.shadowColor='rgba(0,0,0,.22)';ctx.shadowBlur=8;ctx.shadowOffsetX=1;ctx.shadowOffsetY=2;ctx.drawImage(this.img,ix-iw/2,iy-ih/2,iw,ih);ctx.restore();}
-    if(this.txt){const tx=this.txtX||w/2,ty=this.txtY||h*.62;ctx.save();ctx.globalCompositeOperation='multiply';ctx.font=`${this.tsz}px ${this.font}`;ctx.fillStyle=this.tclr;ctx.textAlign='center';ctx.textBaseline='middle';ctx.globalAlpha=.92;ctx.shadowColor='rgba(0,0,0,.18)';ctx.shadowBlur=6;ctx.shadowOffsetX=1;ctx.shadowOffsetY=1;const lines=this.txt.split('\n');const lh=this.tsz*1.3;const startY=ty-(lines.length-1)*lh/2;lines.forEach((l,i)=>{if(l)ctx.fillText(l,tx,startY+i*lh)});ctx.restore();}
+    if(this.img||this.txt){const off=document.createElement('canvas');off.width=w;off.height=h;const oc=off.getContext('2d');if(this.img){const iw=this.img.width*this.imgScale*(w/440),ih=this.img.height*this.imgScale*(h/540),ix=this.imgX||w/2,iy=this.imgY||h*.38;oc.save();oc.globalAlpha=.9;oc.drawImage(this.img,ix-iw/2,iy-ih/2,iw,ih);oc.restore();}if(this.txt){const tx=this.txtX||w/2,ty=this.txtY||h*.62;oc.save();oc.font=`${this.tsz}px ${this.font}`;oc.fillStyle=this.tclr;oc.textAlign='center';oc.textBaseline='middle';oc.globalAlpha=.92;const lines=this.txt.split('\n');const lh=this.tsz*1.3;const startY=ty-(lines.length-1)*lh/2;lines.forEach((l,i)=>{if(l)oc.fillText(l,tx,startY+i*lh)});oc.restore();}this._warpCyl(ctx,off,0,0,w,h);}
     ctx.save();ctx.font='9px Helvetica';ctx.fillStyle='rgba(255,255,255,.12)';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText('ELLIÉR Preview',w/2,h-10);ctx.restore();
+  },
+  _warpCyl(ctx,off,dx,dy,dw,dh){
+    const N=80,amp=dh*.036;
+    for(let i=0;i<N;i++){
+      const t=i/N,nx=t*2-1;
+      const yOff=amp*nx*nx;
+      const hSc=Math.cos(nx*.42);
+      ctx.drawImage(off,t*off.width,0,off.width/N,off.height,dx+t*dw,dy+yOff,dw/N+1,dh*hSc);
+    }
   },
   _dT(ctx,w,h){
     const x=w/2,y=h*.1,bw=w*.38,bh=h*.72;
