@@ -1904,11 +1904,14 @@ async function openOrder(id){
     const{data:designs}=await _sb.from('design_uploads').select('*').eq('order_id',o.id);
     if(designs?.length){
       dsec.style.display='';
-      dbox.innerHTML=designs.map((d,i)=>`
-        <div style="margin-bottom:14px">
-          <img src="${d.design_url}" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.1);display:block" />
-          <button onclick="_dlAdminImg('${d.design_url}','diseno-${o._shortId.replace('#','')}-${i+1}.png')" style="margin-top:8px;width:100%;padding:10px 0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:#e8e8e8;cursor:pointer;font-size:12px;letter-spacing:.5px">↓ DESCARGAR DISEÑO${designs.length>1?' '+(i+1):''}</button>
-        </div>`).join('');
+      dbox.innerHTML=designs.map((d,i)=>{
+        const label=d.item_name||('Diseño '+(i+1));
+        const fname=label.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+o._shortId.replace('#','')+'.png';
+        return`<div style="margin-bottom:18px">
+          <div style="font-size:10px;letter-spacing:.8px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:6px">${label}</div>
+          <img src="${d.design_url}" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,.1);display:block;background:#111" />
+          <button onclick="_dlAdminImg('${d.design_url}','${fname}')" style="margin-top:8px;width:100%;padding:10px 0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:#e8e8e8;cursor:pointer;font-size:12px;letter-spacing:.5px">↓ DESCARGAR</button>
+        </div>`;}).join('');
     }
   }catch(e){}
 }
@@ -2123,19 +2126,37 @@ async function saveDesigns(orderId,items){
     const{data:{session}}=await _sb.auth.getSession();
     for(const item of designItems){
       try{
+        const ts=Date.now();
         const imgData=item.designImgFull||item.designImg;
         if(!imgData){console.warn('saveDesigns: item has no imgData',item.id);continue;}
-        const res=await fetch(imgData);
-        const blob=await res.blob();
-        const filename=`${orderId}/${item.id}_${Date.now()}.png`;
-        const{error:upErr}=await _sb.storage.from('designs').upload(filename,blob,{contentType:'image/png',upsert:true});
-        if(upErr){console.error('saveDesigns upload error:',upErr);showToast('Error al guardar diseño: '+upErr.message);continue;}
-        const{data:{publicUrl}}=_sb.storage.from('designs').getPublicUrl(filename);
-        const row={order_id:orderId,item_id:item.id,item_name:item.n,design_url:publicUrl};
-        if(session?.user?.id)row.user_id=session.user.id;
-        const{error:insErr}=await _sb.from('design_uploads').insert(row);
-        if(insErr){console.error('saveDesigns insert error:',insErr);showToast('Error al registrar diseño: '+insErr.message);}
-        else console.log('saveDesigns OK:',publicUrl);
+        // — imagen 1: vista previa completa (producto + diseño)
+        const res=await fetch(imgData);const blob=await res.blob();
+        const fn1=`${orderId}/${item.id}_preview_${ts}.png`;
+        const{error:upErr1}=await _sb.storage.from('designs').upload(fn1,blob,{contentType:'image/png',upsert:true});
+        if(upErr1){console.error('saveDesigns upload preview:',upErr1);showToast('Error al guardar vista previa: '+upErr1.message);}
+        else{
+          const{data:{publicUrl:url1}}=_sb.storage.from('designs').getPublicUrl(fn1);
+          const row1={order_id:orderId,item_id:item.id,item_name:item.n+' · Vista previa',design_url:url1};
+          if(session?.user?.id)row1.user_id=session.user.id;
+          const{error:ins1}=await _sb.from('design_uploads').insert(row1);
+          if(ins1)showToast('Error al registrar vista previa: '+ins1.message);
+          else console.log('saveDesigns preview OK:',url1);
+        }
+        // — imagen 2: diseño aislado (sin fondo de producto, plano para grabado)
+        if(item.designOnly){
+          try{
+            const res2=await fetch(item.designOnly);const blob2=await res2.blob();
+            const fn2=`${orderId}/${item.id}_diseno_${ts}.png`;
+            const{error:upErr2}=await _sb.storage.from('designs').upload(fn2,blob2,{contentType:'image/png',upsert:true});
+            if(!upErr2){
+              const{data:{publicUrl:url2}}=_sb.storage.from('designs').getPublicUrl(fn2);
+              const row2={order_id:orderId,item_id:item.id,item_name:item.n+' · Diseño aislado',design_url:url2};
+              if(session?.user?.id)row2.user_id=session.user.id;
+              await _sb.from('design_uploads').insert(row2);
+              console.log('saveDesigns diseño OK:',url2);
+            }
+          }catch(e2){console.error('saveDesigns designOnly',e2);}
+        }
       }catch(e){console.error('saveDesigns item',item.id,e);showToast('Error inesperado al guardar diseño');}
     }
   }catch(e){console.error('saveDesigns outer',e);showToast('Error al guardar diseños: '+e.message);}
@@ -2243,6 +2264,15 @@ const PV={
       ctx.drawImage(off,t*off.width,0,off.width/N,off.height,dx+t*dw,dy+yOff,dw/N+1,dh*hSc);
     }
   },
+  captureDesignOnly(){
+    if(!this.img&&!this.txt)return null;
+    const w=this.cv.width,h=this.cv.height;
+    const off=document.createElement('canvas');off.width=w;off.height=h;
+    const oc=off.getContext('2d');
+    if(this.img){const iw=this.img.width*this.imgScale*(w/440),ih=this.img.height*this.imgScale*(h/540),ix=this.imgX||w/2,iy=this.imgY||h*.38;oc.save();oc.globalAlpha=.9;oc.drawImage(this.img,ix-iw/2,iy-ih/2,iw,ih);oc.restore();}
+    if(this.txt){const tx=this.txtX||w/2,ty=this.txtY||h*.62;oc.save();oc.font=`${this.tsz}px ${this.font}`;oc.fillStyle=this.tclr;oc.textAlign='center';oc.textBaseline='middle';oc.globalAlpha=1;const lines=this.txt.split('\n');const lh=this.tsz*1.3;const startY=ty-(lines.length-1)*lh/2;lines.forEach((l,i)=>{if(l)oc.fillText(l,tx,startY+i*lh)});oc.restore();}
+    return off.toDataURL('image/png');
+  },
   _dT(ctx,w,h){
     const x=w/2,y=h*.1,bw=w*.38,bh=h*.72;
     const g=ctx.createLinearGradient(x-bw/2,0,x+bw/2,0);
@@ -2294,14 +2324,15 @@ function dlDesign(){const a=document.createElement('a');a.href=PV.cv.toDataURL('
 const _pzInfo={termo:{n:'Termo Personalizado',p:350,cat:'termos'},taza:{n:'Taza Personalizada',p:280,cat:'tazas'},playera:{n:'Playera Personalizada',p:420,cat:'playeras'},sudadera:{n:'Sudadera Personalizada',p:580,cat:'sudaderas'}};
 function addCustom(){
   const inf=_pzInfo[PV.prod]||_pzInfo.termo;
-  let designImg=null,designImgFull=null;
+  let designImg=null,designImgFull=null,designOnly=null;
   try{
     const th=document.createElement('canvas');th.width=80;th.height=100;
     th.getContext('2d').drawImage(PV.cv,0,0,80,100);
     designImg=th.toDataURL('image/jpeg',.75);
     designImgFull=PV.cv.toDataURL('image/png');
+    designOnly=PV.captureDesignOnly();
   }catch(e){}
-  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true,designImg,designImgFull});
+  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true,designImg,designImgFull,designOnly});
   Cart.save();updateCC();
   showToast('Diseño agregado al carrito ✓');
   const cb=document.getElementById('crtb');if(cb){cb.classList.remove('ping');void cb.offsetWidth;cb.classList.add('ping')}
