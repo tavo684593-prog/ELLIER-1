@@ -812,6 +812,83 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   #pdov .pd-info{padding-bottom:80px}
   .pzovh,.evh,.clh{padding-left:18px;padding-right:18px}
 }
+
+/* ── OPTIMIZACIONES & POLISH MÓVIL ──────────────────────────── */
+
+/* 1 · iOS: evitar zoom automático en inputs — font-size < 16px lo dispara */
+@media(max-width:768px){
+  .fi,.pzin,.fsel,.cof-inp{font-size:16px!important}
+}
+
+/* 2 · Espacio para la barra de inicio en iPhone (home indicator ~34px) */
+@media(max-width:768px){
+  #toast{bottom:36px}
+  #cp .cf,#wp .cf{padding-bottom:24px}
+  #mm{padding-bottom:28px}
+}
+
+/* 3 · Active states — retroalimentación visual al tocar (solo touch) */
+@media(hover:none),(pointer:coarse){
+  .bp:active{opacity:.82}
+  .bg:active{background:rgba(255,255,255,.1)}
+  .ba:active,.dsgn-dl:active{background:#222}
+  .bck:active,.fb:active{background:#1a1a1a}
+  .pzb:active{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.5)}
+  .catd-a:active{background:rgba(0,0,0,.04)}
+  .evmas-btn:active{background:#111}
+  .xb:active{border-color:var(--text);color:var(--text)}
+  .pvb:active{background:rgba(255,255,255,.09)}
+  .pvb.ct:active{background:rgba(255,255,255,.88)}
+  .up-btn:active{background:rgba(0,0,0,.05)}
+  .at2:active,.cft2:active,.ft:active,.evna:active{color:var(--text)}
+  .pc:active .pcii{transform:scale(1.03)}
+  .tcard:active .tcii{transform:scale(1.02)}
+  .src:active{background:rgba(255,255,255,.08)}
+  .evc:active{transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.09)}
+  .pq-i:active{background:var(--bg)}
+  .cb3:active:not(.pr):not(.a){background:var(--dark);color:#fff;border-color:var(--dark)}
+}
+
+/* 4 · Quitar resaltado azul nativo en más elementos táctiles */
+.pzb,.cft2,.ft,.catd-a,.src,.evc,.pvb,.up-btn,.evmas-btn,.evmas-dot,.at2,.evna,.sw-arr,.dsgn-dl,.cb3,.pq-i,.odst button,.xb,.ni,.nl,.pw,.cq button,.mml-btn{-webkit-tap-highlight-color:transparent}
+
+/* 5 · Overscroll contain — los paneles no propagan scroll a la página */
+#cp,#wp,#up,#pzov,#cl,#evov,#pdov,#ceo,#srcho,#myorders,#cko{overscroll-behavior:contain}
+
+/* 6 · Diseñador: canvas primero en columna única → ves el resultado antes de editar */
+@media(max-width:1024px){
+  .pvp{order:-1}
+}
+@media(max-width:768px){
+  .pzw{padding-top:20px!important;padding-bottom:44px!important}
+}
+
+/* 7 · Área de toque mínima en filtros y tabs (44px accesibilidad) */
+@media(max-width:768px){
+  .ft,.cft2,.at2,.evna,.ceo-tab{min-height:44px}
+}
+
+/* 8 · Grid de productos más cómodo en tablets */
+@media(min-width:481px) and (max-width:767px){
+  .pg,.clg{grid-template-columns:repeat(auto-fill,minmax(175px,1fr))}
+}
+
+/* 9 · Carousel: tarjetas más anchas en pantallas muy pequeñas */
+@media(max-width:380px){
+  #swt .pc,#swt .tcard{flex:0 0 82vw;width:82vw}
+}
+
+/* 10 · Menú móvil: animación stagger al abrir — sensación premium */
+#mm .mml{opacity:0;transform:translateY(12px)}
+#mm.o .mml{opacity:1;transform:none;transition:color .22s var(--ea),opacity .38s var(--ea),transform .38s var(--ea)}
+#mm.o .mml:nth-child(1){transition-delay:.06s}
+#mm.o .mml:nth-child(2){transition-delay:.11s}
+#mm.o .mml:nth-child(3){transition-delay:.16s}
+#mm.o .mml:nth-child(4){transition-delay:.21s}
+#mm.o .mml:nth-child(5){transition-delay:.26s}
+#mm.o .mml:nth-child(6){transition-delay:.30s}
+#mm.o .mml:nth-child(7){transition-delay:.33s}
+#mm.o .mml:nth-child(8){transition-delay:.36s}
 </style>
 </head>
 <body>
