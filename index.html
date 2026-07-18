@@ -2439,9 +2439,39 @@ const PV={
     const cv=this.cv,ctx=this.ctx,w=cv.width,h=cv.height;
     ctx.clearRect(0,0,w,h);ctx.fillStyle='#181818';ctx.fillRect(0,0,w,h);
     const src=this._prodImgMap[this.prod];
-    if(src){const pi=this._imgCache[src];if(pi&&pi.complete&&pi.naturalWidth){const ir=pi.naturalWidth/pi.naturalHeight,cr=w/h;let dw,dh,dx,dy;if(ir>cr){dw=w;dh=w/ir;}else{dh=h;dw=h*ir;}dx=(w-dw)/2;dy=(h-dh)/2;ctx.drawImage(pi,dx,dy,dw,dh);}}
+    if(src){
+      const pi=this._imgCache[src];
+      if(pi&&pi.complete&&pi.naturalWidth)this._drawTintedProduct(ctx,pi,w,h);
+      else if(this.prod==='termo')this._dT(ctx,w,h);
+      else if(this.prod==='taza')this._dZ(ctx,w,h);
+      else if(this.prod==='playera')this._dC(ctx,w,h);
+      else this._dJ(ctx,w,h);
+    }
     if(this.img||this.txt){const off=document.createElement('canvas');off.width=w;off.height=h;const oc=off.getContext('2d');if(this.img){const iw=this.img.width*this.imgScale*(w/440),ih=this.img.height*this.imgScale*(h/540),ix=this.imgX||w/2,iy=this.imgY||h*.38;oc.save();oc.globalAlpha=.9;oc.drawImage(this.img,ix-iw/2,iy-ih/2,iw,ih);oc.restore();}if(this.txt){const tx=this.txtX||w/2,ty=this.txtY||h*.62;oc.save();oc.font=`${this.tsz}px ${this.font}`;oc.fillStyle=this.tclr;oc.textAlign='center';oc.textBaseline='middle';oc.globalAlpha=.92;const lines=this.txt.split('\n');const lh=this.tsz*1.3;const startY=ty-(lines.length-1)*lh/2;lines.forEach((l,i)=>{if(l)oc.fillText(l,tx,startY+i*lh)});oc.restore();}this._warpCyl(ctx,off,0,0,w,h);}
     ctx.save();ctx.font='18px Helvetica';ctx.fillStyle='rgba(255,255,255,.12)';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText('ELLIÉR Preview',w/2,h-20);ctx.restore();
+  },
+  _prodBox(img,w,h){
+    const ir=img.naturalWidth/img.naturalHeight,cr=w/h;let dw,dh;
+    if(ir>cr){dw=w;dh=w/ir;}else{dh=h;dw=h*ir;}
+    return{dx:(w-dw)/2,dy:(h-dh)/2,dw,dh};
+  },
+  _drawTintedProduct(ctx,img,w,h){
+    const b=this._prodBox(img,w,h);
+    const off=document.createElement('canvas');off.width=w;off.height=h;
+    const oc=off.getContext('2d');
+    oc.drawImage(img,b.dx,b.dy,b.dw,b.dh);
+    oc.save();
+    oc.globalCompositeOperation='source-atop';
+    oc.fillStyle=this.clr;
+    oc.globalAlpha=this.clr==='#ffffff' ? .72 : .86;
+    oc.fillRect(0,0,w,h);
+    oc.restore();
+    oc.save();
+    oc.globalCompositeOperation='multiply';
+    oc.globalAlpha=this.clr==='#ffffff' ? .72 : .46;
+    oc.drawImage(img,b.dx,b.dy,b.dw,b.dh);
+    oc.restore();
+    ctx.drawImage(off,0,0);
   },
   _warpCyl(ctx,off,dx,dy,dw,dh){
     const N=80,amp=dh*.036;
