@@ -134,6 +134,10 @@ const PRODUCTS=[
   {id:'up23',n:'Termo Pantera 40 oz UP',cat:'termos',p:'$480',img:'images/termo-pantera1-40oz.png',tag:'new',desc:'Termo UP de 40 oz con diseño de pantera y capacidad amplia.'},
 ];
 let wish=JSON.parse(localStorage.getItem('ellier_wish')||'[]');
+const WISH_META_KEY='ellier_wish_products';
+function getWishMeta(){return JSON.parse(localStorage.getItem(WISH_META_KEY)||'{}')}
+function saveWishMeta(p){if(!p)return;const meta=getWishMeta();meta[p.id]={id:p.id,n:p.n,cat:p.cat,p:p.p,clr:'#0a0a0a',img:p.img||null};localStorage.setItem(WISH_META_KEY,JSON.stringify(meta))}
+function removeWishMeta(id){const meta=getWishMeta();delete meta[id];localStorage.setItem(WISH_META_KEY,JSON.stringify(meta))}
 let _heroIdx=0,_heroTimer=null;
 const Cart={
   items:JSON.parse(localStorage.getItem('ellier_cart')||'[]'),
@@ -188,15 +192,22 @@ function openDetail(id){
 function closeDetail(){document.getElementById('pdov').classList.remove('o')}
 function toggleWish(btn,id){
   const i=wish.indexOf(id);
-  if(i>-1){wish.splice(i,1);btn.classList.remove('on')}else{wish.push(id);btn.classList.add('on')}
+  if(i>-1){wish.splice(i,1);btn.classList.remove('on');removeWishMeta(id)}else{wish.push(id);btn.classList.add('on');saveWishMeta(PRODUCTS.find(x=>x.id===id))}
   localStorage.setItem('ellier_wish',JSON.stringify(wish));showToast(i>-1?'Eliminado de favoritos':'Agregado a favoritos');
 }
 function openCart(){renderCart();document.getElementById('cartov').classList.add('o')}
 function closeCart(){document.getElementById('cartov').classList.remove('o')}
+function cartVisual(x){
+  if(x.img)return `<img src="${x.img}" alt="${x.n}"/>`;
+  const p=PRODUCTS.find(y=>y.id===x.id);
+  if(p&&p.img){x.img=p.img;return `<img src="${p.img}" alt="${x.n}"/>`;}
+  return '';
+}
 function renderCart(){
   const el=document.getElementById('cartitems'),ft=document.getElementById('cartfoot');
   if(!Cart.items.length){el.innerHTML='<div class="empty">Tu carrito esta vacio</div>';ft.style.display='none';return}
-  el.innerHTML=Cart.items.map((x,i)=>`<div class="ci"><div class="ct2">${x.img?`<img src="${x.img}" alt="${x.n}"/>`:''}</div><div class="cii"><h4>${x.n}</h4><p>${x.cat}</p><div class="cpri">${x.p} x ${x.qty}</div></div><button class="xb" onclick="Cart.remove(${i})">x</button></div>`).join('');
+  el.innerHTML=Cart.items.map((x,i)=>`<div class="ci"><div class="ct2">${cartVisual(x)}</div><div class="cii"><h4>${x.n}</h4><p>${x.cat}</p><div class="cpri">${x.p} x ${x.qty}</div></div><button class="xb" onclick="Cart.remove(${i})">x</button></div>`).join('');
+  localStorage.setItem('ellier_cart',JSON.stringify(Cart.items));
   ft.style.display='flex';document.getElementById('carttotal').textContent='$'+Cart.total().toLocaleString()+' MXN';
 }
 function updateCC(){document.getElementById('crtc').textContent=Cart.items.reduce((s,x)=>s+(x.qty||1),0)}
