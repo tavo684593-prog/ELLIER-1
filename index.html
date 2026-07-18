@@ -250,14 +250,14 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .tcft{display:flex;align-items:center;justify-content:space-between}.tcp{font-size:15px;font-weight:500}
 .tcbg2{font-size:9px;letter-spacing:.07em;text-transform:uppercase;border:1px solid var(--bo);padding:3px 9px;border-radius:20px;color:var(--mu)}
 /* CINEMATIC TERMO */
-#tsc{background:#0a0a0a;height:360vh}
-#tsi{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#tsc{background:#0a0a0a;height:100vh;min-height:620px}
+#tsi{position:relative;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center}
 #pcv{position:absolute;inset:0;width:100%;height:100%}
 .sgl{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(165,145,115,.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
-.tw{position:relative;z-index:2;display:flex;align-items:center;justify-content:center}
-.termo-perfecto-img{width:min(72vw,520px);max-height:72vh;object-fit:contain;display:block;filter:drop-shadow(0 24px 54px rgba(0,0,0,.48))}
+.tw{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center}
+.termo-perfecto-img{width:100%;height:100%;max-height:none;object-fit:cover;display:block;filter:none}
 /* Spec tags */
-.spt{position:absolute;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity .5s var(--ea),transform .5s var(--ea)}
+.spt{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity .5s var(--ea),transform .5s var(--ea)}
 .spt.vis{opacity:1;transform:none!important}
 .spl{height:1px;width:52px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2))}
 .spd{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.38);flex-shrink:0}
@@ -2178,12 +2178,8 @@ function initCinematic(){
   _cDraw();
   new IntersectionObserver(([e])=>{_cp=!e.isIntersecting;if(!_cp&&!_rafC)_cDraw()},{threshold:0}).observe(cv2);
   document.addEventListener('visibilitychange',()=>{_cp=document.hidden;if(!_cp&&!_rafC)_cDraw()});
-  const t3d=document.getElementById('t3d');
-  gsap.set(t3d,{scale:.72,rotateY:0});
-  const stl=gsap.timeline({scrollTrigger:{trigger:'#tsc',start:'top top',end:'bottom bottom',scrub:1.4,pin:'#tsi',pinSpacing:false}});
-  stl.to(t3d,{scale:1.08,rotateY:14,ease:'power2.inOut'},0).to(t3d,{scale:1,rotateY:-6,ease:'power2.inOut'},.45);
   ['sp1','sp2','sp3','sp4','sp5','sp6'].forEach((id,i)=>{
-    stl.to('#'+id,{opacity:1,x:0,y:0,duration:.3,ease:'power2.out',onStart:()=>document.getElementById(id).classList.add('vis')},0.25+i*.07);
+    setTimeout(()=>document.getElementById(id)?.classList.add('vis'),120+i*70);
   });
 }
 
