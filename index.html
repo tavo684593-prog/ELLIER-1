@@ -252,21 +252,8 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 /* CINEMATIC TERMO */
 #tsc{background:#0a0a0a;height:100vh;min-height:620px}
 #tsi{position:relative;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center}
-#pcv{position:absolute;inset:0;width:100%;height:100%}
-.sgl{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(165,145,115,.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
 .tw{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center}
-.termo-perfecto-img{width:100%;height:100%;max-height:none;object-fit:cover;display:block;filter:none}
-/* Spec tags */
-.spt{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity .5s var(--ea),transform .5s var(--ea)}
-.spt.vis{opacity:1;transform:none!important}
-.spl{height:1px;width:52px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2))}
-.spd{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.38);flex-shrink:0}
-.spr{flex-direction:row-reverse}
-.spr .spl{background:linear-gradient(270deg,transparent,rgba(255,255,255,.2))}
-.sptx{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.6);white-space:nowrap}
-.shd{position:absolute;top:44px;left:50%;transform:translateX(-50%);text-align:center;z-index:3}
-.shd p{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:rgba(255,255,255,.26);margin-bottom:6px}
-.shd h2{font-size:clamp(18px,3vw,29px);color:#fff;font-weight:500;letter-spacing:-.01em}
+.termo-perfecto-img{width:100%;height:100%;max-height:none;object-fit:contain;display:block;filter:none}
 /* PERSONALIZA */
 #personaliza{background:#0a0a0a;padding:92px 0;color:#fff}
 .pzw{max-width:1260px;margin:0 auto;padding:0 46px}
@@ -726,7 +713,6 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   .evgrid[style]{padding-left:18px!important;padding-right:18px!important}
   .nv{height:260px}
 }
-@media(max-width:560px){.spt{display:none}}
 @media(max-width:480px){
   .pg{grid-template-columns:repeat(2,1fr);gap:10px}
   .pcb{padding:10px}
@@ -1103,14 +1089,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 <section id="nosotros"><div class="nsg"><div class="rvl"><p class="ey" data-ceo="ns-ey" contenteditable="false">Nuestra historia</p><h2 class="st" data-ceo="ns-title" contenteditable="false">Diseñados con propósito. Hechos con precisión.</h2><p class="sb2" data-ceo="ns-sub" contenteditable="false">ELLIÉR nació de la idea de que cada persona merece un estilo único. Combinamos streetwear contemporáneo con artículos de uso diario premium.</p><div class="nns"><div class="nn rv"><h3>200+</h3><p>Clientes</p></div><div class="nn rv"><h3>50+</h3><p>Diseños únicos</p></div><div class="nn rv"><h3>100%</h3><p>Personalizable</p></div><div class="nn rv"><h3>24h</h3><p>Respuesta</p></div></div></div><div class="rvr"><div class="nv"><div class="nb nb1" data-ceo-img="nosotros-1"><div class="nbc">Premium Quality</div></div><div class="nb nb2" data-ceo-img="nosotros-2"><div class="nbc">Made to Last</div></div></div></div></div></section>
 
 <!-- CINEMATIC TERMO -->
-<div id="tsc"><div id="tsi"><canvas id="pcv"></canvas><div class="sgl"></div>
-  <div class="shd"><p>Ingeniería premium</p><h2>El termo perfecto.</h2></div>
-  <div class="spt" id="sp1" style="right:calc(50% + 148px);top:calc(50% - 82px);transform:translateX(-10px)"><div class="sptx">8hrs calientes</div><div class="spl"></div><div class="spd"></div></div>
-  <div class="spt spr" id="sp2" style="left:calc(50% + 148px);top:calc(50% - 82px);transform:translateX(10px)"><div class="spd"></div><div class="spl" style="background:linear-gradient(270deg,transparent,rgba(255,255,255,.2))"></div><div class="sptx">20hrs frías</div></div>
-  <div class="spt" id="sp3" style="right:calc(50% + 148px);top:50%;transform:translateY(-50%) translateX(-10px)"><div class="sptx">Acero 304</div><div class="spl"></div><div class="spd"></div></div>
-  <div class="spt spr" id="sp4" style="left:calc(50% + 148px);top:50%;transform:translateY(-50%) translateX(10px)"><div class="spd"></div><div class="spl" style="background:linear-gradient(270deg,transparent,rgba(255,255,255,.2))"></div><div class="sptx">Doble pared</div></div>
-  <div class="spt" id="sp5" style="right:calc(50% + 148px);top:calc(50% + 82px);transform:translateX(-10px)"><div class="sptx">Sellado al vacío</div><div class="spl"></div><div class="spd"></div></div>
-  <div class="spt spr" id="sp6" style="left:calc(50% + 148px);top:calc(50% + 82px);transform:translateX(10px)"><div class="spd"></div><div class="spl" style="background:linear-gradient(270deg,transparent,rgba(255,255,255,.2))"></div><div class="sptx">Leak proof</div></div>
+<div id="tsc"><div id="tsi">
   <div class="tw" id="twrap"><img class="termo-perfecto-img" id="t3d" src="images/Banner07.png" alt="Termo perfecto ELLIÉR" loading="lazy" decoding="async"/></div>
 </div></div>
 
