@@ -255,6 +255,7 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 #pcv{position:absolute;inset:0;width:100%;height:100%}
 .sgl{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(165,145,115,.07) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
 .tw{position:relative;z-index:2;display:flex;align-items:center;justify-content:center}
+.termo-perfecto-img{width:min(72vw,520px);max-height:72vh;object-fit:contain;display:block;filter:drop-shadow(0 24px 54px rgba(0,0,0,.48))}
 .tcss{position:relative;width:128px;transform-style:preserve-3d}
 .tcc{width:100%;height:29px;background:linear-gradient(90deg,#1a1a1a 0%,#3a3a3a 30%,#545454 50%,#3a3a3a 70%,#1a1a1a 100%);border-radius:50%/36% 36% 0 0}
 .tcnk{width:64%;height:19px;margin:0 auto;background:linear-gradient(90deg,#141414 0%,#2b2b2b 40%,#3e3e3e 50%,#2b2b2b 60%,#141414 100%);border-radius:0 0 5px 5px}
@@ -1120,7 +1121,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   <div class="spt spr" id="sp4" style="left:calc(50% + 148px);top:50%;transform:translateY(-50%) translateX(10px)"><div class="spd"></div><div class="spl" style="background:linear-gradient(270deg,transparent,rgba(255,255,255,.2))"></div><div class="sptx">Doble pared</div></div>
   <div class="spt" id="sp5" style="right:calc(50% + 148px);top:calc(50% + 82px);transform:translateX(-10px)"><div class="sptx">Sellado al vacío</div><div class="spl"></div><div class="spd"></div></div>
   <div class="spt spr" id="sp6" style="left:calc(50% + 148px);top:calc(50% + 82px);transform:translateX(10px)"><div class="spd"></div><div class="spl" style="background:linear-gradient(270deg,transparent,rgba(255,255,255,.2))"></div><div class="sptx">Leak proof</div></div>
-  <div class="tw" id="twrap"><div class="tcss" id="t3d"><div class="tcc"></div><div class="tcnk"></div><div class="tcbd"><div class="tcbr"><svg class="tcbi" viewBox="0 0 256 256" fill="white"><path d="M4.688 136C68.373 136 120 187.627 120 251.312c0 1.571-.033 3.133-.095 4.688H0V136.096A34.8 34.8 0 0 1 4.688 136zm246.624 0c1.571 0 3.133.034 4.688.096V256H136.095A121.18 121.18 0 0 1 136 251.312C136 187.627 187.627 136 251.312 136zM119.905 0C119.967 1.555 120 3.117 120 4.688 120 68.373 68.373 120 4.687 120A121.2 121.2 0 0 1 0 119.905V0h119.905zM256 119.905A121.2 121.2 0 0 1 251.312 120C187.627 120 136 68.373 136 4.687c0-1.57.033-3.132.095-4.687H256v119.905z"/></svg><div class="tcbn">ELLIÉR</div></div></div><div class="tcbt"></div><div class="tcsw"></div></div></div>
+  <div class="tw" id="twrap"><img class="termo-perfecto-img" id="t3d" src="images/Banner07.png" alt="Termo perfecto ELLIÉR" loading="lazy" decoding="async"/></div>
 </div></div>
 
 <!-- POR QUÉ ELEGIRNOS -->
@@ -2203,7 +2204,7 @@ const PV={
   txtX:0,txtY:0,
   img:null,imgScale:.45,imgX:0,imgY:0,
   _drag:null,_dragOX:0,_dragOY:0,
-  _prodImgMap:{termo:'images/tiempo_real/termo1.png',taza:'images/tiempo_real/taza.png',camisa:'images/tiempo_real/playera.png',playera:'images/tiempo_real/playera.png',sudadera:'images/tiempo_real/sudadera.png'},
+  _prodImgMap:{termo:'images/Banner07.png',taza:'images/tiempo_real/taza.png',camisa:'images/tiempo_real/playera.png',playera:'images/tiempo_real/playera.png',sudadera:'images/tiempo_real/sudadera.png'},
   _imgCache:{},
   _pad(){return('ontouchstart' in window)?44:22;},
   _hitImg(px,py){
