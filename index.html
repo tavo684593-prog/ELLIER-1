@@ -1774,6 +1774,11 @@ function cartHydrateImages(){
   });
 }
 function cartVisual(x){
+  if(x.custom&&(x.designImgFull||x.designImg||x.designOnly)){
+    const src=x.designImgFull||x.designImg||x.designOnly;
+    if(!x.img)x.img=src;
+    return `<img src="${src}" alt="${x.n}" loading="lazy" decoding="async"/>`;
+  }
   if(x.img)return `<img src="${x.img}" alt="${x.n}" loading="lazy" decoding="async"/>`;
   const p=cartProduct(x.id);
   const img=cartProductImg(p);
@@ -2560,11 +2565,11 @@ function addCustom(){
   try{
     const th=document.createElement('canvas');th.width=80;th.height=100;
     th.getContext('2d').drawImage(PV.cv,0,0,80,100);
-    designImg=th.toDataURL('image/jpeg',.75);
+    designImg=th.toDataURL('image/png');
     designImgFull=PV.cv.toDataURL('image/png');
     designOnly=PV.captureDesignOnly();
   }catch(e){}
-  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true,designImg,designImgFull,designOnly});
+  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true,img:designImg||designImgFull||designOnly,designImg,designImgFull,designOnly});
   Cart.save();updateCC();
   showToast('Diseño agregado al carrito ✓');
   const cb=document.getElementById('crtb');if(cb){cb.classList.remove('ping');void cb.offsetWidth;cb.classList.add('ping')}
