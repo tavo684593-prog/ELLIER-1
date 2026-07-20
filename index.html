@@ -309,6 +309,10 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .pzbt{display:flex;gap:7px;flex-wrap:wrap}
 .pzb{padding:8px 15px;border:1px solid rgba(255,255,255,.13);border-radius:var(--r);font-size:11px;color:rgba(255,255,255,.52);cursor:pointer;transition:all .2s;background:transparent}
 .pzb.a,.pzb:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.36);color:#fff}
+.pzvar{display:grid;grid-template-columns:repeat(auto-fit,minmax(82px,1fr));gap:8px}
+.pzvarb{border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:8px;background:rgba(255,255,255,.035);cursor:pointer;transition:all .18s;color:rgba(255,255,255,.55);font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+.pzvarb:hover,.pzvarb.a{border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.09);color:#fff}
+.pzvarb img{width:100%;aspect-ratio:1/1.05;object-fit:contain;display:block;margin-bottom:6px}
 .pzco{display:flex;gap:8px;flex-wrap:wrap}
 .pzc{width:27px;height:27px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .15s}
 .pzc:hover,.pzc.a{border-color:#fff;transform:scale(1.12)}
@@ -1095,7 +1099,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   <div class="pzw" style="padding-top:44px;padding-bottom:60px">
     <div class="pzg">
       <div class="pzp">
-        <div class="pzs"><div class="pzl">Producto</div><div class="pzbt" id="pzpb"><button class="pzb a" onclick="setProd('termo',this)">Termo</button><button class="pzb" onclick="setProd('taza',this)">Taza</button><button class="pzb" onclick="setProd('playera',this)">Playera</button><button class="pzb" onclick="setProd('sudadera',this)">Sudadera</button></div></div>
+        <div class="pzs"><div class="pzl">Producto</div><div class="pzbt" id="pzpb"><button class="pzb a" onclick="setProd('termo',this)">Termo</button><button class="pzb" onclick="setProd('taza',this)">Taza</button><button class="pzb" onclick="setProd('playera',this)">Playera</button><button class="pzb" onclick="setProd('sudadera',this)">Sudadera</button></div><div id="pzvars-wrap" style="margin-top:13px"><div class="pzl">Modelo</div><div class="pzvar" id="pzvars"></div></div></div>
         <div class="pzs"><div class="pzl">Color del producto</div><div class="pzco" id="pzco"><div class="pzc a" style="background:#1a1a1a" onclick="setClr('#1a1a1a',this)"></div><div class="pzc" style="background:#fff;border:2px solid rgba(255,255,255,.18)" onclick="setClr('#ffffff',this)"></div><div class="pzc" style="background:#c4b8a2" onclick="setClr('#c4b8a2',this)"></div><div class="pzc" style="background:#8a8578" onclick="setClr('#8a8578',this)"></div><div class="pzc" style="background:#3a3730" onclick="setClr('#3a3730',this)"></div><div class="pzc" style="background:#8a9485" onclick="setClr('#8a9485',this)"></div><div class="pzc" style="background:#9a6050" onclick="setClr('#9a6050',this)"></div></div></div>
         <div class="pzs"><div class="pzl">Texto personalizado</div><textarea class="pzin" id="ctxt" placeholder="Tu nombre, frase o iniciales…" oninput="upPv()" rows="3" style="resize:none;line-height:1.5;font-family:inherit"></textarea><div class="pzrw" style="margin-top:9px"><select class="pzin pzse" id="tfnt" onchange="upPv()"><option value="sans-serif">Helvetica</option><option value="'Bebas Neue',sans-serif">Bebas Neue</option><option value="'Anton',sans-serif">Anton</option><option value="'Oswald',sans-serif">Oswald</option><option value="'Montserrat',sans-serif">Montserrat</option><option value="'Orbitron',sans-serif">Orbitron</option><option value="'Righteous',cursive">Righteous</option><option value="'Pacifico',cursive">Pacifico</option><option value="'Dancing Script',cursive">Dancing Script</option><option value="'Permanent Marker',cursive">Permanent Marker</option><option value="'Playfair Display',serif">Playfair Display</option><option value="Georgia,serif">Georgia</option><option value="'Courier New',monospace">Courier</option><option value="Impact,sans-serif">Impact</option></select><input class="pzin" id="tclr" type="color" value="#1a1a1a" oninput="upPv()" style="padding:5px;height:42px;cursor:pointer"/></div><div style="margin-top:9px"><div class="pzl">Tamaño</div><input class="pzrn" type="range" id="tsz" min="20" max="144" value="60" oninput="upPv()"/></div></div>
         <div class="pzs"><div class="pzl">Importar imagen (PNG · JPG · SVG)</div><div class="dzn" id="dzn" onclick="document.getElementById('fimg').click()"><div class="dzni"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="dznt">Arrastra aquí o haz clic<br/><span style="opacity:.5">Se adapta automáticamente al producto</span></div></div><input type="file" id="fimg" accept="image/*" style="display:none" onchange="handleImg(this)"/><div id="imgctrl" style="display:none;margin-top:9px"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><div class="pzl" style="margin-bottom:0">Escala</div><button class="xb xbd" type="button" onclick="removePzImg()" aria-label="Quitar imagen" title="Quitar imagen" style="width:28px;height:28px;flex-shrink:0">x</button></div><input class="pzrn" type="range" id="iscl" min="0.025" max="0.75" step="0.025" value="0.225" oninput="upPv()"/></div></div>
@@ -2388,8 +2392,15 @@ const PV={
   txtX:0,txtY:0,
   img:null,imgScale:.225,imgX:0,imgY:0,
   _drag:null,_dragOX:0,_dragOY:0,
-  _prodImgMap:{termo:'images/tiempo_real/termo1.png',taza:'images/tiempo_real/taza.png',playera:'images/tiempo_real/playera.png',sudadera:'images/tiempo_real/sudadera.png'},
+  _prodVariant:{termo:'termo1',taza:'taza',playera:'playera',sudadera:'sudadera'},
+  _prodVariants:{
+    termo:[{id:'termo1',label:'Termo 1',src:'images/tiempo_real/termo1.png'},{id:'termo2',label:'Termo 2',src:'images/tiempo_real/termo2.png'},{id:'termo3',label:'Termo 3',src:'images/tiempo_real/termo3.png'},{id:'termo4',label:'Termo 4',src:'images/tiempo_real/termo4.png'}],
+    taza:[{id:'taza',label:'Taza 1',src:'images/tiempo_real/taza.png'},{id:'taza1',label:'Taza 2',src:'images/tiempo_real/taza1.png'}],
+    playera:[{id:'playera',label:'Playera',src:'images/tiempo_real/playera.png'}],
+    sudadera:[{id:'sudadera',label:'Sudadera',src:'images/tiempo_real/sudadera.png'}]
+  },
   _imgCache:{},
+  _prodSrc(){const v=this._prodVariants[this.prod]||[];return(v.find(x=>x.id===this._prodVariant[this.prod])||v[0]||{}).src;},
   _pad(){return('ontouchstart' in window)?44:22;},
   _hitImg(px,py){
     if(!this.img)return false;
@@ -2412,7 +2423,7 @@ const PV={
   init(){
     this.cv=document.getElementById('prevc');this.ctx=this.cv.getContext('2d');
     this.cv.style.touchAction='none';
-    Object.values(this._prodImgMap).forEach(src=>{const im=new Image();im.onload=()=>{if(this._prodImgMap[this.prod]===src)this.draw()};im.src=src;this._imgCache[src]=im});
+    Object.values(this._prodVariants).flat().forEach(v=>{const im=new Image();im.onload=()=>{if(this._prodSrc()===v.src)this.draw()};im.src=v.src;this._imgCache[v.src]=im});
     this.cv.addEventListener('pointerdown',e=>{
       const r=this.cv.getBoundingClientRect(),sx=this.cv.width/r.width,sy=this.cv.height/r.height;
       const px=(e.clientX-r.left)*sx,py=(e.clientY-r.top)*sy;
@@ -2439,12 +2450,13 @@ const PV={
     });
     this.cv.addEventListener('pointerup',()=>{this._drag=null;this.cv.style.cursor='crosshair'});
     this.cv.addEventListener('pointercancel',()=>{this._drag=null;this.cv.style.cursor='crosshair'});
+    renderPzVariants();
     this.draw();
   },
   draw(){
     const cv=this.cv,ctx=this.ctx,w=cv.width,h=cv.height;
     ctx.clearRect(0,0,w,h);
-    const src=this._prodImgMap[this.prod];
+    const src=this._prodSrc();
     if(src){
       const pi=this._imgCache[src];
       if(pi&&pi.complete&&pi.naturalWidth)this._drawTintedProduct(ctx,pi,w,h);
@@ -2550,7 +2562,19 @@ function upPv(){
   if(PV.img)PV.imgScale=parseFloat(document.getElementById('iscl').value);
   PV.draw();
 }
-function setProd(p,btn){document.querySelectorAll('#pzpb .pzb').forEach(b=>b.classList.remove('a'));btn.classList.add('a');PV.prod=p;PV.draw()}
+function renderPzVariants(){
+  const wrap=document.getElementById('pzvars-wrap'),box=document.getElementById('pzvars');
+  if(!wrap||!box)return;
+  const list=(PV._prodVariants[PV.prod]||[]).filter(v=>PV.prod==='termo'||PV.prod==='taza');
+  wrap.style.display=list.length?'block':'none';
+  box.innerHTML=list.map(v=>`<button class="pzvarb ${PV._prodVariant[PV.prod]===v.id?'a':''}" type="button" onclick="setPzVariant('${v.id}')"><img src="${v.src}" alt="${v.label}" loading="lazy" decoding="async"/><span>${v.label}</span></button>`).join('');
+}
+function setPzVariant(id){
+  PV._prodVariant[PV.prod]=id;
+  renderPzVariants();
+  PV.draw();
+}
+function setProd(p,btn){document.querySelectorAll('#pzpb .pzb').forEach(b=>b.classList.remove('a'));btn.classList.add('a');PV.prod=p;renderPzVariants();PV.draw()}
 function setClr(c,dot){document.querySelectorAll('#pzco .pzc').forEach(d=>d.classList.remove('a'));dot.classList.add('a');PV.clr=c;PV.draw()}
 function handleImg(inp){
   const file=inp.files[0];if(!file)return;
@@ -2568,12 +2592,14 @@ function removePzImg(){
 }
 function resetPZDesign(){
   PV.prod='termo';PV.clr='#1a1a1a';PV.txt='';PV.font='sans-serif';PV.tclr='#1a1a1a';PV.tsz=60;
+  PV._prodVariant={termo:'termo1',taza:'taza',playera:'playera',sudadera:'sudadera'};
   PV.txtX=0;PV.txtY=0;PV.img=null;PV.imgScale=.225;PV.imgX=0;PV.imgY=0;PV._drag=null;
   const vals={ctxt:'',tfnt:'sans-serif',tclr:'#1a1a1a',tsz:'60',iscl:'0.225',fimg:''};
   Object.keys(vals).forEach(id=>{const el=document.getElementById(id);if(el)el.value=vals[id]});
   document.getElementById('imgctrl').style.display='none';
   document.querySelectorAll('#pzpb .pzb').forEach((b,i)=>b.classList.toggle('a',i===0));
   document.querySelectorAll('#pzco .pzc').forEach((d,i)=>d.classList.toggle('a',i===0));
+  renderPzVariants();
   PV.draw();
   showToast('Personalización reiniciada');
 }
@@ -2581,6 +2607,7 @@ function dlDesign(){const a=document.createElement('a');a.href=PV.cv.toDataURL('
 const _pzInfo={termo:{n:'Termo Personalizado',p:350,cat:'termos'},taza:{n:'Taza Personalizada',p:280,cat:'tazas'},playera:{n:'Playera Personalizada',p:420,cat:'playeras'},sudadera:{n:'Sudadera Personalizada',p:580,cat:'sudaderas'}};
 function addCustom(){
   const inf=_pzInfo[PV.prod]||_pzInfo.termo;
+  const variant=(PV._prodVariants[PV.prod]||[]).find(v=>v.id===PV._prodVariant[PV.prod]);
   let designImg=null,designImgFull=null,designOnly=null;
   try{
     const th=document.createElement('canvas');th.width=80;th.height=100;
@@ -2589,7 +2616,7 @@ function addCustom(){
     designImgFull=PV.cv.toDataURL('image/png');
     designOnly=PV.captureDesignOnly();
   }catch(e){}
-  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true,img:designImg||designImgFull||designOnly,designImg,designImgFull,designOnly});
+  Cart.items.push({id:'custom_'+Date.now(),n:inf.n,p:'$'+inf.p,qty:1,cat:inf.cat,clr:PV.clr,custom:true,model:variant?.label||'',modelImg:variant?.src||'',img:designImg||designImgFull||designOnly,designImg,designImgFull,designOnly});
   Cart.save();updateCC();
   showToast('Diseño agregado al carrito ✓');
   const cb=document.getElementById('crtb');if(cb){cb.classList.remove('ping');void cb.offsetWidth;cb.classList.add('ping')}
