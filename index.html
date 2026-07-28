@@ -411,7 +411,7 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
   .ft3{grid-template-columns:1fr 1fr;gap:32px}}
 @media(max-width:768px){
   #nv{padding:14px 20px}#nv.s{padding:10px 20px}
-  .nls,.na .ni:not(#crtb):not(#authbtn){display:none}#hb{display:flex}
+  .nls,.na .ni:not(#srchbtn):not(#crtb):not(#authbtn){display:none}#hb{display:flex}
   .hc{padding:0 20px 86px}.fg3{grid-template-columns:1fr 1fr;padding:18px}
   .fi3{padding:0 12px}.ctn,.pzw,.nsg,.fi4{padding:0 18px}
   .clh,.clf,.clg{padding-left:18px;padding-right:18px}
@@ -836,7 +836,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <a class="nl" href="#footer">Contacto</a>
   </div>
   <div class="na">
-    <button class="ni" onclick="openSrch()" title="Buscar" aria-label="Buscar"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+    <button class="ni" id="srchbtn" onclick="openSrch()" title="Buscar" aria-label="Buscar"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
     <button class="ni" id="curtgl" onclick="toggleCursor()" title="Cambiar cursor" aria-label="Cambiar cursor"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M5 3l14 9-7 1-4 7z"/></svg></button>
     <button class="ni" id="whbtn" onclick="openWish()" title="Favoritos" aria-label="Lista de favoritos"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="nba" id="whc" style="display:none">0</span></button>
     <button class="ni" id="authbtn" onclick="openAuth()" aria-label="Iniciar sesión"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
@@ -853,7 +853,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 </div>
 
 <!-- MOBILE MENU -->
-<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><a class="mml" href="colecciones.html" target="_blank" rel="noopener" onclick="toggleMM()">Colección</a><a class="mml" href="#" onclick="toggleMM();openEv();return false">Eventos</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a><button class="mml mml-btn" id="mm-auth-btn" onclick="toggleMM();openAuth()">Iniciar sesión</button><button class="mml mml-btn" id="mm-orders-btn" onclick="toggleMM();openMyOrders()" style="display:none">Mis pedidos</button><button class="mml mml-btn mml-logout" id="mm-logout-btn" onclick="toggleMM();doLogout()" style="display:none">Cerrar sesión</button></div>
+<div id="mm"><a class="mml" href="#" onclick="toggleMM();smoothTo('#hero');return false">Inicio</a><button class="mml mml-btn" onclick="toggleMM();openSrch()">Buscar</button><a class="mml" href="colecciones.html" target="_blank" rel="noopener" onclick="toggleMM()">Colección</a><a class="mml" href="#" onclick="toggleMM();openEv();return false">Eventos</a><a class="mml" href="#nosotros" onclick="toggleMM();return false">Nosotros</a><a class="mml" href="#footer" onclick="toggleMM();return false">Contacto</a><button class="mml mml-btn" id="mm-auth-btn" onclick="toggleMM();openAuth()">Iniciar sesión</button><button class="mml mml-btn" id="mm-orders-btn" onclick="toggleMM();openMyOrders()" style="display:none">Mis pedidos</button><button class="mml mml-btn mml-logout" id="mm-logout-btn" onclick="toggleMM();doLogout()" style="display:none">Cerrar sesión</button></div>
 
 <!-- CATALOG DROPDOWN -->
 <div id="catdrop">
