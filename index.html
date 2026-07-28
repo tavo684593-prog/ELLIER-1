@@ -499,6 +499,8 @@ body.cm2 #cg{display:block}
 .catd-a{display:flex;align-items:center;gap:9px;font-size:12px;padding:9px 15px;color:var(--text);transition:background .12s,padding-left .12s;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--fn)}
 .catd-a:hover{background:var(--bg);padding-left:21px}
 .catd-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
+.catd-help{border-top:1px solid var(--bo);padding:7px 0;background:#faf9f6}
+.catd-help .catd-a{font-weight:500}
 /* -- CARRITO ANIMACIÓN --------------------- */
 #crtb.ping{animation:cping .38s cubic-bezier(.36,.07,.19,.97)}
 @keyframes cping{0%{transform:scale(1)}30%{transform:scale(1.32)}60%{transform:scale(.9)}100%{transform:scale(1)}}
@@ -893,6 +895,9 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   </div>
   <div class="catd-sec">
     <button class="catd-a" onclick="catGo('personaliza')"><span class="catd-dot" style="background:linear-gradient(135deg,#8a9485,#9a6050)"></span>Diseñador personalizado</button>
+  </div>
+  <div class="catd-help">
+    <button class="catd-a" onclick="openCustomerHelp()"><span class="catd-dot" style="background:#25d366"></span>Atención al cliente</button>
   </div>
 </div>
 
@@ -2997,6 +3002,10 @@ function catGo(cat){
   closeCatMenu();
   if(cat==='personaliza'){closeCl();setTimeout(openPZ,60);return}
   window.open('colecciones.html','_blank','noopener');
+}
+function openCustomerHelp(){
+  closeCatMenu();
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent('Necesito ayuda'),'_blank','noopener');
 }
 document.addEventListener('click',e=>{
   if(_catO&&!e.target.closest('#catbtn')&&!e.target.closest('#catdrop'))closeCatMenu();
