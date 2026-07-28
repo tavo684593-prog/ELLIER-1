@@ -1701,12 +1701,8 @@ function pdAddToCart(id){
   const p=[...SW,...TERMOS].find(x=>x.id===id);
   if(!p)return;
   const clr=_pdActiveClr||p.clr||p.clrs?.[0];
-  const img=cartProductImg(p);
-  const ex=Cart.items.find(x=>x.id===id&&!x.custom&&x.clr===clr);
-  if(ex){ex.qty++;if(img&&!ex.img)ex.img=img}
-  else Cart.items.push({id,n:p.n,p:_getEffectivePrice(p),qty:1,cat:p.cat,clr,img,custom:false});
-  Cart.save();showToast('Agregado al carrito');updateCC();
-  const cb=document.getElementById('crtb');if(cb){cb.classList.remove('ping');void cb.offsetWidth;cb.classList.add('ping')}
+  closeProdDetail();
+  Cart.add(id,false,clr);
 }
 function pdToggleWish(){
   if(!_pdId)return;
@@ -1771,12 +1767,7 @@ function renderWish(){
   ft.style.display='block';
 }
 function addWishToCart(id){
-  const p=cartProduct(id);
-  if(p){Cart.add(id);return}
-  const m=getWishMeta()[id];if(!m)return;
-  const ex=Cart.items.find(x=>x.id===id&&!x.custom);
-  if(ex)ex.qty++;else Cart.items.push({id:m.id,n:m.n,p:m.p,qty:1,cat:m.cat,clr:m.clr,img:m.img,custom:false});
-  Cart.save();updateCC();
+  Cart.add(id);
 }
 function removeWish(id){
   const i=wish.indexOf(id);if(i>-1)wish.splice(i,1);
@@ -1801,7 +1792,7 @@ window.addEventListener('storage',e=>{
 });
 
 // CART
-function cartProduct(id){return[...SW,...TERMOS].find(x=>x.id===id)||null}
+function cartProduct(id){return[...SW,...TERMOS].find(x=>x.id===id)||getWishMeta()[id]||null}
 function escHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function cartProductImg(p){
   if(!p)return null;
@@ -1891,7 +1882,7 @@ const Cart={
   save(){cartHydrateImages();localStorage.setItem('ellier_cart',JSON.stringify(this.items));this.render()},
   add(id,custom,clrOverride,request){
     if(!custom&&!request){openProdReq(id,clrOverride);return;}
-    const all=[...SW,...TERMOS],p=all.find(x=>x.id===id);if(!p)return;
+    const p=cartProduct(id);if(!p)return;
     const img=cartProductImg(p);
     const clr=clrOverride||(p.clr||p.clrs?.[0])||'#1a1a1a';
     const ex=this.items.find(x=>x.id===id&&!x.custom&&x.clr===clr&&!x.requestDesc&&!request);
