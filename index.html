@@ -98,6 +98,26 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .cto{display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px;font-weight:500}
 .bck{width:100%;padding:14px;background:var(--dark);color:#fff;font-size:10px;letter-spacing:.2em;text-transform:uppercase;transition:background .2s;border-radius:var(--r)}
 .bck:hover{background:#222}
+/* PRODUCT REQUEST */
+#pro{position:fixed;inset:0;z-index:260;background:rgba(0,0,0,.58);opacity:0;pointer-events:none;transition:opacity .28s}
+#pro.o{opacity:1;pointer-events:all}
+#prp{position:fixed;left:50%;top:50%;z-index:261;width:min(430px,calc(100vw - 32px));max-height:calc(100svh - 34px);background:#fff;border-radius:9px;box-shadow:0 28px 90px rgba(0,0,0,.26);transform:translate(-50%,-44%) scale(.96);opacity:0;pointer-events:none;transition:transform .32s var(--ea),opacity .24s;overflow:hidden;display:flex;flex-direction:column}
+#prp.o{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:all}
+.prbody{padding:20px 24px;overflow:auto}
+.prprod{display:flex;gap:12px;align-items:center;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--bo)}
+.primg{width:62px;height:62px;border-radius:7px;background:#f6f5f2;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.primg img{width:100%;height:100%;object-fit:contain}
+.prnm{font-size:14px;font-weight:500}.prct{font-size:10px;color:var(--mu);letter-spacing:.09em;text-transform:uppercase;margin-top:3px}
+.prta{width:100%;min-height:112px;border:1px solid var(--bo);border-radius:7px;padding:11px 12px;font-family:var(--fn);font-size:13px;line-height:1.55;resize:vertical;outline:none}
+.prta:focus{border-color:var(--text)}
+.prfile{border:1.5px dashed var(--bo);border-radius:7px;padding:18px;text-align:center;cursor:pointer;margin-top:10px;transition:border-color .2s,background .2s}
+.prfile:hover{border-color:var(--text);background:#faf9f6}
+.prthumb{display:none;margin-top:10px;border:1px solid var(--bo);border-radius:7px;overflow:hidden;background:#f7f6f3}
+.prthumb img{width:100%;max-height:180px;object-fit:contain;display:block}
+.prerr{display:none;color:#c0392b;font-size:11px;margin-top:9px;line-height:1.4}
+.prerr.s{display:block}
+.prfoot{padding:14px 24px 20px;border-top:1px solid var(--bo);display:flex;gap:9px}
+.prfoot .fb:disabled{opacity:.4;cursor:not-allowed}
 /* AUTH */
 #ao{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.58);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:20px}
 #ao.o{opacity:1;pointer-events:all}
@@ -898,6 +918,21 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 </div>
 
 <!-- CART -->
+<div id="pro" onclick="if(event.target===this)closeProdReq()"></div>
+<div id="prp">
+  <div class="ch"><h3>Detalle del producto</h3><button class="xb" onclick="closeProdReq()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <div class="prbody">
+    <div class="prprod"><div class="primg" id="pr-img"></div><div><div class="prnm" id="pr-name"></div><div class="prct" id="pr-cat"></div></div></div>
+    <div class="fl" style="margin-bottom:7px">Descripción obligatoria</div>
+    <textarea class="prta" id="pr-desc" placeholder="Describe color, ubicación del diseño, nombre, frase, medidas o cualquier detalle importante..." oninput="validateProdReq()"></textarea>
+    <div class="fl" style="margin-top:14px;margin-bottom:7px">Imagen obligatoria</div>
+    <div class="prfile" onclick="document.getElementById('pr-file').click()"><div style="font-size:12px;color:var(--mu);line-height:1.6">Haz clic para adjuntar una imagen<br><span style="opacity:.65">Referencia, logo, idea o diseño</span></div></div>
+    <input type="file" id="pr-file" accept="image/*" style="display:none" onchange="handleProdReqFile(this)"/>
+    <div class="prthumb" id="pr-thumb"><img id="pr-thumb-img" alt="Imagen adjunta"/></div>
+    <div class="prerr" id="pr-err">Agrega una descripción y una imagen para desbloquear el carrito.</div>
+  </div>
+  <div class="prfoot"><button class="fb" style="background:#fff;color:var(--text);border:1px solid var(--bo)" onclick="closeProdReq()">Cancelar</button><button class="fb" id="pr-add" onclick="confirmProdReq()" disabled>Agregar al carrito</button></div>
+</div>
 <div id="co" onclick="closeCart()"></div>
 <div id="cp"><div class="ch"><h3>Carrito</h3><button class="xb" onclick="closeCart()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div><div class="cb" id="citems"></div><div class="cf" id="cfoot" style="display:none"><div class="cto"><span>Total</span><span id="ctotv">$0 MXN</span></div><button class="bck" onclick="openCk()">Proceder al pago</button></div></div>
 
@@ -1752,8 +1787,9 @@ function removeWish(id){
 }
 function wishAllCart(){
   if(!wish.length)return;
-  const ids=[...wish];ids.forEach(id=>Cart.add(id));
-  showToast('¡Todo agregado al carrito!');
+  closeWish();
+  Cart.add(wish[0]);
+  showToast('Completa cada producto antes de agregarlo');
 }
 
 window.addEventListener('storage',e=>{
@@ -1766,9 +1802,64 @@ window.addEventListener('storage',e=>{
 
 // CART
 function cartProduct(id){return[...SW,...TERMOS].find(x=>x.id===id)||null}
+function escHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function cartProductImg(p){
   if(!p)return null;
   return _getProdImg(p.id)||p.img||null;
+}
+let _prodReq={id:null,clr:null,img:null,fileName:''};
+function openProdReq(id,clrOverride){
+  const p=cartProduct(id);if(!p)return;
+  _prodReq={id,clr:clrOverride||null,img:null,fileName:''};
+  document.getElementById('pr-name').textContent=p.n;
+  document.getElementById('pr-cat').textContent=p.cat||'Producto';
+  const img=cartProductImg(p);
+  document.getElementById('pr-img').innerHTML=img?`<img src="${img}" alt="${p.n}"/>`:(p.svg?p.svg.replace(/\{C\}/g,p.clr||'#1a1a1a'):'');
+  document.getElementById('pr-desc').value='';
+  document.getElementById('pr-file').value='';
+  document.getElementById('pr-thumb').style.display='none';
+  document.getElementById('pr-thumb-img').src='';
+  document.getElementById('pr-err').classList.remove('s');
+  validateProdReq();
+  lockScroll();
+  document.getElementById('pro').classList.add('o');
+  document.getElementById('prp').classList.add('o');
+}
+function closeProdReq(){
+  document.getElementById('pro').classList.remove('o');
+  document.getElementById('prp').classList.remove('o');
+  unlockScroll();
+}
+function handleProdReqFile(inp){
+  const file=inp.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const max=1200,scale=Math.min(1,max/Math.max(img.width,img.height));
+      const cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(img.width*scale));cv.height=Math.max(1,Math.round(img.height*scale));
+      cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);
+      _prodReq.img=cv.toDataURL('image/jpeg',.86);_prodReq.fileName=(file.name||'referencia').replace(/\.[^.]+$/,'')+'.jpg';
+      document.getElementById('pr-thumb-img').src=_prodReq.img;
+      document.getElementById('pr-thumb').style.display='block';
+      validateProdReq();
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function validateProdReq(){
+  const ok=!!document.getElementById('pr-desc')?.value.trim()&&!!_prodReq.img;
+  const btn=document.getElementById('pr-add');if(btn)btn.disabled=!ok;
+  return ok;
+}
+function confirmProdReq(){
+  if(!validateProdReq()){document.getElementById('pr-err').classList.add('s');return;}
+  const desc=document.getElementById('pr-desc').value.trim();
+  const req={desc,img:_prodReq.img,fileName:_prodReq.fileName};
+  const id=_prodReq.id,clr=_prodReq.clr;
+  closeProdReq();
+  Cart.add(id,false,clr,req);
 }
 function cartHydrateImages(){
   Cart.items.forEach(x=>{
@@ -1778,6 +1869,7 @@ function cartHydrateImages(){
   });
 }
 function cartVisual(x){
+  if(x.requestImg)return `<img src="${x.requestImg}" alt="${x.n}" loading="lazy" decoding="async"/>`;
   if(x.custom&&(x.designImgFull||x.designImg||x.designOnly)){
     const src=x.designImgFull||x.designImg||x.designOnly;
     if(!x.img)x.img=src;
@@ -1796,12 +1888,20 @@ function cartVisual(x){
 const Cart={
   items:JSON.parse(localStorage.getItem('ellier_cart')||'[]'),
   save(){cartHydrateImages();localStorage.setItem('ellier_cart',JSON.stringify(this.items));this.render()},
-  add(id,custom,clrOverride){
+  add(id,custom,clrOverride,request){
+    if(!custom&&!request){openProdReq(id,clrOverride);return;}
     const all=[...SW,...TERMOS],p=all.find(x=>x.id===id);if(!p)return;
     const img=cartProductImg(p);
     const clr=clrOverride||(p.clr||p.clrs?.[0])||'#1a1a1a';
-    const ex=this.items.find(x=>x.id===id&&!x.custom&&x.clr===clr);
+    const ex=this.items.find(x=>x.id===id&&!x.custom&&x.clr===clr&&!x.requestDesc&&!request);
     if(ex&&!custom){ex.qty++}else{this.items.push({id,n:custom?'Diseno personalizado':p.n,p:custom?'$580':(_getEffectivePrice(p)||p.p),qty:1,cat:p.cat,clr,custom:!!custom,img})}
+    if(request){
+      const item=this.items[this.items.length-1];
+      item.requestDesc=request.desc;
+      item.requestImg=request.img;
+      item.requestFileName=request.fileName||'referencia.png';
+      item.trackingRef='ELL-'+Date.now().toString(36).toUpperCase();
+    }
     this.save();showToast('Agregado al carrito');updateCC();
     const cb=document.getElementById('crtb');if(cb){cb.classList.remove('ping');void cb.offsetWidth;cb.classList.add('ping')}
   },
@@ -1813,7 +1913,8 @@ const Cart={
     if(!this.items.length){el.innerHTML='<div class="ce"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p>Tu carrito esta vacio</p></div>';ft.style.display='none';return}
     cartHydrateImages();localStorage.setItem('ellier_cart',JSON.stringify(this.items));
     el.innerHTML=this.items.map((x,i)=>{
-      return `<div class="ci"><div class="ct2">${cartVisual(x)}</div><div class="cii"><h4>${x.n}</h4><p style="font-size:11px;color:var(--mu)">${x.cat}${x.custom?' · Custom':''}</p><div class="cq"><button onclick="Cart.chQty(${i},-1)">-</button><span>${x.qty}</span><button onclick="Cart.chQty(${i},1)">+</button><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="Cart.remove(${i})" aria-label="Eliminar producto">x</button></div><div class="cpri">${x.p} × ${x.qty}</div></div></div>`;
+      const req=x.requestDesc?`<p style="font-size:10px;color:var(--su);line-height:1.45;margin-top:4px">${escHtml(x.requestDesc)}</p>`:'';
+      return `<div class="ci"><div class="ct2">${cartVisual(x)}</div><div class="cii"><h4>${x.n}</h4><p style="font-size:11px;color:var(--mu)">${x.cat}${x.custom?' · Custom':''}${x.requestDesc?' · Detallado':''}</p>${req}<div class="cq"><button onclick="Cart.chQty(${i},-1)">-</button><span>${x.qty}</span><button onclick="Cart.chQty(${i},1)">+</button><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="Cart.remove(${i})" aria-label="Eliminar producto">x</button></div><div class="cpri">${x.p} × ${x.qty}</div></div></div>`;
     }).join('');
     ft.style.display='block';document.getElementById('ctotv').textContent='$'+this.total().toLocaleString()+' MXN';
   }
@@ -1910,7 +2011,8 @@ function _mapOrd(o){
   const prodName=items.length===1?items[0].n:(items.length>1?items.slice(0,2).map(x=>x.n).join(' + ')+(items.length>2?` +${items.length-2} más`:''):'Pedido');
   const qty=items.reduce((s,x)=>s+(x.qty||1),0);
   const st=_stMap[o.status]||'p';
-  return{id:o.id,_shortId:'#'+o.id.slice(-6).toUpperCase(),cli:o.shipping_name||'Cliente',tel:o.shipping_phone||'—',prod:prodName,prodId:items[0]?.id||'t1',qty,total:'$'+(o.total||0).toLocaleString()+' MXN',st,clr:items[0]?.clr||items[0]?.clrs?.[0]||'#1a1a1a',addr:o.shipping_address||'—',custom:items.map(x=>x.n+(x.custom?' (personalizado)':'')).join(', '),note:'',stripeId:o.stripe_payment_intent_id};
+  const details=items.map(x=>escHtml(x.n)+(x.custom?' (personalizado)':'')+(x.requestDesc?' — '+escHtml(x.requestDesc):'')).join(', ');
+  return{id:o.id,_shortId:'#'+o.id.slice(-6).toUpperCase(),cli:o.shipping_name||'Cliente',tel:o.shipping_phone||'—',prod:prodName,prodId:items[0]?.id||'t1',qty,total:'$'+(o.total||0).toLocaleString()+' MXN',st,clr:items[0]?.clr||items[0]?.clrs?.[0]||'#1a1a1a',addr:o.shipping_address||'—',custom:details,note:'',stripeId:o.stripe_payment_intent_id};
 }
 function fOrd(btn,f){
   _ordFilter=f;
@@ -2101,11 +2203,11 @@ async function openOrder(id){
       // Show all designs with download buttons below
       dsec.style.display='';
       dbox.innerHTML=designs.map((d,i)=>{
-        const label=d.item_name||('Diseño '+(i+1));
+        const label=d.item_name||('Diseño '+(i+1)),safeLabel=escHtml(label);
         const isPreview=label.includes('Vista');
         const fname=label.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+o._shortId.replace('#','')+'.png';
         return`<div style="margin-bottom:16px">
-          <div style="font-size:9px;letter-spacing:.1em;color:var(--su);text-transform:uppercase;margin-bottom:6px">${label}</div>
+          <div style="font-size:9px;letter-spacing:.1em;color:var(--su);text-transform:uppercase;margin-bottom:6px">${safeLabel}</div>
           ${isPreview?'':`<img src="${d.design_url}" style="width:100%;border-radius:7px;border:1px solid var(--bo);display:block;background:#f5f4f0;margin-bottom:7px" />`}
           <button onclick="_dlAdminImg('${d.design_url}','${fname}')" style="width:100%;padding:9px 0;background:#0a0a0a;border:none;border-radius:5px;color:#fff;cursor:pointer;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--fn)">↓ Descargar ${isPreview?'vista previa':'diseño aislado'}</button>
         </div>`;}).join('');
@@ -2318,22 +2420,25 @@ async function _dlAdminImg(url,name){
 }
 async function saveDesigns(orderId,items){
   try{
-    const designItems=items.filter(x=>x.designImgFull||x.designImg);
+    const designItems=items.filter(x=>x.designImgFull||x.designImg||x.requestImg);
     if(!designItems.length){console.warn('saveDesigns: no items with design');return;}
     const{data:{session}}=await _sb.auth.getSession();
     for(const item of designItems){
       try{
         const ts=Date.now();
-        const imgData=item.designImgFull||item.designImg;
+        const imgData=item.designImgFull||item.designImg||item.requestImg;
         if(!imgData){console.warn('saveDesigns: item has no imgData',item.id);continue;}
-        // — imagen 1: vista previa completa (producto + diseño)
+        // — imagen 1: vista previa completa o referencia del producto
         const res=await fetch(imgData);const blob=await res.blob();
-        const fn1=`${orderId}/${item.id}_preview_${ts}.png`;
-        const{error:upErr1}=await _sb.storage.from('designs').upload(fn1,blob,{contentType:'image/png',upsert:true});
+        const mime=imgData.match(/^data:([^;]+)/)?.[1]||'image/png';
+        const ext=mime.includes('jpeg')?'jpg':mime.includes('webp')?'webp':'png';
+        const fn1=`${orderId}/${item.id}_${item.requestImg?'referencia':'preview'}_${ts}.${ext}`;
+        const{error:upErr1}=await _sb.storage.from('designs').upload(fn1,blob,{contentType:mime,upsert:true});
         if(upErr1){console.error('saveDesigns upload preview:',upErr1);showToast('Error al guardar vista previa: '+upErr1.message);}
         else{
           const{data:{publicUrl:url1}}=_sb.storage.from('designs').getPublicUrl(fn1);
-          const row1={order_id:orderId,item_id:item.id,item_name:item.n+' · Vista previa',design_url:url1};
+          const shortDesc=item.requestDesc?(' · '+item.requestDesc).slice(0,130):'';
+          const row1={order_id:orderId,item_id:item.id,item_name:item.n+(item.requestImg?' · Referencia cliente'+shortDesc:' · Vista previa'),design_url:url1};
           if(session?.user?.id)row1.user_id=session.user.id;
           const{error:ins1}=await _sb.from('design_uploads').insert(row1);
           if(ins1)showToast('Error al registrar vista previa: '+ins1.message);
@@ -2870,7 +2975,7 @@ function srchRender(q){
   tag.textContent=q?(res.length+' resultado'+(res.length!==1?'s':'')+' — "'+q+'"'):(res.length+' productos en el catálogo');
   document.getElementById('srchres').innerHTML=res.map(p=>{
     const nm=p.n.replace(/'/g,'&#39;');
-    return `<div class="src" role="button" tabindex="0" onclick="openSrchProduct('${p.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSrchProduct('${p.id}')}"><div class="sri">${srchVisual(p)}</div><div class="srn">${p.n}</div><div class="srt2">${p.cat}</div><div class="srp">${p.p}</div><button class="src-add" onclick="event.stopPropagation();Cart.add('${p.id}');showToast('Agregado: ${nm}')" onkeydown="event.stopPropagation()">+ Carrito</button></div>`;
+    return `<div class="src" role="button" tabindex="0" onclick="openSrchProduct('${p.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSrchProduct('${p.id}')}"><div class="sri">${srchVisual(p)}</div><div class="srn">${p.n}</div><div class="srt2">${p.cat}</div><div class="srp">${p.p}</div><button class="src-add" onclick="event.stopPropagation();Cart.add('${p.id}')" onkeydown="event.stopPropagation()">+ Carrito</button></div>`;
   }).join('');
 }
 document.getElementById('srchinp').addEventListener('input',e=>srchRender(e.target.value));
