@@ -923,7 +923,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
   <div class="ch"><h3>Detalle del producto</h3><button class="xb" onclick="closeProdReq()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
   <div class="prbody">
     <div class="prprod"><div class="primg" id="pr-img"></div><div><div class="prnm" id="pr-name"></div><div class="prct" id="pr-cat"></div></div></div>
-    <div class="fl" style="margin-bottom:7px">Descripción obligatoria</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px"><div class="fl" style="margin-bottom:0">Descripción obligatoria</div><span style="font-size:10px;color:var(--mu);letter-spacing:.08em">15-200 letras</span></div>
     <textarea class="prta" id="pr-desc" maxlength="200" placeholder="Describe color, ubicación del diseño, nombre, frase, medidas o cualquier detalle importante..." oninput="validateProdReq()"></textarea>
     <div class="fl" style="margin-top:14px;margin-bottom:7px">Imagen opcional</div>
     <div class="prfile" onclick="document.getElementById('pr-file').click()"><div style="font-size:12px;color:var(--mu);line-height:1.6">Haz clic para adjuntar una imagen<br><span style="opacity:.65">Referencia, logo, idea o diseño opcional</span></div></div>
