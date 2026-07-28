@@ -925,11 +925,11 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
     <div class="prprod"><div class="primg" id="pr-img"></div><div><div class="prnm" id="pr-name"></div><div class="prct" id="pr-cat"></div></div></div>
     <div class="fl" style="margin-bottom:7px">Descripción obligatoria</div>
     <textarea class="prta" id="pr-desc" placeholder="Describe color, ubicación del diseño, nombre, frase, medidas o cualquier detalle importante..." oninput="validateProdReq()"></textarea>
-    <div class="fl" style="margin-top:14px;margin-bottom:7px">Imagen obligatoria</div>
-    <div class="prfile" onclick="document.getElementById('pr-file').click()"><div style="font-size:12px;color:var(--mu);line-height:1.6">Haz clic para adjuntar una imagen<br><span style="opacity:.65">Referencia, logo, idea o diseño</span></div></div>
+    <div class="fl" style="margin-top:14px;margin-bottom:7px">Imagen opcional</div>
+    <div class="prfile" onclick="document.getElementById('pr-file').click()"><div style="font-size:12px;color:var(--mu);line-height:1.6">Haz clic para adjuntar una imagen<br><span style="opacity:.65">Referencia, logo, idea o diseño opcional</span></div></div>
     <input type="file" id="pr-file" accept="image/*" style="display:none" onchange="handleProdReqFile(this)"/>
     <div class="prthumb" id="pr-thumb"><img id="pr-thumb-img" alt="Imagen adjunta"/></div>
-    <div class="prerr" id="pr-err">Agrega una descripción y una imagen para desbloquear el carrito.</div>
+    <div class="prerr" id="pr-err">Agrega una descripción para desbloquear el carrito.</div>
   </div>
   <div class="prfoot"><button class="fb" style="background:#fff;color:var(--text);border:1px solid var(--bo)" onclick="closeProdReq()">Cancelar</button><button class="fb" id="pr-add" onclick="confirmProdReq()" disabled>Agregar al carrito</button></div>
 </div>
@@ -1849,7 +1849,7 @@ function handleProdReqFile(inp){
   reader.readAsDataURL(file);
 }
 function validateProdReq(){
-  const ok=!!document.getElementById('pr-desc')?.value.trim()&&!!_prodReq.img;
+  const ok=!!document.getElementById('pr-desc')?.value.trim();
   const btn=document.getElementById('pr-add');if(btn)btn.disabled=!ok;
   return ok;
 }
