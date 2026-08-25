@@ -1024,11 +1024,13 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
       <span style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:500">ELLIÉR</span>
       <button class="xb" onclick="closeAuth()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
-    <div class="ats"><div class="at2 a" onclick="swAuth('login')">Iniciar sesión</div><div class="at2" onclick="swAuth('reg')">Registrarse</div></div>
-    <form class="afo" id="lf" onsubmit="doLogin(event)"><div class="fg"><label class="fl">Correo</label><input type="email" class="fi" id="le" required placeholder="tu@correo.com"/></div><div class="fg"><label class="fl">Contraseña</label><input type="password" class="fi" id="lp" required placeholder="••••••••"/></div><div class="ferr" id="lerr"></div><button type="submit" class="fb">Entrar</button></form>
+    <div class="ats" id="atbar"><div class="at2 a" onclick="swAuth('login')">Iniciar sesión</div><div class="at2" onclick="swAuth('reg')">Registrarse</div></div>
+    <form class="afo" id="lf" onsubmit="doLogin(event)"><div class="fg"><label class="fl">Correo</label><input type="email" class="fi" id="le" required placeholder="tu@correo.com"/></div><div class="fg"><label class="fl">Contraseña</label><input type="password" class="fi" id="lp" required placeholder="••••••••"/></div><div style="text-align:right;margin:-6px 0 8px"><a href="#" style="font-size:11px;color:var(--mu)" onclick="event.preventDefault();swAuth('forgot')">¿Olvidaste tu contraseña?</a></div><div class="ferr" id="lerr"></div><button type="submit" class="fb">Entrar</button></form>
     <form class="afo h" id="rf" onsubmit="doReg(event)"><div class="fg"><label class="fl">Nombre</label><input type="text" class="fi" id="rn" required placeholder="Tu nombre"/></div><div class="fg"><label class="fl">Correo</label><input type="email" class="fi" id="re" required placeholder="tu@correo.com"/></div><div class="fg"><label class="fl">Contraseña</label><input type="password" class="fi" id="rp" required minlength="6" placeholder="••••••••"/></div><div class="ferr" id="rerr"></div><button type="submit" class="fb">Crear cuenta</button></form>
-    <div style="display:flex;align-items:center;gap:10px;margin:14px 0 4px"><div style="flex:1;height:1px;background:var(--mu,#555)"></div><span style="font-size:10px;letter-spacing:.1em;color:var(--mu,#888)">O</span><div style="flex:1;height:1px;background:var(--mu,#555)"></div></div>
-    <button onclick="doGoogleLogin()" type="button" style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px;border:1px solid #333;border-radius:6px;background:transparent;color:inherit;cursor:pointer;font-size:13px;letter-spacing:.03em" onmouseover="this.style.background='#111'" onmouseout="this.style.background='transparent'"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continuar con Google</button>
+    <form class="afo h" id="ff" onsubmit="doForgotPw(event)"><div class="fg"><label class="fl">Correo</label><input type="email" class="fi" id="fpe" required placeholder="tu@correo.com"/></div><div class="ferr" id="fperr"></div><button type="submit" class="fb">Enviar enlace de recuperación</button><div style="text-align:center;margin-top:12px"><a href="#" style="font-size:11px;color:var(--mu)" onclick="event.preventDefault();swAuth('login')">Volver a iniciar sesión</a></div></form>
+    <form class="afo h" id="nf" onsubmit="doSetNewPw(event)"><div class="fg"><label class="fl">Nueva contraseña</label><input type="password" class="fi" id="npw" required minlength="6" placeholder="••••••••"/></div><div class="fg"><label class="fl">Confirmar contraseña</label><input type="password" class="fi" id="npw2" required minlength="6" placeholder="••••••••"/></div><div class="ferr" id="nferr"></div><button type="submit" class="fb">Guardar contraseña</button></form>
+    <div id="authalt" style="display:flex;align-items:center;gap:10px;margin:14px 0 4px"><div style="flex:1;height:1px;background:var(--mu,#555)"></div><span style="font-size:10px;letter-spacing:.1em;color:var(--mu,#888)">O</span><div style="flex:1;height:1px;background:var(--mu,#555)"></div></div>
+    <button id="authgoogle" onclick="doGoogleLogin()" type="button" style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px;border:1px solid #333;border-radius:6px;background:transparent;color:inherit;cursor:pointer;font-size:13px;letter-spacing:.03em" onmouseover="this.style.background='#111'" onmouseout="this.style.background='transparent'"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continuar con Google</button>
   </div>
 </div>
 
@@ -1283,7 +1285,7 @@ body.ceo-edit [data-ceo-img]:hover .ceo-img-ctrl{opacity:1;pointer-events:all}
 <section id="nosotros"><div class="nsg"><div class="rvl"><p class="ey" data-ceo="ns-ey" contenteditable="false">Nuestra historia</p><h2 class="st" data-ceo="ns-title" contenteditable="false">Diseñados con propósito. Hechos con precisión.</h2><p class="sb2" data-ceo="ns-sub" contenteditable="false">ELLIÉR nació de la idea de que cada persona merece un estilo único. Combinamos streetwear contemporáneo con artículos de uso diario premium.</p><div class="nns"><div class="nn rv"><h3>200+</h3><p>Clientes</p></div><div class="nn rv"><h3>50+</h3><p>Diseños únicos</p></div><div class="nn rv"><h3>100%</h3><p>Personalizable</p></div><div class="nn rv"><h3>24h</h3><p>Respuesta</p></div></div></div><div class="rvr"><div class="nv"><div class="nb nb1" data-ceo-img="nosotros-1"><div class="nbc">Premium Quality</div></div><div class="nb nb2" data-ceo-img="nosotros-2"><div class="nbc">Made to Last</div></div></div></div></div></section>
 
 <!-- BANNER TERMO -->
-<div style="width:100%;overflow:hidden;line-height:0"><img src="images/Banner07.png" alt="ELLIÉR Termo" style="width:100%;display:block;object-fit:cover"></div>
+<div style="width:100%;overflow:hidden;line-height:0"><img src="images/Banner07.png" alt="ELLIÉR Termo" style="width:100%;display:block;object-fit:cover" loading="lazy" decoding="async"></div>
 
 <!-- POR QUÉ ELEGIRNOS -->
 <section id="porque">
@@ -1611,12 +1613,16 @@ function _getEffectivePrice(p){
 const SW=CATALOG.filter(p=>CATALOG_SW_CATS.has(p.cat));
 const TERMOS=CATALOG.filter(p=>!CATALOG_SW_CATS.has(p.cat));
 
+// Overrides del panel CEO, cargados desde Supabase — ver loadCeoCustomizations()
+let _prodOverrides={};
+let _siteSettings={theme:null,offer:null,global_discount:null,featured:null,section_texts:null,section_imgs:null};
+
 // SVG HELPERS
 function mkTermoSVG(clr){return `<svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="18" rx="26" ry="9" fill="${clr}" opacity=".7"/><rect x="24" y="9" width="52" height="100" rx="8" fill="${clr}"/><rect x="32" y="4" width="36" height="9" rx="4" fill="${clr}" opacity=".85"/><ellipse cx="50" cy="109" rx="26" ry="9" fill="${clr}" opacity=".6"/><ellipse cx="36" cy="50" rx="4" ry="22" fill="rgba(255,255,255,.07)"/></svg>`}
 function mkTazaSVG(clr){return `<svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg"><path d="M15 20 L18 80 Q18 86 25 86 L75 86 Q82 86 82 80 L85 20 Z" fill="${clr}"/><path d="M82 35 Q95 35 95 50 Q95 65 82 65" stroke="${clr}" stroke-width="6" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="20" rx="35" ry="10" fill="${clr}" opacity=".7"/><ellipse cx="40" cy="45" rx="5" ry="14" fill="rgba(255,255,255,.06)"/></svg>`}
 
 // RENDER CARDS
-function _getProdImg(id){return(JSON.parse(localStorage.getItem('ellier_prod_images')||'{}')||{})[id]||null}
+function _getProdImg(id){return _prodOverrides[id]?.img_url||null}
 function mkPC(p){
   const customImg=_getProdImg(p.id);
   const c0=p.clrs[0];
@@ -2007,7 +2013,11 @@ const Auth={
   cur:null,
   isCEO(){return !!(this.cur&&this.cur.email===CEO_EMAIL)},
 };
-_sb.auth.onAuthStateChange((_ev,session)=>{Auth.cur=session?session.user:null;updateAuthBtn();if(Auth.cur&&_pendingCk){_pendingCk=false;closeAuth();openCk();}});
+_sb.auth.onAuthStateChange((_ev,session)=>{
+  Auth.cur=session?session.user:null;updateAuthBtn();
+  if(Auth.cur&&_pendingCk){_pendingCk=false;closeAuth();openCk();}
+  if(_ev==='PASSWORD_RECOVERY'){openAuth();swAuth('newpw');}
+});
 function updateAuthBtn(){
   const btn=document.getElementById('authbtn'),ab=document.getElementById('adminbtn');
   const ceobar=document.getElementById('ceobar');
@@ -2049,9 +2059,16 @@ function closeUserPanel(){document.getElementById('uo').classList.remove('o');do
 async function doLogout(){closeUserPanel();await _sb.auth.signOut();showToast('Sesión cerrada. ¡Hasta pronto!');}
 function swAuth(t){
   document.querySelectorAll('.at2').forEach(b=>b.classList.remove('a'));
-  document.querySelector(`.at2[onclick*="${t}"]`).classList.add('a');
+  const tabBtn=document.querySelector(`.at2[onclick*="${t}"]`);
+  if(tabBtn)tabBtn.classList.add('a');
   document.getElementById('lf').classList.toggle('h',t!=='login');
   document.getElementById('rf').classList.toggle('h',t!=='reg');
+  document.getElementById('ff').classList.toggle('h',t!=='forgot');
+  document.getElementById('nf').classList.toggle('h',t!=='newpw');
+  const showChrome=t==='login'||t==='reg';
+  document.getElementById('atbar').style.display=showChrome?'':'none';
+  document.getElementById('authalt').style.display=showChrome?'':'none';
+  document.getElementById('authgoogle').style.display=showChrome?'':'none';
 }
 async function doLogin(e){
   e.preventDefault();
@@ -2059,6 +2076,23 @@ async function doLogin(e){
   const{error}=await _sb.auth.signInWithPassword({email,password:pass});
   if(error){const err=document.getElementById('lerr');err.textContent='Correo o contraseña incorrectos';err.classList.add('s')}
   else{closeAuth();const dn=Auth.cur?.user_metadata?.name||Auth.cur?.email?.split('@')[0]||'';showToast('Bienvenido'+(dn?', '+dn:'')+(Auth.isCEO()?' · Usa Administración':'')+'!')}
+}
+async function doForgotPw(e){
+  e.preventDefault();
+  const email=document.getElementById('fpe').value;
+  const{error}=await _sb.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+window.location.pathname});
+  const err=document.getElementById('fperr');
+  if(error){err.textContent=error.message;err.classList.add('s')}
+  else{err.classList.remove('s');closeAuth();showToast('Revisa tu correo para restablecer tu contraseña')}
+}
+async function doSetNewPw(e){
+  e.preventDefault();
+  const p1=document.getElementById('npw').value,p2=document.getElementById('npw2').value;
+  const err=document.getElementById('nferr');
+  if(p1!==p2){err.textContent='Las contraseñas no coinciden';err.classList.add('s');return}
+  const{error}=await _sb.auth.updateUser({password:p1});
+  if(error){err.textContent=error.message;err.classList.add('s')}
+  else{err.classList.remove('s');closeAuth();showToast('Contraseña actualizada · ya puedes usarla para iniciar sesión')}
 }
 async function doGoogleLogin(){
   await _sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.origin}});
@@ -2307,7 +2341,6 @@ function openProdEdit(id){
   const delbtn=document.getElementById('delpbtn');
   const prevImg=document.getElementById('pim-prev');
   const clearBtn=document.getElementById('pim-clear');
-  const imgs=JSON.parse(localStorage.getItem('ellier_prod_images')||'{}');
   if(id){
     const all=[...SW,...TERMOS];const p=all.find(x=>x.id===id);if(!p)return;
     document.getElementById('pemtit').textContent='Editar producto';
@@ -2319,7 +2352,8 @@ function openProdEdit(id){
     document.getElementById('pmdsc').value=p.disc||0;
     _editProdClrs=p.clrs?[...p.clrs]:[p.clr||'#1a1a1a'];
     delbtn.style.display='block';
-    if(imgs[id]){_editProdImgData=imgs[id];prevImg.src=imgs[id];prevImg.style.display='block';clearBtn.style.display='block';}
+    const curImg=_prodOverrides[id]?.img_url;
+    if(curImg){_editProdImgData=curImg;prevImg.src=curImg;prevImg.style.display='block';clearBtn.style.display='block';}
     else{prevImg.style.display='none';prevImg.src='';clearBtn.style.display='none';}
   }else{
     document.getElementById('pemtit').textContent='Agregar producto';
@@ -2340,7 +2374,7 @@ function toggleClr(dot,clr){
   if(i>-1){if(_editProdClrs.length===1)return;_editProdClrs.splice(i,1);dot.classList.remove('a')}
   else{_editProdClrs.push(clr);dot.classList.add('a')}
 }
-function saveProd(){
+async function saveProd(){
   const n=document.getElementById('pmn').value.trim();
   if(!n){showToast('Ingresa un nombre');return}
   const cat=document.getElementById('pmc').value;
@@ -2349,33 +2383,46 @@ function saveProd(){
   const tag=document.getElementById('pmt').value;
   const clrs=_editProdClrs.length?_editProdClrs:['#1a1a1a'];
   const discPct=Math.max(0,Math.min(90,parseInt(document.getElementById('pmdsc').value)||0));
-  // persist image
-  const imgs=JSON.parse(localStorage.getItem('ellier_prod_images')||'{}');
-  const discounts=JSON.parse(localStorage.getItem('ellier_ceo_prod_discounts')||'{}');
+  const id=_editProdId||('sw'+Date.now());
+
+  let imgUrl=_prodOverrides[id]?.img_url||null;
+  if(_editProdImgCleared)imgUrl=null;
+  if(_editProdImgData&&_editProdImgData.startsWith('data:')){
+    try{
+      const res=await fetch(_editProdImgData);const blob=await res.blob();
+      const mime=_editProdImgData.match(/^data:([^;]+)/)?.[1]||'image/png';
+      const ext=mime.includes('jpeg')?'jpg':mime.includes('webp')?'webp':'png';
+      const fn=`products/${id}_${Date.now()}.${ext}`;
+      const{error:upErr}=await _sb.storage.from('site-assets').upload(fn,blob,{contentType:mime,upsert:true});
+      if(upErr)throw upErr;
+      imgUrl=_sb.storage.from('site-assets').getPublicUrl(fn).data.publicUrl;
+    }catch(e){showToast('Error al subir imagen: '+e.message);return;}
+  }
+
+  const row={id,n,cat,p:pv,tag,clrs,desc,disc:discPct,img_url:imgUrl,is_new:!_editProdId,deleted:false};
+  const{error}=await _sb.from('product_overrides').upsert(row);
+  if(error){showToast('Error al guardar producto: '+error.message);return;}
+  _prodOverrides[id]=row;
+
   if(_editProdId){
     const isTermo=['termos','tazas'].includes(cat);
-    if(isTermo){const t=TERMOS.find(x=>x.id===_editProdId);if(t){t.n=n;t.cat=cat;t.p=pv;t.desc=desc;t.clr=clrs[0];t.disc=discPct;}}
-    else{const s=SW.find(x=>x.id===_editProdId);if(s){s.n=n;s.cat=cat;s.p=pv;s.tag=tag;s.clrs=clrs;s.disc=discPct;}}
-    discounts[_editProdId]=discPct;
-    if(_editProdImgData){imgs[_editProdId]=_editProdImgData;}
-    else if(_editProdImgCleared){delete imgs[_editProdId];}
+    if(isTermo){const t=TERMOS.find(x=>x.id===id);if(t){t.n=n;t.cat=cat;t.p=pv;t.desc=desc;t.clr=clrs[0];t.disc=discPct;}}
+    else{const s=SW.find(x=>x.id===id);if(s){s.n=n;s.cat=cat;s.p=pv;s.tag=tag;s.clrs=clrs;s.disc=discPct;}}
     showToast('Producto actualizado');
   }else{
-    const newId='sw'+Date.now();
-    SW.push({id:newId,n,cat,clrs,p:pv,tag,desc,disc:discPct,svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" rx="8" fill="{C}"/><text x="50" y="58" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.3)" font-family="Helvetica">ELLIÉR</text></svg>`});
-    discounts[newId]=discPct;
-    if(_editProdImgData) imgs[newId]=_editProdImgData;
+    SW.push({id,n,cat,clrs,p:pv,tag,desc,disc:discPct,svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" rx="8" fill="{C}"/><text x="50" y="58" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.3)" font-family="Helvetica">ELLIÉR</text></svg>`});
     showToast('Producto agregado');
   }
-  localStorage.setItem('ellier_prod_images',JSON.stringify(imgs));
-  localStorage.setItem('ellier_ceo_prod_discounts',JSON.stringify(discounts));
   closeProdEdit();renderShowcase();renderColl();renderProdTable();renderMasProductos();
   document.getElementById('cpct').textContent=[...SW,...TERMOS].length;
 }
-function deleteProd(){
+async function deleteProd(){
   if(!_editProdId)return;
   const si=SW.findIndex(x=>x.id===_editProdId),ti=TERMOS.findIndex(x=>x.id===_editProdId);
   if(si>-1)SW.splice(si,1);else if(ti>-1)TERMOS.splice(ti,1);
+  const{error}=await _sb.from('product_overrides').upsert({id:_editProdId,deleted:true});
+  if(error)showToast('Error al eliminar: '+error.message);
+  if(_prodOverrides[_editProdId])_prodOverrides[_editProdId].deleted=true;
   closeProdEdit();renderShowcase();renderColl();renderProdTable();
   document.getElementById('cpct').textContent=[...SW,...TERMOS].length;
   showToast('Producto eliminado');
@@ -2957,7 +3004,7 @@ function mkShowcaseCard(p){
 }
 function renderShowcase(){
   const all=CATALOG;
-  const saved=JSON.parse(localStorage.getItem('ellier_featured')||'null');
+  const saved=_siteSettings.featured;
   const featured=saved?saved.map(id=>all.find(p=>p.id===id)).filter(Boolean):all;
   const g=document.getElementById('swt');if(!g)return;
   g.innerHTML=featured.map(mkShowcaseCard).join('');
@@ -2990,7 +3037,7 @@ setInterval(()=>{if(!document.hidden)evmasGo((_emCur+1)%document.querySelectorAl
 // SHOWCASE FEATURED PICKER (CEO)
 function openSwFeatured(){
   const all=CATALOG;
-  const saved=JSON.parse(localStorage.getItem('ellier_featured')||'null');
+  const saved=_siteSettings.featured;
   const active=new Set(saved?saved:all.map(p=>p.id));
   const m=document.createElement('div');
   m.id='sw-feat-modal';
@@ -3007,9 +3054,11 @@ function openSwFeatured(){
   </div>`;
   document.body.appendChild(m);
 }
-function _saveSwFeatured(){
+async function _saveSwFeatured(){
   const ids=[...document.querySelectorAll('#sw-feat-grid input:checked')].map(i=>i.dataset.pid);
-  localStorage.setItem('ellier_featured',JSON.stringify(ids));
+  _siteSettings.featured=ids;
+  const{error}=await _sb.from('site_settings').upsert({id:1,featured:ids});
+  if(error){showToast('Error al guardar destacados: '+error.message);return;}
   document.getElementById('sw-feat-modal')?.remove();
   renderShowcase();showToast('Destacados guardados');
 }
@@ -3121,61 +3170,107 @@ function toggleCeoEdit(){
   showToast(_ceoEditOn?'Modo edición ON — textos, precios e imágenes editables':'Modo edición desactivado');
 }
 
-function _saveCeoText(e){
+async function _saveCeoText(e){
   const key=e.target.dataset.ceo;
   if(!key)return;
-  const saved=JSON.parse(localStorage.getItem('ellier_ceo_texts')||'{}');
-  saved[key]=e.target.innerHTML;
-  localStorage.setItem('ellier_ceo_texts',JSON.stringify(saved));
+  const texts=Object.assign({},_siteSettings.section_texts||{});
+  texts[key]=e.target.innerHTML;
+  _siteSettings.section_texts=texts;
+  const{error}=await _sb.from('site_settings').upsert({id:1,section_texts:texts});
+  if(error)showToast('Error al guardar texto: '+error.message);
 }
 
-function _saveCeoPrice(e){
+async function _saveCeoPrice(e){
   const id=e.target.dataset.ceoPrice;if(!id)return;
   const val=e.target.textContent.trim();
   const p=[...SW,...TERMOS].find(x=>x.id===id);
   if(p){p.p=val;renderShowcase();renderMasProductos();}
-  const saved=JSON.parse(localStorage.getItem('ellier_ceo_prices')||'{}');
-  saved[id]=val;localStorage.setItem('ellier_ceo_prices',JSON.stringify(saved));
+  _prodOverrides[id]=Object.assign({},_prodOverrides[id],{id,p:val});
+  const{error}=await _sb.from('product_overrides').upsert({id,p:val});
+  if(error)showToast('Error al guardar precio: '+error.message);
 }
 
-function loadCeoCustomizations(){
+async function loadCeoCustomizations(){
+  const[{data:overrides,error:ovErr},{data:settingsRow,error:stErr}]=await Promise.all([
+    _sb.from('product_overrides').select('*'),
+    _sb.from('site_settings').select('*').eq('id',1).maybeSingle()
+  ]);
+  if(ovErr||stErr){console.error('loadCeoCustomizations',ovErr||stErr);return;}
+
+  // overrides / altas / bajas de producto
+  _prodOverrides={};
+  (overrides||[]).forEach(o=>{_prodOverrides[o.id]=o;});
+  Object.values(_prodOverrides).forEach(o=>{
+    if(o.deleted){
+      const si=SW.findIndex(x=>x.id===o.id);if(si>-1)SW.splice(si,1);
+      const ti=TERMOS.findIndex(x=>x.id===o.id);if(ti>-1)TERMOS.splice(ti,1);
+      return;
+    }
+    let p=SW.find(x=>x.id===o.id)||TERMOS.find(x=>x.id===o.id);
+    if(!p&&o.is_new){
+      p={id:o.id,svg:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="80" height="80" rx="8" fill="{C}"/><text x="50" y="58" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.3)" font-family="Helvetica">ELLIÉR</text></svg>`};
+      SW.push(p);
+    }
+    if(!p)return;
+    if(o.n!=null)p.n=o.n;
+    if(o.cat!=null)p.cat=o.cat;
+    if(o.p!=null)p.p=o.p;
+    if(o.tag!=null)p.tag=o.tag;
+    if(o.clrs!=null)p.clrs=o.clrs;
+    if(o.desc!=null)p.desc=o.desc;
+    if(o.disc!=null)p.disc=o.disc;
+  });
+
+  _siteSettings={
+    theme:settingsRow?.theme||null, offer:settingsRow?.offer||null,
+    global_discount:settingsRow?.global_discount||null, featured:settingsRow?.featured||null,
+    section_texts:settingsRow?.section_texts||null, section_imgs:settingsRow?.section_imgs||null
+  };
+  await _migrateLegacySettings();
+
   // textos guardados
-  const texts=JSON.parse(localStorage.getItem('ellier_ceo_texts')||'{}');
-  Object.entries(texts).forEach(([key,val])=>{
+  Object.entries(_siteSettings.section_texts||{}).forEach(([key,val])=>{
     const el=document.querySelector(`[data-ceo="${key}"]`);
     if(el) el.innerHTML=val;
   });
-  // precios guardados
-  const prices=JSON.parse(localStorage.getItem('ellier_ceo_prices')||'{}');
-  Object.entries(prices).forEach(([id,val])=>{
-    const p=[...SW,...TERMOS].find(x=>x.id===id);if(p)p.p=val;
-  });
-  // descuentos individuales guardados
-  const discounts=JSON.parse(localStorage.getItem('ellier_ceo_prod_discounts')||'{}');
-  Object.entries(discounts).forEach(([id,disc])=>{
-    const p=[...SW,...TERMOS].find(x=>x.id===id);if(p)p.disc=disc;
-  });
   // imágenes de sección guardadas
-  const ceoImgs=JSON.parse(localStorage.getItem('ellier_ceo_imgs')||'{}');
-  Object.entries(ceoImgs).forEach(([key,b64])=>_applyCeoImg(key,b64));
+  Object.entries(_siteSettings.section_imgs||{}).forEach(([key,url])=>_applyCeoImg(key,url));
   // descuento global guardado
-  const gdisc=JSON.parse(localStorage.getItem('ellier_ceo_global_discount')||'null');
-  if(gdisc&&gdisc.on){
-    _globalDisc=gdisc.pct;
+  if(_siteSettings.global_discount&&_siteSettings.global_discount.on){
+    _globalDisc=_siteSettings.global_discount.pct;
     const inp=document.getElementById('cof-pct');
-    if(inp){inp.value=gdisc.pct;previewGlobalDisc();}
+    if(inp){inp.value=_siteSettings.global_discount.pct;previewGlobalDisc();}
   }
   // tema guardado
-  const theme=JSON.parse(localStorage.getItem('ellier_ceo_theme')||'null');
-  if(theme) Object.entries(theme).forEach(([v,c])=>document.documentElement.style.setProperty(v,c));
+  if(_siteSettings.theme) Object.entries(_siteSettings.theme).forEach(([v,c])=>document.documentElement.style.setProperty(v,c));
+  _currentTheme=_siteSettings.theme?{..._siteSettings.theme}:{};
   // oferta guardada
-  const offer=JSON.parse(localStorage.getItem('ellier_ceo_offer')||'null');
-  if(offer&&offer.on){
+  if(_siteSettings.offer&&_siteSettings.offer.on){
     const b=document.getElementById('ofertabanner');
-    b.style.background=offer.bg||'#0a0a0a';b.style.color=offer.clr||'#fff';
-    document.getElementById('ob-text').textContent=offer.txt||'';
+    b.style.background=_siteSettings.offer.bg||'#0a0a0a';b.style.color=_siteSettings.offer.clr||'#fff';
+    document.getElementById('ob-text').textContent=_siteSettings.offer.txt||'';
     b.classList.add('on');
   }
+}
+
+// Empuja a Supabase la configuración vieja de localStorage (una sola vez, solo para el CEO)
+// para no perder lo que ya se había personalizado antes de conectar el panel a la base de datos.
+async function _migrateLegacySettings(){
+  try{
+    const settingsEmpty=!_siteSettings.theme&&!_siteSettings.offer&&!_siteSettings.global_discount&&!_siteSettings.featured&&!_siteSettings.section_texts;
+    if(!settingsEmpty)return;
+    const{data:{session}}=await _sb.auth.getSession();
+    if(!session||session.user.email!==CEO_EMAIL)return;
+    const row={id:1};
+    const lt=localStorage.getItem('ellier_ceo_theme');if(lt)row.theme=JSON.parse(lt);
+    const lo=localStorage.getItem('ellier_ceo_offer');if(lo)row.offer=JSON.parse(lo);
+    const ld=localStorage.getItem('ellier_ceo_global_discount');if(ld)row.global_discount=JSON.parse(ld);
+    const lf=localStorage.getItem('ellier_featured');if(lf)row.featured=JSON.parse(lf);
+    const lx=localStorage.getItem('ellier_ceo_texts');if(lx)row.section_texts=JSON.parse(lx);
+    if(Object.keys(row).length===1)return;
+    const{error}=await _sb.from('site_settings').upsert(row);
+    if(!error){Object.assign(_siteSettings,row);console.log('Configuración local migrada a Supabase');}
+  }catch(e){console.error('_migrateLegacySettings',e);}
 }
 
 // --- CEO THEME v2 -----------------------------------------------------------
@@ -3346,12 +3441,16 @@ function applyPreset(name){
 function setCssVar(v,val){
   document.documentElement.style.setProperty(v,val);_currentTheme[v]=val;
 }
-function saveTheme(){
-  localStorage.setItem('ellier_ceo_theme',JSON.stringify(_currentTheme));
+async function saveTheme(){
+  _siteSettings.theme=Object.assign({},_currentTheme);
+  const{error}=await _sb.from('site_settings').upsert({id:1,theme:_siteSettings.theme});
+  if(error){showToast('Error al guardar tema: '+error.message);return;}
   showToast('Tema guardado ?');
 }
-function resetTheme(){
-  _currentTheme={};localStorage.removeItem('ellier_ceo_theme');
+async function resetTheme(){
+  _currentTheme={};_siteSettings.theme=null;
+  const{error}=await _sb.from('site_settings').upsert({id:1,theme:null});
+  if(error)showToast('Error al restablecer tema: '+error.message);
   const d={'--bg':'#f5f4f0','--text':'#0a0a0a','--mu':'#6a6a6a','--bo':'#e0dedd','--dark':'#0a0a0a'};
   Object.entries(d).forEach(([v,c])=>{
     document.documentElement.style.setProperty(v,c);
@@ -3429,19 +3528,23 @@ function _startCeoImgUpload(key){
   inp.value='';inp.click();
 }
 
-function _onCeoImgSelected(e){
+async function _onCeoImgSelected(e){
   const file=e.target.files[0];if(!file)return;
   const key=_ceoImgUploadKey;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    const b64=ev.target.result;
-    const imgs=JSON.parse(localStorage.getItem('ellier_ceo_imgs')||'{}');
-    imgs[key]=b64;
-    localStorage.setItem('ellier_ceo_imgs',JSON.stringify(imgs));
-    _applyCeoImg(key,b64);
+  try{
+    const ext=(file.type.split('/')[1]||'png').replace('jpeg','jpg');
+    const fn=`sections/${key}_${Date.now()}.${ext}`;
+    const{error:upErr}=await _sb.storage.from('site-assets').upload(fn,file,{contentType:file.type,upsert:true});
+    if(upErr)throw upErr;
+    const publicUrl=_sb.storage.from('site-assets').getPublicUrl(fn).data.publicUrl;
+    const imgs=Object.assign({},_siteSettings.section_imgs||{});
+    imgs[key]=publicUrl;
+    _siteSettings.section_imgs=imgs;
+    const{error}=await _sb.from('site_settings').upsert({id:1,section_imgs:imgs});
+    if(error)throw error;
+    _applyCeoImg(key,publicUrl);
     showToast('Imagen guardada');
-  };
-  reader.readAsDataURL(file);
+  }catch(err){showToast('Error al subir imagen: '+err.message);}
 }
 
 function _applyCeoImg(key,b64){
@@ -3461,10 +3564,12 @@ function _applyCeoImg(key,b64){
   }
 }
 
-function _removeCeoImg(key){
-  const imgs=JSON.parse(localStorage.getItem('ellier_ceo_imgs')||'{}');
+async function _removeCeoImg(key){
+  const imgs=Object.assign({},_siteSettings.section_imgs||{});
   delete imgs[key];
-  localStorage.setItem('ellier_ceo_imgs',JSON.stringify(imgs));
+  _siteSettings.section_imgs=imgs;
+  const{error}=await _sb.from('site_settings').upsert({id:1,section_imgs:imgs});
+  if(error){showToast('Error al eliminar imagen: '+error.message);return;}
   const def=_ceoImgDefs.find(d=>d.key===key);if(!def)return;
   const el=document.querySelector(def.sel);if(!el)return;
   if(key==='logo'){
@@ -3495,20 +3600,24 @@ function previewGlobalDisc(){
   }
 }
 
-function applyGlobalDisc(){
+async function applyGlobalDisc(){
   const pct=Math.max(0,Math.min(90,parseFloat(document.getElementById('cof-pct').value)||0));
   _globalDisc=pct;
-  localStorage.setItem('ellier_ceo_global_discount',JSON.stringify({on:pct>0,pct}));
+  _siteSettings.global_discount={on:pct>0,pct};
+  const{error}=await _sb.from('site_settings').upsert({id:1,global_discount:_siteSettings.global_discount});
+  if(error){showToast('Error al guardar descuento: '+error.message);return;}
   renderShowcase();renderMasProductos();renderColl();
   showToast(pct>0?`Descuento global de ${pct}% aplicado — precio final = precio × ${((1-pct/100)*100).toFixed(0)}%`:'Descuento global eliminado');
 }
 
-function removeGlobalDisc(){
+async function removeGlobalDisc(){
   _globalDisc=0;
   document.getElementById('cof-pct').value='';
   document.getElementById('cof-disc-preview').textContent='';
   document.getElementById('cof-math-preview').textContent='';
-  localStorage.setItem('ellier_ceo_global_discount',JSON.stringify({on:false,pct:0}));
+  _siteSettings.global_discount={on:false,pct:0};
+  const{error}=await _sb.from('site_settings').upsert({id:1,global_discount:_siteSettings.global_discount});
+  if(error){showToast('Error al eliminar descuento: '+error.message);return;}
   renderShowcase();renderMasProductos();renderColl();
   showToast('Descuento global eliminado');
 }
@@ -3557,20 +3666,24 @@ function setCofBg(clr,dot){
   _cofBg=clr;
   document.querySelectorAll('#cof-colors .ctp-sw').forEach(d=>d.classList.toggle('a',d===dot));
 }
-function applyOffer(){
+async function applyOffer(){
   const txt=document.getElementById('cof-txt').value.trim();
   if(!txt){showToast('Escribe el texto del banner');return;}
   const b=document.getElementById('ofertabanner');
   b.style.background=_cofBg;b.style.color='#fff';
   document.getElementById('ob-text').textContent=txt;
   b.classList.add('on');
-  localStorage.setItem('ellier_ceo_offer',JSON.stringify({on:true,txt,bg:_cofBg,clr:'#fff'}));
+  _siteSettings.offer={on:true,txt,bg:_cofBg,clr:'#fff'};
+  const{error}=await _sb.from('site_settings').upsert({id:1,offer:_siteSettings.offer});
+  if(error){showToast('Error al guardar banner: '+error.message);return;}
   showToast('Banner activado');
   document.getElementById('ceooferta').classList.remove('on');
 }
-function hideOffer(){
+async function hideOffer(){
   document.getElementById('ofertabanner').classList.remove('on');
-  localStorage.setItem('ellier_ceo_offer',JSON.stringify({on:false}));
+  _siteSettings.offer={on:false};
+  const{error}=await _sb.from('site_settings').upsert({id:1,offer:_siteSettings.offer});
+  if(error){showToast('Error al ocultar banner: '+error.message);return;}
   showToast('Banner ocultado');
 }
 let _ceoOfferOpen=false;
@@ -3601,8 +3714,23 @@ function renderMasProductos(){
 // --- INIT CEO ---------------------------------------------------------------
 
 // INIT
-renderShowcase();swStartAuto();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
-loadCeoCustomizations();buildThemePanel();
+(async()=>{
+  await loadCeoCustomizations();
+  renderShowcase();swStartAuto();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
+  buildThemePanel();
+})();
+// Recuperación de contraseña — verificación manual del token_hash vía JS
+// (evita que el pre-escaneo de links de Gmail/filtros de correo consuma el enlace de un solo uso)
+(async()=>{
+  const params=new URLSearchParams(window.location.search);
+  const tokenHash=params.get('token_hash');
+  const type=params.get('type');
+  if(!tokenHash||type!=='recovery')return;
+  history.replaceState({},'',window.location.pathname);
+  const{error}=await _sb.auth.verifyOtp({token_hash:tokenHash,type:'recovery'});
+  if(error){showToast('El enlace de recuperación ya expiró o se usó — solicita uno nuevo');return;}
+  openAuth();swAuth('newpw');
+})();
 // Manejo de retorno desde redirect de Stripe (ej. OXXO)
 (async()=>{
   const params=new URLSearchParams(window.location.search);
