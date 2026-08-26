@@ -15,7 +15,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 .brand{font-size:13px;letter-spacing:.36em;text-transform:uppercase;font-weight:500}.nls{display:flex;align-items:center;gap:26px}.nl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.52);transition:color .2s}.nl:hover{color:#fff}
 .hero{position:relative;height:640px;overflow:hidden;display:flex;align-items:flex-end;background:#111}
 .hero-slides{position:absolute;inset:0;z-index:0}.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}.hero-slide.a{opacity:1}
-.hero-slide.s1{background-image:url('images/upxellier4.png');background-color:#fff;background-size:contain;background-position:center;background-repeat:no-repeat}.hero-slide.s2{background-image:url('images/image1.png')}.hero-slide.s3{background-image:url('images/image2.png')}
+.hero-slide.s1{background-image:url('images/image3.png')}.hero-slide.s2{background-image:url('images/image1.png')}.hero-slide.s3{background-image:url('images/image2.png')}
 .hero-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.78) 0%,rgba(0,0,0,.3) 55%,transparent 100%),radial-gradient(ellipse at center,rgba(0,0,0,0) 34%,rgba(0,0,0,.25) 68%,rgba(0,0,0,.72) 100%);z-index:1}
 .hero::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:180px;background:linear-gradient(to bottom,rgba(5,5,5,0) 0%,rgba(5,5,5,.42) 46%,#050505 100%);z-index:1;pointer-events:none}
 .hero-inner{position:relative;z-index:2;padding:0 46px 52px;max-width:720px}.ey{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:rgba(255,255,255,.44);margin-bottom:16px}.hero h1{font-size:clamp(44px,8vw,94px);font-weight:500;line-height:.96}.hero p{font-size:13px;line-height:1.75;color:rgba(255,255,255,.58);max-width:470px;margin-top:20px}
@@ -26,7 +26,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
 .ccard-body{position:relative;z-index:2;padding:22px;display:flex;flex-direction:column;gap:11px}.badge{align-self:flex-start;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#0a0a0a;background:#fff;padding:5px 9px;border-radius:20px}.badge.soon{background:rgba(255,255,255,.16);color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.16)}
 .ccard h3{font-size:28px;font-weight:500;line-height:1}.ccard p{font-size:12px;line-height:1.65;color:rgba(255,255,255,.56)}.meta{display:flex;gap:8px;flex-wrap:wrap}.meta span{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:5px 8px}
 .open{display:inline-flex;align-items:center;gap:8px;width:max-content;background:#fff;color:#0a0a0a;padding:11px 16px;border-radius:var(--r);font-size:10px;letter-spacing:.15em;text-transform:uppercase;transition:background .2s,transform .2s}.open:hover{background:rgba(255,255,255,.9);transform:translateY(-1px)}
-.disabled{pointer-events:none}.disabled .ccard-img{filter:grayscale(1);opacity:.45}.disabled .open{background:rgba(255,255,255,.12);color:rgba(255,255,255,.48)}
+.disabled{pointer-events:none}.disabled .ccard-img{filter:grayscale(1);opacity:.45}.disabled .open{background:rgba(255,255,255,.12);color:rgba(255,255,255,.48)}.collection-up-hidden{display:none!important}
 @media(max-width:760px){#nv{padding:14px 18px}.nls{gap:14px}.hero{height:420px}.hero-inner{padding:0 20px 36px;max-width:100%}.hero h1{font-size:clamp(38px,14vw,62px)}.hero-dots{right:20px;bottom:14px}.wrap{padding:22px 18px 58px}.section-head{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.ccard{min-height:330px}}
 </style>
 </head>
@@ -64,7 +64,7 @@ a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer
     <p>Selecciona una coleccion para abrirla en una nueva pestaña. Este menu queda listo para agregar proximos lanzamientos.</p>
   </div>
   <section class="grid">
-    <a class="ccard" href="coleccion-up.html" target="_blank" rel="noopener">
+    <a class="ccard collection-up-hidden" href="coleccion-up.html" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
       <div class="ccard-img" style="background-image:url('images/chamarra-rojo-negro-hombre-up.png')"></div>
       <div class="ccard-body">
         <span class="badge">Disponible</span>
