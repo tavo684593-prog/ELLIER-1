@@ -1,0 +1,178 @@
+{
+  "sw5": {
+    "p": 490,
+    "cat": "joggers"
+  },
+  "sw21": {
+    "p": 490,
+    "cat": "joggers"
+  },
+  "sw2": {
+    "p": 680,
+    "cat": "sudaderas"
+  },
+  "sw6": {
+    "p": 720,
+    "cat": "sudaderas"
+  },
+  "sw9": {
+    "p": 820,
+    "cat": "sudaderas"
+  },
+  "sw10": {
+    "p": 780,
+    "cat": "sudaderas"
+  },
+  "sw11": {
+    "p": 760,
+    "cat": "sudaderas"
+  },
+  "sw12": {
+    "p": 760,
+    "cat": "sudaderas"
+  },
+  "sw13": {
+    "p": 740,
+    "cat": "sudaderas"
+  },
+  "sw14": {
+    "p": 740,
+    "cat": "sudaderas"
+  },
+  "sw23": {
+    "p": 740,
+    "cat": "sudaderas"
+  },
+  "sw24": {
+    "p": 740,
+    "cat": "sudaderas"
+  },
+  "sw25": {
+    "p": 760,
+    "cat": "sudaderas"
+  },
+  "sw26": {
+    "p": 740,
+    "cat": "sudaderas"
+  },
+  "sw39": {
+    "p": 760,
+    "cat": "sudaderas"
+  },
+  "sw3": {
+    "p": 560,
+    "cat": "pans"
+  },
+  "sw7": {
+    "p": 530,
+    "cat": "pans"
+  },
+  "sw15": {
+    "p": 560,
+    "cat": "pans"
+  },
+  "sw16": {
+    "p": 560,
+    "cat": "pans"
+  },
+  "sw17": {
+    "p": 560,
+    "cat": "pans"
+  },
+  "sw4": {
+    "p": 380,
+    "cat": "playeras"
+  },
+  "sw8": {
+    "p": 420,
+    "cat": "playeras"
+  },
+  "sw18": {
+    "p": 420,
+    "cat": "playeras"
+  },
+  "sw19": {
+    "p": 420,
+    "cat": "playeras"
+  },
+  "sw20": {
+    "p": 420,
+    "cat": "playeras"
+  },
+  "sw27": {
+    "p": 420,
+    "cat": "playeras"
+  },
+  "sw28": {
+    "p": 420,
+    "cat": "playeras"
+  },
+  "sw29": {
+    "p": 420,
+    "cat": "playeras"
+  },
+  "sw30": {
+    "p": 420,
+    "cat": "playeras"
+  },
+  "sw31": {
+    "p": 440,
+    "cat": "playeras"
+  },
+  "sw32": {
+    "p": 440,
+    "cat": "playeras"
+  },
+  "sw33": {
+    "p": 460,
+    "cat": "playeras"
+  },
+  "sw34": {
+    "p": 460,
+    "cat": "playeras"
+  },
+  "sw35": {
+    "p": 460,
+    "cat": "playeras"
+  },
+  "sw36": {
+    "p": 460,
+    "cat": "playeras"
+  },
+  "sw37": {
+    "p": 460,
+    "cat": "playeras"
+  },
+  "sw38": {
+    "p": 460,
+    "cat": "playeras"
+  },
+  "sw22": {
+    "p": 980,
+    "cat": "chamarras"
+  },
+  "t1": {
+    "p": 320,
+    "cat": "termos"
+  },
+  "t2": {
+    "p": 320,
+    "cat": "termos"
+  },
+  "t3": {
+    "p": 380,
+    "cat": "termos"
+  },
+  "t6": {
+    "p": 440,
+    "cat": "termos"
+  },
+  "t4": {
+    "p": 220,
+    "cat": "tazas"
+  },
+  "t5": {
+    "p": 220,
+    "cat": "tazas"
+  }
+}
