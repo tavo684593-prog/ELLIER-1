@@ -1,0 +1,139 @@
+{
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 6460,
+      "max": [
+        30.001239776611328,
+        155.78521728515625,
+        17.431798934936523
+      ],
+      "min": [
+        -30.00123405456543,
+        99.51641845703125,
+        -13.89752197265625
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 12,
+      "componentType": 5126,
+      "count": 6460,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5125,
+      "count": 36288,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 206720,
+      "byteStride": 32,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 145152,
+      "byteOffset": 206720,
+      "target": 34963
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 351872,
+      "uri": "rojo.bin"
+    }
+  ],
+  "materials": [
+    {
+      "name": "fallback Material",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Playera",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0
+          },
+          "indices": 2,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "matrix": [
+        0.01,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.01,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "mesh": 0,
+      "name": "Playera"
+    },
+    {
+      "children": [
+        0
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.6292068494294654e-07,
+        0.0,
+        0.0,
+        -1.6292068494294654e-07,
+        1.0,
+        0.0,
+        0.012426817417144775,
+        -0.8888595581054688,
+        -0.016971166133880614,
+        1.0
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "nodes": [
+        1
+      ]
+    }
+  ]
+}

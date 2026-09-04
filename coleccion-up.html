@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>COLECCIONES - ELLIER</title>
+<meta name="description" content="COLECCIONES ELLIER - Colaboración UP."/>
+<meta name="theme-color" content="#0a0a0a"/>
+<meta name="robots" content="noindex,nofollow"/>
+<script>
+const COLLECTION_UP_PUBLIC=false;
+if(!COLLECTION_UP_PUBLIC) window.location.replace('index.html');
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f5f4f0;--text:#0a0a0a;--mu:#6a6a6a;--su:#b0b0b0;--bo:#e0dedd;--dark:#0a0a0a;--fn:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;--r:4px;--ea:cubic-bezier(.4,0,.2,1)}
+body{font-family:var(--fn);background:var(--bg);color:var(--text);overflow-x:hidden}
+a{text-decoration:none;color:inherit}button{font-family:var(--fn);cursor:pointer;border:none;background:none}
+#nv{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px 46px;background:rgba(245,244,240,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bo)}
+.brand{font-size:13px;letter-spacing:.36em;text-transform:uppercase;font-weight:500}
+.nls{display:flex;align-items:center;gap:26px}.nl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);transition:color .2s}.nl:hover{color:var(--text)}
+.cartbtn{position:relative;color:var(--text);display:flex;align-items:center}.nba{position:absolute;top:-8px;right:-9px;width:17px;height:17px;border-radius:50%;background:var(--dark);color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center}
+.hero{position:relative;height:640px;overflow:hidden;display:flex;align-items:flex-end;background:#111}
+.hero-slides{position:absolute;inset:0;z-index:0}.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1s ease}.hero-slide.a{opacity:1}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.78) 0%,rgba(0,0,0,.3) 55%,transparent 100%),radial-gradient(ellipse at center,rgba(0,0,0,0) 34%,rgba(0,0,0,.24) 68%,rgba(0,0,0,.72) 100%);z-index:1}
+.hero::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:170px;background:linear-gradient(to bottom,rgba(5,5,5,0) 0%,rgba(5,5,5,.42) 46%,#050505 100%);z-index:1;pointer-events:none}
+.hero-ctn{position:relative;z-index:2;padding:0 46px 52px;display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:640px}
+.ey{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:12px}.hero h1{font-size:clamp(42px,8vw,92px);font-weight:500;line-height:.95;letter-spacing:0;color:#fff}.hero p{font-size:13px;line-height:1.75;color:rgba(255,255,255,.58);max-width:450px;margin-top:18px}.count{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+.hero-dots{position:absolute;bottom:24px;right:46px;z-index:2;display:flex;gap:7px;align-items:center}.hero-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:background .25s,transform .25s;border:none;padding:0}.hero-dot.a{background:#fff;transform:scale(1.25)}
+.catalog{background:#050505;min-height:60vh}
+.filters{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.12);padding:0 46px;overflow-x:auto;background:#050505;position:sticky;top:57px;z-index:15}.ft{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:13px 18px;color:rgba(255,255,255,.45);border-bottom:1.5px solid transparent;white-space:nowrap}.ft.a,.ft:hover{color:#fff;border-color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;padding:28px 46px 70px;background:#050505}
+.pc{background:#fff;border-radius:8px;overflow:hidden;border:1px solid var(--bo);transition:transform .34s var(--ea),box-shadow .34s var(--ea)}.pc:hover{transform:translateY(-5px);box-shadow:0 18px 52px rgba(0,0,0,.1)}.pc.hd{display:none}
+.empty-filter{display:none;grid-column:1/-1;min-height:220px;border:1px solid rgba(255,255,255,.12);border-radius:8px;align-items:center;justify-content:center;text-align:center;color:rgba(255,255,255,.52);font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.03)}.empty-filter.o{display:flex}
+.pci{position:relative;aspect-ratio:1;overflow:hidden;background:#f0eee9}.pcii{width:100%;height:100%;padding:18px;display:flex;align-items:center;justify-content:center;transition:transform .54s var(--ea);cursor:pointer}.pc:hover .pcii{transform:scale(1.06)}.pcii img{width:100%;height:100%;object-fit:contain;border-radius:4px}
+.pbg2{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:.09em;text-transform:uppercase;background:#0a0a0a;color:#fff;padding:4px 9px;border-radius:20px}.pbg2.nw{background:#2d4a3e}.pbg2.bs{background:#8b5e3c}
+.pw{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:var(--su);transition:color .2s}.pw:hover,.pw.on{color:#c0392b}.pw.on svg{fill:currentColor}
+.pcb{padding:15px}.pcat{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--su);margin-bottom:4px}.pn{font-size:14px;font-weight:500;margin-bottom:7px}.pdsc{font-size:11px;color:var(--mu);line-height:1.45;min-height:32px;margin-bottom:12px}.pft{display:flex;align-items:center;justify-content:space-between;gap:10px}.pp{font-size:15px;font-weight:500}.ba{font-size:9px;letter-spacing:.13em;text-transform:uppercase;background:#0a0a0a;color:#fff;padding:8px 13px;border-radius:var(--r);transition:background .2s;white-space:nowrap}.ba:hover{background:#333}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:#0a0a0a;color:#fff;padding:11px 16px;border-radius:4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:80}#toast.on{opacity:1;transform:translateX(-50%)}
+#pdov,#cartov{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.56);display:none;align-items:center;justify-content:center;padding:20px}#pdov.o,#cartov.o{display:flex}
+.modal{background:#fff;width:min(900px,100%);max-height:90vh;overflow:auto;border-radius:10px}.mh{padding:18px 22px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center}.mh h2{font-size:11px;letter-spacing:.24em;text-transform:uppercase}.xb{font-size:22px;color:var(--mu)}
+.pdb{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,.9fr);gap:26px;padding:24px}.pdimg{background:#f0eee9;aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:22px}.pdimg img{width:100%;height:100%;object-fit:contain}.pdi-cat{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--su);margin-bottom:9px}.pdi-name{font-size:32px;font-weight:500;line-height:1.05;margin-bottom:12px}.pdi-desc{font-size:13px;line-height:1.75;color:var(--mu);margin:16px 0}.pdi-price{font-size:20px;font-weight:500;margin-bottom:18px}
+.cartbody{padding:18px 22px}.ci{display:flex;gap:13px;padding:14px 0;border-bottom:1px solid var(--bo)}.ct2{width:64px;height:64px;background:#f0eee9;border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden}.ct2 img{width:100%;height:100%;object-fit:contain}.cii{flex:1}.cii h4{font-size:13px;font-weight:500;margin-bottom:3px}.cii p{font-size:11px;color:var(--mu)}.cpri{font-size:13px;font-weight:500;margin-top:7px}.cartfoot{padding:16px 22px;border-top:1px solid var(--bo);display:flex;align-items:center;justify-content:space-between}.empty{padding:34px;text-align:center;color:var(--mu);font-size:13px}
+#pro{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:75;display:none}#pro.o{display:block}#prp{position:fixed;left:50%;top:50%;transform:translate(-50%,-48%);width:min(520px,calc(100% - 28px));max-height:90vh;overflow:auto;background:#fff;border-radius:10px;z-index:76;display:none;box-shadow:0 24px 80px rgba(0,0,0,.26)}#prp.o{display:block}.prb{padding:20px}.prtop{display:flex;gap:14px;margin-bottom:16px}.primg{width:92px;height:92px;background:#f0eee9;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 auto}.primg img{width:100%;height:100%;object-fit:contain}.prmeta{flex:1}.prmeta h3{font-size:19px;font-weight:500;line-height:1.1;margin:4px 0 6px}.prmeta p,.prrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}.prrow{display:flex;justify-content:space-between;align-items:center;margin:14px 0 7px}.prta{width:100%;height:112px;resize:none;border:1px solid var(--bo);border-radius:6px;padding:11px;font-size:13px;line-height:1.5;color:var(--text);outline:none}.prta:focus{border-color:#0a0a0a}.prfile{border:1px dashed var(--bo);border-radius:8px;padding:14px;font-size:12px;color:var(--mu)}.prthumb{display:none;margin-top:10px}.prthumb img{width:70px;height:70px;object-fit:cover;border-radius:6px;border:1px solid var(--bo)}.prerr{display:none;margin-top:9px;color:#a5332a;font-size:11px}.prerr.s{display:block}.pract{display:flex;gap:10px;margin-top:18px}.pract .ba{flex:1}.pract .ba:disabled{background:#b7b7b7;cursor:not-allowed}
+.pdrev{margin-top:18px;padding:17px;border:1px solid var(--bo);border-radius:8px;background:#fff}.pdrev-lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--su);margin-bottom:12px}.pdrev-summary{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--bo)}.pdrev-score{font-size:32px;line-height:1;font-weight:500;letter-spacing:-.03em;color:var(--text)}.pdrev-stars{display:inline-flex;gap:2px;font-size:14px;letter-spacing:0;color:#c59b31;white-space:nowrap}.pdrev-meta{font-size:11px;color:var(--mu);margin-top:4px}.pdrev-form{display:grid;gap:9px;margin-bottom:16px;padding:13px;background:#f7f6f3;border:1px solid rgba(0,0,0,.035);border-radius:7px}.pdrev-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center}.pdrev-input,.pdrev-text{border:1px solid var(--bo);border-radius:6px;padding:10px 11px;background:#fff;color:var(--text);font-family:var(--fn);font-size:12px;outline:none}.pdrev-input:focus,.pdrev-text:focus{border-color:var(--text)}.pdrev-file{border:1px dashed var(--bo);border-radius:7px;padding:11px;background:#fff;color:var(--mu);font-size:11px;line-height:1.5;cursor:pointer}.pdrev-file input{display:none}.pdrev-media-preview{display:none;margin-top:8px;border-radius:7px;overflow:hidden;border:1px solid var(--bo);background:#fff}.pdrev-media-preview img,.pdrev-media-preview video{width:100%;max-height:170px;display:block;object-fit:contain;background:#0a0a0a}.pdrev-media{margin-top:8px;border-radius:7px;overflow:hidden;border:1px solid var(--bo);background:#f7f6f3}.pdrev-media img,.pdrev-media video{width:100%;max-height:210px;display:block;object-fit:contain;background:#0a0a0a}.pdrev-picker{display:flex;align-items:center;gap:3px}.pdrev-star{font-size:22px;line-height:1;color:#c59b31;padding:0 1px;cursor:pointer;transition:transform .14s,color .14s}.pdrev-star.a{color:#c59b31}.pdrev-star:not(.a){color:#d7d1c2}.pdrev-star:hover{transform:translateY(-1px)}.pdrev-clear{font-size:10px;color:var(--mu);text-decoration:underline;text-underline-offset:3px;justify-self:start}.pdrev-clear:hover{color:var(--text)}.pdrev-text{min-height:88px;resize:vertical;line-height:1.55}.pdrev-btn{justify-self:start;background:#0a0a0a;color:#fff;border-radius:var(--r);padding:10px 17px;font-size:10px;letter-spacing:.14em;text-transform:uppercase}.pdrev-err{display:none;color:#c0392b;font-size:11px}.pdrev-err.s{display:block}.pdrev-list{display:flex;flex-direction:column;gap:10px}.pdrev-item{border-bottom:1px solid var(--bo);padding:0 0 11px;background:transparent}.pdrev-item:last-child{border-bottom:none;padding-bottom:0}.pdrev-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}.pdrev-name{font-size:12px;font-weight:500}.pdrev-date{font-size:10px;color:var(--su);margin-top:2px}.pdrev-comment{font-size:12px;color:var(--mu);line-height:1.6}.pdrev-empty{font-size:12px;color:var(--mu);line-height:1.6;padding:8px 0}
+@media(max-width:760px){#nv{padding:14px 18px}.nls{gap:14px}.hero{height:420px}.hero-ctn{padding:0 20px 36px;max-width:100%}.hero h1{font-size:clamp(38px,14vw,62px)}.hero-dots{right:20px;bottom:14px}.filters{top:53px;padding:0 18px}.grid{padding:22px 18px 54px;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.pcb{padding:12px}.pft{align-items:flex-start;flex-direction:column}.ba{width:100%;text-align:center}.pdb{grid-template-columns:1fr;padding:18px}.pdi-name{font-size:27px}.pdrev-row,.pdrev-summary{grid-template-columns:1fr}.pdrev-btn{width:100%}}
+</style>
+</head>
+<body>
+<nav id="nv">
+  <a class="brand" href="/">ELLIÉR</a>
+  <div class="nls">
+    <a class="nl" href="/">Inicio</a>
+    <a class="nl" href="#up">Colaboración UP</a>
+    <button class="cartbtn" onclick="openCart()" aria-label="Carrito">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="nba" id="crtc">0</span>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="up">
+  <div class="hero-slides" id="heroSlides"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-ctn">
+    <div class="ey">COLECCIONES</div>
+    <h1>Colaboración UP</h1>
+    <p>Se la Pantera que deja huella con ELLIÉR.</p>
+    <div class="count" id="pcount"></div>
+  </div>
+  <div class="hero-dots" id="heroDots"></div>
+</header>
+
+<section class="catalog">
+  <div class="filters" id="filters">
+    <button class="ft a" onclick="filterProducts(this,'all')">Todos UP</button>
+    <button class="ft" onclick="filterProducts(this,'playeras')">Playeras</button>
+    <button class="ft" onclick="filterProducts(this,'chamarras')">Chamarras</button>
+    <button class="ft" onclick="filterProducts(this,'sudaderas')">Sudaderas</button>
+    <button class="ft" onclick="filterProducts(this,'deportivo')">Deportivo</button>
+    <button class="ft" onclick="filterProducts(this,'termos,tazas')">Termos y Tazas</button>
+  </div>
+
+  <main class="grid" id="grid"></main>
+</section>
+
+<div id="pdov" onclick="if(event.target===this)closeDetail()">
+  <div class="modal">
+    <div class="mh"><h2>Producto UP</h2><button class="xb" onclick="closeDetail()">x</button></div>
+    <div class="pdb">
+      <div class="pdimg"><img id="pd-img" alt=""/></div>
+      <div>
+        <div class="pdi-cat" id="pd-cat"></div>
+        <div class="pdi-name" id="pd-name"></div>
+        <div class="pdi-price" id="pd-price"></div>
+        <button class="ba" id="pd-add">+ Carrito</button>
+        <div class="pdi-desc" id="pd-desc"></div>
+        <div id="pd-reviews"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="pro" onclick="if(event.target===this)closeProdReq()"></div>
+<div id="prp">
+  <div class="mh"><h2>Detalles del producto</h2><button class="xb" onclick="closeProdReq()">x</button></div>
+  <div class="prb">
+    <div class="prtop">
+      <div class="primg" id="pr-img"></div>
+      <div class="prmeta"><p id="pr-cat"></p><h3 id="pr-name"></h3><p>Antes de agregarlo al carrito</p></div>
+    </div>
+    <div class="prrow"><span>Descripcion obligatoria</span><span>15-200 letras</span></div>
+    <textarea class="prta" id="pr-desc" maxlength="200" placeholder="Describe color, ubicacion del diseno, nombre, frase, medidas o cualquier detalle importante..." oninput="validateProdReq()"></textarea>
+    <div class="prrow"><span>Imagen opcional</span></div>
+    <div class="prfile">
+      <input id="pr-file" type="file" accept="image/*" onchange="handleProdReqFile(this)"/>
+      <div class="prthumb" id="pr-thumb"><img id="pr-thumb-img" alt="Referencia"/></div>
+    </div>
+    <div class="prerr" id="pr-err">La descripcion debe tener entre 15 y 200 letras.</div>
+    <div class="pract"><button class="ba" style="background:#777" onclick="closeProdReq()">Cancelar</button><button class="ba" id="pr-add" onclick="confirmProdReq()" disabled>Agregar al carrito</button></div>
+  </div>
+</div>
+
+<div id="cartov" onclick="if(event.target===this)closeCart()">
+  <div class="modal" style="max-width:460px">
+    <div class="mh"><h2>Carrito</h2><button class="xb" onclick="closeCart()">x</button></div>
+    <div class="cartbody" id="cartitems"></div>
+    <div class="cartfoot" id="cartfoot"><strong>Total</strong><strong id="carttotal">$0 MXN</strong></div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+const CATALOG_MEDIA=[
+  {img:'images/modelos1.png',label:'Colaboración UP',title:'Rojo que impone'},
+  {img:'images/modelos2.png',label:'Colaboración UP',title:'Movimiento con caracter'},
+  {img:'images/modelos3.png',label:'Colaboración UP',title:'Pantera en la calle'},
+];
+const PRODUCTS=[
+  {id:'up1',n:'Basquet Mujer UP',cat:'deportivo',p:'$520',img:'images/basquet-mujer-up.png',tag:'new',desc:'Conjunto deportivo de la coleccion UP para entrenamiento y uso diario.'},
+  {id:'up2',n:'Playera Deportiva Hombre Roja UP',cat:'playeras',p:'$420',img:'images/camisa-deportiva-hombre-rojo-up.png',tag:'',desc:'Playera deportiva roja de corte comodo con acabado premium.'},
+  {id:'up3',n:'Playera Deportiva Hombre Negra UP',cat:'playeras',p:'$420',img:'images/camisa-deportiva-hombre-negra-up.png',tag:'bs',desc:'Playera deportiva negra para combinar con cualquier outfit activo.'},
+  {id:'up4',n:'Chamarra Garra Roja Mujer UP',cat:'chamarras',p:'$780',img:'images/chamarra-garra-roja-mujer-up.png',tag:'new',desc:'Chamarra roja para mujer con presencia fuerte y estilo deportivo.'},
+  {id:'up5',n:'Chamarra Roble Roja Mujer UP',cat:'chamarras',p:'$780',img:'images/chamarra-roble-roja-mujer-up.png',tag:'',desc:'Chamarra roble roja de la linea UP, pensada para capas ligeras.'},
+  {id:'up6',n:'Chamarra Rojo-Negro Hombre UP',cat:'chamarras',p:'$820',img:'images/chamarra-rojo-negro-hombre-up.png',tag:'bs',desc:'Chamarra para hombre con contraste rojo y negro.'},
+  {id:'up7',n:'Chaqueta Blanca Hombre UP',cat:'chamarras',p:'$790',img:'images/chaqueta-blanca-hombre-up.png',tag:'',desc:'Chaqueta blanca limpia y versatil para looks deportivos.'},
+  {id:'up8',n:'Chaqueta Rosa Roble Mujer UP',cat:'chamarras',p:'$790',img:'images/chaqueta-rosa-roble-mujer-up.png',tag:'new',desc:'Chaqueta rosa roble para mujer con silueta ligera.'},
+  {id:'up9',n:'Chamarra Verde Menta Mujer UP',cat:'chamarras',p:'$690',img:'images/chamarra-verde-menta-mujer-up.png',tag:'',desc:'Chamarra verde menta ligera para un estilo deportivo y relajado.'},
+  {id:'up10',n:'Sudadera y Pans Deportivo Hombre UP',cat:'sudaderas',p:'$980',img:'images/sudadera-y-pans-deportivo-hombre-up.png',tag:'bs',desc:'Set completo de sudadera y pans deportivo para hombre.'},
+  {id:'up11',n:'Voleibol Mujer UP',cat:'deportivo',p:'$520',img:'images/voleibol-mujer-up.png',tag:'new',desc:'Conjunto deportivo para voleibol con identidad UP.'},
+  {id:'up12',n:'Taza Escudo UP',cat:'tazas',p:'$220',img:'images/taza-escudo-up.png',tag:'new',desc:'Taza con escudo UP para llevar la identidad de la colaboracion a cada momento.'},
+  {id:'up13',n:'Taza Pantera UP',cat:'tazas',p:'$220',img:'images/taza-pantera1.png',tag:'new',desc:'Taza de la colaboracion UP con diseño de pantera.'},
+  {id:'up14',n:'Taza Rasguño 1 UP',cat:'tazas',p:'$220',img:'images/taza-rasguño1.png',tag:'new',desc:'Taza UP con grafico de rasguño y acabado distintivo.'},
+  {id:'up15',n:'Taza Rasguño 2 UP',cat:'tazas',p:'$220',img:'images/taza-rasguño2.png',tag:'new',desc:'Taza UP con una segunda variante del diseño rasguño.'},
+  {id:'up16',n:'Taza Rasguño 3 UP',cat:'tazas',p:'$220',img:'images/taza-rasguño3.png',tag:'new',desc:'Taza UP con diseño rasguño en su tercera variante.'},
+  {id:'up17',n:'Termo Panamericana 20 oz UP',cat:'termos',p:'$380',img:'images/termo-panamericana20oz.png',tag:'new',desc:'Termo Panamericana UP de 20 oz para bebidas frias o calientes.'},
+  {id:'up18',n:'Termo Rasguño 20 oz UP',cat:'termos',p:'$380',img:'images/termo-rasguño20oz.png',tag:'new',desc:'Termo UP de 20 oz con diseño rasguño.'},
+  {id:'up19',n:'Termo Rasguño 2 de 20 oz UP',cat:'termos',p:'$380',img:'images/termo-rasguño2-20oz.png',tag:'new',desc:'Termo UP de 20 oz con la segunda variante del diseño rasguño.'},
+  {id:'up20',n:'Termo Panamericana Blanco 25 oz UP',cat:'termos',p:'$420',img:'images/termo-panamericana-blanco25oz.png',tag:'new',desc:'Termo blanco Panamericana UP de 25 oz con gran capacidad.'},
+  {id:'up21',n:'Termo Pantera 30 oz UP',cat:'termos',p:'$440',img:'images/termo-pantera-30oz.png',tag:'new',desc:'Termo UP de 30 oz con diseño de pantera.'},
+  {id:'up22',n:'Termo Panamericana Blanco 40 oz UP',cat:'termos',p:'$480',img:'images/termo-panamericana-boanco40oz.png',tag:'new',desc:'Termo blanco Panamericana UP de 40 oz para acompañarte todo el dia.'},
+  {id:'up23',n:'Termo Pantera 40 oz UP',cat:'termos',p:'$480',img:'images/termo-pantera1-40oz.png',tag:'new',desc:'Termo UP de 40 oz con diseño de pantera y capacidad amplia.'},
+];
+let wish=JSON.parse(localStorage.getItem('ellier_wish')||'[]');
+const WISH_META_KEY='ellier_wish_products';
+function getWishMeta(){return JSON.parse(localStorage.getItem(WISH_META_KEY)||'{}')}
+function saveWishMeta(p){if(!p)return;const meta=getWishMeta();meta[p.id]={id:p.id,n:p.n,cat:p.cat,p:p.p,clr:'#0a0a0a',img:p.img||null};localStorage.setItem(WISH_META_KEY,JSON.stringify(meta))}
+function removeWishMeta(id){const meta=getWishMeta();delete meta[id];localStorage.setItem(WISH_META_KEY,JSON.stringify(meta))}
+let _heroIdx=0,_heroTimer=null;
+let _prodReq={id:null,img:null,fileName:''};
+function escHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+const REVIEW_KEY='ellier_product_reviews';
+let _reviewMedia=null;
+function getReviewStore(){try{return JSON.parse(localStorage.getItem(REVIEW_KEY)||'{}')||{}}catch{return{}}}
+function productReviews(id){return getReviewStore()[id]||[]}
+function starText(rate){const n=Math.max(0,Math.min(5,parseInt(rate)||0));return [1,2,3,4,5].map(i=>`<span>${i<=n?'★':'☆'}</span>`).join('')}
+function reviewPicker(rating=5){return `<div class="pdrev-picker" id="pdrev-rate" data-rating="${rating}" role="radiogroup" aria-label="Calificación">${[1,2,3,4,5].map(n=>`<button type="button" class="pdrev-star ${n<=rating?'a':''}" onclick="setReviewRating(${n})" aria-label="${n} estrella${n!==1?'s':''}">★</button>`).join('')}</div>`}
+function setReviewRating(rate){const box=document.getElementById('pdrev-rate');if(!box)return;const n=Math.max(0,Math.min(5,parseInt(rate)||0));box.dataset.rating=n;box.querySelectorAll('.pdrev-star').forEach((b,i)=>b.classList.toggle('a',i<n))}
+function reviewMediaHtml(media){if(!media||!media.src)return'';const src=escHtml(media.src),alt=escHtml(media.name||'Evidencia del producto');return media.type==='video'?`<div class="pdrev-media"><video src="${src}" controls playsinline preload="metadata"></video></div>`:`<div class="pdrev-media"><img src="${src}" alt="${alt}" loading="lazy" decoding="async"/></div>`}
+function reviewFilePreview(media){if(!media||!media.src)return'';const src=escHtml(media.src);return media.type==='video'?`<video src="${src}" controls playsinline preload="metadata"></video>`:`<img src="${src}" alt="${escHtml(media.name||'Evidencia')}"/>`}
+function handleReviewFile(inp){const file=inp.files&&inp.files[0];if(!file){_reviewMedia=null;return}const err=document.getElementById('pdrev-err');if(err)err.classList.remove('s');if(!/^image\//.test(file.type)&&!/^video\//.test(file.type)){if(err){err.textContent='Adjunta una imagen o video valido.';err.classList.add('s')}inp.value='';_reviewMedia=null;return}if(file.size>2*1024*1024){if(err){err.textContent='El archivo debe pesar maximo 2 MB.';err.classList.add('s')}inp.value='';_reviewMedia=null;return}const reader=new FileReader();reader.onload=e=>{_reviewMedia={src:e.target.result,type:file.type.startsWith('video/')?'video':'image',name:file.name||'evidencia'};const prev=document.getElementById('pdrev-media-preview');if(prev){prev.innerHTML=reviewFilePreview(_reviewMedia);prev.style.display='block'}};reader.readAsDataURL(file)}
+function renderReviewBlock(id){_reviewMedia=null;const list=productReviews(id).slice().reverse(),avg=list.length?Math.round((list.reduce((s,r)=>s+(parseInt(r.rating)||0),0)/list.length)*10)/10:0,score=list.length?avg.toFixed(avg%1?1:0):'0';const rows=list.length?list.map(r=>`<div class="pdrev-item"><div class="pdrev-head"><div><div class="pdrev-name">${escHtml(r.name||'Cliente ELLIÉR')}</div><div class="pdrev-date">${r.ts?new Date(r.ts).toLocaleDateString('es-MX'):''}</div></div><div class="pdrev-stars">${starText(r.rating)}</div></div><div class="pdrev-comment">${escHtml(r.comment)}</div>${reviewMediaHtml(r.media)}</div>`).join(''):'<div class="pdrev-empty">Sé la primera persona en dejar una reseña de este producto.</div>';return `<div class="pdrev"><div class="pdrev-lbl">Opiniones de clientes</div><div class="pdrev-summary"><div class="pdrev-score">${score}</div><div><div class="pdrev-stars">${starText(Math.round(avg))}</div><div class="pdrev-meta">${list.length?list.length+' reseña'+(list.length!==1?'s':'')+' publicada'+(list.length!==1?'s':''):'Sin reseñas todavía'}</div></div></div><div class="pdrev-form"><div class="pdrev-row">${reviewPicker()}<input class="pdrev-input" id="pdrev-name-inp" maxlength="32" placeholder="Tu nombre público" required/></div><textarea class="pdrev-text" id="pdrev-comment" maxlength="260" placeholder="Cuéntanos cómo te quedó, qué te gustó o qué mejorarías..."></textarea><label class="pdrev-file">Agregar foto o video del producto (opcional)<input id="pdrev-file" type="file" accept="image/*,video/*" onchange="handleReviewFile(this)"/><div class="pdrev-media-preview" id="pdrev-media-preview"></div></label><button type="button" class="pdrev-clear" onclick="setReviewRating(0)">Sin calificación</button><div class="pdrev-err" id="pdrev-err">Escribe tu nombre público y una reseña antes de publicarla.</div><button class="pdrev-btn" onclick="addProductReview('${id}')">Publicar opinión</button></div><div class="pdrev-list">${rows}</div></div>`}
+function addProductReview(id){const rating=Math.max(0,Math.min(5,parseInt(document.getElementById('pdrev-rate')?.dataset.rating)||0));const name=(document.getElementById('pdrev-name-inp')?.value||'').trim();const comment=(document.getElementById('pdrev-comment')?.value||'').trim();const err=document.getElementById('pdrev-err');if(err){err.textContent='Escribe tu nombre público y una reseña antes de publicarla.';err.classList.remove('s')}if(name.length<2||comment.length<4){err?.classList.add('s');return}const store=getReviewStore();store[id]=store[id]||[];store[id].push({rating,name,comment,media:_reviewMedia,ts:Date.now()});_reviewMedia=null;try{localStorage.setItem(REVIEW_KEY,JSON.stringify(store))}catch(e){store[id].pop();if(err){err.textContent='El archivo es demasiado pesado para guardar la opinion.';err.classList.add('s')}return}document.getElementById('pd-reviews').innerHTML=renderReviewBlock(id);showToast('Reseña publicada')}
+function openProdReq(id){
+  const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+  _prodReq={id,img:null,fileName:''};
+  document.getElementById('pr-name').textContent=p.n;
+  document.getElementById('pr-cat').textContent=p.cat||'Producto';
+  document.getElementById('pr-img').innerHTML=`<img src="${p.img}" alt="${p.n}"/>`;
+  document.getElementById('pr-desc').value='';
+  document.getElementById('pr-file').value='';
+  document.getElementById('pr-thumb').style.display='none';
+  document.getElementById('pr-thumb-img').src='';
+  document.getElementById('pr-err').classList.remove('s');
+  validateProdReq();
+  document.getElementById('pro').classList.add('o');
+  document.getElementById('prp').classList.add('o');
+}
+function closeProdReq(){
+  document.getElementById('pro').classList.remove('o');
+  document.getElementById('prp').classList.remove('o');
+}
+function handleProdReqFile(inp){
+  const file=inp.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const max=1200,scale=Math.min(1,max/Math.max(img.width,img.height));
+      const cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(img.width*scale));cv.height=Math.max(1,Math.round(img.height*scale));
+      cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);
+      _prodReq.img=cv.toDataURL('image/jpeg',.86);
+      _prodReq.fileName=(file.name||'referencia').replace(/\.[^.]+$/,'')+'.jpg';
+      document.getElementById('pr-thumb-img').src=_prodReq.img;
+      document.getElementById('pr-thumb').style.display='block';
+      validateProdReq();
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function validateProdReq(){
+  const len=document.getElementById('pr-desc')?.value.trim().length||0;
+  const ok=len>=15&&len<=200;
+  const btn=document.getElementById('pr-add');if(btn)btn.disabled=!ok;
+  return ok;
+}
+function confirmProdReq(){
+  if(!validateProdReq()){document.getElementById('pr-err').classList.add('s');return;}
+  const req={desc:document.getElementById('pr-desc').value.trim(),img:_prodReq.img,fileName:_prodReq.fileName};
+  const id=_prodReq.id;
+  closeProdReq();
+  Cart.add(id,req);
+}
+const Cart={
+  items:JSON.parse(localStorage.getItem('ellier_cart')||'[]'),
+  save(){localStorage.setItem('ellier_cart',JSON.stringify(this.items));updateCC()},
+  add(id,request){
+    const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+    if(!request){openProdReq(id);return;}
+    this.items.push({id,n:p.n,p:p.p,qty:1,cat:p.cat,clr:'#0a0a0a',img:p.img,requestDesc:request.desc,requestImg:request.img,requestFileName:request.fileName||'referencia.png',trackingRef:'ELL-'+Date.now().toString(36).toUpperCase()});
+    this.save();showToast('Agregado al carrito');
+  },
+  remove(i){this.items.splice(i,1);this.save();renderCart()},
+  total(){return this.items.reduce((s,x)=>s+(parseInt((x.p||'0').replace(/\D/g,''))||0)*(x.qty||1),0)}
+};
+function renderHeroCarousel(){
+  const slides=document.getElementById('heroSlides'),dots=document.getElementById('heroDots');
+  slides.innerHTML=CATALOG_MEDIA.map((m,i)=>`<div class="hero-slide${i===0?' a':''}" style="background-image:url('${m.img}')" aria-label="${m.title}"></div>`).join('');
+  dots.innerHTML=CATALOG_MEDIA.map((_,i)=>`<button class="hero-dot ${i===0?'a':''}" onclick="heroGo(${i})" aria-label="Slide ${i+1}"></button>`).join('');
+}
+function heroGo(i){
+  const slides=document.querySelectorAll('.hero-slide'),dots=document.querySelectorAll('.hero-dot');
+  if(!slides.length)return;
+  slides[_heroIdx].classList.remove('a');dots[_heroIdx].classList.remove('a');
+  _heroIdx=(i+slides.length)%slides.length;
+  slides[_heroIdx].classList.add('a');dots[_heroIdx].classList.add('a');
+  clearInterval(_heroTimer);_heroTimer=setInterval(()=>heroGo(_heroIdx+1),4200);
+}
+function productCard(p){
+  const on=wish.includes(p.id)?' on':'';
+  const tag=p.tag?`<div class="pbg2 ${p.tag==='new'?'nw':'bs'}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
+  return `<article class="pc" data-cat="${p.cat}"><div class="pci"><div class="pcii" onclick="openDetail('${p.id}')"><img src="${p.img}" alt="${p.n}" loading="lazy" decoding="async"/></div>${tag}<button class="pw${on}" onclick="toggleWish(this,'${p.id}')" aria-label="Favorito"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pdsc">${p.desc}</div><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></article>`;
+}
+function renderProducts(){document.getElementById('grid').innerHTML=PRODUCTS.map(productCard).join('')+'<div class="empty-filter" id="emptyFilter">Productos UP proximamente</div>';document.getElementById('pcount').textContent=PRODUCTS.length+' productos UP'}
+function filterProducts(btn,cat){
+  document.querySelectorAll('.ft').forEach(b=>b.classList.remove('a'));btn.classList.add('a');
+  const cats=cat==='all'?[]:cat.split(',');
+  let visible=0;
+  document.querySelectorAll('.pc').forEach(c=>{
+    const show=cat==='all'||cats.includes(c.dataset.cat);
+    c.classList.toggle('hd',!show);
+    if(show)visible++;
+  });
+  const empty=document.getElementById('emptyFilter');
+  if(empty)empty.classList.toggle('o',visible===0);
+}
+function openDetail(id){
+  const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+  document.getElementById('pd-img').src=p.img;document.getElementById('pd-img').alt=p.n;
+  document.getElementById('pd-cat').textContent=p.cat;document.getElementById('pd-name').textContent=p.n;document.getElementById('pd-price').textContent=p.p;document.getElementById('pd-desc').textContent=p.desc;
+  document.getElementById('pd-reviews').innerHTML=renderReviewBlock(id);
+  document.getElementById('pd-add').onclick=()=>Cart.add(id);
+  document.getElementById('pdov').classList.add('o');
+}
+function closeDetail(){document.getElementById('pdov').classList.remove('o')}
+function toggleWish(btn,id){
+  const i=wish.indexOf(id);
+  if(i>-1){wish.splice(i,1);btn.classList.remove('on');removeWishMeta(id)}else{wish.push(id);btn.classList.add('on');saveWishMeta(PRODUCTS.find(x=>x.id===id))}
+  localStorage.setItem('ellier_wish',JSON.stringify(wish));showToast(i>-1?'Eliminado de favoritos':'Agregado a favoritos');
+}
+function openCart(){renderCart();document.getElementById('cartov').classList.add('o')}
+function closeCart(){document.getElementById('cartov').classList.remove('o')}
+function cartVisual(x){
+  if(x.requestImg)return `<img src="${x.requestImg}" alt="${x.n}"/>`;
+  if(x.img)return `<img src="${x.img}" alt="${x.n}"/>`;
+  const p=PRODUCTS.find(y=>y.id===x.id);
+  if(p&&p.img){x.img=p.img;return `<img src="${p.img}" alt="${x.n}"/>`;}
+  return '';
+}
+function renderCart(){
+  const el=document.getElementById('cartitems'),ft=document.getElementById('cartfoot');
+  if(!Cart.items.length){el.innerHTML='<div class="empty">Tu carrito esta vacio</div>';ft.style.display='none';return}
+  el.innerHTML=Cart.items.map((x,i)=>{
+    const req=x.requestDesc?`<p style="font-size:10px;color:var(--su);line-height:1.45;margin-top:4px">${escHtml(x.requestDesc)}</p>`:'';
+    return `<div class="ci"><div class="ct2">${cartVisual(x)}</div><div class="cii"><h4>${x.n}</h4><p>${x.cat}${x.requestDesc?' · Detallado':''}</p>${req}<div class="cpri">${x.p} x ${x.qty}</div></div><button class="xb" onclick="Cart.remove(${i})">x</button></div>`;
+  }).join('');
+  localStorage.setItem('ellier_cart',JSON.stringify(Cart.items));
+  ft.style.display='flex';document.getElementById('carttotal').textContent='$'+Cart.total().toLocaleString()+' MXN';
+}
+function updateCC(){document.getElementById('crtc').textContent=Cart.items.reduce((s,x)=>s+(x.qty||1),0)}
+function showToast(txt){const t=document.getElementById('toast');t.textContent=txt;t.classList.add('on');clearTimeout(showToast._t);showToast._t=setTimeout(()=>t.classList.remove('on'),1800)}
+renderHeroCarousel();_heroTimer=setInterval(()=>heroGo(_heroIdx+1),4200);
+renderProducts();updateCC();
+const initial=(location.hash||'').replace('#','');
+if(initial&&initial!=='up'){
+  const target=(initial==='termos'||initial==='tazas')?'termos,tazas':initial;
+  const btn=[...document.querySelectorAll('.ft')].find(b=>b.getAttribute('onclick')?.includes(`'${target}'`));
+  if(btn)btn.click();
+}
+</script>
+</body>
+</html>
