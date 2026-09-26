@@ -666,7 +666,7 @@ function closeCart(){document.getElementById('co').classList.remove('o');documen
 // AUTH — Supabase
 const SUPABASE_URL='https://dybckcffwdsxjjrrepin.supabase.co';
 const SUPABASE_KEY='sb_publishable_lCeQfhTlU2w23MOoV6TXfA_B5q8GTG4';
-const STRIPE_PK='pk_test_51TijL0Hn0vlLlcAg04HF8Is2ZmNPHW0y380uZuTEqsydryP64Lz2PcUTUSsKnNv7ANa9cL58ctVNjRZVSXmOWnWF00KiG5C36a';
+const STRIPE_PK='pk_live_51TijKoQY6a841JCx5WRtyumZIu76HZ9r8Jno7XeiW7o5HOzxFyiWdsU4ViETJ9UyvjV6fB5jxe33Ha2rzDaeJfkl00NJzso1xX';
 let _stripe=null,_stripeElements=null,_ckOrderId=null,_ckPI=null,_pendingCk=false;
 const CEO_EMAIL='ellier.agency@gmail.com';              // <-- email de la cuenta CEO
 
