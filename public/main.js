@@ -1489,10 +1489,40 @@ function setPzVariant(id){
 }
 function setProd(p,btn){document.querySelectorAll('#pzpb .pzb').forEach(b=>b.classList.remove('a'));btn.classList.add('a');PV.prod=p;renderPzVariants();PV.draw()}
 function setClr(c,dot){document.querySelectorAll('#pzco .pzc').forEach(d=>d.classList.remove('a'));dot.classList.add('a');PV.clr=c;PV.draw()}
-function handleImg(inp){
+// Quita el fondo (si el checkbox está activo) y carga la imagen resultante en PV.img.
+// El proceso corre 100% en el navegador (ver src/bg-removal.js); si falla o el
+// módulo no cargó, se usa la imagen tal cual la subió el cliente.
+async function handleImg(inp){
   const file=inp.files[0];if(!file)return;
-  const reader=new FileReader();reader.onload=e=>{const img=new Image();img.onload=()=>{PV.img=img;PV.imgX=0;PV.imgY=0;document.getElementById('imgctrl').style.display='block';PV.draw()};img.src=e.target.result};
-  reader.readAsDataURL(file);
+  const useBg=document.getElementById('bgrmv-on')?.checked;
+  const statusEl=document.getElementById('bgrmv-status');
+  let blob=file;
+  if(useBg&&window.ellierRemoveBackground){
+    try{
+      if(statusEl){statusEl.style.display='block';statusEl.textContent='Preparando…'}
+      blob=await window.ellierRemoveBackground(file,{onProgress:(key,current,total)=>{
+        if(!statusEl)return;
+        const pct=total?Math.round((current/total)*100):0;
+        statusEl.textContent=`Quitando fondo… ${pct}%`;
+      }});
+      if(statusEl){statusEl.textContent='Fondo quitado ✓';setTimeout(()=>{statusEl.style.display='none'},1500)}
+    }catch(e){
+      console.error('bg removal falló, se usa la imagen original',e);
+      blob=file;
+      if(statusEl)statusEl.style.display='none';
+      showToast('No se pudo quitar el fondo — se usó la imagen original');
+    }
+  }
+  const url=URL.createObjectURL(blob);
+  const img=new Image();
+  img.onload=()=>{
+    URL.revokeObjectURL(url);
+    PV.img=img;PV.imgX=0;PV.imgY=0;
+    document.getElementById('imgctrl').style.display='block';
+    PV.draw();
+  };
+  img.onerror=()=>{URL.revokeObjectURL(url);showToast('No se pudo leer la imagen')};
+  img.src=url;
 }
 function removePzImg(){
   PV.img=null;PV.imgX=0;PV.imgY=0;PV.imgScale=.225;
