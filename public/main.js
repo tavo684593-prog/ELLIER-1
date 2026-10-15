@@ -152,6 +152,14 @@ function initHero(){
   _hDraw();
   new IntersectionObserver(([e])=>{_hp=!e.isIntersecting;if(!_hp&&!_rafH)_hDraw()},{threshold:0}).observe(cv);
   document.addEventListener('visibilitychange',()=>{_hp=document.hidden;if(!_hp&&!_rafH)_hDraw()});
+  // Parallax sutil de los blobs decorativos y la mascota al hacer scroll
+  if(!_isTouch){
+    const hrb1=document.querySelector('#hero .hrb1'),hrb2=document.querySelector('#hero .hrb2'),masc=document.querySelector('#hero .hmasc');
+    const pxCfg={ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}};
+    if(hrb1)gsap.to(hrb1,{yPercent:18,...pxCfg});
+    if(hrb2)gsap.to(hrb2,{yPercent:-14,...pxCfg});
+    if(masc)gsap.to(masc,{yPercent:10,...pxCfg});
+  }
 }
 
 // DESCUENTO — helpers
