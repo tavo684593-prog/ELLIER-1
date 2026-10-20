@@ -844,6 +844,18 @@ function ceoTab(name,btn){
   else if(name==='products')renderProdTable();
   else if(name==='users')renderUsrTable();
 }
+// El bucket "designs" es privado: lo guardado en design_url puede ser la
+// ruta del archivo (filas nuevas) o, para filas viejas, la URL pública de
+// antes de cerrarlo — en ambos casos resolvemos a una URL firmada de corta
+// duración, visible solo para quien la pide (RLS ya exige dueño o admin).
+async function _signedDesignUrl(stored,ttl=600){
+  if(!stored)return null;
+  const m=String(stored).match(/\/designs\/(.+)$/);
+  const path=m?m[1]:stored;
+  const{data,error}=await _sb.storage.from('designs').createSignedUrl(path,ttl);
+  if(error){console.error('_signedDesignUrl',path,error);return null;}
+  return data.signedUrl;
+}
 async function renderDesignsGallery(){
   const box=document.getElementById('ceo-designs');
   box.innerHTML='<p class="dsgn-empty">Cargando diseños...</p>';
@@ -858,13 +870,14 @@ async function renderDesignsGallery(){
       <button class="cb3" onclick="filterDsgn(this,'prev')">Vista previa (${nPrev})</button>
       <button class="cb3" onclick="filterDsgn(this,'iso')">Diseño aislado (${nIso})</button>
     </div>`;
-    const cards=data.map(d=>{
+    const signedUrls=await Promise.all(data.map(d=>_signedDesignUrl(d.design_url)));
+    const cards=data.map((d,i)=>{
       const ordRef='#'+d.order_id.slice(-6).toUpperCase();
       const isP=!!(d.item_name?.includes('Vista'));
       const typeLabel=isP?'Preview':'Diseño';
       const safeName=(d.item_name||'diseno').toLowerCase().replace(/[^a-z0-9]+/g,'-');
       const fname=safeName+'-'+d.order_id.slice(-6)+'.png';
-      const url=escHtml(String(d.design_url||''));
+      const url=escHtml(String(signedUrls[i]||''));
       return`<div class="dsgn-card" data-t="${isP?'prev':'iso'}" title="${escHtml(d.item_name||'')}">
         <img class="dsgn-thumb" src="${url}" alt="${typeLabel} ${ordRef}" onerror="this.style.display='none';this.nextSibling.style.display='flex'"/>
         <div class="dsgn-thumb-err" style="display:none">Sin imagen</div>
@@ -978,16 +991,17 @@ async function openOrder(id){
   try{
     const{data:designs}=await _sb.from('design_uploads').select('*').eq('order_id',o.id);
     if(designs?.length){
+      const signedUrls=await Promise.all(designs.map(d=>_signedDesignUrl(d.design_url)));
       // Show preview image in the top canvas area
-      const previewD=designs.find(d=>d.item_name?.includes('Vista'));
-      if(previewD){cvEl.style.display='none';imgEl.style.display='block';imgEl.src=previewD.design_url;}
+      const previewIdx=designs.findIndex(d=>d.item_name?.includes('Vista'));
+      if(previewIdx>=0&&signedUrls[previewIdx]){cvEl.style.display='none';imgEl.style.display='block';imgEl.src=signedUrls[previewIdx];}
       // Show all designs with download buttons below
       dsec.style.display='';
       dbox.innerHTML=designs.map((d,i)=>{
         const label=d.item_name||('Diseño '+(i+1)),safeLabel=escHtml(label);
         const isPreview=label.includes('Vista');
         const fname=label.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+o._shortId.replace('#','')+'.png';
-        const url=escHtml(String(d.design_url||''));
+        const url=escHtml(String(signedUrls[i]||''));
         return`<div style="margin-bottom:16px">
           <div style="font-size:9px;letter-spacing:.1em;color:var(--su);text-transform:uppercase;margin-bottom:6px">${safeLabel}</div>
           ${isPreview?'':`<img src="${url}" style="width:100%;border-radius:7px;border:1px solid var(--bo);display:block;background:#f5f4f0;margin-bottom:7px" />`}
@@ -1243,13 +1257,14 @@ async function saveDesigns(orderId,items){
         const{error:upErr1}=await _sb.storage.from('designs').upload(fn1,blob,{contentType:mime,upsert:true});
         if(upErr1){console.error('saveDesigns upload preview:',upErr1);showToast('Error al guardar vista previa: '+upErr1.message);}
         else{
-          const{data:{publicUrl:url1}}=_sb.storage.from('designs').getPublicUrl(fn1);
+          // Guardamos la ruta del archivo, no una URL pública: el bucket es
+          // privado y la imagen se sirve con una URL firmada al momento de verla.
           const shortDesc=item.requestDesc?(' · '+item.requestDesc).slice(0,130):'';
-          const row1={order_id:orderId,item_id:item.id,item_name:item.n+(item.requestImg?' · Referencia cliente'+shortDesc:' · Vista previa'),design_url:url1};
+          const row1={order_id:orderId,item_id:item.id,item_name:item.n+(item.requestImg?' · Referencia cliente'+shortDesc:' · Vista previa'),design_url:fn1};
           if(session?.user?.id)row1.user_id=session.user.id;
           const{error:ins1}=await _sb.from('design_uploads').insert(row1);
           if(ins1)showToast('Error al registrar vista previa: '+ins1.message);
-          else console.log('saveDesigns preview OK:',url1);
+          else console.log('saveDesigns preview OK:',fn1);
         }
         // — imagen 2: diseño aislado (sin fondo de producto, plano para grabado)
         if(item.designOnly){
@@ -1258,11 +1273,10 @@ async function saveDesigns(orderId,items){
             const fn2=`${orderId}/${item.id}_diseno_${ts}.png`;
             const{error:upErr2}=await _sb.storage.from('designs').upload(fn2,blob2,{contentType:'image/png',upsert:true});
             if(!upErr2){
-              const{data:{publicUrl:url2}}=_sb.storage.from('designs').getPublicUrl(fn2);
-              const row2={order_id:orderId,item_id:item.id,item_name:item.n+' · Diseño aislado',design_url:url2};
+              const row2={order_id:orderId,item_id:item.id,item_name:item.n+' · Diseño aislado',design_url:fn2};
               if(session?.user?.id)row2.user_id=session.user.id;
               await _sb.from('design_uploads').insert(row2);
-              console.log('saveDesigns diseño OK:',url2);
+              console.log('saveDesigns diseño OK:',fn2);
             }
           }catch(e2){console.error('saveDesigns designOnly',e2);}
         }
