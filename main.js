@@ -192,24 +192,24 @@ function mkPC(p){
   const customImg=_getProdImg(p.id);
   const c0=p.clrs[0];
   const innerContent=customImg
-    ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}"/>`
+    ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${escHtml(p.n)}"/>`
     :p.svg.replace(/\{C\}/g,c0);
   const tagH=p.tag?`<div class="pbg2 ${p.tag}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
   const dots=p.clrs.map((c,i)=>`<div class="psw${i===0?' a':''}" style="background:${c}" onclick="chPC(this,'${p.id}','${c}')"></div>`).join('');
   const mv3d=p.model3d
-    ?`<model-viewer id="mv_${p.id}" src="${p.model3d}" alt="${p.n}" auto-rotate camera-controls shadow-intensity="1"></model-viewer><button class="btn3d" id="btn3d_${p.id}" onclick="toggle3D('${p.id}')">3D</button>`
+    ?`<model-viewer id="mv_${p.id}" src="${p.model3d}" alt="${escHtml(p.n)}" auto-rotate camera-controls shadow-intensity="1"></model-viewer><button class="btn3d" id="btn3d_${p.id}" onclick="toggle3D('${p.id}')">3D</button>`
     :'';
-  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" style="padding:24px;cursor:pointer" onclick="openProdDetail('${p.id}')"><div id="svg_${p.id}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${innerContent}</div></div>${mv3d}${tagH}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pcs">${dots}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
+  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" style="padding:24px;cursor:pointer" onclick="openProdDetail('${p.id}')"><div id="svg_${p.id}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${innerContent}</div></div>${mv3d}${tagH}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${escHtml(p.n)}</div><div class="pcs">${dots}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
 }
 function mkTC(t){
   const customImg=_getProdImg(t.id);
   const svgContent=customImg
-    ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${t.n}"/>`
+    ?`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${escHtml(t.n)}"/>`
     :(t.cat==='termos'?mkTermoSVG(t.clr):mkTazaSVG(t.clr));
   const mv3d=t.model3d
-    ?`<model-viewer id="mv_${t.id}" src="${t.model3d}" alt="${t.n}" auto-rotate camera-controls shadow-intensity="1"></model-viewer><button class="btn3d" id="btn3d_${t.id}" onclick="toggle3D('${t.id}')">3D</button>`
+    ?`<model-viewer id="mv_${t.id}" src="${t.model3d}" alt="${escHtml(t.n)}" auto-rotate camera-controls shadow-intensity="1"></model-viewer><button class="btn3d" id="btn3d_${t.id}" onclick="toggle3D('${t.id}')">3D</button>`
     :'';
-  return `<div class="tcard rv" data-cat="${t.cat}"><div class="tci"><div class="tcii" style="padding:22px;cursor:pointer" onclick="openProdDetail('${t.id}')">${svgContent}</div>${mv3d}</div><div class="tcb"><div class="tct">${t.cat}</div><div class="tcn">${t.n}</div><div class="tcoz">${t.oz}</div><div class="tcd">${t.desc}</div><div class="tcft">${_mkPriceHtml(t,'tcp')}<button class="ba" onclick="Cart.add('${t.id}')">+ Carrito</button></div></div></div>`;
+  return `<div class="tcard rv" data-cat="${t.cat}"><div class="tci"><div class="tcii" style="padding:22px;cursor:pointer" onclick="openProdDetail('${t.id}')">${svgContent}</div>${mv3d}</div><div class="tcb"><div class="tct">${t.cat}</div><div class="tcn">${escHtml(t.n)}</div><div class="tcoz">${t.oz}</div><div class="tcd">${escHtml(t.desc)}</div><div class="tcft">${_mkPriceHtml(t,'tcp')}<button class="ba" onclick="Cart.add('${t.id}')">+ Carrito</button></div></div></div>`;
 }
 function obsNew(g){g.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>ro.observe(el));addHover(g)}
 function renderSW(){const g=document.getElementById('swg');if(g){g.innerHTML=SW.map(mkPC).join('');obsNew(g)}}
@@ -267,13 +267,13 @@ function openProdDetail(id){
     const c0=p.clrs[0];
     _pdActiveClr=c0;
     svgWrap.innerHTML=productImg
-      ?`<img src="${productImg}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`
+      ?`<img src="${productImg}" style="width:100%;height:100%;object-fit:contain" alt="${escHtml(p.n)}"/>`
       :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,c0)}</div>`;
     if(p.model3d){pdMv.src=(p.models3d&&p.models3d[c0])||p.model3d;pd3dBtn.style.display='block';}
     else{pdMv.src='';pd3dBtn.style.display='none';}
   } else {
     svgWrap.innerHTML=productImg
-      ?`<img src="${productImg}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`
+      ?`<img src="${productImg}" style="width:100%;height:100%;object-fit:contain" alt="${escHtml(p.n)}"/>`
       :`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.cat==='termos'?mkTermoSVG(p.clr):mkTazaSVG(p.clr)}</div>`;
     if(p.model3d){pdMv.src=p.model3d;pd3dBtn.style.display='block';}
     else{pdMv.src='';pd3dBtn.style.display='none';}
@@ -289,7 +289,7 @@ function openProdDetail(id){
   document.getElementById('pd-info').innerHTML=`
     ${tagH}
     <div class="pd-cat">${p.cat}</div>
-    <div class="pd-name">${p.n}</div>
+    <div class="pd-name">${escHtml(p.n)}</div>
     ${ozH}
     <div class="pd-price-row">${_mkPriceHtml(p,'pd-p')}</div>
     ${colorsH}
@@ -312,7 +312,7 @@ function openProdDetail(id){
     </div>
     <div class="pd-sec">
       <div class="pd-sec-lbl">Descripción</div>
-      <div class="pd-desc">${desc}</div>
+      <div class="pd-desc">${escHtml(desc)}</div>
     </div>
     ${renderReviewBlock(id)}`;
   const wb=document.getElementById('pd-wish-btn');
@@ -346,7 +346,7 @@ function pdChColor(dot,id,clr){
   _pdActiveClr=clr;
   const p=SW.find(x=>x.id===id);
   const sw=document.getElementById('pd-svg-wrap');
-  if(p&&sw){const ci=_getProdImg(id);sw.innerHTML=ci?`<img src="${ci}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`:p.img?`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain" alt="${p.n}"/>`:(`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,clr)}</div>`);}
+  if(p&&sw){const ci=_getProdImg(id);sw.innerHTML=ci?`<img src="${ci}" style="width:100%;height:100%;object-fit:contain" alt="${escHtml(p.n)}"/>`:p.img?`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain" alt="${escHtml(p.n)}"/>`:(`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${p.svg.replace(/\{C\}/g,clr)}</div>`);}
   const pdMv=document.getElementById('pd-mv');
   if(pdMv&&p&&p.models3d&&p.models3d[clr]){pdMv.src=p.models3d[clr];}
 }
@@ -486,7 +486,7 @@ function wishProduct(id){return[...SW,...TERMOS].find(x=>x.id===id)||getWishMeta
 function wishVisual(p){
   if(!p)return '';
   const img=(p.id&&_getProdImg(p.id))||p.img||null;
-  if(img)return `<img src="${img}" alt="${p.n}" loading="lazy" decoding="async"/>`;
+  if(img)return `<img src="${img}" alt="${escHtml(p.n)}" loading="lazy" decoding="async"/>`;
   const clr=p.clr||p.clrs?.[0]||'#1a1a1a';
   if(p.svg)return p.svg.replace(/\{C\}/g,clr);
   if(p.cat==='termos')return mkTermoSVG(clr);
@@ -509,8 +509,7 @@ function renderWish(){
   const all=[...SW,...TERMOS];
   el.innerHTML=wish.map(id=>{
     const p=all.find(x=>x.id===id)||wishProduct(id);if(!p)return'';
-    const nm=p.n.replace(/'/g,'&#39;');
-    return `<div class="ci"><div class="ct2">${wishVisual(p)}</div><div class="cii"><h4>${p.n}</h4><p style="font-size:11px;color:var(--mu)">${p.cat}</p><div class="cq" style="margin-bottom:8px"><span class="cpri">${p.p}</span><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="removeWish('${id}')" aria-label="Eliminar favorito">x</button></div><button class="ba" style="width:100%;text-align:center;position:relative" onclick="addWishToCart('${id}');showToast('Agregado: ${nm}')">+ Carrito</button></div></div>`;
+    return `<div class="ci"><div class="ct2">${wishVisual(p)}</div><div class="cii"><h4>${escHtml(p.n)}</h4><p style="font-size:11px;color:var(--mu)">${p.cat}</p><div class="cq" style="margin-bottom:8px"><span class="cpri">${p.p}</span><button style="margin-left:auto;color:var(--su);font-size:11px" onclick="removeWish('${id}')" aria-label="Eliminar favorito">x</button></div><button class="ba" style="width:100%;text-align:center;position:relative" onclick="addWishToCart('${id}')">+ Carrito</button></div></div>`;
   }).filter(Boolean).join('');
   ft.style.display='block';
 }
@@ -554,7 +553,7 @@ function openProdReq(id,clrOverride){
   document.getElementById('pr-name').textContent=p.n;
   document.getElementById('pr-cat').textContent=p.cat||'Producto';
   const img=cartProductImg(p);
-  document.getElementById('pr-img').innerHTML=img?`<img src="${img}" alt="${p.n}"/>`:(p.svg?p.svg.replace(/\{C\}/g,p.clr||'#1a1a1a'):'');
+  document.getElementById('pr-img').innerHTML=img?`<img src="${img}" alt="${escHtml(p.n)}"/>`:(p.svg?p.svg.replace(/\{C\}/g,p.clr||'#1a1a1a'):'');
   document.getElementById('pr-desc').value='';
   document.getElementById('pr-file').value='';
   document.getElementById('pr-thumb').style.display='none';
@@ -1711,14 +1710,14 @@ function mkShowcaseCard(p){
   const c0=isSW?(p.clrs&&p.clrs[0]||'#1a1a1a'):p.clr||'#1a1a1a';
   const customImg=_getProdImg(p.id);
   let vis;
-  if(customImg)vis=`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}" loading="lazy" decoding="async"/>`;
-  else if(p.img)vis=`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${p.n}" loading="lazy" decoding="async"/>`;
+  if(customImg)vis=`<img src="${customImg}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${escHtml(p.n)}" loading="lazy" decoding="async"/>`;
+  else if(p.img)vis=`<img src="${p.img}" style="width:100%;height:100%;object-fit:contain;border-radius:4px" alt="${escHtml(p.n)}" loading="lazy" decoding="async"/>`;
   else if(isSW&&p.svg)vis=p.svg.replace(/\{C\}/g,c0);
   else if(p.cat==='termos')vis=mkTermoSVG(c0);
   else vis=mkTazaSVG(c0);
   const tag=p.tag?`<div class="pbg2 ${p.tag}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
   const sub=p.desc||p.oz||'';
-  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" style="padding:24px;cursor:pointer" onclick="openProdDetail('${p.id}')"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${vis}</div></div>${tag}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pdsc">${sub}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
+  return `<div class="pc rv" data-cat="${p.cat}" data-id="${p.id}"><div class="pci"><div class="pcii" style="padding:24px;cursor:pointer" onclick="openProdDetail('${p.id}')"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">${vis}</div></div>${tag}<button class="pw" onclick="toggleWish(this,'${p.id}')"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${escHtml(p.n)}</div><div class="pdsc">${escHtml(sub)}</div><div class="pft">${_mkPriceHtml(p,'pp')}<button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></div>`;
 }
 function renderShowcase(){
   const all=CATALOG;
@@ -1763,7 +1762,7 @@ function openSwFeatured(){
   m.innerHTML=`<div style="background:var(--bg);border:1px solid var(--bo);border-radius:12px;max-width:620px;width:100%;max-height:80vh;overflow:hidden;display:flex;flex-direction:column">
     <div style="padding:18px 24px;border-bottom:1px solid var(--bo);display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500">Seleccionar Destacados</span><button onclick="document.getElementById('sw-feat-modal').remove()" style="background:none;border:none;cursor:pointer;font-size:20px;color:var(--mu);line-height:1">×</button></div>
     <div style="overflow-y:auto;padding:18px 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px" id="sw-feat-grid">
-      ${all.map(p=>`<label style="display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid var(--bo);border-radius:7px;cursor:pointer"><input type="checkbox" data-pid="${p.id}" ${active.has(p.id)?'checked':''} style="accent-color:#000;width:13px;height:13px;flex-shrink:0"><span style="font-size:11px;line-height:1.3">${p.n}</span></label>`).join('')}
+      ${all.map(p=>`<label style="display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid var(--bo);border-radius:7px;cursor:pointer"><input type="checkbox" data-pid="${p.id}" ${active.has(p.id)?'checked':''} style="accent-color:#000;width:13px;height:13px;flex-shrink:0"><span style="font-size:11px;line-height:1.3">${escHtml(p.n)}</span></label>`).join('')}
     </div>
     <div style="padding:14px 24px;border-top:1px solid var(--bo);display:flex;gap:8px;justify-content:flex-end">
       <button onclick="document.getElementById('sw-feat-modal').remove()" class="bg" style="font-size:10px">Cancelar</button>
@@ -1784,8 +1783,8 @@ async function _saveSwFeatured(){
 // BÚSQUEDA
 function srchVisual(p){
   const customImg=_getProdImg(p.id);
-  if(customImg)return `<img src="${customImg}" alt="${p.n}" loading="lazy" decoding="async"/>`;
-  if(p.img)return `<img src="${p.img}" alt="${p.n}" loading="lazy" decoding="async"/>`;
+  if(customImg)return `<img src="${customImg}" alt="${escHtml(p.n)}" loading="lazy" decoding="async"/>`;
+  if(p.img)return `<img src="${p.img}" alt="${escHtml(p.n)}" loading="lazy" decoding="async"/>`;
   const clr=p.clr||(p.clrs&&p.clrs[0])||'#1a1a1a';
   if(p.svg)return p.svg.replace(/\{C\}/g,clr);
   return p.cat==='termos'?mkTermoSVG(clr):mkTazaSVG(clr);
@@ -1815,7 +1814,7 @@ function srchRender(q){
   tag.textContent=q?(res.length+' resultado'+(res.length!==1?'s':'')+' — "'+q+'"'):(res.length+' productos en el catálogo');
   document.getElementById('srchres').innerHTML=res.map(p=>{
     const nm=p.n.replace(/'/g,'&#39;');
-    return `<div class="src" role="button" tabindex="0" onclick="openSrchProduct('${p.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSrchProduct('${p.id}')}"><div class="sri">${srchVisual(p)}</div><div class="srn">${p.n}</div><div class="srt2">${p.cat}</div><div class="srp">${p.p}</div><button class="src-add" onclick="event.stopPropagation();Cart.add('${p.id}')" onkeydown="event.stopPropagation()">+ Carrito</button></div>`;
+    return `<div class="src" role="button" tabindex="0" onclick="openSrchProduct('${p.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSrchProduct('${p.id}')}"><div class="sri">${srchVisual(p)}</div><div class="srn">${escHtml(p.n)}</div><div class="srt2">${p.cat}</div><div class="srp">${p.p}</div><button class="src-add" onclick="event.stopPropagation();Cart.add('${p.id}')" onkeydown="event.stopPropagation()">+ Carrito</button></div>`;
   }).join('');
 }
 document.getElementById('srchinp').addEventListener('input',e=>srchRender(e.target.value));

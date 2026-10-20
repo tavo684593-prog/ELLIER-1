@@ -260,7 +260,7 @@ function heroGo(i){
 function productCard(p){
   const on=wish.includes(p.id)?' on':'';
   const tag=p.tag?`<div class="pbg2 ${p.tag==='new'?'nw':'bs'}">${p.tag==='new'?'Nuevo':'Best'}</div>`:'';
-  return `<article class="pc" data-cat="${p.cat}"><div class="pci"><div class="pcii" onclick="openDetail('${p.id}')"><img src="${p.img}" alt="${p.n}" loading="lazy" decoding="async"/></div>${tag}<button class="pw${on}" onclick="toggleWish(this,'${p.id}')" aria-label="Favorito"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${p.n}</div><div class="pdsc">${p.desc}</div><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></article>`;
+  return `<article class="pc" data-cat="${p.cat}"><div class="pci"><div class="pcii" onclick="openDetail('${p.id}')"><img src="${p.img}" alt="${escHtml(p.n)}" loading="lazy" decoding="async"/></div>${tag}<button class="pw${on}" onclick="toggleWish(this,'${p.id}')" aria-label="Favorito"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div><div class="pcb"><div class="pcat">${p.cat}</div><div class="pn">${escHtml(p.n)}</div><div class="pdsc">${escHtml(p.desc)}</div><div class="pft"><span class="pp">${p.p}</span><button class="ba" onclick="Cart.add('${p.id}')">+ Carrito</button></div></div></article>`;
 }
 function renderProducts(){document.getElementById('grid').innerHTML=PRODUCTS.map(productCard).join('')+'<div class="empty-filter" id="emptyFilter">Productos UP proximamente</div>';document.getElementById('pcount').textContent=PRODUCTS.length+' productos UP'}
 function filterProducts(btn,cat){
@@ -292,10 +292,10 @@ function toggleWish(btn,id){
 function openCart(){renderCart();document.getElementById('cartov').classList.add('o')}
 function closeCart(){document.getElementById('cartov').classList.remove('o')}
 function cartVisual(x){
-  if(x.requestImg)return `<img src="${x.requestImg}" alt="${x.n}"/>`;
-  if(x.img)return `<img src="${x.img}" alt="${x.n}"/>`;
+  if(x.requestImg)return `<img src="${x.requestImg}" alt="${escHtml(x.n)}"/>`;
+  if(x.img)return `<img src="${x.img}" alt="${escHtml(x.n)}"/>`;
   const p=PRODUCTS.find(y=>y.id===x.id);
-  if(p&&p.img){x.img=p.img;return `<img src="${p.img}" alt="${x.n}"/>`;}
+  if(p&&p.img){x.img=p.img;return `<img src="${p.img}" alt="${escHtml(x.n)}"/>`;}
   return '';
 }
 function renderCart(){
@@ -303,7 +303,7 @@ function renderCart(){
   if(!Cart.items.length){el.innerHTML='<div class="empty">Tu carrito esta vacio</div>';ft.style.display='none';return}
   el.innerHTML=Cart.items.map((x,i)=>{
     const req=x.requestDesc?`<p style="font-size:10px;color:var(--su);line-height:1.45;margin-top:4px">${escHtml(x.requestDesc)}</p>`:'';
-    return `<div class="ci"><div class="ct2">${cartVisual(x)}</div><div class="cii"><h4>${x.n}</h4><p>${x.cat}${x.requestDesc?' · Detallado':''}</p>${req}<div class="cpri">${x.p} x ${x.qty}</div></div><button class="xb" onclick="Cart.remove(${i})">x</button></div>`;
+    return `<div class="ci"><div class="ct2">${cartVisual(x)}</div><div class="cii"><h4>${escHtml(x.n)}</h4><p>${x.cat}${x.requestDesc?' · Detallado':''}</p>${req}<div class="cpri">${x.p} x ${x.qty}</div></div><button class="xb" onclick="Cart.remove(${i})">x</button></div>`;
   }).join('');
   localStorage.setItem('ellier_cart',JSON.stringify(Cart.items));
   ft.style.display='flex';document.getElementById('carttotal').textContent='$'+Cart.total().toLocaleString()+' MXN';
