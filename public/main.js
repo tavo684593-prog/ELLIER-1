@@ -147,8 +147,8 @@ function initHero(){
       p.x+=p.vx;p.y+=p.vy;
       if(p.x<0)p.x=cv.width;if(p.x>cv.width)p.x=0;
       if(p.y<0)p.y=cv.height;if(p.y>cv.height)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(122,74,42,${p.o})`;ctx.fill();
-      if(i<pts.length-1){const q=pts[i+1],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);if(d<80){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(122,74,42,${.07*(1-d/80)})`;ctx.lineWidth=.4;ctx.stroke()}}
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(47,91,63,${p.o})`;ctx.fill();
+      if(i<pts.length-1){const q=pts[i+1],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);if(d<80){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(47,91,63,${.07*(1-d/80)})`;ctx.lineWidth=.4;ctx.stroke()}}
     });
   }
   _hDraw();
@@ -163,6 +163,41 @@ function initHero(){
     if(masc)gsap.to(masc,{yPercent:10,...pxCfg});
   }
 }
+
+// NIEVE NAVIDEÑA — capa decorativa global y opcional (toque de temporada,
+// rama design/nuevo-look). Copos sueltos cayendo sobre toda la página;
+// se desactiva sola si el usuario prefiere menos movimiento.
+(function initSnow(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cv=document.createElement('canvas');
+  cv.id='xmas-snow';
+  cv.setAttribute('aria-hidden','true');
+  cv.style.cssText='position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:45';
+  document.body.appendChild(cv);
+  const ctx=cv.getContext('2d');
+  if(!ctx)return;
+  const rsz=()=>{cv.width=window.innerWidth;cv.height=window.innerHeight};
+  rsz();window.addEventListener('resize',rsz,{passive:true});
+  const flakes=Array.from({length:60},()=>({
+    x:Math.random()*cv.width,y:Math.random()*cv.height,
+    r:Math.random()*2.6+1.2,vy:Math.random()*.6+.3,vx:Math.random()*.3-.15,
+    o:Math.random()*.5+.3,drift:Math.random()*Math.PI*2
+  }));
+  let _p=false,_raf=null;
+  function _draw(){
+    if(_p){_raf=null;return}
+    _raf=requestAnimationFrame(_draw);
+    ctx.clearRect(0,0,cv.width,cv.height);
+    flakes.forEach(f=>{
+      f.drift+=.01;f.y+=f.vy;f.x+=f.vx+Math.sin(f.drift)*.25;
+      if(f.y>cv.height+10){f.y=-10;f.x=Math.random()*cv.width}
+      if(f.x>cv.width+10)f.x=-10;if(f.x<-10)f.x=cv.width+10;
+      ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${f.o})`;ctx.fill();
+    });
+  }
+  _draw();
+  document.addEventListener('visibilitychange',()=>{_p=document.hidden;if(!_p&&!_raf)_draw()});
+})();
 
 // DESCUENTO — helpers
 let _globalDisc=0;
