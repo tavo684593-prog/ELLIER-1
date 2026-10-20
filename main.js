@@ -98,11 +98,23 @@ function unlockScroll(){
   }
 }
 
-// NAVBAR
-const nv=document.getElementById('nv');
+// NAVBAR — se compacta y se va haciendo transparente conforme se hace scroll;
+// al llegar al Catálogo especial se vuelve invisible del todo (ver _xcatInView)
+const nv=document.getElementById('nv'),nvwrap=document.getElementById('nvwrap');
+let _xcatInView=false;
+function _updateNvOpacity(){
+  nvwrap.style.opacity=_xcatInView?'0':Math.max(.35,1-window.scrollY/500).toFixed(2);
+}
+(function(){
+  const xcatEl=document.getElementById('xcat');
+  if(!xcatEl)return;
+  new IntersectionObserver(([e])=>{_xcatInView=e.isIntersecting;_updateNvOpacity()},{threshold:0}).observe(xcatEl);
+})();
 window.addEventListener('scroll',()=>{
-  if(window.scrollY>60){nv.classList.add('s');nv.classList.remove('d')}
-  else{nv.classList.remove('s');nv.classList.add('d')}
+  const y=window.scrollY;
+  if(y>60){nv.classList.add('s');nv.classList.remove('d');nvwrap.classList.add('s')}
+  else{nv.classList.remove('s');nv.classList.add('d');nvwrap.classList.remove('s')}
+  _updateNvOpacity();
 },{passive:true});
 
 // MOBILE MENU
@@ -135,7 +147,7 @@ function initHero(){
   const cv=document.getElementById('hcv'),ctx=cv.getContext('2d');
   const rsz=()=>{cv.width=cv.offsetWidth;cv.height=cv.offsetHeight};
   rsz();window.addEventListener('resize',rsz,{passive:true});
-  const pts=Array.from({length:38},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,r:Math.random()*1.1+.3,o:Math.random()*.18+.04}));
+  const pts=Array.from({length:38},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,r:Math.random()*1.1+.3,o:Math.random()*.14+.03}));
   let _rafH=null,_hp=false;
   function _hDraw(){
     if(_hp){_rafH=null;return}
@@ -145,14 +157,57 @@ function initHero(){
       p.x+=p.vx;p.y+=p.vy;
       if(p.x<0)p.x=cv.width;if(p.x>cv.width)p.x=0;
       if(p.y<0)p.y=cv.height;if(p.y>cv.height)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${p.o})`;ctx.fill();
-      if(i<pts.length-1){const q=pts[i+1],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);if(d<80){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(255,255,255,${.05*(1-d/80)})`;ctx.lineWidth=.4;ctx.stroke()}}
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(47,91,63,${p.o})`;ctx.fill();
+      if(i<pts.length-1){const q=pts[i+1],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);if(d<80){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(47,91,63,${.07*(1-d/80)})`;ctx.lineWidth=.4;ctx.stroke()}}
     });
   }
   _hDraw();
   new IntersectionObserver(([e])=>{_hp=!e.isIntersecting;if(!_hp&&!_rafH)_hDraw()},{threshold:0}).observe(cv);
   document.addEventListener('visibilitychange',()=>{_hp=document.hidden;if(!_hp&&!_rafH)_hDraw()});
+  // Parallax sutil de los blobs decorativos y la mascota al hacer scroll
+  if(!_isTouch){
+    const hrb1=document.querySelector('#hero .hrb1'),hrb2=document.querySelector('#hero .hrb2'),masc=document.querySelector('#hero .hmasc');
+    const pxCfg={ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}};
+    if(hrb1)gsap.to(hrb1,{yPercent:18,...pxCfg});
+    if(hrb2)gsap.to(hrb2,{yPercent:-14,...pxCfg});
+    if(masc)gsap.to(masc,{yPercent:10,...pxCfg});
+  }
 }
+
+// NIEVE NAVIDEÑA — capa decorativa global y opcional (toque de temporada,
+// rama design/nuevo-look). Copos sueltos cayendo sobre toda la página;
+// se desactiva sola si el usuario prefiere menos movimiento.
+(function initSnow(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cv=document.createElement('canvas');
+  cv.id='xmas-snow';
+  cv.setAttribute('aria-hidden','true');
+  cv.style.cssText='position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:45';
+  document.body.appendChild(cv);
+  const ctx=cv.getContext('2d');
+  if(!ctx)return;
+  const rsz=()=>{cv.width=window.innerWidth;cv.height=window.innerHeight};
+  rsz();window.addEventListener('resize',rsz,{passive:true});
+  const flakes=Array.from({length:60},()=>({
+    x:Math.random()*cv.width,y:Math.random()*cv.height,
+    r:Math.random()*2.6+1.2,vy:Math.random()*.6+.3,vx:Math.random()*.3-.15,
+    o:Math.random()*.5+.3,drift:Math.random()*Math.PI*2
+  }));
+  let _p=false,_raf=null;
+  function _draw(){
+    if(_p){_raf=null;return}
+    _raf=requestAnimationFrame(_draw);
+    ctx.clearRect(0,0,cv.width,cv.height);
+    flakes.forEach(f=>{
+      f.drift+=.01;f.y+=f.vy;f.x+=f.vx+Math.sin(f.drift)*.25;
+      if(f.y>cv.height+10){f.y=-10;f.x=Math.random()*cv.width}
+      if(f.x>cv.width+10)f.x=-10;if(f.x<-10)f.x=cv.width+10;
+      ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${f.o})`;ctx.fill();
+    });
+  }
+  _draw();
+  document.addEventListener('visibilitychange',()=>{_p=document.hidden;if(!_p&&!_raf)_draw()});
+})();
 
 // DESCUENTO — helpers
 let _globalDisc=0;
@@ -1755,6 +1810,67 @@ function swStartAuto(){
 }
 function swStopAuto(){clearInterval(_swAutoT);}
 
+// CATÁLOGO ESPECIAL — carrusel en abanico (reemplaza el banner estático del
+// termo). Reusa mkShowcaseCard() para que cada tarjeta tenga imagen real,
+// wishlist y "+Carrito" funcionando igual que en Destacados.
+function _xcPick(n){
+  n=n||12;
+  const byCat={};
+  CATALOG.forEach(p=>{(byCat[p.cat]=byCat[p.cat]||[]).push(p)});
+  const cats=Object.keys(byCat);
+  const out=[];
+  let guard=0;
+  while(out.length<n && out.length<CATALOG.length && guard<500){
+    const cat=cats[guard%cats.length];
+    const arr=byCat[cat];
+    if(arr&&arr.length)out.push(arr.shift());
+    guard++;
+  }
+  return out;
+}
+let _xcItems=[],_xcCur=0,_xcAutoT=null;
+function renderXCat(){
+  const wrap=document.getElementById('xcCards');if(!wrap)return;
+  _xcItems=_xcPick(12);
+  wrap.innerHTML=_xcItems.map(p=>`<div class="xc-card">${mkShowcaseCard(p).replace('pc rv','pc')}</div>`).join('');
+  const dotsEl=document.getElementById('xcDots');
+  if(dotsEl)dotsEl.innerHTML=_xcItems.map((_,i)=>`<button class="xc-dot${i===0?' a':''}" onclick="xcGo(${i})" aria-label="Ir al producto ${i+1}"></button>`).join('');
+  _xcCur=0;
+  addHover(wrap);
+  _xcLayout();
+  xcStartAuto();
+}
+function _xcLayout(){
+  const n=_xcItems.length;if(!n)return;
+  const cards=document.querySelectorAll('#xcCards .xc-card');
+  document.querySelectorAll('.xc-dot').forEach((dot,i)=>dot.classList.toggle('a',i===_xcCur));
+  cards.forEach((card,i)=>{
+    let d=i-_xcCur;
+    if(d>n/2)d-=n;if(d<-n/2)d+=n;
+    const ad=Math.abs(d);
+    if(ad>3){
+      card.style.opacity='0';card.style.zIndex='0';
+      card.style.transform=`translate(-50%,-50%) translateX(${d*60}%) scale(.5)`;
+      return;
+    }
+    const x=d*46,rot=d*11,scale=1-ad*.17,y=ad*ad*3.4,op=1-ad*.3;
+    card.style.transform=`translate(-50%,-50%) translateX(${x}%) translateY(${y}%) rotate(${rot}deg) scale(${scale})`;
+    card.style.opacity=op.toFixed(2);
+    card.style.zIndex=String(10-ad);
+  });
+}
+function xcGo(i){if(!_xcItems.length)return;_xcCur=((i%_xcItems.length)+_xcItems.length)%_xcItems.length;_xcLayout();xcStartAuto();}
+function xcStep(dir){xcGo(_xcCur+dir);}
+function xcStartAuto(){
+  clearInterval(_xcAutoT);
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  _xcAutoT=setInterval(()=>{if(!document.hidden)xcGo(_xcCur+1)},3200);
+}
+(function(){
+  const stage=document.getElementById('xcStage');
+  if(stage){stage.addEventListener('mouseenter',()=>clearInterval(_xcAutoT));stage.addEventListener('mouseleave',xcStartAuto);}
+})();
+
 // EVMAS CAROUSEL
 let _emCur=0;
 function evmasGo(i){
@@ -2447,7 +2563,7 @@ function renderMasProductos(){
 // INIT
 (async()=>{
   await loadCeoCustomizations();
-  renderShowcase();swStartAuto();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
+  renderShowcase();swStartAuto();renderXCat();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
   buildThemePanel();
 })();
 // Recuperación de contraseña — verificación manual del token_hash vía JS
