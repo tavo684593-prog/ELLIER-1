@@ -13,9 +13,19 @@ export async function markOrderPaid(admin: any, args: MarkArgs): Promise<string 
   const { orderId, paymentIntentId, userId } = args;
 
   let q = admin.from("orders").update({ status: "paid" }).neq("status", "paid");
-  if (orderId) q = q.eq("id", orderId);
-  else if (paymentIntentId) q = q.eq("stripe_payment_intent_id", paymentIntentId);
-  else throw new Error("Falta orderId o paymentIntentId");
+  if (orderId && paymentIntentId) {
+    // Ambos presentes: el PaymentIntent debe ser el que de verdad quedó
+    // guardado en ESTA orden al crearla — si no coincide, no se marca nada.
+    // Evita que un paymentIntentId de otra compra (ya "succeeded" en Stripe)
+    // se use para confirmar una orden distinta sin pagarla.
+    q = q.eq("id", orderId).eq("stripe_payment_intent_id", paymentIntentId);
+  } else if (orderId) {
+    q = q.eq("id", orderId);
+  } else if (paymentIntentId) {
+    q = q.eq("stripe_payment_intent_id", paymentIntentId);
+  } else {
+    throw new Error("Falta orderId o paymentIntentId");
+  }
   if (userId) q = q.eq("user_id", userId);
 
   const { data, error } = await q.select("id").maybeSingle();

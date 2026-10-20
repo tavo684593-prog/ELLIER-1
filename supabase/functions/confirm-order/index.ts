@@ -31,9 +31,14 @@ Deno.serve(async (req) => {
     const { data: { user }, error: authErr } = await supabase.auth.getUser();
     if (authErr || !user) return json({ error: "No autorizado" }, 401);
 
-    // Verificar el PaymentIntent con Stripe antes de tocar la orden
-    const piId = paymentIntentId ??
-      (orderId ? await orderPaymentIntent(orderId, user.id) : null);
+    // Verificar el PaymentIntent con Stripe antes de tocar la orden.
+    // Si viene orderId, el PI SIEMPRE se resuelve desde la propia orden
+    // (nunca se confía en el paymentIntentId que mande el navegador) —
+    // así no se puede "prestar" el recibo de una compra para confirmar
+    // otra orden distinta.
+    const piId = orderId
+      ? await orderPaymentIntent(orderId, user.id)
+      : paymentIntentId;
     if (!piId) return json({ error: "Orden no encontrada" }, 404);
 
     const stripeRes = await fetch(
@@ -57,7 +62,9 @@ Deno.serve(async (req) => {
     });
     if (paidId) await sendOrderEmail(admin, paidId).catch((e) => console.error("notify email", e));
 
-    return json({ status: "paid" });
+    // Si no hubo match real (p. ej. el PI no correspondía a esta orden),
+    // no le decimos al cliente que quedó pagada.
+    return json({ status: paidId ? "paid" : "pending" });
   } catch (err) {
     return json({ error: (err as Error).message }, 500);
   }
