@@ -98,11 +98,13 @@ function unlockScroll(){
   }
 }
 
-// NAVBAR
-const nv=document.getElementById('nv');
+// NAVBAR — se compacta y se va haciendo transparente conforme se hace scroll
+const nv=document.getElementById('nv'),nvwrap=document.getElementById('nvwrap');
 window.addEventListener('scroll',()=>{
-  if(window.scrollY>60){nv.classList.add('s');nv.classList.remove('d')}
-  else{nv.classList.remove('s');nv.classList.add('d')}
+  const y=window.scrollY;
+  if(y>60){nv.classList.add('s');nv.classList.remove('d');nvwrap.classList.add('s')}
+  else{nv.classList.remove('s');nv.classList.add('d');nvwrap.classList.remove('s')}
+  nvwrap.style.opacity=Math.max(.35,1-y/500).toFixed(2);
 },{passive:true});
 
 // MOBILE MENU
