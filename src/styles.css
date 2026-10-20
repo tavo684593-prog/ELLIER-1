@@ -26,23 +26,23 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .ldn-reveal{position:absolute;top:0;left:0;width:200px;height:auto;clip-path:inset(0 100% 0 0)}
 #ldb{width:200px;height:1px;background:rgba(255,255,255,.08);overflow:hidden}
 #ldf{height:100%;background:rgba(255,255,255,.5);width:0}
-/* PROTOTYPE NOTICE — franja superior de la misma píldora (ver #nvwrap) */
-#proto-notice{position:relative;background:#7a5c3a;color:rgba(255,255,255,.9);padding:7px 20px;text-align:center;font-size:10px;letter-spacing:.13em;text-transform:uppercase;line-height:1.5;border-radius:22px 22px 0 0}
+/* PROTOTYPE NOTICE — franja inferior de la misma píldora (ver #nvwrap) */
+#proto-notice{position:relative;background:#7a5c3a;color:rgba(255,255,255,.9);padding:7px 20px;text-align:center;font-size:10px;letter-spacing:.13em;text-transform:uppercase;line-height:1.5;border-radius:0 0 22px 22px}
 /* NAV + ANUNCIO — una sola píldora flotante; el ticker de envíos es su
    "subparte" baja, mismo ancho, y todo el conjunto se vuelve transparente
    al hacer scroll (ver scroll listener de #nvwrap en main.js) */
 #nvwrap{position:fixed;top:16px;left:16px;right:16px;z-index:100;max-width:1280px;margin:0 auto;transition:top .35s var(--ea),opacity .25s var(--ea)}
 #nvwrap.s{top:10px}
 #nvwrap:hover,#nvwrap:focus-within{opacity:1!important}
-#ann{position:relative;background:linear-gradient(90deg,var(--ink),var(--ink2));color:#fff;overflow:hidden;padding:9px 0;font-size:10px;letter-spacing:.2em;text-transform:uppercase;border-radius:0 0 22px 22px}
+#ann{position:relative;background:linear-gradient(90deg,var(--ink),var(--ink2));color:#fff;overflow:hidden;padding:9px 0;font-size:10px;letter-spacing:.2em;text-transform:uppercase;border-radius:0}
 .at{display:flex;width:max-content;animation:mq 28s linear infinite}
 .at span{padding:0 34px;white-space:nowrap}.at .d{padding:0 5px;opacity:.22}
 @keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-/* NAVBAR — franja intermedia de la píldora (el aviso de prototipo queda arriba) */
+/* NAVBAR — franja superior de la píldora */
 #nv{position:relative;display:flex;align-items:center;justify-content:space-between;
-  padding:14px 26px;border-radius:0;
+  padding:14px 26px;border-radius:26px 26px 0 0;
   background:rgba(255,255,255,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,.6);border-top:none;border-bottom:none;box-shadow:var(--shadow-soft-sm);
+  border:1px solid rgba(255,255,255,.6);border-bottom:none;box-shadow:var(--shadow-soft-sm);
   transition:padding .35s var(--ea),box-shadow .35s var(--ea)}
 #nv.s{padding:10px 24px;box-shadow:var(--shadow-soft)}
 #nv.d .nl,#nv.d .ni,#nv.s .nl,#nv.s .ni{color:var(--mu)}
