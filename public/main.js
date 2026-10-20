@@ -1787,6 +1787,67 @@ function swStartAuto(){
 }
 function swStopAuto(){clearInterval(_swAutoT);}
 
+// CATÁLOGO ESPECIAL — carrusel en abanico (reemplaza el banner estático del
+// termo). Reusa mkShowcaseCard() para que cada tarjeta tenga imagen real,
+// wishlist y "+Carrito" funcionando igual que en Destacados.
+function _xcPick(n){
+  n=n||12;
+  const byCat={};
+  CATALOG.forEach(p=>{(byCat[p.cat]=byCat[p.cat]||[]).push(p)});
+  const cats=Object.keys(byCat);
+  const out=[];
+  let guard=0;
+  while(out.length<n && out.length<CATALOG.length && guard<500){
+    const cat=cats[guard%cats.length];
+    const arr=byCat[cat];
+    if(arr&&arr.length)out.push(arr.shift());
+    guard++;
+  }
+  return out;
+}
+let _xcItems=[],_xcCur=0,_xcAutoT=null;
+function renderXCat(){
+  const wrap=document.getElementById('xcCards');if(!wrap)return;
+  _xcItems=_xcPick(12);
+  wrap.innerHTML=_xcItems.map(p=>`<div class="xc-card">${mkShowcaseCard(p).replace('pc rv','pc')}</div>`).join('');
+  const dotsEl=document.getElementById('xcDots');
+  if(dotsEl)dotsEl.innerHTML=_xcItems.map((_,i)=>`<button class="xc-dot${i===0?' a':''}" onclick="xcGo(${i})" aria-label="Ir al producto ${i+1}"></button>`).join('');
+  _xcCur=0;
+  addHover(wrap);
+  _xcLayout();
+  xcStartAuto();
+}
+function _xcLayout(){
+  const n=_xcItems.length;if(!n)return;
+  const cards=document.querySelectorAll('#xcCards .xc-card');
+  document.querySelectorAll('.xc-dot').forEach((dot,i)=>dot.classList.toggle('a',i===_xcCur));
+  cards.forEach((card,i)=>{
+    let d=i-_xcCur;
+    if(d>n/2)d-=n;if(d<-n/2)d+=n;
+    const ad=Math.abs(d);
+    if(ad>3){
+      card.style.opacity='0';card.style.zIndex='0';
+      card.style.transform=`translate(-50%,-50%) translateX(${d*60}%) scale(.5)`;
+      return;
+    }
+    const x=d*46,rot=d*11,scale=1-ad*.17,y=ad*ad*3.4,op=1-ad*.3;
+    card.style.transform=`translate(-50%,-50%) translateX(${x}%) translateY(${y}%) rotate(${rot}deg) scale(${scale})`;
+    card.style.opacity=op.toFixed(2);
+    card.style.zIndex=String(10-ad);
+  });
+}
+function xcGo(i){if(!_xcItems.length)return;_xcCur=((i%_xcItems.length)+_xcItems.length)%_xcItems.length;_xcLayout();xcStartAuto();}
+function xcStep(dir){xcGo(_xcCur+dir);}
+function xcStartAuto(){
+  clearInterval(_xcAutoT);
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  _xcAutoT=setInterval(()=>{if(!document.hidden)xcGo(_xcCur+1)},3200);
+}
+(function(){
+  const stage=document.getElementById('xcStage');
+  if(stage){stage.addEventListener('mouseenter',()=>clearInterval(_xcAutoT));stage.addEventListener('mouseleave',xcStartAuto);}
+})();
+
 // EVMAS CAROUSEL
 let _emCur=0;
 function evmasGo(i){
@@ -2479,7 +2540,7 @@ function renderMasProductos(){
 // INIT
 (async()=>{
   await loadCeoCustomizations();
-  renderShowcase();swStartAuto();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
+  renderShowcase();swStartAuto();renderXCat();renderMasProductos();renderColl();Cart.render();updateCC();updateAuthBtn();updateWC();PV.init();
   buildThemePanel();
 })();
 // Recuperación de contraseña — verificación manual del token_hash vía JS
