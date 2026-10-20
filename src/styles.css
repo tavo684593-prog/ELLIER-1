@@ -358,6 +358,8 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .fc a{font-size:12px;transition:color .2s}.fc a:hover{color:#fff}
 .fbot{display:flex;align-items:center;justify-content:space-between;padding-top:26px;border-top:1px solid rgba(255,255,255,.055)}
 .fcp{font-size:10px;letter-spacing:.06em}
+.fcp a{text-decoration:underline;text-underline-offset:2px;opacity:.75;transition:opacity .2s}
+.fcp a:hover{opacity:1}
 .fsocs{display:flex;gap:13px}
 .fsoc{color:rgba(255,255,255,.36);transition:color .2s}.fsoc:hover{color:#fff}
 /* TOAST */
