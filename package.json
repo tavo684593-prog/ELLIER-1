@@ -21,6 +21,7 @@
     "esbuild@0.25.12": true
   },
   "dependencies": {
-    "@imgly/background-removal": "^1.7.0"
+    "@imgly/background-removal": "^1.7.0",
+    "@rive-app/canvas": "^2.45.0"
   }
 }
