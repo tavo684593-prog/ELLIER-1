@@ -4,8 +4,9 @@
 // (separados por coma), p. ej.:
 //   supabase secrets set ALLOWED_ORIGINS="https://tusitio.github.io,https://ellier.mx"
 //
-// Mientras ALLOWED_ORIGINS no esté configurada se mantiene el comportamiento
-// abierto (como antes) pero se registra un aviso en los logs.
+// Si ALLOWED_ORIGINS no está configurada, se falla cerrado: no se refleja
+// ningún origen de producción (solo quedan permitidos los orígenes locales
+// de desarrollo) y se registra un aviso en los logs.
 
 const LOCAL_DEFAULTS = [
   "http://localhost:5173",
@@ -29,13 +30,9 @@ export function corsHeaders(req: Request): Record<string, string> {
 
   const headers = { ...BASE_HEADERS };
 
-  if (configured.length === 0) {
-    if (!warned) {
-      console.warn("ALLOWED_ORIGINS no configurada — CORS abierto. Configúrala para restringir.");
-      warned = true;
-    }
-    headers["Access-Control-Allow-Origin"] = origin || "*";
-    return headers;
+  if (configured.length === 0 && !warned) {
+    console.warn("ALLOWED_ORIGINS no configurada — CORS cerrado salvo orígenes locales. Configúrala en producción.");
+    warned = true;
   }
 
   const allow = [...LOCAL_DEFAULTS, ...configured];
