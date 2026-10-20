@@ -249,10 +249,12 @@ input,select{font-family:var(--fn)}::selection{background:rgba(0,0,0,.08)}
 .hsc{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--su);font-size:9px;letter-spacing:.22em;text-transform:uppercase}
 .hsl{width:1px;height:36px;background:rgba(179,39,58,.3);animation:sl 2s ease-in-out infinite}
 /* Mascota / personaje — placeholder con el logo actual hasta tener la ilustración final */
-.hmasc{position:absolute;top:50%;right:6%;transform:translateY(-50%);z-index:1;width:min(44vw,560px);aspect-ratio:1;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.hmasc-blob{position:absolute;inset:6%;border-radius:62% 38% 55% 45%/48% 42% 58% 52%;background:radial-gradient(circle at 38% 32%,var(--accent-dk),var(--ink) 72%);box-shadow:var(--shadow-soft);animation:bl1 9s ease-in-out infinite}
-.hmasc img,.hmasc-canvas{position:relative;z-index:1;width:56%;height:auto;filter:drop-shadow(0 18px 30px rgba(31,59,42,.35));animation:bl2 6s ease-in-out infinite}
+.hmasc{position:absolute;top:50%;right:6%;transform:translateY(-50%);z-index:1;width:min(52vw,660px);aspect-ratio:1;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.hmasc-blob{position:absolute;inset:6%;border-radius:62% 38% 55% 45%/48% 42% 58% 52%;background:radial-gradient(circle at 38% 32%,var(--accent-dk),var(--ink) 72%);box-shadow:var(--shadow-soft);animation:bl1 9s ease-in-out infinite,hmascPop .9s var(--ea) both}
+.hmasc img,.hmasc-canvas{position:relative;z-index:1;width:74%;height:auto;filter:drop-shadow(0 18px 30px rgba(31,59,42,.35));animation:bl2 6s ease-in-out infinite,hmascFade 1.2s var(--ea) .22s both;-webkit-mask-image:radial-gradient(ellipse 52% 52% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 52% 52% at 50% 50%,#000 58%,transparent 100%)}
 .hmasc-canvas{aspect-ratio:1;display:none}
+@keyframes hmascPop{0%{opacity:0;transform:scale(.5)}100%{opacity:1;transform:scale(1)}}
+@keyframes hmascFade{0%{opacity:0;filter:drop-shadow(0 18px 30px rgba(31,59,42,.35)) blur(14px)}100%{opacity:1;filter:drop-shadow(0 18px 30px rgba(31,59,42,.35)) blur(0)}}
 @keyframes bl1{0%,100%{border-radius:62% 38% 55% 45%/48% 42% 58% 52%}50%{border-radius:48% 52% 40% 60%/55% 48% 52% 45%}}
 @keyframes bl2{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @media(max-width:1024px){.hmasc{width:min(52vw,420px);right:0;opacity:.9}}
