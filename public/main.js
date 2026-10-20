@@ -98,13 +98,23 @@ function unlockScroll(){
   }
 }
 
-// NAVBAR — se compacta y se va haciendo transparente conforme se hace scroll
+// NAVBAR — se compacta y se va haciendo transparente conforme se hace scroll;
+// al llegar al Catálogo especial se vuelve invisible del todo (ver _xcatInView)
 const nv=document.getElementById('nv'),nvwrap=document.getElementById('nvwrap');
+let _xcatInView=false;
+function _updateNvOpacity(){
+  nvwrap.style.opacity=_xcatInView?'0':Math.max(.35,1-window.scrollY/500).toFixed(2);
+}
+(function(){
+  const xcatEl=document.getElementById('xcat');
+  if(!xcatEl)return;
+  new IntersectionObserver(([e])=>{_xcatInView=e.isIntersecting;_updateNvOpacity()},{threshold:0}).observe(xcatEl);
+})();
 window.addEventListener('scroll',()=>{
   const y=window.scrollY;
   if(y>60){nv.classList.add('s');nv.classList.remove('d');nvwrap.classList.add('s')}
   else{nv.classList.remove('s');nv.classList.add('d');nvwrap.classList.remove('s')}
-  nvwrap.style.opacity=Math.max(.35,1-y/500).toFixed(2);
+  _updateNvOpacity();
 },{passive:true});
 
 // MOBILE MENU
